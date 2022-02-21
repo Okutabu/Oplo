@@ -13,9 +13,8 @@ Page du chef de projet :
 - Modification d'un projet : ajout d'échéances, modif un projet, enlever des employés, en demander
 
 Pages du responsable scientifique :
-- Repartir personnel : demandes des chef de projets et données necessaire pour choisir quel personnel allouer
+- Repartir personnel : demandes des chef de projets (+ gérer les ressources rares en proposant des options ; donner des compteurs / scores pour aider la décision d'allouer une ressource)
 - Approbation des comptes : approuve les comptes employé et chef de projet
 
 Page de l'admin :
 - Approbation responsable scientifique
-
