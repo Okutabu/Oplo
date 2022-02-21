@@ -1,0 +1,21 @@
+Pages du logiciel communes à tous :
+- Écran de connexion / inscription
+- Page de profil : modifier certaines de ses infos + déconnexion
+- Vue en détail d'un projet : membres, messages, échéances, debut / fin de projet, nom et description, selon le rôle possibilité de modification 
+- Notifications (+ une fenêtre flottante qu'une page à part entière)
+
+Pages de l'employé / chef de projet :
+- Accueil : descriptif des projets récents et frise des echéances
+- Calendrier : toutes les échéances détaillées
+- Projets : affichage de tous les projets (le chef de projet a, lui, des bouttons pour modifier ses projets et faire des demandes de personnels)
+
+Page du chef de projet :
+- Modification d'un projet : ajout d'échéances, modif un projet, enlever des employés, en demander
+
+Pages du responsable scientifique :
+- Repartir personnel : demandes des chef de projets et données necessaire pour choisir quel personnel allouer
+- Approbation des comptes : approuve les comptes employé et chef de projet
+
+Page de l'admin :
+- Approbation responsable scientifique
+
