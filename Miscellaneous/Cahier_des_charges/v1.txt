@@ -6,7 +6,7 @@
 Pages :
 - Écran de connexion / inscription
 - Page de profil : modifier certaines de ses infos + déconnexion
-- Accueil vite fait : descriptif des projets récents
+- Accueil simplifié : descriptif des projets récents
 - Approbation des comptes par le RS : approuve les comptes employé et chef de projet
 - Approbation responsable scientifique par l'admin
 - Repartir le personnel facilement pour le RS
