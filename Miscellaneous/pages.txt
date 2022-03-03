@@ -10,7 +10,7 @@ Pages de l'employé / chef de projet :
 - Projets : affichage de tous les projets (le chef de projet a, lui, des bouttons pour modifier ses projets et faire des demandes de personnels)
 
 Page du chef de projet :
-- Modification d'un projet : ajout d'échéances, modif un projet, enlever des employés, en demander
+- Ajout/Modification d'un projet : ajout d'échéances, modif un projet, enlever des employés, en demander
 
 Pages du responsable scientifique :
 - Repartir personnel : demandes des chef de projets (+ gérer les ressources rares en proposant des options ; donner des compteurs / scores pour aider la décision d'allouer une ressource)
