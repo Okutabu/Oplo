@@ -3,7 +3,7 @@
 - Création de personnel
 - Association projet personnel
 
-Pages (en termes de fonctionnalités, pas frontend) :
+Pages :
 - Écran de connexion / inscription
 - Page de profil : modifier certaines de ses infos + déconnexion
 - Accueil vite fait : descriptif des projets récents
