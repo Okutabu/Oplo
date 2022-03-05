@@ -17,4 +17,4 @@ Pages du responsable scientifique :
 - Approbation des comptes : approuve les comptes employé et chef de projet
 
 Page de l'admin :
-- Approbation responsable scientifique
+- Une page de plus contenant : approbation responsable scientifique et peut donner des droits admin
