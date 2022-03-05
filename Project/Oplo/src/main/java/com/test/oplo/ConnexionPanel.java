@@ -26,15 +26,19 @@ public class ConnexionPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        clockLabel = new javax.swing.JLabel();
+        infosConnect = new javax.swing.JLabel();
         connect = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(0, 0, 255));
+        setMinimumSize(new java.awt.Dimension(554, 300));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        clockLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        infosConnect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        infosConnect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         connect.setText("Connexion");
         connect.addActionListener(new java.awt.event.ActionListener() {
@@ -60,28 +64,28 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(211, 211, 211)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(connect, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(clockLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(connect, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                        .addGap(33, 33, 33))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addGap(177, 177, 177)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(infosConnect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField1)
                             .addComponent(jPasswordField1))))
-                .addContainerGap(213, Short.MAX_VALUE))
+                .addGap(177, 177, 177))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
+                .addGap(76, 76, 76)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(37, 37, 37)
                 .addComponent(connect)
-                .addGap(38, 38, 38)
-                .addComponent(clockLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(infosConnect, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGap(29, 29, 29))
         );
 
         pack();
@@ -90,8 +94,11 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
         // TODO add your handling code here:
        ServerCommunication s = new ServerCommunication();
-       clockLabel.setText(s.sendPostRequest("http://127.0.0.1/testons.php", "user=gaetan&pwd=octav"));
+       //infoConnect.setText(s.sendPostRequest("http://127.0.0.1/testons.php", "user=gaetan&pwd=octav"));
        Home menu = new Home();
+       this.setVisible(false);
+       menu.setLocation(this.getLocation());
+       menu.setVisible(true);
     }//GEN-LAST:event_connectActionPerformed
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
@@ -136,8 +143,8 @@ public class ConnexionPanel extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel clockLabel;
     private javax.swing.JButton connect;
+    private javax.swing.JLabel infosConnect;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
