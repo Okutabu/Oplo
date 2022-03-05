@@ -26,19 +26,19 @@ public class ConnexionPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        infosConnect = new javax.swing.JLabel();
+        infoConnect = new javax.swing.JLabel();
         connect = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        inputLogin = new javax.swing.JTextField();
+        inputPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 255));
-        setMinimumSize(new java.awt.Dimension(554, 300));
-        setPreferredSize(new java.awt.Dimension(1920, 1080));
+        setForeground(java.awt.Color.cyan);
+        setMinimumSize(new java.awt.Dimension(900, 600));
 
-        infosConnect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        infosConnect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        infoConnect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        infoConnect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         connect.setText("Connexion");
         connect.addActionListener(new java.awt.event.ActionListener() {
@@ -47,12 +47,13 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Nom d'utilsateur");
+        inputLogin.setText("Nom d'utilsateur");
 
-        jPasswordField1.setText("Mot de passe");
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        inputPassword.setText("Mot de passe");
+        inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inputPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                inputPasswordActionPerformed(evt);
             }
         });
 
@@ -61,31 +62,30 @@ public class ConnexionPanel extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(211, 211, 211)
-                        .addComponent(connect, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
-                        .addGap(33, 33, 33))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(infosConnect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1)
-                            .addComponent(jPasswordField1))))
-                .addGap(177, 177, 177))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(infoConnect, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(connect, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(225, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(inputPassword)
+                    .addComponent(inputLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(connect)
-                .addGap(31, 31, 31)
-                .addComponent(infosConnect, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                .addGap(29, 29, 29))
+                .addContainerGap(148, Short.MAX_VALUE)
+                .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(infoConnect, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(76, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,17 +93,22 @@ public class ConnexionPanel extends javax.swing.JFrame {
 
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
         // TODO add your handling code here:
-       ServerCommunication s = new ServerCommunication();
-       //infoConnect.setText(s.sendPostRequest("http://127.0.0.1/testons.php", "user=gaetan&pwd=octav"));
-       Home menu = new Home();
-       this.setVisible(false);
-       menu.setLocation(this.getLocation());
-       menu.setVisible(true);
+        ServerCommunication s = new ServerCommunication();
+        String connect = s.sendGetRequest("http://oplo.000webhostapp.com/");
+        if (connect == "ok"){
+            Home menu = new Home();
+            this.setVisible(false);
+            menu.setLocation(this.getLocation());
+            menu.setVisible(true);
+        } else {
+            infoConnect.setText(connect);
+        }
+       
     }//GEN-LAST:event_connectActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_inputPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,8 +149,8 @@ public class ConnexionPanel extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton connect;
-    private javax.swing.JLabel infosConnect;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel infoConnect;
+    private javax.swing.JTextField inputLogin;
+    private javax.swing.JPasswordField inputPassword;
     // End of variables declaration//GEN-END:variables
 }
