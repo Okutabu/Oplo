@@ -86,6 +86,7 @@ public class User {
 
        }
     }
+    
 
     public static String getCredentials()
     {
@@ -109,6 +110,19 @@ public class User {
         }
 
         return data.trim();
+    }
+    
+    public static void destroyCredentials(){
+        String nomFichier = "credentials.oplo";
+        File myFile = new File(nomFichier);
+        if(myFile.delete()) 
+        { 
+            System.out.println("File successfully deleted"); 
+        } 
+        else
+        { 
+            System.out.println("Error : Can not delete " + nomFichier); 
+        } 
     }
 
 }

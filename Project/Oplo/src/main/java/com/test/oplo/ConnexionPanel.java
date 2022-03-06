@@ -4,10 +4,10 @@
  */
 package com.test.oplo;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import javax.servlet.http.Cookie;
 /**
  *
  * @author Clément
@@ -19,6 +19,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
      */
     public ConnexionPanel() {
         initComponents();
+        isRemembered();
     }
     
     public void connect(){
@@ -34,6 +35,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         if (connectionInfos.containsKey("error")){
             infoConnect.setText((String) connectionInfos.get("error"));
         } else {
+            //Met a jour la classe User avec les infos de l'utilisateur, sorte de cache pour la session
             String login = inputLogin.getText();
             String prenom = (String) connectionInfos.get("firstname");
             String nom = (String) connectionInfos.get("surname");
@@ -42,14 +44,27 @@ public class ConnexionPanel extends javax.swing.JFrame {
             String description = (String) connectionInfos.get("others");
             String photo = (String) connectionInfos.get("profile_pic");
             User.initialize(login, prenom, nom, admin, role, description, photo);
-            if (loginRemember.getSelection().isSelected()){
+            //enregistre le login si la case esst cochée
+            if (remember.isSelected()){
                 User.saveCredentials();
+            } else {
+                User.destroyCredentials();
             }
             Home menu = new Home();
             this.setVisible(false);
             menu.setLocation(this.getLocation());
             menu.setVisible(true);
         }
+    }
+    
+    public void isRemembered(){
+        String display;
+        if (User.getCredentials().equals("")){
+            display = "Nom d'utilisateur";
+        } else {
+            display = User.getCredentials();
+        }
+        inputLogin.setText(display);
     }
 
     /**
@@ -61,13 +76,12 @@ public class ConnexionPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loginRemember = new javax.swing.ButtonGroup();
         infoConnect = new javax.swing.JLabel();
         connect = new javax.swing.JButton();
         inputLogin = new javax.swing.JTextField();
         inputPassword = new javax.swing.JPasswordField();
         justePourLeStyle = new javax.swing.JLabel();
-        remember = new javax.swing.JRadioButton();
+        remember = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -86,7 +100,25 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
+        inputLogin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        inputLogin.setForeground(new java.awt.Color(128, 128, 128));
         inputLogin.setText("Nom d'utilisateur");
+        inputLogin.setToolTipText("Entrez votre login d'Oplo");
+        inputLogin.setActionCommand("<Not Set>");
+        inputLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inputLogin.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputLoginFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputLoginFocusLost(evt);
+            }
+        });
+        inputLogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputLoginMouseClicked(evt);
+            }
+        });
         inputLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputLoginActionPerformed(evt);
@@ -98,8 +130,19 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
+        inputPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         inputPassword.setText("Mot de passe");
         inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        inputPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                inputPasswordFocusGained(evt);
+            }
+        });
+        inputPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                inputPasswordMouseClicked(evt);
+            }
+        });
         inputPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputPasswordActionPerformed(evt);
@@ -111,20 +154,15 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
-        loginRemember.add(remember);
+        remember.setSelected(true);
         remember.setText("Se souvenir de mon identifiant");
-        remember.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rememberActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(228, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,11 +172,11 @@ public class ConnexionPanel extends javax.swing.JFrame {
                             .addComponent(justePourLeStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(51, 51, 51)
                             .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(228, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(remember)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(388, Short.MAX_VALUE)
+                .addComponent(remember)
+                .addContainerGap(389, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,9 +185,9 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(remember)
                 .addGap(22, 22, 22)
+                .addComponent(remember)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(justePourLeStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -191,9 +229,35 @@ public class ConnexionPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputLoginActionPerformed
 
-    private void rememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rememberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rememberActionPerformed
+    private void inputLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputLoginMouseClicked
+
+    }//GEN-LAST:event_inputLoginMouseClicked
+
+    private void inputPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_inputPasswordMouseClicked
+
+    }//GEN-LAST:event_inputPasswordMouseClicked
+
+    private void inputLoginFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputLoginFocusGained
+        inputLogin.setBackground(new Color(255,255,255));
+        inputLogin.setForeground(new Color(0,0,0));
+        if (inputLogin.getText().equals("Nom d'utilisateur")){
+            inputLogin.setText("");
+        } 
+    }//GEN-LAST:event_inputLoginFocusGained
+
+    private void inputLoginFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputLoginFocusLost
+        if (inputLogin.getText().equals("") || inputLogin.getText().equals("Nom d'utilisateur")){ //au cas ou l'user reecrive nom d'utilisateur a la main
+            inputLogin.setText("Nom d'utilisateur");
+            inputLogin.setForeground(new Color(128,128,128));
+            inputLogin.setBackground(new Color(255,255,255));
+        } else {
+            inputLogin.setBackground(new Color(128,255,128));
+        }
+    }//GEN-LAST:event_inputLoginFocusLost
+
+    private void inputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusGained
+        
+    }//GEN-LAST:event_inputPasswordFocusGained
 
     /**
      * @param args the command line arguments
@@ -238,7 +302,6 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private javax.swing.JTextField inputLogin;
     private javax.swing.JPasswordField inputPassword;
     private javax.swing.JLabel justePourLeStyle;
-    private javax.swing.ButtonGroup loginRemember;
-    private javax.swing.JRadioButton remember;
+    private javax.swing.JCheckBox remember;
     // End of variables declaration//GEN-END:variables
 }
