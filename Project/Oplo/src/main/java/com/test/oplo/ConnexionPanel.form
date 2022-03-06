@@ -14,7 +14,7 @@
       <Point value="[0, 0]"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[900, 600]"/>
+      <Dimension value="[960, 600]"/>
     </Property>
   </Properties>
   <SyntheticProperties>
@@ -36,7 +36,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace pref="228" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="inputPassword" alignment="1" min="-2" pref="510" max="-2" attributes="0"/>
@@ -50,7 +50,12 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
+              <EmptySpace pref="228" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="loginRemember" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -61,14 +66,16 @@
               <Component id="inputLogin" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="inputPassword" min="-2" pref="45" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="loginRemember" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="connect" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="justePourLeStyle" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="infoConnect" min="-2" pref="55" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+              <EmptySpace pref="100" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -92,9 +99,10 @@
     </Component>
     <Component class="javax.swing.JTextField" name="inputLogin">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nom d&apos;utilsateur"/>
+        <Property name="text" type="java.lang.String" value="Nom d&apos;utilisateur"/>
       </Properties>
       <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputLoginActionPerformed"/>
         <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputLoginKeyPressed"/>
       </Events>
     </Component>
@@ -111,6 +119,12 @@
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="justePourLeStyle">
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="loginRemember">
+      <Properties>
+        <Property name="selected" type="boolean" value="true"/>
+        <Property name="text" type="java.lang.String" value="Se souvenir de mon identifiant"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

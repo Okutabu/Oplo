@@ -53,13 +53,14 @@ public class ConnexionPanel extends javax.swing.JFrame {
         inputLogin = new javax.swing.JTextField();
         inputPassword = new javax.swing.JPasswordField();
         justePourLeStyle = new javax.swing.JLabel();
+        loginRemember = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 255));
         setForeground(java.awt.Color.cyan);
         setLocation(new java.awt.Point(0, 0));
-        setMinimumSize(new java.awt.Dimension(900, 600));
+        setMinimumSize(new java.awt.Dimension(960, 600));
 
         infoConnect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         infoConnect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -71,7 +72,12 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
-        inputLogin.setText("Nom d'utilsateur");
+        inputLogin.setText("Nom d'utilisateur");
+        inputLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputLoginActionPerformed(evt);
+            }
+        });
         inputLogin.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 inputLoginKeyPressed(evt);
@@ -91,11 +97,14 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
+        loginRemember.setSelected(true);
+        loginRemember.setText("Se souvenir de mon identifiant");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(228, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,7 +115,11 @@ public class ConnexionPanel extends javax.swing.JFrame {
                             .addComponent(justePourLeStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(51, 51, 51)
                             .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(228, 228, 228))
+                .addContainerGap(228, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(loginRemember)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,13 +128,15 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(22, 22, 22)
+                .addComponent(loginRemember)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(justePourLeStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(infoConnect, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(117, 117, 117))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,6 +167,10 @@ public class ConnexionPanel extends javax.swing.JFrame {
             connect();
         }
     }//GEN-LAST:event_inputLoginKeyPressed
+
+    private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -196,5 +215,6 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private javax.swing.JTextField inputLogin;
     private javax.swing.JPasswordField inputPassword;
     private javax.swing.JLabel justePourLeStyle;
+    private javax.swing.JRadioButton loginRemember;
     // End of variables declaration//GEN-END:variables
 }
