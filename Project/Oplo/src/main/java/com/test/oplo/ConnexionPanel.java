@@ -137,6 +137,9 @@ public class ConnexionPanel extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 inputPasswordFocusGained(evt);
             }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                inputPasswordFocusLost(evt);
+            }
         });
         inputPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -256,8 +259,22 @@ public class ConnexionPanel extends javax.swing.JFrame {
     }//GEN-LAST:event_inputLoginFocusLost
 
     private void inputPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusGained
-        
+        inputPassword.setBackground(new Color(255,255,255));
+        inputPassword.setForeground(new Color(0,0,0));
+        if (String.valueOf(inputPassword.getPassword()).equals("Mot de passe")){
+            inputPassword.setText("");
+        } 
     }//GEN-LAST:event_inputPasswordFocusGained
+
+    private void inputPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputPasswordFocusLost
+        if (String.valueOf(inputPassword.getPassword()).equals("")){ 
+            inputPassword.setText("Mot de passe");
+            inputPassword.setForeground(new Color(128,128,128));
+            inputPassword.setBackground(new Color(255,255,255));
+        } else {
+            inputPassword.setBackground(new Color(128,255,128));
+        }
+    }//GEN-LAST:event_inputPasswordFocusLost
 
     /**
      * @param args the command line arguments
