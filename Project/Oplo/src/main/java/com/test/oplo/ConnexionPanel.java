@@ -4,6 +4,9 @@
  */
 package com.test.oplo;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 /**
  *
  * @author Clément
@@ -31,6 +34,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         inputLogin = new javax.swing.JTextField();
         inputPassword = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -59,6 +63,13 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,11 +90,17 @@ public class ConnexionPanel extends javax.swing.JFrame {
                                     .addGap(51, 51, 51)
                                     .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(159, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,16 +117,20 @@ public class ConnexionPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
-        // TODO add your handling code here:
+        
         ServerCommunication s = new ServerCommunication();
-        String connect = s.sendGetRequest("http://oplo.000webhostapp.com/");
-        if (connect == "ok"){
+        
+        String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
+        Object o = JSONValue.parse(connect);
+        JSONObject connectionInfos = (JSONObject) o;
+        
+        if (connectionInfos.containsKey("error")){
+            infoConnect.setText((String) connectionInfos.get("error"));
+        } else {
             Home menu = new Home();
             this.setVisible(false);
             menu.setLocation(this.getLocation());
             menu.setVisible(true);
-        } else {
-            infoConnect.setText(connect);
         }
        
     }//GEN-LAST:event_connectActionPerformed
@@ -117,6 +138,12 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPasswordActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ServerCommunication s = new ServerCommunication();
+        String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=clem&project_id=1");
+        infoConnect.setText(connect);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,6 +187,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private javax.swing.JLabel infoConnect;
     private javax.swing.JTextField inputLogin;
     private javax.swing.JPasswordField inputPassword;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
