@@ -15,7 +15,6 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        login.setText(User.getCredentials());
     }
 
     /**
