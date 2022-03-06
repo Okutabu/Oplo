@@ -4,6 +4,7 @@
  */
 package com.test.oplo;
 
+import java.awt.event.KeyEvent;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import javax.servlet.http.Cookie;
@@ -19,6 +20,24 @@ public class ConnexionPanel extends javax.swing.JFrame {
     public ConnexionPanel() {
         initComponents();
     }
+    
+    public void connect(){
+         ServerCommunication s = new ServerCommunication();
+        
+        String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
+        Object o = JSONValue.parse(connect);
+        JSONObject connectionInfos = (JSONObject) o;
+        
+        if (connectionInfos.containsKey("error")){
+            infoConnect.setText((String) connectionInfos.get("error"));
+        } else {
+            
+            Home menu = new Home();
+            this.setVisible(false);
+            menu.setLocation(this.getLocation());
+            menu.setVisible(true);
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,8 +52,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         connect = new javax.swing.JButton();
         inputLogin = new javax.swing.JTextField();
         inputPassword = new javax.swing.JPasswordField();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        justePourLeStyle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -54,6 +72,11 @@ public class ConnexionPanel extends javax.swing.JFrame {
         });
 
         inputLogin.setText("Nom d'utilsateur");
+        inputLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputLoginKeyPressed(evt);
+            }
+        });
 
         inputPassword.setText("Mot de passe");
         inputPassword.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
@@ -62,11 +85,9 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 inputPasswordActionPerformed(evt);
             }
         });
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        inputPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                inputPasswordKeyPressed(evt);
             }
         });
 
@@ -74,78 +95,63 @@ public class ConnexionPanel extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(228, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(228, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(infoConnect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(51, 51, 51)
-                                    .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(inputPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(infoConnect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(justePourLeStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(51, 51, 51)
+                            .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(228, 228, 228))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(130, Short.MAX_VALUE)
                 .addComponent(inputLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(justePourLeStyle, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(infoConnect, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addGap(117, 117, 117))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
-        
-        ServerCommunication s = new ServerCommunication();
-        
-        String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
-        Object o = JSONValue.parse(connect);
-        JSONObject connectionInfos = (JSONObject) o;
-        
-        if (connectionInfos.containsKey("error")){
-            infoConnect.setText((String) connectionInfos.get("error"));
-        } else {
-            Cookie firstname = new Cookie("firstname",(String) connectionInfos.get("firstname"));
-            s.addCookie(firstname);
-            Home menu = new Home();
-            this.setVisible(false);
-            menu.setLocation(this.getLocation());
-            menu.setVisible(true);
-        }
-       
+        connect();
     }//GEN-LAST:event_connectActionPerformed
 
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputPasswordActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ServerCommunication s = new ServerCommunication();
-        String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=clem&project_id=1");
-        infoConnect.setText(connect);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void inputPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputPasswordKeyPressed
+        /**
+        * Si dans le champ mot de passe la touche entrée est préssée, la connexion se fait
+        */
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            connect();
+        }
+    }//GEN-LAST:event_inputPasswordKeyPressed
+
+    private void inputLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputLoginKeyPressed
+        /**
+        * Si dans le champ login la touche entrée est préssée, la connexion se fait
+        */
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            connect();
+        }
+    }//GEN-LAST:event_inputLoginKeyPressed
 
     /**
      * @param args the command line arguments
@@ -189,7 +195,6 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private javax.swing.JLabel infoConnect;
     private javax.swing.JTextField inputLogin;
     private javax.swing.JPasswordField inputPassword;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel justePourLeStyle;
     // End of variables declaration//GEN-END:variables
 }

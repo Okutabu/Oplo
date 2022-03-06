@@ -4,6 +4,10 @@
  */
 package com.test.oplo;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.util.Scanner;
+
 /**
  *
  * @author gaeta
@@ -72,6 +76,54 @@ public class User {
 
     public String getProfile_pic() {
         return profile_pic;
+    }
+    
+    public void saveCredentials()
+    {
+       try
+       {
+            File myObj = new File("credentials.oplo");
+            if (myObj.createNewFile())
+            {
+              System.out.println("File created: " + myObj.getName());
+            } 
+            else 
+            {
+              System.out.println("File already exists.");
+            }
+            FileWriter myWriter = new FileWriter("credentials.oplo");
+            myWriter.write(login);
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+       }
+       catch(Exception e)
+       {
+
+       }
+    }
+
+    public String getCredentials()
+    {
+        String data = "";
+
+        try
+        {
+            File myFile = new File("credentials.oplo");
+            Scanner myReader = new Scanner(myFile);
+
+            while (myReader.hasNextLine())
+            {
+                data = myReader.nextLine();
+            }
+
+            myReader.close();
+        }
+        catch(Exception e)
+        {
+
+        }
+
+        return data.trim();
     }
 
 }
