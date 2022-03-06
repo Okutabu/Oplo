@@ -34,7 +34,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         if (connectionInfos.containsKey("error")){
             infoConnect.setText((String) connectionInfos.get("error"));
         } else {
-            String login = (String) connectionInfos.get("login");
+            String login = inputLogin.getText();
             String prenom = (String) connectionInfos.get("firstname");
             String nom = (String) connectionInfos.get("surname");
             String admin = String.valueOf(connectionInfos.get("admin"));
@@ -112,7 +112,6 @@ public class ConnexionPanel extends javax.swing.JFrame {
         });
 
         loginRemember.add(remember);
-        remember.setSelected(true);
         remember.setText("Se souvenir de mon identifiant");
         remember.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
