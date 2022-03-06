@@ -4,9 +4,9 @@
  */
 package com.test.oplo;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import javax.servlet.http.Cookie;
 /**
  *
  * @author Clément
@@ -127,6 +127,8 @@ public class ConnexionPanel extends javax.swing.JFrame {
         if (connectionInfos.containsKey("error")){
             infoConnect.setText((String) connectionInfos.get("error"));
         } else {
+            Cookie firstname = new Cookie("firstname",(String) connectionInfos.get("firstname"));
+            s.addCookie(firstname);
             Home menu = new Home();
             this.setVisible(false);
             menu.setLocation(this.getLocation());
