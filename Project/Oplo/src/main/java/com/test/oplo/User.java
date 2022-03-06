@@ -9,6 +9,7 @@ package com.test.oplo;
  * @author gaeta
  */
 public class User {
+    private String login;
     private String firstname;
     private String surname;
     private boolean admin;
@@ -17,7 +18,8 @@ public class User {
     private String profile_pic;
     
     
-    public User(String firstname, String surname, int admin, String role, String profile){
+    public User(String login, String firstname, String surname, int admin, String role, String profile){
+        this.login = login;
         this.firstname = firstname;
         this.surname = surname;
         if (admin == 1){
@@ -31,6 +33,7 @@ public class User {
     }
     
     public User(String firstname, String surname, int admin, String role, String others, String profile){
+        this.login = login;
         this.firstname = firstname;
         this.surname = surname;
         if (admin == 1){
@@ -43,28 +46,32 @@ public class User {
         this.profile_pic = profile;
     }
     
+    public String getLogin(){
+        return login;
+    }
+    
     public String getFirstname() {
 	return firstname;
     }
 
     public String getSurname() {
-            return surname;
+        return surname;
     }
 
     public boolean getAdmin() {
-            return admin;
+        return admin;
     }
     
     public String getRole() {
-            return role;
+        return role;
     }
 
     public String getOthers() {
-            return others;
+        return others;
     }
 
     public String getProfile_pic() {
-            return profile_pic;
+        return profile_pic;
     }
 
 }
