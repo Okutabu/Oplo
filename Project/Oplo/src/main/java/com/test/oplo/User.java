@@ -13,72 +13,57 @@ import java.util.Scanner;
  * @author gaeta
  */
 public class User {
-    private String login;
-    private String firstname;
-    private String surname;
-    private boolean admin;
-    private String role;
-    private String others;
-    private String profile_pic;
+    private static String login;
+    private static String firstname;
+    private static String surname;
+    private static boolean admin;
+    private static String role;
+    private static String others;
+    private static String profile_pic;
     
-    
-    public User(String login, String firstname, String surname, int admin, String role, String profile){
-        this.login = login;
-        this.firstname = firstname;
-        this.surname = surname;
-        if (admin == 1){
-            this.admin = true;
+    public static void initialize(String id, String prenom, String nom, String administrateur, String role1, String description, String photo){
+        login = id;
+        firstname = prenom;
+        surname = nom;
+        if (administrateur == "1"){
+            admin = true;
         } else {
-            this.admin = false;
+            admin = false;
         }
-        this.role = role;
-        this.others = "";
-        this.profile_pic = profile;
+        role = role1;
+        others = description;
+        profile_pic = photo;
     }
     
-    public User(String firstname, String surname, int admin, String role, String others, String profile){
-        this.login = login;
-        this.firstname = firstname;
-        this.surname = surname;
-        if (admin == 1){
-            this.admin = true;
-        } else {
-            this.admin = false;
-        }
-        this.role = role;
-        this.others = others;
-        this.profile_pic = profile;
-    }
-    
-    public String getLogin(){
+    public static String getLogin(){
         return login;
     }
     
-    public String getFirstname() {
+    public static String getFirstname() {
 	return firstname;
     }
 
-    public String getSurname() {
+    public static String getSurname() {
         return surname;
     }
 
-    public boolean getAdmin() {
+    public static boolean getAdmin() {
         return admin;
     }
     
-    public String getRole() {
+    public static String getRole() {
         return role;
     }
 
-    public String getOthers() {
+    public static String getOthers() {
         return others;
     }
 
-    public String getProfile_pic() {
+    public static String getProfile_pic() {
         return profile_pic;
     }
     
-    public void saveCredentials()
+    public static void saveCredentials()
     {
        try
        {
@@ -102,7 +87,7 @@ public class User {
        }
     }
 
-    public String getCredentials()
+    public static String getCredentials()
     {
         String data = "";
 

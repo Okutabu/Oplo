@@ -22,7 +22,10 @@ public class ConnexionPanel extends javax.swing.JFrame {
     }
     
     public void connect(){
-         ServerCommunication s = new ServerCommunication();
+        /**
+         * Traite la connexion
+         */
+        ServerCommunication s = new ServerCommunication();
         
         String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
         Object o = JSONValue.parse(connect);
@@ -31,7 +34,17 @@ public class ConnexionPanel extends javax.swing.JFrame {
         if (connectionInfos.containsKey("error")){
             infoConnect.setText((String) connectionInfos.get("error"));
         } else {
-            
+            String login = (String) connectionInfos.get("login");
+            String prenom = (String) connectionInfos.get("firstname");
+            String nom = (String) connectionInfos.get("surname");
+            String admin = String.valueOf(connectionInfos.get("admin"));
+            String role = (String) connectionInfos.get("role");
+            String description = (String) connectionInfos.get("others");
+            String photo = (String) connectionInfos.get("profile_pic");
+            User.initialize(login, prenom, nom, admin, role, description, photo);
+            if (loginRemember.getSelection().isSelected()){
+                User.saveCredentials();
+            }
             Home menu = new Home();
             this.setVisible(false);
             menu.setLocation(this.getLocation());
@@ -48,12 +61,13 @@ public class ConnexionPanel extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        loginRemember = new javax.swing.ButtonGroup();
         infoConnect = new javax.swing.JLabel();
         connect = new javax.swing.JButton();
         inputLogin = new javax.swing.JTextField();
         inputPassword = new javax.swing.JPasswordField();
         justePourLeStyle = new javax.swing.JLabel();
-        loginRemember = new javax.swing.JRadioButton();
+        remember = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -97,8 +111,14 @@ public class ConnexionPanel extends javax.swing.JFrame {
             }
         });
 
-        loginRemember.setSelected(true);
-        loginRemember.setText("Se souvenir de mon identifiant");
+        loginRemember.add(remember);
+        remember.setSelected(true);
+        remember.setText("Se souvenir de mon identifiant");
+        remember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rememberActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -118,7 +138,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 .addContainerGap(228, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(loginRemember)
+                .addComponent(remember)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,7 +149,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(inputPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addComponent(loginRemember)
+                .addComponent(remember)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -171,6 +191,10 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private void inputLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputLoginActionPerformed
+
+    private void rememberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rememberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rememberActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,6 +239,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
     private javax.swing.JTextField inputLogin;
     private javax.swing.JPasswordField inputPassword;
     private javax.swing.JLabel justePourLeStyle;
-    private javax.swing.JRadioButton loginRemember;
+    private javax.swing.ButtonGroup loginRemember;
+    private javax.swing.JRadioButton remember;
     // End of variables declaration//GEN-END:variables
 }

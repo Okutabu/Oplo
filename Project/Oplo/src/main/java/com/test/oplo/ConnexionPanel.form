@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="loginRemember">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="alwaysOnTop" type="boolean" value="true"/>
@@ -54,7 +58,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="loginRemember" min="-2" max="-2" attributes="0"/>
+              <Component id="remember" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -67,7 +71,7 @@
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Component id="inputPassword" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-              <Component id="loginRemember" min="-2" max="-2" attributes="0"/>
+              <Component id="remember" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="connect" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
@@ -120,11 +124,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="justePourLeStyle">
     </Component>
-    <Component class="javax.swing.JRadioButton" name="loginRemember">
+    <Component class="javax.swing.JRadioButton" name="remember">
       <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="loginRemember"/>
+        </Property>
         <Property name="selected" type="boolean" value="true"/>
         <Property name="text" type="java.lang.String" value="Se souvenir de mon identifiant"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rememberActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
