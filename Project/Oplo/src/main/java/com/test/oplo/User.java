@@ -47,47 +47,24 @@ public class User {
 	return firstname;
     }
 
-    public void setFirstname(String firstname) {
-            this.firstname = firstname;
-    }
-
     public String getSurname() {
             return surname;
-    }
-
-    public void setSurname(String surname) {
-            this.surname = surname;
     }
 
     public boolean getAdmin() {
             return admin;
     }
-
-    public void setAdmin(boolean admin) {
-            this.admin = admin;
-    }
-
+    
     public String getRole() {
             return role;
-    }
-
-    public void setRole(String role) {
-            this.role = role;
     }
 
     public String getOthers() {
             return others;
     }
 
-    public void setOthers(String others) {
-            this.others = others;
-    }
-
     public String getProfile_pic() {
             return profile_pic;
     }
 
-    public void setProfile_pic(String profile_pic) {
-            this.profile_pic = profile_pic;
-    }
 }
