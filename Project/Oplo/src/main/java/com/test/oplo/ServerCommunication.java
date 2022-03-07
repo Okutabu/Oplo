@@ -31,7 +31,7 @@ public class ServerCommunication
             }
             bufferReader.close();
             
-            return response.toString();
+            return response.toString().trim();
         }
         catch(Exception e)
         {
@@ -49,7 +49,7 @@ public class ServerCommunication
             httpUrl.setDoOutput(true);
             
             OutputStream output = httpUrl.getOutputStream();
-            output.write(param.getBytes());
+            output.write(param.getBytes("utf8"));
             output.flush();
             output.close();
             
@@ -65,7 +65,7 @@ public class ServerCommunication
             }
             bufferedReader.close();
             
-            return response.toString();
+            return response.toString().trim();
         }
         catch(Exception e)
         {
