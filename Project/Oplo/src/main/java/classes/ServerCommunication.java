@@ -1,4 +1,4 @@
-package com.test.oplo;
+package classes;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
