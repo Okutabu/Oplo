@@ -7,7 +7,10 @@ package jframes;
 import classes.*;
 import internalFrames.*;
 import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 /**
@@ -53,9 +56,12 @@ public class ConnexionPanel extends javax.swing.JFrame {
                 User.destroyCredentials();
             }
             Home menu = new Home();
+            GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
             this.setVisible(false);
             menu.setLocation(0,0);
             menu.setVisible(true);
+            menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            
         }
     }
     
