@@ -204,11 +204,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
-        //connect();
-        Home menu = new Home();
-            this.setVisible(false);
-            menu.setLocation(this.getLocation());
-            menu.setVisible(true);
+        connect();
     }//GEN-LAST:event_connectActionPerformed
 
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed

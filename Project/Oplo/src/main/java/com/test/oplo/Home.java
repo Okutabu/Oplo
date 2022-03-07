@@ -4,6 +4,8 @@
  */
 package com.test.oplo;
 
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author gaeta
@@ -98,7 +100,10 @@ public class Home extends javax.swing.JFrame {
 
     private void showInscriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showInscriptionActionPerformed
         Registration ins = new Registration();
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)ins.getUI();
+        bi.setNorthPane(null);
         main.add(ins).setVisible(true);
+        
     }//GEN-LAST:event_showInscriptionActionPerformed
 
     /**
