@@ -13,8 +13,8 @@ public class MainUserInterface extends javax.swing.JFrame {
     /**
      * Creates new form MainUserInterface
      */
-    public MainUserInterface() {
-        initComponents();
+    public MainUserInterface(User user1) {
+        myInitComponents(user1);
     }
 
     /**
