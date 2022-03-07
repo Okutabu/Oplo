@@ -22,7 +22,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jInternalFrame1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="badge" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButtonAccueil" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButtonCalendar" alignment="1" pref="183" max="32767" attributes="0"/>
                   <Component id="jButtonProjects" alignment="1" max="32767" attributes="0"/>
@@ -44,7 +44,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonOptions" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="jInternalFrame1" max="32767" attributes="0"/>
+              <Component id="badge" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -71,7 +71,7 @@
         <Property name="text" type="java.lang.String" value="Options"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JInternalFrame" name="jInternalFrame1">
+    <Container class="javax.swing.JInternalFrame" name="badge">
       <Properties>
         <Property name="visible" type="boolean" value="true"/>
       </Properties>

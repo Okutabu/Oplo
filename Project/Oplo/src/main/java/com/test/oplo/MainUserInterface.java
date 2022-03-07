@@ -211,52 +211,17 @@ public class MainUserInterface extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void myInitComponents(User user1) {
-
-        jInternalFrameControlPanel = new JInternalFrameControlPanel();
-        jButtonHome = new javax.swing.JButton();
-        jButtonCalendar = new javax.swing.JButton();
-        jButtonProjects = new javax.swing.JButton();
-        jInternalFrameUserInfo = new JInternalFrameUserInfo(user1);
-        jTextFieldFirstName = new javax.swing.JTextField();
-        jTextFieldLastName = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButtonOptions = new javax.swing.JButton();
-        jInternalFrameDisplay = new JInternalFrameDisplay();
-        jInternalFrameProjectDisplay = new JInternalFrameProjectDisplay(user1); //projects are tied to user
-        jLabel2 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        
+        myJInternalFrameControlPanel = new JInternalFrameControlPanel(myJInternalFrameUserInfo);
+        myJInternalFrameDisplay = new JInternalFrameDisplay(myJInternalFrameControlPanel);
+        jInternalFrameProjectDisplay = new JInternalFrameProjectDisplay(user1); //projects are tied to user 
+        
+        
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jInternalFrameControlPanel.setVisible(true);
 
-        jButtonHome.setText("Accueil");
-        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonHomeActionPerformed(evt);
-            }
-        });
-
-        jButtonCalendar.setText("Calendrier");
-        jButtonCalendar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCalendarActionPerformed(evt);
-            }
-        });
-
-        jButtonProjects.setText("Projets");
-
-        jInternalFrameUserInfo.setVisible(true);
-
-        jTextFieldFirstName.setText("jTextField1");
-
-        jTextFieldLastName.setText("jTextField2");
-
-        jLabel1.setText("jLabel1");
-
-        jTextField3.setText("jTextField3");
 
         javax.swing.GroupLayout jInternalFrameUserInfoLayout = new javax.swing.GroupLayout(jInternalFrameUserInfo.getContentPane());
         jInternalFrameUserInfo.getContentPane().setLayout(jInternalFrameUserInfoLayout);
@@ -289,8 +254,6 @@ public class MainUserInterface extends javax.swing.JFrame {
                 .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jButtonOptions.setText("Options");
 
         javax.swing.GroupLayout jInternalFrameControlPanelLayout = new javax.swing.GroupLayout(jInternalFrameControlPanel.getContentPane());
         jInternalFrameControlPanel.getContentPane().setLayout(jInternalFrameControlPanelLayout);
@@ -326,12 +289,6 @@ public class MainUserInterface extends javax.swing.JFrame {
         jInternalFrameDisplay.setVisible(true);
 
         jInternalFrameProjectDisplay.setVisible(true);
-
-        jLabel2.setText("jLabel2");
-
-        jTextField4.setText("jTextField4");
-
-        jTextField5.setText("jTextField5");
 
         javax.swing.GroupLayout jInternalFrameProjectDisplayLayout = new javax.swing.GroupLayout(jInternalFrameProjectDisplay.getContentPane());
         jInternalFrameProjectDisplay.getContentPane().setLayout(jInternalFrameProjectDisplayLayout);
@@ -456,4 +413,9 @@ public class MainUserInterface extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldFirstName;
     private javax.swing.JTextField jTextFieldLastName;
     // End of variables declaration//GEN-END:variables
+    private JInternalFrameControlPanel myJInternalFrameControlPanel;
+    private JInternalFrameDisplay myJInternalFrameDisplay;
+    private JInternalFrameUserInfo myJInternalFrameUserInfo;
+    private JInternalFrameProjectDisplay myJInternalFrameProjectDisplay;
+
 }

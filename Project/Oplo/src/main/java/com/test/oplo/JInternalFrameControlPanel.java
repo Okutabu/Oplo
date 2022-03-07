@@ -13,8 +13,10 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     /**
      * Creates new form JInternalFrameControlPanel
      */
-    public JInternalFrameControlPanel() {
-        myInitComponents();
+    
+    public JInternalFrameControlPanel(JInternalFrameUserInfo badge) {
+        
+        myInitComponents(badge);
     }
 
     /**
@@ -30,7 +32,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         jButtonCalendar = new javax.swing.JButton();
         jButtonProjects = new javax.swing.JButton();
         jButtonOptions = new javax.swing.JButton();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
+        badge = new javax.swing.JInternalFrame();
 
         jButtonAccueil.setText("Accueil");
 
@@ -40,16 +42,16 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
 
         jButtonOptions.setText("Options");
 
-        jInternalFrame1.setVisible(true);
+        badge.setVisible(true);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout badgeLayout = new javax.swing.GroupLayout(badge.getContentPane());
+        badge.getContentPane().setLayout(badgeLayout);
+        badgeLayout.setHorizontalGroup(
+            badgeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        badgeLayout.setVerticalGroup(
+            badgeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 163, Short.MAX_VALUE)
         );
 
@@ -60,7 +62,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jInternalFrame1)
+                    .addComponent(badge)
                     .addComponent(jButtonAccueil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCalendar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(jButtonProjects, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -79,20 +81,19 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonOptions)
                 .addGap(26, 26, 26)
-                .addComponent(jInternalFrame1)
+                .addComponent(badge)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myInitComponents() {
+    private void myInitComponents(JInternalFrameUserInfo badge) {
 
         jButtonAccueil = new javax.swing.JButton();
         jButtonCalendar = new javax.swing.JButton();
         jButtonProjects = new javax.swing.JButton();
         jButtonOptions = new javax.swing.JButton();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
 
         jButtonAccueil.setText("Accueil");
 
@@ -102,10 +103,10 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
 
         jButtonOptions.setText("Options");
 
-        jInternalFrame1.setVisible(true);
+        badge.setVisible(true);
 
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
-        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(badge.getContentPane());
+        badge.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
@@ -122,7 +123,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jInternalFrame1)
+                    .addComponent(badge)
                     .addComponent(jButtonAccueil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonCalendar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
                     .addComponent(jButtonProjects, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -141,7 +142,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonOptions)
                 .addGap(26, 26, 26)
-                .addComponent(jInternalFrame1)
+                .addComponent(badge)
                 .addContainerGap())
         );
 
@@ -149,10 +150,10 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JInternalFrame badge;
     private javax.swing.JButton jButtonAccueil;
     private javax.swing.JButton jButtonCalendar;
     private javax.swing.JButton jButtonOptions;
     private javax.swing.JButton jButtonProjects;
-    private javax.swing.JInternalFrame jInternalFrame1;
     // End of variables declaration//GEN-END:variables
 }
