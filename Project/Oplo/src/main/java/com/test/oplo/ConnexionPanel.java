@@ -84,9 +84,10 @@ public class ConnexionPanel extends javax.swing.JFrame {
         remember = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Oplo");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(0, 0, 255));
-        setForeground(java.awt.Color.cyan);
+        setForeground(java.awt.Color.black);
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(960, 600));
 
@@ -176,10 +177,10 @@ public class ConnexionPanel extends javax.swing.JFrame {
                             .addGap(51, 51, 51)
                             .addComponent(connect, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(388, Short.MAX_VALUE)
-                .addComponent(remember)
-                .addContainerGap(389, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(377, 377, 377)
+                .addComponent(remember, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(378, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,7 +204,11 @@ public class ConnexionPanel extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void connectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_connectActionPerformed
-        connect();
+        //connect();
+        Home menu = new Home();
+            this.setVisible(false);
+            menu.setLocation(this.getLocation());
+            menu.setVisible(true);
     }//GEN-LAST:event_connectActionPerformed
 
     private void inputPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputPasswordActionPerformed
