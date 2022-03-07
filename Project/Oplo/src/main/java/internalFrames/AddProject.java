@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package internalFrames;
+package com.test.oplo;
 
 /**
  *
@@ -27,32 +27,32 @@ public class AddProject extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new org.netbeans.modules.form.InvalidComponent();
-        jCalendar2 = new org.netbeans.modules.form.InvalidComponent();
-        jDayChooser1 = new org.netbeans.modules.form.InvalidComponent();
-        jSpinField1 = new org.netbeans.modules.form.InvalidComponent();
-        jDayChooser2 = new org.netbeans.modules.form.InvalidComponent();
-        jMonthChooser1 = new org.netbeans.modules.form.InvalidComponent();
-        jYearChooser1 = new org.netbeans.modules.form.InvalidComponent();
-        jDateChooser2 = new org.netbeans.modules.form.InvalidComponent();
-        jCalendar1 = new org.netbeans.modules.form.InvalidComponent();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jCalendar2 = new com.toedter.calendar.JCalendar();
+        jDayChooser1 = new com.toedter.calendar.JDayChooser();
+        jSpinField1 = new com.toedter.components.JSpinField();
+        jDayChooser2 = new com.toedter.calendar.JDayChooser();
+        jMonthChooser1 = new com.toedter.calendar.JMonthChooser();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jCalendar1 = new com.toedter.calendar.JCalendar();
         jTextField1 = new javax.swing.JTextField();
-        jCalendar3 = new org.netbeans.modules.form.InvalidComponent();
+        jCalendar3 = new com.toedter.calendar.JCalendar();
         jScrollBar1 = new javax.swing.JScrollBar();
         titre = new javax.swing.JLabel();
         intituleProjet = new javax.swing.JLabel();
         intitule = new javax.swing.JTextField();
-        startProject = new org.netbeans.modules.form.InvalidComponent();
+        startProject = new com.toedter.calendar.JDateChooser();
         datedebut = new javax.swing.JLabel();
         datefin = new javax.swing.JLabel();
-        endProject = new org.netbeans.modules.form.InvalidComponent();
-        nbEmploye = new org.netbeans.modules.form.InvalidComponent();
+        endProject = new com.toedter.calendar.JDateChooser();
+        nbEmploye = new com.toedter.components.JSpinField();
         jLabel2 = new javax.swing.JLabel();
         competence = new javax.swing.JPanel();
         Comp = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         nbemployecomp = new javax.swing.JLabel();
-        nbemployecompetence = new org.netbeans.modules.form.InvalidComponent();
+        nbemployecompetence = new com.toedter.components.JSpinField();
         addSkill = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
@@ -66,6 +66,8 @@ public class AddProject extends javax.swing.JInternalFrame {
         datedebut.setText("Date de début du projet : ");
 
         datefin.setText("Date de fin de projet :");
+
+        nbEmploye.setMinimum(0);
 
         jLabel2.setText("Nombre d'employés souhaités pour le projet :");
 
@@ -101,9 +103,9 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nbemployecomp)
-                        .addGap(32, 32, 32)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(nbemployecompetence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35))))
+                        .addGap(55, 55, 55))))
         );
         competenceLayout.setVerticalGroup(
             competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,27 +189,27 @@ public class AddProject extends javax.swing.JInternalFrame {
     private javax.swing.JPanel competence;
     private javax.swing.JLabel datedebut;
     private javax.swing.JLabel datefin;
-    private org.netbeans.modules.form.InvalidComponent endProject;
+    private com.toedter.calendar.JDateChooser endProject;
     private javax.swing.JTextField intitule;
     private javax.swing.JLabel intituleProjet;
-    private org.netbeans.modules.form.InvalidComponent jCalendar1;
-    private org.netbeans.modules.form.InvalidComponent jCalendar2;
-    private org.netbeans.modules.form.InvalidComponent jCalendar3;
+    private com.toedter.calendar.JCalendar jCalendar1;
+    private com.toedter.calendar.JCalendar jCalendar2;
+    private com.toedter.calendar.JCalendar jCalendar3;
     private javax.swing.JComboBox<String> jComboBox1;
-    private org.netbeans.modules.form.InvalidComponent jDateChooser1;
-    private org.netbeans.modules.form.InvalidComponent jDateChooser2;
-    private org.netbeans.modules.form.InvalidComponent jDayChooser1;
-    private org.netbeans.modules.form.InvalidComponent jDayChooser2;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private com.toedter.calendar.JDayChooser jDayChooser1;
+    private com.toedter.calendar.JDayChooser jDayChooser2;
     private javax.swing.JLabel jLabel2;
-    private org.netbeans.modules.form.InvalidComponent jMonthChooser1;
+    private com.toedter.calendar.JMonthChooser jMonthChooser1;
     private javax.swing.JScrollBar jScrollBar1;
-    private org.netbeans.modules.form.InvalidComponent jSpinField1;
+    private com.toedter.components.JSpinField jSpinField1;
     private javax.swing.JTextField jTextField1;
-    private org.netbeans.modules.form.InvalidComponent jYearChooser1;
-    private org.netbeans.modules.form.InvalidComponent nbEmploye;
+    private com.toedter.calendar.JYearChooser jYearChooser1;
+    private com.toedter.components.JSpinField nbEmploye;
     private javax.swing.JLabel nbemployecomp;
-    private org.netbeans.modules.form.InvalidComponent nbemployecompetence;
-    private org.netbeans.modules.form.InvalidComponent startProject;
+    private com.toedter.components.JSpinField nbemployecompetence;
+    private com.toedter.calendar.JDateChooser startProject;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 }
