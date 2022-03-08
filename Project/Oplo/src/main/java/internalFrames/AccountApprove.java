@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package internalFrames;
-
+import classes.*;
 /**
  *
  * @author Mélanie
@@ -94,12 +94,22 @@ public class AccountApprove extends javax.swing.JInternalFrame {
         AcceptButton.setBackground(new java.awt.Color(255, 51, 51));
         AcceptButton.setText("Accepter");
         AcceptButton.setMargin(new java.awt.Insets(10, 20, 10, 20));
+        AcceptButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcceptButtonActionPerformed(evt);
+            }
+        });
 
         autre.setText("Autre : ");
 
         RefuseButton.setBackground(new java.awt.Color(255, 51, 51));
         RefuseButton.setText("Refuser");
         RefuseButton.setMargin(new java.awt.Insets(10, 20, 10, 20));
+        RefuseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RefuseButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,6 +203,35 @@ public class AccountApprove extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_othersActionPerformed
 
+    private void AcceptButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcceptButtonActionPerformed
+        // TODO add your handling code here:
+        ApproveAccount();
+    }//GEN-LAST:event_AcceptButtonActionPerformed
+
+    private void RefuseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefuseButtonActionPerformed
+        // TODO add your handling code here:
+        RevokeAccount();
+    }//GEN-LAST:event_RefuseButtonActionPerformed
+
+    private void ApproveAccount()
+    {
+        String firstnameS = firstname.getText();
+        String surnameS = surname.getText();
+        
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "approveAccount=true&firstname=" + firstnameS + "&surname" + surnameS);
+        //Move on
+    }
+    
+    private void RevokeAccount()
+    {
+        String firstnameS = firstname.getText();
+        String surnameS = surname.getText();
+        
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&firstname=" + firstnameS + "&surname" + surnameS);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AcceptButton;
