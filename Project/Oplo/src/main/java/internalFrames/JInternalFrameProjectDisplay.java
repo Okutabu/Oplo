@@ -16,6 +16,7 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
      */
     public JInternalFrameProjectDisplay(User user1) {
         myInitComponents(user1);
+        Display.removeBorders(this);
     }
 
     /**
@@ -35,7 +36,11 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
 
         jTextFieldDeadline.setText("Echance");
 
-        jTextFieldReview.setText("Avis Client");
+        jTextFieldReview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldReviewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -64,6 +69,10 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldReviewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldReviewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldReviewActionPerformed
 
     private void myInitComponents(User user1) {
 

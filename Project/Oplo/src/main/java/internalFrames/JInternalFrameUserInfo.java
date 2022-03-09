@@ -5,30 +5,22 @@
 package internalFrames;
 
 import classes.*;
+import jframes.Home;
 
 /**
  *
  * @author Okutabu
  */
 public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
-
-    private String firstName;
-    private String lastName;
-    private String imagePath;
-    private String role;
     
     
     /**
      * Creates new form JInternalFrameUserInfo 
      */
-    public JInternalFrameUserInfo(User user1) {
-        this.imagePath = User.getProfile_pic();
-        this.firstName = User.getFirstname();
-        this.lastName = User.getSurname();
-        this.role = User.getRole();
-        
-        String userDescription = User.getRole();
-        myInitComponents(this.imagePath, this.firstName, this.lastName, this.role);
+    public JInternalFrameUserInfo() {
+        initComponents();
+        initDisplayDataUser();
+        Display.removeBorders(this);
     }
 
     /**
@@ -40,18 +32,25 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextFieldFirstName = new javax.swing.JTextField();
-        jTextFieldLastName = new javax.swing.JTextField();
         jLabelDescription = new javax.swing.JLabel();
-        jTextFieldDescription = new javax.swing.JTextField();
-
-        jTextFieldFirstName.setText("Prénom");
-
-        jTextFieldLastName.setText("Nom");
+        firstname = new javax.swing.JLabel();
+        surname = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        others = new javax.swing.JTextArea();
 
         jLabelDescription.setText("Description");
 
-        jTextFieldDescription.setText("Description");
+        firstname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        surname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Image de profil");
+
+        others.setColumns(20);
+        others.setRows(5);
+        jScrollPane1.setViewportView(others);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,85 +59,54 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldDescription)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                     .addComponent(jLabelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 160, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(firstname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(surname, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))))
                 .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDescription)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {firstname, surname});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void myInitComponents(String imagepath1, String firstname1, String lastname1, String role1) {
-
-        jTextFieldFirstName = new javax.swing.JTextField();
-        jTextFieldLastName = new javax.swing.JTextField();
-        jLabelDescription = new javax.swing.JLabel();
-        jTextFieldDescription = new javax.swing.JTextField();
-
-        jTextFieldFirstName.setText(firstname1);
-
-        jTextFieldLastName.setText(lastname1);
-
-        jLabelDescription.setText("Description");
-
-        jTextFieldDescription.setText(role1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldDescription)
-                    .addComponent(jLabelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 160, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(37, 37, 37))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jTextFieldFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelDescription)
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
-        );
-
-        pack();
+private void initDisplayDataUser() {
+        UserConnected user = Home.getUser();
+        user.getProfile_pic();
+        firstname.setText(user.getFirstname());
+        surname.setText(user.getSurname());
+        others.setText(user.getOthers());
     }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel firstname;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabelDescription;
-    private javax.swing.JTextField jTextFieldDescription;
-    private javax.swing.JTextField jTextFieldFirstName;
-    private javax.swing.JTextField jTextFieldLastName;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea others;
+    private javax.swing.JLabel surname;
     // End of variables declaration//GEN-END:variables
 }

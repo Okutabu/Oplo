@@ -58,9 +58,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldReview">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Avis Client"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldReviewActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

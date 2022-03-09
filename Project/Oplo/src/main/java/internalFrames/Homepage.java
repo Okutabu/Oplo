@@ -4,17 +4,20 @@
  */
 package internalFrames;
 
+import classes.Display;
+
 /**
  *
- * @author Okutabu
+ * @author gaeta
  */
-public class JInternalFrameDisplay extends javax.swing.JInternalFrame {
+public class Homepage extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form JInternalFrameDisplay
+     * Creates new form Hompage
      */
-    public JInternalFrameDisplay(JInternalFrameControlPanel board) {
-        myInitComponents(board);
+    public Homepage() {
+        Display.removeBorders(this);
+        initComponents();
     }
 
     /**
@@ -26,37 +29,22 @@ public class JInternalFrameDisplay extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setBorder(new javax.swing.border.MatteBorder(null));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGap(0, 937, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGap(0, 504, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myInitComponents(JInternalFrameControlPanel board) {
-
-        
-        
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
-        );
-
-        pack();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

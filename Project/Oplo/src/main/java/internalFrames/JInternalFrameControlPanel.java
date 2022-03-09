@@ -4,19 +4,33 @@
  */
 package internalFrames;
 
+import classes.Display;
+
 /**
  *
  * @author Okutabu
  */
 public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
 
+    private javax.swing.JDesktopPane main;
     /**
      * Creates new form JInternalFrameControlPanel
+     * @param affichage_elts
      */
     
-    public JInternalFrameControlPanel(JInternalFrameUserInfo badge) {
-        
-        myInitComponents(badge);
+    public JInternalFrameControlPanel(javax.swing.JDesktopPane affichage_elts) {
+        main = affichage_elts;
+        Display.removeBorders(this);
+        initComponents();
+    }
+    
+    public javax.swing.JDesktopPane getMain(){
+        return main;
+    }
+    
+    public void displayRightWindow(javax.swing.JInternalFrame f){
+        main.removeAll();
+        main.add(f).setVisible(true);
     }
 
     /**
@@ -28,32 +42,40 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonAccueil = new javax.swing.JButton();
-        jButtonCalendar = new javax.swing.JButton();
-        jButtonProjects = new javax.swing.JButton();
-        jButtonOptions = new javax.swing.JButton();
-        badge = new javax.swing.JInternalFrame();
+        displayHomepage = new javax.swing.JButton();
+        displayAddProject = new javax.swing.JButton();
+        displayAccountApprove = new javax.swing.JButton();
+        displayProfile = new javax.swing.JButton();
 
-        jButtonAccueil.setText("Accueil");
+        setBorder(new javax.swing.border.MatteBorder(null));
 
-        jButtonCalendar.setText("Calendrier");
+        displayHomepage.setText("Accueil");
+        displayHomepage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayHomepageActionPerformed(evt);
+            }
+        });
 
-        jButtonProjects.setText("Projets");
+        displayAddProject.setText("Ajouter un projet");
+        displayAddProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAddProjectActionPerformed(evt);
+            }
+        });
 
-        jButtonOptions.setText("Options");
+        displayAccountApprove.setText("Approuver comptes");
+        displayAccountApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAccountApproveActionPerformed(evt);
+            }
+        });
 
-        badge.setVisible(true);
-
-        javax.swing.GroupLayout badgeLayout = new javax.swing.GroupLayout(badge.getContentPane());
-        badge.getContentPane().setLayout(badgeLayout);
-        badgeLayout.setHorizontalGroup(
-            badgeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        badgeLayout.setVerticalGroup(
-            badgeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 163, Short.MAX_VALUE)
-        );
+        displayProfile.setText("Profil");
+        displayProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayProfileActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,98 +84,54 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(badge)
-                    .addComponent(jButtonAccueil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCalendar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(jButtonProjects, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(displayHomepage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(displayAccountApprove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAccueil)
+                .addComponent(displayHomepage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCalendar)
+                .addComponent(displayAddProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonProjects)
+                .addComponent(displayAccountApprove)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonOptions)
-                .addGap(26, 26, 26)
-                .addComponent(badge)
+                .addComponent(displayProfile)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void myInitComponents(JInternalFrameUserInfo badge) {
+    private void displayHomepageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayHomepageActionPerformed
+        Homepage home = new Homepage();
+        displayRightWindow(home);
+    }//GEN-LAST:event_displayHomepageActionPerformed
 
-        jButtonAccueil = new javax.swing.JButton();
-        jButtonCalendar = new javax.swing.JButton();
-        jButtonProjects = new javax.swing.JButton();
-        jButtonOptions = new javax.swing.JButton();
+    private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
+        AccountApprove a = new AccountApprove();
+        displayRightWindow(a);
+    }//GEN-LAST:event_displayAccountApproveActionPerformed
 
-        jButtonAccueil.setText("Accueil");
+    private void displayAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAddProjectActionPerformed
+        AddProject a = new AddProject();
+        displayRightWindow(a);
+    }//GEN-LAST:event_displayAddProjectActionPerformed
 
-        jButtonCalendar.setText("Calendrier");
+    private void displayProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayProfileActionPerformed
+        Profile profile = new Profile();
+        displayRightWindow(profile);
+    }//GEN-LAST:event_displayProfileActionPerformed
 
-        jButtonProjects.setText("Projets");
-
-        jButtonOptions.setText("Options");
-
-        badge.setVisible(true);
-
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(badge.getContentPane());
-        badge.getContentPane().setLayout(jInternalFrame1Layout);
-        jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 163, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(badge)
-                    .addComponent(jButtonAccueil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCalendar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                    .addComponent(jButtonProjects, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonAccueil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCalendar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonProjects)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonOptions)
-                .addGap(26, 26, 26)
-                .addComponent(badge)
-                .addContainerGap())
-        );
-
-        pack();
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JInternalFrame badge;
-    private javax.swing.JButton jButtonAccueil;
-    private javax.swing.JButton jButtonCalendar;
-    private javax.swing.JButton jButtonOptions;
-    private javax.swing.JButton jButtonProjects;
+    private javax.swing.JButton displayAccountApprove;
+    private javax.swing.JButton displayAddProject;
+    private javax.swing.JButton displayHomepage;
+    private javax.swing.JButton displayProfile;
     // End of variables declaration//GEN-END:variables
 }

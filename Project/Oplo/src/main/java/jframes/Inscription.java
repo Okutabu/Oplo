@@ -63,8 +63,6 @@ public class Inscription extends javax.swing.JFrame {
 
     public void addRegistration(){
         Registration inscription = new Registration();
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)inscription.getUI();
-        bi.setNorthPane(null);
         inscription.setSize(966,538);
         main.add(inscription).setVisible(true);
     }
