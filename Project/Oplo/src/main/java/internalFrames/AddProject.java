@@ -68,9 +68,13 @@ public class AddProject extends javax.swing.JInternalFrame {
 
         intituleProjet.setText("Saisir l'intitulé du projet : ");
 
+        startProject.setDateFormatString("y-m-d");
+
         datedebut.setText("Date de début du projet : ");
 
         datefin.setText("Date de fin de projet :");
+
+        endProject.setDateFormatString("y-m-d");
 
         nbEmploye.setMinimum(0);
 
