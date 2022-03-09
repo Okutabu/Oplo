@@ -5,10 +5,7 @@
 package jframes;
 
 import classes.*;
-import internalFrames.*;
 import java.awt.Color;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import org.json.simple.JSONObject;
@@ -24,7 +21,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
      */
     public ConnexionPanel() {
         initComponents();
-        isRemembered();
+        this.isRemembered();
     }
     
     public void connect(){
@@ -33,8 +30,8 @@ public class ConnexionPanel extends javax.swing.JFrame {
          */
         ServerCommunication s = new ServerCommunication();
         
-        String connect = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
-        Object o = JSONValue.parse(connect);
+        String c = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
+        Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
         if (connectionInfos.containsKey("error")){
@@ -48,15 +45,14 @@ public class ConnexionPanel extends javax.swing.JFrame {
             String role = (String) connectionInfos.get("role");
             String description = (String) connectionInfos.get("others");
             String photo = (String) connectionInfos.get("profile_pic");
-            User.initialize(login, prenom, nom, admin, role, description, photo);
+            UserConnected myUser = new UserConnected(login, prenom, nom, admin, role, description, photo);
             //enregistre le login si la case esst cochée
             if (remember.isSelected()){
-                User.saveCredentials();
+                myUser.saveCredentials();
             } else {
-                User.destroyCredentials();
+                myUser.destroyCredentials();
             }
-            Home menu = new Home();
-            GraphicsDevice device = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+            Home menu = new Home(myUser);
             this.setVisible(false);
             menu.setLocation(0,0);
             menu.setVisible(true);
@@ -67,10 +63,10 @@ public class ConnexionPanel extends javax.swing.JFrame {
     
     public void isRemembered(){
         String display;
-        if (User.getCredentials().equals("")){
+        if (UserConnected.getCredentials().equals("")){
             display = "Nom d'utilisateur";
         } else {
-            display = User.getCredentials();
+            display = UserConnected.getCredentials();
         }
         inputLogin.setText(display);
     }
@@ -336,6 +332,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ConnexionPanel().setVisible(true);
             }
