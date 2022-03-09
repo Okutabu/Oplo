@@ -6,7 +6,6 @@ package jframes;
 
 import classes.UserConnected;
 import internalFrames.*;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -27,10 +26,11 @@ public class Home extends javax.swing.JFrame {
     public final void initMenu(UserConnected u){
         user = u;
         JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)naviguation.getUI();
-        bi.setNorthPane(null);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
-        
+        JInternalFrameUserInfo userInfo = new JInternalFrameUserInfo();
+        userInfo.setSize(menu.getWidth(), userInfo.getHeight() - 50);
+        userInfo.setLocation(0, 550);
+        menu.add(userInfo).setVisible(true);
         menu.add(naviguation).setVisible(true);
     }
     

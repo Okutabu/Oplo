@@ -4,6 +4,8 @@
  */
 package internalFrames;
 
+import classes.Display;
+
 /**
  *
  * @author Okutabu
@@ -18,6 +20,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     
     public JInternalFrameControlPanel(javax.swing.JDesktopPane affichage_elts) {
         main = affichage_elts;
+        Display.removeBorders(this);
         initComponents();
     }
     
