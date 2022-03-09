@@ -22,6 +22,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     
     public JInternalFrameControlPanel(javax.swing.JDesktopPane affichage_elts) {
         main = affichage_elts;
+        this.setLocation(0, 200);
         Display.removeBorders(this);
         initComponents();
         
