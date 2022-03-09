@@ -5,6 +5,7 @@
 package internalFrames;
 
 import classes.Display;
+import classes.UserConnected;
 import jframes.Home;
 
 /**
@@ -23,6 +24,23 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         main = affichage_elts;
         Display.removeBorders(this);
         initComponents();
+        
+        AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
+    }
+    
+    private void AdjustButtonFromPermission()
+    {
+        UserConnected user = Home.getUser();
+        
+        if(user.getAdmin() == false)
+        {
+            displayAccountApprove.setVisible(false);
+        }
+   
+        if(!user.getRole().equals("Chef de projet") && !user.getRole().equals("Responsable scientifique"))
+        {
+            displayAddProject.setVisible(false);
+        }
     }
     
     public javax.swing.JDesktopPane getMain(){

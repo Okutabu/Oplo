@@ -112,8 +112,6 @@ public class Profile extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Prénom");
 
-        modifResultLabel.setText("jLabel4");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,7 +199,7 @@ public class Profile extends javax.swing.JInternalFrame {
                         .addComponent(modifBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(modifResultLabel)
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();

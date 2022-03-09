@@ -136,7 +136,6 @@ public class AddProject extends javax.swing.JInternalFrame {
         });
 
         errorResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        errorResult.setText("jLabel1");
 
         projectDescriptionInput.setColumns(20);
         projectDescriptionInput.setRows(3);
@@ -209,7 +208,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorResult)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
