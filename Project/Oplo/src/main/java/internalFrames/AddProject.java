@@ -92,7 +92,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         nbemployecomp.setText("Nombre d'employés :");
 
         addSkill.setBackground(new java.awt.Color(0, 204, 0));
-        addSkill.setText("Ajouter une autre compétence nécessaire");
+        addSkill.setText("Ajouter une autre compétence");
 
         javax.swing.GroupLayout competenceLayout = new javax.swing.GroupLayout(competence);
         competence.setLayout(competenceLayout);
@@ -102,17 +102,16 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(Comp)
                 .addGap(18, 18, 18)
-                .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(competenceLayout.createSequentialGroup()
-                        .addComponent(addSkill)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(competenceLayout.createSequentialGroup()
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nbemployecomp)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nbemployecompetence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55))))
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(nbemployecomp)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nbemployecompetence, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, competenceLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(addSkill)
+                .addGap(164, 164, 164))
         );
         competenceLayout.setVerticalGroup(
             competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,9 +123,9 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addComponent(Comp)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(nbemployecomp)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(addSkill)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         createProjectButton.setText("Creer ce projet");
@@ -140,7 +139,8 @@ public class AddProject extends javax.swing.JInternalFrame {
         errorResult.setText("jLabel1");
 
         projectDescriptionInput.setColumns(20);
-        projectDescriptionInput.setRows(4);
+        projectDescriptionInput.setRows(3);
+        projectDescriptionInput.setTabSize(6);
         jScrollPane1.setViewportView(projectDescriptionInput);
 
         jLabel1.setText("Description :");

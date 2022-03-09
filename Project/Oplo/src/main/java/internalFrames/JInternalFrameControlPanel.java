@@ -5,6 +5,7 @@
 package internalFrames;
 
 import classes.Display;
+import jframes.Home;
 
 /**
  *
@@ -29,7 +30,10 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }
     
     public void displayRightWindow(javax.swing.JInternalFrame f){
-        main.removeAll();
+        javax.swing.JInternalFrame window = Home.getCurrentWindow();
+        window.setVisible(false);
+        Home.setCurrentWindow(f);
+        //f.setSize(main.getWidth(), main.getHeight());
         main.add(f).setVisible(true);
     }
 

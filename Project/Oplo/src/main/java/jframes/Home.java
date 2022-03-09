@@ -17,6 +17,7 @@ public class Home extends javax.swing.JFrame {
      */
     
     private static UserConnected user;
+    private static javax.swing.JInternalFrame currentWindow;
     
     public Home(UserConnected u) {
         initComponents();
@@ -25,6 +26,7 @@ public class Home extends javax.swing.JFrame {
     
     public final void initMenu(UserConnected u){
         user = u;
+        //initilaise le menu
         JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
         JInternalFrameUserInfo userInfo = new JInternalFrameUserInfo();
@@ -32,10 +34,22 @@ public class Home extends javax.swing.JFrame {
         userInfo.setLocation(0, 550);
         menu.add(userInfo).setVisible(true);
         menu.add(naviguation).setVisible(true);
+        //initialise la page d'accueil
+        Homepage accueil = new Homepage();
+        main.add(accueil).setVisible(true);
+        currentWindow = accueil;
     }
     
     public static UserConnected getUser(){
         return user;
+    }
+    
+    public static javax.swing.JInternalFrame getCurrentWindow(){
+        return currentWindow;
+    }
+    
+    public static void setCurrentWindow(javax.swing.JInternalFrame window){
+        currentWindow = window;
     }
 
     /**Components
