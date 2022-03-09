@@ -5,6 +5,7 @@
  */
 package internalFrames;
 import classes.*;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 /**
  *
  * @author Mélanie
@@ -16,6 +17,8 @@ public class AccountApprove extends javax.swing.JInternalFrame {
      */
     public AccountApprove() {
         initComponents();
+        this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
 
     /**

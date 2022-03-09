@@ -29,10 +29,10 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonAccueil" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButtonCalendar" alignment="1" pref="193" max="32767" attributes="0"/>
-                  <Component id="jButtonProjects" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButtonOptions" alignment="1" max="32767" attributes="0"/>
+                  <Component id="homeOpenPanelButton" alignment="1" max="32767" attributes="0"/>
+                  <Component id="addProjectOpenPanelButton" alignment="1" pref="193" max="32767" attributes="0"/>
+                  <Component id="approveAccountOpenPanelButton" alignment="1" max="32767" attributes="0"/>
+                  <Component id="showProfileButton" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -42,41 +42,50 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButtonAccueil" min="-2" max="-2" attributes="0"/>
+              <Component id="homeOpenPanelButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButtonCalendar" min="-2" max="-2" attributes="0"/>
+              <Component id="addProjectOpenPanelButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButtonProjects" min="-2" max="-2" attributes="0"/>
+              <Component id="approveAccountOpenPanelButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButtonOptions" min="-2" max="-2" attributes="0"/>
+              <Component id="showProfileButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButtonAccueil">
+    <Component class="javax.swing.JButton" name="homeOpenPanelButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Accueil"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAccueilActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeOpenPanelButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonCalendar">
+    <Component class="javax.swing.JButton" name="addProjectOpenPanelButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ajouter un projet"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addProjectOpenPanelButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonProjects">
+    <Component class="javax.swing.JButton" name="approveAccountOpenPanelButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Approuver comptes"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="approveAccountOpenPanelButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButtonOptions">
+    <Component class="javax.swing.JButton" name="showProfileButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Profil"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showProfileButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

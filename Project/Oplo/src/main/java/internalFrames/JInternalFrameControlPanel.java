@@ -34,25 +34,40 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButtonAccueil = new javax.swing.JButton();
-        jButtonCalendar = new javax.swing.JButton();
-        jButtonProjects = new javax.swing.JButton();
-        jButtonOptions = new javax.swing.JButton();
+        homeOpenPanelButton = new javax.swing.JButton();
+        addProjectOpenPanelButton = new javax.swing.JButton();
+        approveAccountOpenPanelButton = new javax.swing.JButton();
+        showProfileButton = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
-        jButtonAccueil.setText("Accueil");
-        jButtonAccueil.addActionListener(new java.awt.event.ActionListener() {
+        homeOpenPanelButton.setText("Accueil");
+        homeOpenPanelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAccueilActionPerformed(evt);
+                homeOpenPanelButtonActionPerformed(evt);
             }
         });
 
-        jButtonCalendar.setText("Ajouter un projet");
+        addProjectOpenPanelButton.setText("Ajouter un projet");
+        addProjectOpenPanelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProjectOpenPanelButtonActionPerformed(evt);
+            }
+        });
 
-        jButtonProjects.setText("Approuver comptes");
+        approveAccountOpenPanelButton.setText("Approuver comptes");
+        approveAccountOpenPanelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveAccountOpenPanelButtonActionPerformed(evt);
+            }
+        });
 
-        jButtonOptions.setText("Profil");
+        showProfileButton.setText("Profil");
+        showProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showProfileButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,38 +76,64 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonAccueil, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonCalendar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(jButtonProjects, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonOptions, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(homeOpenPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(addProjectOpenPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(approveAccountOpenPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(showProfileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonAccueil)
+                .addComponent(homeOpenPanelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCalendar)
+                .addComponent(addProjectOpenPanelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonProjects)
+                .addComponent(approveAccountOpenPanelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonOptions)
+                .addComponent(showProfileButton)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAccueilActionPerformed
+    private void homeOpenPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeOpenPanelButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonAccueilActionPerformed
+        switchToHome();
+    }//GEN-LAST:event_homeOpenPanelButtonActionPerformed
 
+    private void addProjectOpenPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectOpenPanelButtonActionPerformed
+        // TODO add your handling code here:
+        AddProject addProjectPanel = new AddProject();
+        main.removeAll();
+        main.add(addProjectPanel).setVisible(true);
+    }//GEN-LAST:event_addProjectOpenPanelButtonActionPerformed
+
+    private void approveAccountOpenPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveAccountOpenPanelButtonActionPerformed
+        // TODO add your handling code here:
+        AccountApprove approveAccountPanel = new AccountApprove();
+        main.removeAll();
+        main.add(approveAccountPanel).setVisible(true);
+    }//GEN-LAST:event_approveAccountOpenPanelButtonActionPerformed
+
+    private void showProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showProfileButtonActionPerformed
+        // TODO add your handling code here:
+        Profile profilePanel = new Profile();
+        main.removeAll();
+        main.add(profilePanel).setVisible(true);
+    }//GEN-LAST:event_showProfileButtonActionPerformed
+
+    private void switchToHome()
+    {
+        main.removeAll();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAccueil;
-    private javax.swing.JButton jButtonCalendar;
-    private javax.swing.JButton jButtonOptions;
-    private javax.swing.JButton jButtonProjects;
+    private javax.swing.JButton addProjectOpenPanelButton;
+    private javax.swing.JButton approveAccountOpenPanelButton;
+    private javax.swing.JButton homeOpenPanelButton;
+    private javax.swing.JButton showProfileButton;
     // End of variables declaration//GEN-END:variables
 }

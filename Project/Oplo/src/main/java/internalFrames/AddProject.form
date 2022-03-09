@@ -85,11 +85,12 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                      <Component id="errorResult" min="-2" pref="410" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="createProjectButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,9 +128,18 @@
               </Group>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="competence" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="createProjectButton" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="createProjectButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="errorResult" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,6 +164,9 @@
     <Component class="javax.swing.JTextField" name="intitule">
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="startProject">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="d/m/y"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="datedebut">
       <Properties>
@@ -166,6 +179,9 @@
       </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="endProject">
+      <Properties>
+        <Property name="dateFormatString" type="java.lang.String" value="d/m/y"/>
+      </Properties>
     </Component>
     <Component class="com.toedter.components.JSpinField" name="nbEmploye">
       <Properties>
@@ -282,6 +298,11 @@
     <Component class="javax.swing.JTextField" name="projectDescriptionInput">
       <Properties>
         <Property name="text" type="java.lang.String" value="description"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="errorResult">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
       </Properties>
     </Component>
   </SubComponents>
