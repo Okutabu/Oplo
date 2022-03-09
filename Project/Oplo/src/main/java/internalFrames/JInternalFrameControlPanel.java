@@ -44,6 +44,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     private void initComponents() {
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         homeOpenPanelButton = new javax.swing.JButton();
         addProjectOpenPanelButton = new javax.swing.JButton();
         approveAccountOpenPanelButton = new javax.swing.JButton();
@@ -105,10 +106,43 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
             }
         });
 
+=======
+        displayHomepage = new javax.swing.JButton();
+        displayAddProject = new javax.swing.JButton();
+        displayAccountApprove = new javax.swing.JButton();
+        displayProfile = new javax.swing.JButton();
+
+        setBorder(new javax.swing.border.MatteBorder(null));
+
+        displayHomepage.setText("Accueil");
+        displayHomepage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayHomepageActionPerformed(evt);
+            }
+        });
+
+        displayAddProject.setText("Ajouter un projet");
+        displayAddProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAddProjectActionPerformed(evt);
+            }
+        });
+
+        displayAccountApprove.setText("Approuver comptes");
+        displayAccountApprove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAccountApproveActionPerformed(evt);
+            }
+        });
+
+>>>>>>> Stashed changes
         displayProfile.setText("Profil");
         displayProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayProfileActionPerformed(evt);
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
         });
@@ -121,15 +155,21 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                     .addComponent(homeOpenPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addProjectOpenPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                     .addComponent(approveAccountOpenPanelButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(showProfileButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 =======
+=======
+>>>>>>> Stashed changes
                     .addComponent(displayHomepage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                     .addComponent(displayAccountApprove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 .addContainerGap())
         );
@@ -137,6 +177,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 .addComponent(homeOpenPanelButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -146,6 +187,8 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showProfileButton)
 =======
+=======
+>>>>>>> Stashed changes
                 .addComponent(displayHomepage)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAddProject)
@@ -153,6 +196,9 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                 .addComponent(displayAccountApprove)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayProfile)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                 .addContainerGap())
         );
@@ -161,10 +207,32 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private void homeOpenPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeOpenPanelButtonActionPerformed
         // TODO add your handling code here:
         switchToHome();
     }//GEN-LAST:event_homeOpenPanelButtonActionPerformed
+=======
+    private void displayHomepageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayHomepageActionPerformed
+        Homepage home = new Homepage();
+        displayRightWindow(home);
+    }//GEN-LAST:event_displayHomepageActionPerformed
+
+    private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
+        AccountApprove a = new AccountApprove();
+        displayRightWindow(a);
+    }//GEN-LAST:event_displayAccountApproveActionPerformed
+
+    private void displayAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAddProjectActionPerformed
+        AddProject a = new AddProject();
+        displayRightWindow(a);
+    }//GEN-LAST:event_displayAddProjectActionPerformed
+
+    private void displayProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayProfileActionPerformed
+        Profile profile = new Profile();
+        displayRightWindow(profile);
+    }//GEN-LAST:event_displayProfileActionPerformed
+>>>>>>> Stashed changes
 
     private void addProjectOpenPanelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProjectOpenPanelButtonActionPerformed
         // TODO add your handling code here:
@@ -215,15 +283,21 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     private javax.swing.JButton addProjectOpenPanelButton;
     private javax.swing.JButton approveAccountOpenPanelButton;
     private javax.swing.JButton homeOpenPanelButton;
     private javax.swing.JButton showProfileButton;
 =======
+=======
+>>>>>>> Stashed changes
     private javax.swing.JButton displayAccountApprove;
     private javax.swing.JButton displayAddProject;
     private javax.swing.JButton displayHomepage;
     private javax.swing.JButton displayProfile;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     // End of variables declaration//GEN-END:variables
 }

@@ -30,15 +30,21 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   <Component id="homeOpenPanelButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="addProjectOpenPanelButton" alignment="1" pref="193" max="32767" attributes="0"/>
                   <Component id="approveAccountOpenPanelButton" alignment="1" max="32767" attributes="0"/>
                   <Component id="showProfileButton" alignment="1" max="32767" attributes="0"/>
 =======
+=======
+>>>>>>> Stashed changes
                   <Component id="displayHomepage" alignment="1" max="32767" attributes="0"/>
                   <Component id="displayAddProject" alignment="1" pref="193" max="32767" attributes="0"/>
                   <Component id="displayAccountApprove" alignment="1" max="32767" attributes="0"/>
                   <Component id="displayProfile" alignment="1" max="32767" attributes="0"/>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -49,6 +55,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
               <Component id="homeOpenPanelButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -66,6 +73,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="displayProfile" min="-2" max="-2" attributes="0"/>
 >>>>>>> Stashed changes
+=======
+              <Component id="displayHomepage" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="displayAddProject" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="displayAccountApprove" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="displayProfile" min="-2" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -73,7 +89,11 @@
   </Layout>
   <SubComponents>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <Component class="javax.swing.JButton" name="homeOpenPanelButton">
+=======
+    <Component class="javax.swing.JButton" name="displayHomepage">
+>>>>>>> Stashed changes
 =======
     <Component class="javax.swing.JButton" name="displayHomepage">
 >>>>>>> Stashed changes
@@ -82,20 +102,27 @@
       </Properties>
       <Events>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="homeOpenPanelButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="addProjectOpenPanelButton">
 =======
+=======
+>>>>>>> Stashed changes
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayHomepageActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="displayAddProject">
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       <Properties>
         <Property name="text" type="java.lang.String" value="Ajouter un projet"/>
       </Properties>
       <Events>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addProjectOpenPanelButtonActionPerformed"/>
       </Events>
@@ -107,10 +134,17 @@
     </Component>
     <Component class="javax.swing.JButton" name="displayAccountApprove">
 >>>>>>> Stashed changes
+=======
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAddProjectActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="displayAccountApprove">
+>>>>>>> Stashed changes
       <Properties>
         <Property name="text" type="java.lang.String" value="Approuver comptes"/>
       </Properties>
       <Events>
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="approveAccountOpenPanelButtonActionPerformed"/>
       </Events>
@@ -122,12 +156,22 @@
     </Component>
     <Component class="javax.swing.JButton" name="displayProfile">
 >>>>>>> Stashed changes
+=======
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAccountApproveActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="displayProfile">
+>>>>>>> Stashed changes
       <Properties>
         <Property name="text" type="java.lang.String" value="Profil"/>
       </Properties>
       <Events>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="showProfileButtonActionPerformed"/>
+=======
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayProfileActionPerformed"/>
+>>>>>>> Stashed changes
 =======
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayProfileActionPerformed"/>
 >>>>>>> Stashed changes

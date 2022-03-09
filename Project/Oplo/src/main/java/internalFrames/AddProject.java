@@ -180,7 +180,11 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createProjectButton)))
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addContainerGap(40, Short.MAX_VALUE))
+>>>>>>> Stashed changes
 =======
                 .addContainerGap(40, Short.MAX_VALUE))
 >>>>>>> Stashed changes
@@ -226,6 +230,9 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(createProjectButton)
                 .addContainerGap(23, Short.MAX_VALUE))
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         );
 

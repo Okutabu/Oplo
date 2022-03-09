@@ -30,6 +30,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                       <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel10" max="32767" attributes="0"/>
@@ -59,6 +60,8 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
                       <EmptySpace min="-2" pref="369" max="-2" attributes="0"/>
@@ -118,11 +121,26 @@
               <Component id="userNameLabel" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
               <Component id="userProfilePicture" min="-2" pref="160" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jToggleButton1" pref="36" max="32767" attributes="0"/>
                   <Component id="userLoginLabel" max="32767" attributes="0"/>
+=======
+              <Component id="jLabel2" min="-2" pref="84" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel12" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="name" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="firstname" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="jLabel13" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jToggleButton1" max="32767" attributes="0"/>
+                  <Component id="id" max="32767" attributes="0"/>
+>>>>>>> Stashed changes
 =======
               <Component id="jLabel2" min="-2" pref="84" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -145,8 +163,13 @@
                   <Component id="admin" max="32767" attributes="0"/>
                   <Component id="jLabel6" max="32767" attributes="0"/>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   <Component id="userRoleLabel" max="32767" attributes="0"/>
                   <Component id="jLabel8" max="32767" attributes="0"/>
+=======
+                  <Component id="role" max="32767" attributes="0"/>
+                  <Component id="jLabel8" min="-2" pref="35" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
 =======
                   <Component id="role" max="32767" attributes="0"/>
                   <Component id="jLabel8" min="-2" pref="35" max="-2" attributes="0"/>
@@ -164,8 +187,13 @@
                       </Group>
                   </Group>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
+=======
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+>>>>>>> Stashed changes
 =======
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
@@ -200,9 +228,15 @@
       </Properties>
     </Component>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <Component class="javax.swing.JLabel" name="userLoginLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="loginDuMec"/>
+=======
+    <Component class="javax.swing.JLabel" name="id">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="idDuUser"/>
+>>>>>>> Stashed changes
 =======
     <Component class="javax.swing.JLabel" name="id">
       <Properties>
@@ -226,7 +260,11 @@
       </Properties>
     </Component>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <Component class="javax.swing.JLabel" name="userRoleLabel">
+=======
+    <Component class="javax.swing.JLabel" name="role">
+>>>>>>> Stashed changes
 =======
     <Component class="javax.swing.JLabel" name="role">
 >>>>>>> Stashed changes
@@ -257,7 +295,11 @@
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         <Component class="javax.swing.JTextArea" name="userDescriptionArea">
+=======
+        <Component class="javax.swing.JTextArea" name="others">
+>>>>>>> Stashed changes
 =======
         <Component class="javax.swing.JTextArea" name="others">
 >>>>>>> Stashed changes
