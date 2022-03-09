@@ -93,6 +93,7 @@ public class AddProject extends javax.swing.JInternalFrame {
 
         addSkill.setBackground(new java.awt.Color(0, 204, 0));
         addSkill.setText("Ajouter une autre compétence");
+        addSkill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout competenceLayout = new javax.swing.GroupLayout(competence);
         competence.setLayout(competenceLayout);
@@ -129,6 +130,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         );
 
         createProjectButton.setText("Creer ce projet");
+        createProjectButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         createProjectButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createProjectButtonActionPerformed(evt);

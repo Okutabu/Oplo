@@ -169,6 +169,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         remember.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         inscrire.setText("Pas de compte ?");
+        inscrire.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         inscrire.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inscrireActionPerformed(evt);

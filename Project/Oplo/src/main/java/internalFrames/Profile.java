@@ -83,6 +83,7 @@ public class Profile extends javax.swing.JInternalFrame {
         jLabel5.setText("Mot de passe");
 
         jToggleButton1.setText("Modifier");
+        jToggleButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setText("Role");
@@ -102,6 +103,7 @@ public class Profile extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(othersInputField);
 
         modifBioButton.setText("Modifier");
+        modifBioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         modifBioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 modifBioButtonActionPerformed(evt);

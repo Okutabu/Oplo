@@ -99,6 +99,7 @@ public class Registration extends javax.swing.JInternalFrame {
 
         inscription.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         inscription.setText("M'inscrire");
+        inscription.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         inscription.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inscriptionActionPerformed(evt);
@@ -117,6 +118,7 @@ public class Registration extends javax.swing.JInternalFrame {
 
         profile.setSelected(true);
         profile.setText("Parcourir");
+        profile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 profileActionPerformed(evt);
@@ -134,10 +136,12 @@ public class Registration extends javax.swing.JInternalFrame {
 
         admin.add(yes);
         yes.setText("Oui");
+        yes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         admin.add(no);
         no.setSelected(true);
         no.setText("Non");
+        no.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         no.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 noActionPerformed(evt);

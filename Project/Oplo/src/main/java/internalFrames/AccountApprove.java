@@ -98,6 +98,7 @@ public class AccountApprove extends javax.swing.JInternalFrame {
 
         AcceptButton.setBackground(new java.awt.Color(255, 51, 51));
         AcceptButton.setText("Accepter");
+        AcceptButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         AcceptButton.setMargin(new java.awt.Insets(10, 20, 10, 20));
         AcceptButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +110,7 @@ public class AccountApprove extends javax.swing.JInternalFrame {
 
         RefuseButton.setBackground(new java.awt.Color(255, 51, 51));
         RefuseButton.setText("Refuser");
+        RefuseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RefuseButton.setMargin(new java.awt.Insets(10, 20, 10, 20));
         RefuseButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
