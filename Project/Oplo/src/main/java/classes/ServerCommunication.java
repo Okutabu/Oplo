@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 /**
  *
@@ -20,7 +21,7 @@ public class ServerCommunication
             HttpURLConnection httpUrl =(HttpURLConnection)myurl.openConnection();
             httpUrl.setRequestMethod("GET");
             String line = "";
-            InputStreamReader reder = new InputStreamReader(httpUrl.getInputStream());
+            InputStreamReader reder = new InputStreamReader(httpUrl.getInputStream(), StandardCharsets.UTF_8);
             BufferedReader bufferReader = new BufferedReader(reder);
             
             StringBuilder response = new StringBuilder();
@@ -54,7 +55,7 @@ public class ServerCommunication
             output.close();
             
             String line;
-            InputStreamReader rder = new InputStreamReader(httpUrl.getInputStream());
+            InputStreamReader rder = new InputStreamReader(httpUrl.getInputStream(), StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(rder);
             
             StringBuilder response = new StringBuilder();
