@@ -48,6 +48,8 @@ public class AccountApprove extends javax.swing.JInternalFrame {
         autre = new javax.swing.JLabel();
         RefuseButton = new javax.swing.JButton();
 
+        setBorder(new javax.swing.border.MatteBorder(null));
+
         approuver.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         approuver.setForeground(new java.awt.Color(255, 51, 51));
         approuver.setText("Approuver le compte suivant : ");
@@ -192,7 +194,7 @@ public class AccountApprove extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AcceptButton)
                     .addComponent(RefuseButton))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();

@@ -62,6 +62,8 @@ public class AddProject extends javax.swing.JInternalFrame {
 
         jTextField1.setText("jTextField1");
 
+        setBorder(new javax.swing.border.MatteBorder(null));
+
         titre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         titre.setForeground(new java.awt.Color(0, 204, 0));
         titre.setText("Ajouter un projet ");
@@ -177,7 +179,11 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addComponent(errorResult, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(createProjectButton)))
+<<<<<<< Updated upstream
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addContainerGap(40, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,6 +212,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                     .addComponent(nbEmploye, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(51, 51, 51)
                 .addComponent(competence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< Updated upstream
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -215,6 +222,11 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(errorResult)
                         .addContainerGap())))
+=======
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(createProjectButton)
+                .addContainerGap(23, Short.MAX_VALUE))
+>>>>>>> Stashed changes
         );
 
         pack();

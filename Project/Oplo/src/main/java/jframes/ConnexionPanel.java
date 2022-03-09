@@ -6,7 +6,6 @@ package jframes;
 
 import classes.*;
 import java.awt.Color;
-import java.awt.GraphicsEnvironment;
 import java.awt.event.KeyEvent;
 import javax.swing.JFrame;
 import org.json.simple.JSONObject;
@@ -53,7 +52,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
             } else {
                 myUser.destroyCredentials();
             }
-            Home menu = new Home();
+            Home menu = new Home(myUser);
             this.setVisible(false);
             menu.setLocation(0,0);
             menu.setVisible(true);
