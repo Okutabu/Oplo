@@ -22,11 +22,11 @@ public class Home extends javax.swing.JFrame {
     public Home(UserConnected u) {
         initComponents();
         initMenu(u);
+        initMain();
     }
     
     public final void initMenu(UserConnected u){
         user = u;
-        //initilaise le menu
         JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
         JInternalFrameUserInfo userInfo = new JInternalFrameUserInfo();
@@ -34,7 +34,9 @@ public class Home extends javax.swing.JFrame {
         userInfo.setLocation(0, 550);
         menu.add(userInfo).setVisible(true);
         menu.add(naviguation).setVisible(true);
-        //initialise la page d'accueil
+    }
+    
+    public void initMain(){
         Homepage accueil = new Homepage();
         main.add(accueil).setVisible(true);
         currentWindow = accueil;
