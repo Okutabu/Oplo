@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <Properties>
+    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+      <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
+        <MatteColorBorder/>
+      </Border>
+    </Property>
+  </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
   </SyntheticProperties>
@@ -22,9 +29,8 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="badge" alignment="0" max="32767" attributes="0"/>
                   <Component id="jButtonAccueil" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jButtonCalendar" alignment="1" pref="183" max="32767" attributes="0"/>
+                  <Component id="jButtonCalendar" alignment="1" pref="193" max="32767" attributes="0"/>
                   <Component id="jButtonProjects" alignment="1" max="32767" attributes="0"/>
                   <Component id="jButtonOptions" alignment="1" max="32767" attributes="0"/>
               </Group>
@@ -43,8 +49,6 @@
               <Component id="jButtonProjects" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButtonOptions" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="badge" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -55,39 +59,24 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Accueil"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAccueilActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonCalendar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Calendrier"/>
+        <Property name="text" type="java.lang.String" value="Ajouter un projet"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonProjects">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Projets"/>
+        <Property name="text" type="java.lang.String" value="Approuver comptes"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonOptions">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Options"/>
+        <Property name="text" type="java.lang.String" value="Profil"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JInternalFrame" name="badge">
-      <Properties>
-        <Property name="visible" type="boolean" value="true"/>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="163" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-    </Container>
   </SubComponents>
 </Form>

@@ -18,6 +18,14 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        initMenu();
+    }
+    
+    public final void initMenu(){
+        JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
+        BasicInternalFrameUI bi = (BasicInternalFrameUI)naviguation.getUI();
+        bi.setNorthPane(null);
+        menu.add(naviguation).setVisible(true);
     }
 
     /**Components
@@ -30,7 +38,7 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         main = new javax.swing.JDesktopPane();
-        jPanel2 = new javax.swing.JPanel();
+        menu = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(900, 600));
@@ -52,16 +60,16 @@ public class Home extends javax.swing.JFrame {
             .addGap(0, 540, Short.MAX_VALUE)
         );
 
-        jPanel2.setMinimumSize(new java.awt.Dimension(223, 0));
+        menu.setMinimumSize(new java.awt.Dimension(223, 0));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
+        menu.setLayout(menuLayout);
+        menuLayout.setHorizontalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 223, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        menuLayout.setVerticalGroup(
+            menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 540, Short.MAX_VALUE)
         );
 
@@ -70,14 +78,14 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(main))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(main)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -123,7 +131,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JDesktopPane main;
+    private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }
