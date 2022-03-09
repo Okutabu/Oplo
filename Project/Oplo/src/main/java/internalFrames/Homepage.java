@@ -5,6 +5,8 @@
 package internalFrames;
 
 import classes.Display;
+import java.awt.Container;
+import javax.swing.JButton;
 
 /**
  *
@@ -18,6 +20,9 @@ public class Homepage extends javax.swing.JInternalFrame {
     public Homepage() {
         Display.removeBorders(this);
         initComponents();
+        JButton button = new JButton("Test Button");
+
+        add(button);
     }
 
     /**

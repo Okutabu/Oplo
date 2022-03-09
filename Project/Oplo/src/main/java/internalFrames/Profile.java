@@ -73,24 +73,28 @@ public class Profile extends javax.swing.JInternalFrame {
         jLabel1.setText("Modifier votre profil");
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("mettre pp ici");
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Identifiant");
 
         id.setText("idDuUser");
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel5.setText("Mot de passe");
 
         jToggleButton1.setText("Modifier");
 
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setText("Role");
 
         role.setText("roleDuUser");
 
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel8.setText("Administrateur");
 
         admin.setText("Oui/Non");
 
+        jLabel10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel10.setText("Bio :");
 
         othersInputField.setColumns(20);
@@ -108,8 +112,10 @@ public class Profile extends javax.swing.JInternalFrame {
 
         firstname.setText("prenomDuUser");
 
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel12.setText("Nom de famille");
 
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel13.setText("Prénom");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,7 +218,12 @@ public class Profile extends javax.swing.JInternalFrame {
         String newOthers = othersInputField.getText();
         
         ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "updateOthers=true&login=" + user.getLogin() + "&others=" + newOthers);
+        String req = s.sendPostRequest("https://oplo.000webhostapp.com/", "updateOthers=true&login=" + user.getLogin() + "&others=" + newOthers);
+        
+        if(req.equals("ok"))
+        {
+            user.setOthers(newOthers);
+        }
     }//GEN-LAST:event_modifBioButtonActionPerformed
 
 

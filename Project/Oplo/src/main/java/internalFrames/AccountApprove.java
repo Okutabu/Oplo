@@ -17,6 +17,7 @@ public class AccountApprove extends javax.swing.JInternalFrame {
     public AccountApprove() {
         Display.removeBorders(this);
         initComponents();
+        userLogin.setVisible(false);//HIDE THE LABEL WHO CONTAIN THE USER LOGIN
     }
 
     /**
@@ -115,7 +116,6 @@ public class AccountApprove extends javax.swing.JInternalFrame {
             }
         });
 
-        userLogin.setBackground(new java.awt.Color(222, 222, 222));
         userLogin.setForeground(new java.awt.Color(51, 51, 55));
         userLogin.setText("jLabel2");
 

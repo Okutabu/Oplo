@@ -54,4 +54,9 @@ public class User {
     public String getProfile_pic() {
         return this.profile_pic;
     }
+    
+    public void setOthers(String othersValue)
+    {
+        this.others = othersValue;
+    }
 }
