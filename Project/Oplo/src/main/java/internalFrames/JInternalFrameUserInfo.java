@@ -20,6 +20,7 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
     public JInternalFrameUserInfo(UserConnected user) {
         initComponents();
         initDisplayDataUser(user);
+        Display.removeBorders(this);
     }
 
     /**

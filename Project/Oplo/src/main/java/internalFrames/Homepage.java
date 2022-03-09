@@ -4,6 +4,8 @@
  */
 package internalFrames;
 
+import classes.Display;
+
 /**
  *
  * @author gaeta
@@ -14,6 +16,7 @@ public class Homepage extends javax.swing.JInternalFrame {
      * Creates new form Hompage
      */
     public Homepage() {
+        Display.removeBorders(this);
         initComponents();
     }
 

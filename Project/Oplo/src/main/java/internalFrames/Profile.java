@@ -15,11 +15,11 @@ public class Profile extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Profile
-     * @param user
      */
     public Profile() {
         initComponents();
         initDisplay();
+        Display.removeBorders(this);
     }
     
     public final void initDisplay(){

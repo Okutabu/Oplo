@@ -15,6 +15,7 @@ public class AccountApprove extends javax.swing.JInternalFrame {
      * Creates new form AccountApprove
      */
     public AccountApprove() {
+        Display.removeBorders(this);
         initComponents();
     }
 

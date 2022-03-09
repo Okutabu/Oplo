@@ -15,6 +15,7 @@ public class AddProject extends javax.swing.JInternalFrame {
      * Creates new form AddProject
      */
     public AddProject() {
+        Display.removeBorders(this);
         initComponents();
     }
 

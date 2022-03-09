@@ -4,8 +4,6 @@
  */
 package internalFrames;
 
-import javax.swing.plaf.basic.BasicInternalFrameUI;
-
 /**
  *
  * @author Okutabu
@@ -28,8 +26,6 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }
     
     public void displayRightWindow(javax.swing.JInternalFrame f){
-        BasicInternalFrameUI bi = (BasicInternalFrameUI)f.getUI();
-        bi.setNorthPane(null);
         main.removeAll();
         main.add(f).setVisible(true);
     }

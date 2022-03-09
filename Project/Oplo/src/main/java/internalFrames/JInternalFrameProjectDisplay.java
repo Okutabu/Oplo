@@ -16,6 +16,7 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
      */
     public JInternalFrameProjectDisplay(User user1) {
         myInitComponents(user1);
+        Display.removeBorders(this);
     }
 
     /**
