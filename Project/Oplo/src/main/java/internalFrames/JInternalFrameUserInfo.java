@@ -5,6 +5,7 @@
 package internalFrames;
 
 import classes.*;
+import jframes.Home;
 
 /**
  *
@@ -15,11 +16,10 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
     
     /**
      * Creates new form JInternalFrameUserInfo 
-     * @param user
      */
-    public JInternalFrameUserInfo(UserConnected user) {
+    public JInternalFrameUserInfo() {
         initComponents();
-        initDisplayDataUser(user);
+        initDisplayDataUser();
         Display.removeBorders(this);
     }
 
@@ -92,7 +92,8 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void initDisplayDataUser(UserConnected user) {
+private void initDisplayDataUser() {
+        UserConnected user = Home.getUser();
         user.getProfile_pic();
         firstname.setText(user.getFirstname());
         surname.setText(user.getSurname());
