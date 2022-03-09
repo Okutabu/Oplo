@@ -62,7 +62,7 @@ public class Inscription extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public void addRegistration(){
-        Registration inscription = new Registration();
+        Registration inscription = new Registration(this);
         inscription.setSize(966,538);
         main.add(inscription).setVisible(true);
     }
