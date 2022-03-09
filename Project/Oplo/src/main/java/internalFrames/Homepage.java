@@ -5,7 +5,15 @@
 package internalFrames;
 
 import classes.*;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import jframes.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 /**
  *
@@ -20,7 +28,38 @@ public class Homepage extends javax.swing.JInternalFrame {
         Display.removeBorders(this);
         initComponents();
         
-       
+        InitializeProjectList();//ADD ALL THE PROJECT IN THE LIST 
+    }
+    
+    private void InitializeProjectList()
+    {
+        ServerCommunication s = new ServerCommunication();
+        UserConnected user = Home.getUser();
+        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjects&login=" + user.getLogin());
+        //System.out.println(res);
+   
+        DefaultListModel listModel = new DefaultListModel();
+        
+        Object o = JSONValue.parse(res);
+
+        JSONArray jsonArray = (JSONArray) o;         
+
+        for(Object object:jsonArray) {
+            if(object instanceof JSONObject) {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                for(String key:keys) {
+                   // System.out.println(key +" :: "+jsonObject.get(key));
+                   Object newJson = jsonObject.get(key);
+
+                   JSONObject newObj = (JSONObject)newJson;
+                   listModel.addElement(newObj.get("name"));
+                }               
+            }
+        }
+     
+        projectList.setModel(listModel);
     }
 
     /**
@@ -34,6 +73,7 @@ public class Homepage extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         projectList = new javax.swing.JList<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -44,21 +84,30 @@ public class Homepage extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(projectList);
 
+        jLabel1.setFont(new java.awt.Font("Dubai Medium", 0, 24)); // NOI18N
+        jLabel1.setText("Mes projets :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(498, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                .addContainerGap(221, Short.MAX_VALUE))
         );
 
         pack();
@@ -66,6 +115,7 @@ public class Homepage extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JList<String> projectList;
     // End of variables declaration//GEN-END:variables
