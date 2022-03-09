@@ -72,6 +72,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         setBorder(new javax.swing.border.MatteBorder(null));
 
         displayHomepage.setText("Accueil");
+        displayHomepage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         displayHomepage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayHomepageActionPerformed(evt);
@@ -79,6 +80,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         });
 
         displayAddProject.setText("Ajouter un projet");
+        displayAddProject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         displayAddProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayAddProjectActionPerformed(evt);
@@ -86,6 +88,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         });
 
         displayAccountApprove.setText("Approuver comptes");
+        displayAccountApprove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         displayAccountApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayAccountApproveActionPerformed(evt);
@@ -93,6 +96,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         });
 
         displayProfile.setText("Profil");
+        displayProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         displayProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayProfileActionPerformed(evt);

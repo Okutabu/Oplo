@@ -76,6 +76,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        main.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
