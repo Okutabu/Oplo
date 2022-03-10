@@ -52,7 +52,7 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
         });
 
         revokeUserButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        revokeUserButton.setText("Revoquer");
+        revokeUserButton.setText("Supprimer");
         revokeUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 revokeUserButtonActionPerformed(evt);
