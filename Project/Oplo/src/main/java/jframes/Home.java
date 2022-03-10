@@ -64,6 +64,7 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         main = new javax.swing.JDesktopPane();
+        jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -78,15 +79,23 @@ public class Home extends javax.swing.JFrame {
 
         main.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\gaeta\\Documents\\Travail\\Semestre 4 INFO\\Oplo\\Project\\gris.png")); // NOI18N
+
+        main.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1680, Short.MAX_VALUE)
+            .addGroup(mainLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGroup(mainLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
@@ -170,6 +179,7 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JDesktopPane main;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables

@@ -8,10 +8,7 @@ import jframes.*;
 import classes.*;
 import java.awt.Color;
 import java.io.File;
-import java.util.Set;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+
 
 /**
  *
@@ -26,31 +23,11 @@ public class Registration extends javax.swing.JInternalFrame {
     public Registration(javax.swing.JFrame parent) {
         Display.removeBorders(this);
         initComponents();
-        initSkills();
+        
         this.parentTemp = parent;
     }
     
-    public void initSkills(){
-        ServerCommunication s = new ServerCommunication();
-        UserConnected user = Home.getUser();
-        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjects&login=" + user.getLogin());
-        
-        Object o = JSONValue.parse(res);
-
-        JSONArray jsonArray = (JSONArray) o;         
-
-        for(Object object:jsonArray) {
-            if(object instanceof JSONObject) {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                for(String key:keys) {
-
-                   skill1.addItem((String) jsonObject.get(key));
-                }               
-            }
-        }
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
