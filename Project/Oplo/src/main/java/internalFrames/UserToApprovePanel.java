@@ -40,6 +40,8 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
+        setForeground(java.awt.Color.white);
+
         userFirstname.setText("prenom");
 
         userSurname.setText("nom");

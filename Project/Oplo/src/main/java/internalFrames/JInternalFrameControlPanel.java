@@ -7,6 +7,7 @@ package internalFrames;
 import classes.Display;
 import classes.ServerCommunication;
 import classes.UserConnected;
+import java.awt.Color;
 import java.util.Set;
 import javax.swing.DefaultListModel;
 import jframes.Home;
@@ -74,6 +75,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
        }
         Home.setCurrentWindow(f);
         //f.setSize(main.getWidth(), main.getHeight());
+        
         main.add(f).setVisible(true);
     }
 
@@ -194,7 +196,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                    userPanel.setLogin(newObj.get("login").toString());
                    userPanel.setLocation(0, currentHeight);
                    currentHeight += userPanel.getHeight();
-                    displaySeveralWindow(userPanel);
+                   displaySeveralWindow(userPanel);
                    //newObj.get("firstname"));
                 }               
             }

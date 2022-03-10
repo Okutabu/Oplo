@@ -373,7 +373,7 @@ public class Registration extends javax.swing.JInternalFrame {
         if (response == myJFileChooser.APPROVE_OPTION) {
             File file = new File(myJFileChooser.getSelectedFile().getAbsolutePath());
             System.out.print(file);
-        } 
+        }
     }//GEN-LAST:event_profileActionPerformed
 
     private void noActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_noActionPerformed

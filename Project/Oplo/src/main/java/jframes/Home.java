@@ -102,8 +102,6 @@ public class Home extends javax.swing.JFrame {
 
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\clem3\\Documents\\GitHub\\Project\\Oplo\\logoResized.png")); // NOI18N
-
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
