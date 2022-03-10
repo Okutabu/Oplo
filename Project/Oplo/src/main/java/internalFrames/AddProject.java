@@ -223,6 +223,7 @@ public class AddProject extends javax.swing.JInternalFrame {
     private void createProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProjectButtonActionPerformed
         // TODO add your handling code here:
         CreateProject();
+        
     }//GEN-LAST:event_createProjectButtonActionPerformed
 
     private void CreateProject()
