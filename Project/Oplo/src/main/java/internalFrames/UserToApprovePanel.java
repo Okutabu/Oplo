@@ -37,8 +37,6 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
         approveUserButton = new javax.swing.JButton();
         revokeUserButton = new javax.swing.JButton();
 
-        jLabel1.setText("jLabel1");
-
         userFirstname.setText("prenom");
 
         userSurname.setText("nom");
