@@ -98,6 +98,9 @@ private void initDisplayDataUser() {
         firstname.setText(user.getFirstname());
         surname.setText(user.getSurname());
         others.setText(user.getOthers());
+        
+     /*   others.setLineWrap(true);
+        others.setWrapStyleWord(true);/*/
     }
     
     

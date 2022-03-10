@@ -5,8 +5,14 @@
 package internalFrames;
 
 import classes.Display;
+import classes.ServerCommunication;
 import classes.UserConnected;
+import java.util.Set;
+import javax.swing.DefaultListModel;
 import jframes.Home;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 
 /**
  *
@@ -51,6 +57,21 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     public void displayRightWindow(javax.swing.JInternalFrame f){
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
         window.setVisible(false);
+        Home.setCurrentWindow(f);
+        //f.setSize(main.getWidth(), main.getHeight());
+        main.add(f).setVisible(true);
+    }
+    
+    public void displaySeveralWindow(javax.swing.JInternalFrame f){
+        javax.swing.JInternalFrame window = Home.getCurrentWindow();
+       if(f instanceof UserToApprovePanel)
+       {
+           
+       }
+       else
+       {
+        window.setVisible(false);
+       }
         Home.setCurrentWindow(f);
         //f.setSize(main.getWidth(), main.getHeight());
         main.add(f).setVisible(true);
@@ -140,8 +161,52 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_displayHomepageActionPerformed
 
     private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
-        AccountApprove a = new AccountApprove();
-        displayRightWindow(a);
+/*        AccountApprove a = new AccountApprove();
+        displayRightWindow(a);*/
+
+        /////////////////////////////////////////////////////////////////////////////////////
+        ServerCommunication s = new ServerCommunication();
+
+        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?getNonApprovedAccount=true");
+        //System.out.println(res);
+   
+        DefaultListModel listModel = new DefaultListModel();
+        
+        Object o = JSONValue.parse(res);
+
+        JSONArray jsonArray = (JSONArray) o;         
+        
+        int currentHeight = 0;
+        
+        for(Object object:jsonArray) {
+            if(object instanceof JSONObject) {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                for(String key:keys) {
+                   System.out.println(key +" :: "+jsonObject.get(key));
+                   Object newJson = jsonObject.get(key);
+
+                   JSONObject newObj = (JSONObject)newJson;
+                   UserToApprovePanel userPanel = new UserToApprovePanel();
+                   userPanel.setFirstname(newObj.get("firstname").toString());
+                   userPanel.setSurname(newObj.get("surname").toString());
+                   userPanel.setLogin(newObj.get("login").toString());
+                   userPanel.setLocation(0, currentHeight);
+                   currentHeight += userPanel.getHeight();
+                    displaySeveralWindow(userPanel);
+                   //newObj.get("firstname"));
+                }               
+            }
+        }
+
+       /* UserToApprovePanel userPanel = new UserToApprovePanel();
+        displaySeveralWindow(userPanel);
+        
+        UserToApprovePanel userPanel2 = new UserToApprovePanel();
+        userPanel2.setLocation(0, userPanel.getHeight());
+        displaySeveralWindow(userPanel2);/*/
+        
     }//GEN-LAST:event_displayAccountApproveActionPerformed
 
     private void displayAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAddProjectActionPerformed
