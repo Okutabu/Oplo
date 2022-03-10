@@ -6,7 +6,6 @@ package jframes;
 
 import classes.*;
 import internalFrames.*;
-import java.awt.Color;
 
 /**
  *
