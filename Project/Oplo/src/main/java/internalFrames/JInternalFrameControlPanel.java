@@ -64,7 +64,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     
     public void displaySeveralWindow(javax.swing.JInternalFrame f){
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
-        window.setVisible(false);
+        //window.setVisible(false);
         Home.setCurrentWindow(f);
         //f.setSize(main.getWidth(), main.getHeight());
         main.add(f).setVisible(true);
