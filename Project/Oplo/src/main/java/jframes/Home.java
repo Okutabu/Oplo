@@ -4,8 +4,10 @@
  */
 package jframes;
 
-import classes.UserConnected;
+import classes.*;
 import internalFrames.*;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,10 +19,12 @@ public class Home extends javax.swing.JFrame {
      */
     
     private static UserConnected user;
+    private static javax.swing.JInternalFrame currentWindow;
     
     public Home(UserConnected u) {
         initComponents();
         initMenu(u);
+        initMain();
     }
     
     public final void initMenu(UserConnected u){
@@ -29,13 +33,27 @@ public class Home extends javax.swing.JFrame {
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
         JInternalFrameUserInfo userInfo = new JInternalFrameUserInfo();
         userInfo.setSize(menu.getWidth(), userInfo.getHeight() - 50);
-        userInfo.setLocation(0, 550);
+        userInfo.setLocation(0, 450);
         menu.add(userInfo).setVisible(true);
         menu.add(naviguation).setVisible(true);
     }
     
+    public void initMain(){
+        Homepage accueil = new Homepage();
+        main.add(accueil).setVisible(true);
+        currentWindow = accueil;
+    }
+    
     public static UserConnected getUser(){
         return user;
+    }
+    
+    public static javax.swing.JInternalFrame getCurrentWindow(){
+        return currentWindow;
+    }
+    
+    public static void setCurrentWindow(javax.swing.JInternalFrame window){
+        currentWindow = window;
     }
 
     /**Components
@@ -48,9 +66,11 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         main = new javax.swing.JDesktopPane();
+        jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Oplo");
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -60,28 +80,46 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        main.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\gaeta\\Documents\\Travail\\Semestre 4 INFO\\Oplo\\Project\\gris.png")); // NOI18N
+
+        main.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1698, Short.MAX_VALUE)
+            .addGroup(mainLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1696, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGroup(mainLayout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\gaeta\\Documents\\Travail\\Semestre 4 INFO\\Oplo\\Project\\Oplo\\logoResized.png")); // NOI18N
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 223, Short.MAX_VALUE)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1080, Short.MAX_VALUE)
+            .addGroup(menuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -89,9 +127,10 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,6 +181,8 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JDesktopPane main;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
