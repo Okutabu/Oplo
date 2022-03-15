@@ -76,11 +76,6 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\gaeta\Documents\Travail\Semestre 4 INFO\Oplo\Project\gris.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

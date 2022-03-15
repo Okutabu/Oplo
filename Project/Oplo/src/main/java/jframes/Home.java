@@ -82,8 +82,6 @@ public class Home extends javax.swing.JFrame {
 
         main.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\gaeta\\Documents\\Travail\\Semestre 4 INFO\\Oplo\\Project\\gris.png")); // NOI18N
-
         main.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
