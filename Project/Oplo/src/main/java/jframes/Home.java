@@ -6,6 +6,8 @@ package jframes;
 
 import classes.*;
 import internalFrames.*;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
