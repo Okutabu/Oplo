@@ -15,8 +15,9 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrameProjectDisplay
      */
-    public JInternalFrameProjectDisplay(User user1) {
-        myInitComponents(user1);
+    public JInternalFrameProjectDisplay(User user)
+    {
+        myInitComponents(user);
         Display.removeBorders(this);
     }
 
@@ -75,8 +76,8 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldReviewActionPerformed
 
-    private void myInitComponents(User user1) {
-
+    private void myInitComponents(User user1)
+    {
         jLabelProjectId = new javax.swing.JLabel();
         jTextFieldDeadline = new javax.swing.JTextField();
         jTextFieldReview = new javax.swing.JTextField();

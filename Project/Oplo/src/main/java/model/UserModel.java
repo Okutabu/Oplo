@@ -5,15 +5,11 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
+
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.*;
 import view.Internal.*;
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-
 /**
  *
  * @author Clément
@@ -114,6 +110,33 @@ public class UserModel {
         {
             user.setOthers(newOthers);
         }
+    }
+    
+    public static void isRemembered(ConnexionPanel source)
+    {
+        String display;
+        if (UserConnected.getCredentials().equals("")){
+            display = "Nom d'utilisateur";
+        } else {
+            display = UserConnected.getCredentials();
+        }
+        source.inputLogin.setText(display);
+    }
+    
+    public static void approveUser(UserToApprovePanel source)
+    {
+        String loginS = source.userLogin.getText();
+        
+        ServerCommunication s = new ServerCommunication();
+        System.out.println(s.sendPostRequest("https://oplo.000webhostapp.com/", "approveAccount=true&login=" + loginS));
+    }
+    
+    public static void revokeUser(UserToApprovePanel source)
+    {
+        String loginS = source.userLogin.getText();
+        
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&login=" + loginS);
     }
     
 }

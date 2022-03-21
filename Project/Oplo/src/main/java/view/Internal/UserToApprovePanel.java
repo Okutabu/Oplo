@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import model.UserModel;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 
@@ -16,7 +17,8 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
     /**
      * Creates new form UserToApprovePanel
      */
-    public UserToApprovePanel() {
+    public UserToApprovePanel()
+    {
         initComponents();
         Display.removeBorders(this);
     }
@@ -132,11 +134,8 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
 
     private void approveUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveUserButtonActionPerformed
         // TODO add your handling code here:
-        String loginS = userLogin.getText();
-        
-        ServerCommunication s = new ServerCommunication();
-        System.out.println(s.sendPostRequest("https://oplo.000webhostapp.com/", "approveAccount=true&login=" + loginS));
-        //Move on
+        UserModel.approveUser(this);
+
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
     public void setLogin(String log)
@@ -156,10 +155,7 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
     
     private void revokeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revokeUserButtonActionPerformed
         // TODO add your handling code here:
-        String loginS = userLogin.getText();
-        
-        ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&login=" + loginS);
+        UserModel.revokeUser(this);
         
     }//GEN-LAST:event_revokeUserButtonActionPerformed
 
@@ -172,7 +168,7 @@ public class UserToApprovePanel extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JButton revokeUserButton;
     private javax.swing.JLabel userFirstname;
-    private javax.swing.JLabel userLogin;
+    public javax.swing.JLabel userLogin;
     private javax.swing.JLabel userSurname;
     // End of variables declaration//GEN-END:variables
 }

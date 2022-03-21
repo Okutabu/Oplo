@@ -166,8 +166,6 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_displayHomepageActionPerformed
 
     private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
-/*        AccountApprove a = new AccountApprove();
-        displayRightWindow(a);*/
 
         /////////////////////////////////////////////////////////////////////////////////////
         ServerCommunication s = new ServerCommunication();

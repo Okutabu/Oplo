@@ -27,7 +27,8 @@ public class Home extends javax.swing.JFrame {
         initMain();
     }
     
-    public final void initMenu(UserConnected u){
+    public final void initMenu(UserConnected u)
+    {
         user = u;
         JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
@@ -38,7 +39,8 @@ public class Home extends javax.swing.JFrame {
         menu.add(naviguation).setVisible(true);
     }
     
-    public void initMain(){
+    public void initMain()
+    {
         Homepage accueil = new Homepage();
         main.add(accueil).setVisible(true);
         currentWindow = accueil;

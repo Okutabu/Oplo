@@ -107,6 +107,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="login"/>
       </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JButton" name="approveUserButton">
       <Properties>

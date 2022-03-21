@@ -4,13 +4,8 @@
  */
 package view.Internal;
 
-import view.*;
+import model.*;
 import model.utility.*;
-import java.util.Set;
-import javax.swing.DefaultListModel;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 
 /**
  *
@@ -26,41 +21,7 @@ public class Homepage extends javax.swing.JInternalFrame {
         Display.removeBorders(this);
         initComponents();
         
-        InitializeProjectList();//ADD ALL THE PROJECT IN THE LIST 
-    }
-    
-    private void InitializeProjectList()
-    {
-        ServerCommunication s = new ServerCommunication();
-        UserConnected user = Home.getUser();
-        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjects&login=" + user.getLogin());
-        //System.out.println(res);
-   
-        DefaultListModel listModel = new DefaultListModel();
-        
-        Object o = JSONValue.parse(res);
-
-        JSONArray jsonArray = (JSONArray) o;         
-
-        for(Object object:jsonArray)
-        {
-            if(object instanceof JSONObject)
-            {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys)
-                {
-                   Object newJson = jsonObject.get(key);
-
-                   JSONObject newObj = (JSONObject)newJson;
-                   listModel.addElement(newObj.get("name"));
-                }               
-            }
-        }
-     
-        projectList.setModel(listModel);
+        ProjectModel.InitializeProjectList(this);//ADD ALL THE PROJECT IN THE LIST 
     }
 
     /**
@@ -118,6 +79,6 @@ public class Homepage extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<String> projectList;
+    public javax.swing.JList<String> projectList;
     // End of variables declaration//GEN-END:variables
 }

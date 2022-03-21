@@ -6,7 +6,6 @@ package view;
 
 import model.*;
 
-import model.utility.UserConnected;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 /**
@@ -20,55 +19,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
      */
     public ConnexionPanel() {
         initComponents();
-        this.isRemembered();
-    }
-    
-    //public void connect()
-    //{
-        /**
-         * Traite la connexion
-         */
-    /*   ServerCommunication s = new ServerCommunication();
-        
-        String c = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + inputLogin.getText() + "&password=" + String.valueOf(inputPassword.getPassword()));
-        Object o = JSONValue.parse(c);
-        JSONObject connectionInfos = (JSONObject) o;
-        
-        if (connectionInfos.containsKey("error")){
-            infoConnect.setText((String) connectionInfos.get("error"));
-        } else {
-            //Met a jour la classe User avec les infos de l'utilisateur, sorte de cache pour la session
-            String login = inputLogin.getText();
-            String prenom = (String) connectionInfos.get("firstname");
-            String nom = (String) connectionInfos.get("surname");
-            String admin = String.valueOf(connectionInfos.get("admin"));
-            String role = (String) connectionInfos.get("role");
-            String description = (String) connectionInfos.get("others");
-            String photo = (String) connectionInfos.get("profile_pic");
-            UserConnected myUser = new UserConnected(login, prenom, nom, admin, role, description, photo);
-            //enregistre le login si la case esst cochée
-            if (remember.isSelected()){
-                myUser.saveCredentials();
-            } else {
-                myUser.destroyCredentials();
-            }
-            Home menu = new Home(myUser);
-            this.setVisible(false);
-            menu.setLocation(0,0);
-            menu.setVisible(true);
-            menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            
-        }
-    }*/
-    
-    public void isRemembered(){
-        String display;
-        if (UserConnected.getCredentials().equals("")){
-            display = "Nom d'utilisateur";
-        } else {
-            display = UserConnected.getCredentials();
-        }
-        inputLogin.setText(display);
+        UserModel.isRemembered(this);
     }
 
     /**

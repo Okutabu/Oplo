@@ -19,7 +19,8 @@ public class Registration extends javax.swing.JInternalFrame {
     /**
      * Creates new form Registration
      */
-    public Registration(javax.swing.JFrame parent) {
+    public Registration(javax.swing.JFrame parent)
+    {
         Display.removeBorders(this);
         initComponents();
         

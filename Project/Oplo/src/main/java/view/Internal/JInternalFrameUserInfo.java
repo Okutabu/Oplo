@@ -13,13 +13,10 @@ import view.*;
  *
  * @author Okutabu
  */
-public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
-    
-    
-    /**
-     * Creates new form JInternalFrameUserInfo 
-     */
-    public JInternalFrameUserInfo() {
+public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
+{
+    public JInternalFrameUserInfo()
+    {
         initComponents();
         initDisplayDataUser();
         Display.removeBorders(this);
@@ -95,7 +92,8 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-private void initDisplayDataUser() {
+    private void initDisplayDataUser()
+    {
         UserConnected user = Home.getUser();
         user.getProfile_pic();
         firstname.setText(user.getFirstname());
