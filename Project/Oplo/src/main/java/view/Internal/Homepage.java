@@ -8,7 +8,6 @@ import view.*;
 import model.utility.*;
 import java.util.Set;
 import javax.swing.DefaultListModel;
-import jframes.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -22,7 +21,8 @@ public class Homepage extends javax.swing.JInternalFrame {
     /**
      * Creates new form Hompage
      */
-    public Homepage() {
+    public Homepage()
+    {
         Display.removeBorders(this);
         initComponents();
         
@@ -42,13 +42,16 @@ public class Homepage extends javax.swing.JInternalFrame {
 
         JSONArray jsonArray = (JSONArray) o;         
 
-        for(Object object:jsonArray) {
-            if(object instanceof JSONObject) {
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
                 JSONObject jsonObject = (JSONObject)object;
 
                 Set<String> keys =jsonObject.keySet();
-                for(String key:keys) {
-                   // System.out.println(key +" :: "+jsonObject.get(key));
+                
+                for(String key:keys)
+                {
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;

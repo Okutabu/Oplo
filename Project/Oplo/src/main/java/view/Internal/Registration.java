@@ -6,9 +6,8 @@ package view.Internal;
 
 import view.*;
 import model.utility.Display;
-import model.utility.ServerCommunication;
-import java.awt.Color;
 import java.io.File;
+import model.UserModel;
 
 /**
  *
@@ -26,7 +25,6 @@ public class Registration extends javax.swing.JInternalFrame {
         
         this.parentTemp = parent;
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -334,43 +332,18 @@ public class Registration extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_firstnameActionPerformed
 
     private void inscriptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inscriptionActionPerformed
-        /**
-         * Traite la connexion
-         */
-        ServerCommunication s = new ServerCommunication();
-        
-        String identifiant = login.getText();
-        String motPasse = String.valueOf(password.getPassword());
-        String role1 = role.getSelectedItem().toString();
-        if (role1.equals("---")) role1 = "";
-        yes.setActionCommand("yes");
-        no.setActionCommand("no");
-        int administrateur = 0;
-        if (admin.getSelection() != null) {
-            if(admin.getSelection().getActionCommand() == "yes"){
-                administrateur = 1;
-            } 
-        }
-        String prenom = firstname.getText();
-        String nom = surname.getText();
-        String bio = others.getText();
-        String picName = "profile.png"; // a randomiser
-        
-        String inscription = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + identifiant + "&password=" + motPasse + 
-                "&role=" + role1 + "&admin=" + administrateur + "&firstname=" + prenom + "&surname=" + nom + "&others=" + bio + "&profile_pic=" + picName);
-        if (inscription.equals("ok")){
-            infosInscription.setForeground(new Color(0,255,0));
-            infosInscription.setText("Inscription prise en compte");
-        } else {
-            infosInscription.setText(inscription);
-        }
+
+        UserModel.register(this);
         
     }//GEN-LAST:event_inscriptionActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
+       
         javax.swing.JFileChooser myJFileChooser = new javax.swing.JFileChooser();
         int response = myJFileChooser.showOpenDialog(null);
-        if (response == myJFileChooser.APPROVE_OPTION) {
+        
+        if (response == myJFileChooser.APPROVE_OPTION)
+        {
             File file = new File(myJFileChooser.getSelectedFile().getAbsolutePath());
             System.out.print(file);
         }
@@ -397,9 +370,9 @@ public class Registration extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup admin;
-    private javax.swing.JTextField firstname;
-    private javax.swing.JLabel infosInscription;
+    public javax.swing.ButtonGroup admin;
+    public javax.swing.JTextField firstname;
+    public javax.swing.JLabel infosInscription;
     private javax.swing.JToggleButton inscription;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -415,16 +388,16 @@ public class Registration extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JTextField login;
-    private javax.swing.JRadioButton no;
-    private javax.swing.JTextArea others;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JToggleButton profile;
-    private javax.swing.JComboBox<String> role;
+    public javax.swing.JTextField login;
+    public javax.swing.JRadioButton no;
+    public javax.swing.JTextArea others;
+    public javax.swing.JPasswordField password;
+    public javax.swing.JToggleButton profile;
+    public javax.swing.JComboBox<String> role;
     private javax.swing.JComboBox<String> skill1;
     private javax.swing.JComboBox<String> skill2;
     private javax.swing.JComboBox<String> skill3;
-    private javax.swing.JTextField surname;
-    private javax.swing.JRadioButton yes;
+    public javax.swing.JTextField surname;
+    public javax.swing.JRadioButton yes;
     // End of variables declaration//GEN-END:variables
 }

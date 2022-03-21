@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package view.Internal;
-import model.utility.ServerCommunication;
+
+import model.*;
 /**
  *
  * @author Mélanie
@@ -14,7 +15,8 @@ public class AddProject extends javax.swing.JInternalFrame {
     /**
      * Creates new form AddProject
      */
-    public AddProject() {
+    public AddProject()
+    {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
@@ -210,7 +212,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(errorResult)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,23 +224,10 @@ public class AddProject extends javax.swing.JInternalFrame {
 
     private void createProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProjectButtonActionPerformed
         // TODO add your handling code here:
-        CreateProject();
+        ProjectModel.CreateProject(this);
         
     }//GEN-LAST:event_createProjectButtonActionPerformed
 
-    private void CreateProject()
-    {
-        String projectName = intitule.getText();
-        String projectDescription = projectDescriptionInput.getText();
-        String projectStartDate = startProject.getDateFormatString();
-        String projectEndDate = endProject.getDateFormatString();
-        String authorLogin = "clem";//User.getLogin();
-        
-        ServerCommunication s = new ServerCommunication();
-        errorResult.setText(s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin));
-    
-        //Move on
-    }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -248,9 +237,9 @@ public class AddProject extends javax.swing.JInternalFrame {
     private javax.swing.JButton createProjectButton;
     private javax.swing.JLabel datedebut;
     private javax.swing.JLabel datefin;
-    private com.toedter.calendar.JDateChooser endProject;
-    private javax.swing.JLabel errorResult;
-    private javax.swing.JTextField intitule;
+    public com.toedter.calendar.JDateChooser endProject;
+    public javax.swing.JLabel errorResult;
+    public javax.swing.JTextField intitule;
     private javax.swing.JLabel intituleProjet;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JCalendar jCalendar2;
@@ -269,8 +258,8 @@ public class AddProject extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JLabel nbemployecomp;
     private com.toedter.components.JSpinField nbemployecompetence;
-    private javax.swing.JTextArea projectDescriptionInput;
-    private com.toedter.calendar.JDateChooser startProject;
+    public javax.swing.JTextArea projectDescriptionInput;
+    public com.toedter.calendar.JDateChooser startProject;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,8 +4,8 @@
  */
 package view.Internal;
 
+import model.UserModel;
 import model.utility.Display;
-import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import view.*;
 
@@ -18,18 +18,21 @@ public class Profile extends javax.swing.JInternalFrame {
     /**
      * Creates new form Profile
      */
-    public Profile() {
+    public Profile()
+    {
         initComponents();
         initDisplay();
         Display.removeBorders(this);
     }
     
-    public final void initDisplay(){
+    public final void initDisplay()
+    {
         UserConnected user = Home.getUser();
         firstname.setText(user.getFirstname());
         name.setText(user.getSurname());
         id.setText(user.getLogin());
         role.setText(user.getRole());
+        
         if (user.getAdmin())
         {
             admin.setText("Oui");
@@ -38,8 +41,7 @@ public class Profile extends javax.swing.JInternalFrame {
         {
             admin.setText("Non");
         }
-        othersInputField.setText(user.getOthers());
-        
+        bioInputField.setText(user.getOthers()); 
     }
 
     /**
@@ -63,7 +65,7 @@ public class Profile extends javax.swing.JInternalFrame {
         admin = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        othersInputField = new javax.swing.JTextArea();
+        bioInputField = new javax.swing.JTextArea();
         modifBioButton = new javax.swing.JToggleButton();
         name = new javax.swing.JLabel();
         firstname = new javax.swing.JLabel();
@@ -104,9 +106,9 @@ public class Profile extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel10.setText("Bio :");
 
-        othersInputField.setColumns(20);
-        othersInputField.setRows(5);
-        jScrollPane1.setViewportView(othersInputField);
+        bioInputField.setColumns(20);
+        bioInputField.setRows(5);
+        jScrollPane1.setViewportView(bioInputField);
 
         modifBioButton.setText("Modifier");
         modifBioButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -233,17 +235,7 @@ public class Profile extends javax.swing.JInternalFrame {
 
     private void modifBioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifBioButtonActionPerformed
         // TODO add your handling code here:
-        UserConnected user = Home.getUser();
-        
-        String newOthers = othersInputField.getText();
-        
-        ServerCommunication s = new ServerCommunication();
-        String req = s.sendPostRequest("https://oplo.000webhostapp.com/", "updateOthers=true&login=" + user.getLogin() + "&others=" + newOthers);
-        
-        if(req.equals("ok"))
-        {
-            user.setOthers(newOthers);
-        }
+        UserModel.modifBio(this);
     }//GEN-LAST:event_modifBioButtonActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -254,6 +246,7 @@ public class Profile extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel admin;
+    public javax.swing.JTextArea bioInputField;
     private javax.swing.JLabel firstname;
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
@@ -271,7 +264,6 @@ public class Profile extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton modifBioButton;
     private javax.swing.JLabel modifResultLabel;
     private javax.swing.JLabel name;
-    private javax.swing.JTextArea othersInputField;
     private javax.swing.JLabel role;
     // End of variables declaration//GEN-END:variables
 }

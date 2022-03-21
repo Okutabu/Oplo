@@ -50,11 +50,13 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         }
     }
     
-    public javax.swing.JDesktopPane getMain(){
+    public javax.swing.JDesktopPane getMain()
+    {
         return main;
     }
     
-    public void displayRightWindow(javax.swing.JInternalFrame f){
+    public void displayRightWindow(javax.swing.JInternalFrame f)
+    {
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
         window.setVisible(false);
         Home.setCurrentWindow(f);
@@ -62,19 +64,21 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         main.add(f).setVisible(true);
     }
     
-    public void displaySeveralWindow(javax.swing.JInternalFrame f){
+    public void displaySeveralWindow(javax.swing.JInternalFrame f)
+    {
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
-       if(f instanceof UserToApprovePanel)
-       {
+      
+        if(f instanceof UserToApprovePanel)
+        {
            
-       }
-       else
-       {
-        window.setVisible(false);
-       }
+        }
+        else
+        {
+            window.setVisible(false);
+        }
+        
         Home.setCurrentWindow(f);
         //f.setSize(main.getWidth(), main.getHeight());
-        
         main.add(f).setVisible(true);
     }
 
@@ -179,12 +183,16 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         
         int currentHeight = 0;
         
-        for(Object object:jsonArray) {
-            if(object instanceof JSONObject) {
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject) 
+            {
                 JSONObject jsonObject = (JSONObject)object;
 
                 Set<String> keys =jsonObject.keySet();
-                for(String key:keys) {
+                
+                for(String key:keys) 
+                {
                    System.out.println(key +" :: "+jsonObject.get(key));
                    Object newJson = jsonObject.get(key);
 
