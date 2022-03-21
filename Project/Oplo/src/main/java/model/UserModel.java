@@ -1,4 +1,3 @@
-
 package model;
 
 import java.awt.Color;
@@ -14,8 +13,8 @@ import view.Internal.*;
  *
  * @author Clément
  */
-public class UserModel {
-   
+public class UserModel
+{   
     public static void connect(ConnexionPanel view)
     {
         ServerCommunication s = new ServerCommunication();
@@ -54,10 +53,8 @@ public class UserModel {
             menu.setLocation(0,0);
             menu.setVisible(true);
             menu.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            
         }
     }
-    
     
     public static void register(Registration source)
     {

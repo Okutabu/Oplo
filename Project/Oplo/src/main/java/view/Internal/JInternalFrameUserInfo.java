@@ -4,6 +4,10 @@
  */
 package view.Internal;
 
+import java.awt.Image;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import model.utility.UserConnected;
 import model.utility.Display;
 import javax.swing.ImageIcon;
@@ -20,6 +24,15 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
         initComponents();
         initDisplayDataUser();
         Display.removeBorders(this);
+        
+        Image image = null;/* w  ww .  ja  v  a 2 s.c o m*/
+        try {
+            URL url = new URL("https://oplo.000webhostapp.com/resources/profiles/pictures/" + Home.getUser().getProfile_pic());
+            image = ImageIO.read(url);
+            pp.setIcon(new ImageIcon(image));
+        } 
+        catch (IOException e) {
+        }
     }
 
     /**
