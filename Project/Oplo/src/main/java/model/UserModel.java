@@ -38,7 +38,7 @@ public class UserModel
             String description = (String) connectionInfos.get("others");
             String photo = (String) connectionInfos.get("profile_pic");
             UserConnected myUser = new UserConnected(login, prenom, nom, admin, role, description, photo);
-            //enregistre le login si la case esst cochée
+            //enregistre le login si la case est cochée
             if (view.remember.isSelected())
             {
                 myUser.saveCredentials();

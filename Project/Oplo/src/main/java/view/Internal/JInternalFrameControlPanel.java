@@ -20,13 +20,13 @@ import org.json.simple.JSONValue;
  */
 public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
 
-    private javax.swing.JDesktopPane main;
+    private javax.swing.JPanel main;
     /**
      * Creates new form JInternalFrameControlPanel
      * @param affichage_elts
      */
     
-    public JInternalFrameControlPanel(javax.swing.JDesktopPane affichage_elts) {
+    public JInternalFrameControlPanel(javax.swing.JPanel affichage_elts) {
         main = affichage_elts;
         this.setLocation(0, 200);
         Display.removeBorders(this);
@@ -50,7 +50,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         }
     }
     
-    public javax.swing.JDesktopPane getMain()
+    public javax.swing.JPanel getMain()
     {
         return main;
     }
