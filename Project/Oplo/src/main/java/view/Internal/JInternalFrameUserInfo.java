@@ -25,14 +25,6 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
         initDisplayDataUser();
         Display.removeBorders(this);
         
-        Image image = null;/* w  ww .  ja  v  a 2 s.c o m*/
-        try {
-            URL url = new URL("https://oplo.000webhostapp.com/resources/profiles/pictures/" + Home.getUser().getProfile_pic());
-            image = ImageIO.read(url);
-            pp.setIcon(new ImageIcon(image));
-        } 
-        catch (IOException e) {
-        }
     }
 
     /**
@@ -113,11 +105,16 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
         surname.setText(user.getSurname());
         others.setText(user.getOthers());
         
-        if ((Home.getUser().getLogin()).equals("clem")){
-            ImageIcon icon = new ImageIcon("C:\\Users\\gaeta\\clem.png");
-            pp.setIcon(icon);
+        Image image = null;/* w  ww .  ja  v  a 2 s.c o m*/
+        try {
+            URL url = new URL("https://oplo.000webhostapp.com/resources/profiles/pictures/" + Home.getUser().getProfile_pic());
+            image = ImageIO.read(url);
+            Image scaled = image.getScaledInstance(150, 150, Image.SCALE_DEFAULT);
+            pp.setIcon(new ImageIcon(scaled));
+        } 
+        catch (IOException e) {
+
         }
-        
      /*   others.setLineWrap(true);
         others.setWrapStyleWord(true);/*/
     }

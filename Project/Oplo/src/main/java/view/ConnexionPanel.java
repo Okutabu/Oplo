@@ -8,6 +8,7 @@ import model.*;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
 /**
  *
  * @author Ortav
@@ -20,6 +21,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
     public ConnexionPanel() {
         initComponents();
         UserModel.isRemembered(this);
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
