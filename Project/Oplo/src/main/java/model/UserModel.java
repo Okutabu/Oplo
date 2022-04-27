@@ -120,7 +120,7 @@ public class UserModel
         source.inputLogin.setText(display);
     }
     
-    public static void approveUser(UserToApprovePanel source)
+    public static void approveUser(ApproveUsersPanel source)
     {
         String loginS = source.userLogin.getText();
         
@@ -128,7 +128,7 @@ public class UserModel
         System.out.println(s.sendPostRequest("https://oplo.000webhostapp.com/", "approveAccount=true&login=" + loginS));
     }
     
-    public static void revokeUser(UserToApprovePanel source)
+    public static void revokeUser(ApproveUsersPanel source)
     {
         String loginS = source.userLogin.getText();
         

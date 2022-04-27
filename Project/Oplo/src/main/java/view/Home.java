@@ -30,6 +30,7 @@ public class Home extends javax.swing.JFrame {
     public final void initMenu(UserConnected u)
     {
         user = u;
+        
         JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
         JInternalFrameUserInfo userInfo = new JInternalFrameUserInfo();
@@ -118,7 +119,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(main, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

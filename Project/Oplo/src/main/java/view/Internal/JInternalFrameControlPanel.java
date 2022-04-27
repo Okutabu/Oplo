@@ -4,11 +4,17 @@
  */
 package view.Internal;
 
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import java.util.Set;
-import javax.swing.DefaultListModel;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import static javax.swing.SwingConstants.CENTER;
 import view.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -59,26 +65,8 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     {
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
         window.setVisible(false);
+        main.removeAll();
         Home.setCurrentWindow(f);
-        //f.setSize(main.getWidth(), main.getHeight());
-        main.add(f).setVisible(true);
-    }
-    
-    public void displaySeveralWindow(javax.swing.JInternalFrame f)
-    {
-        javax.swing.JInternalFrame window = Home.getCurrentWindow();
-      
-        if(f instanceof UserToApprovePanel)
-        {
-           
-        }
-        else
-        {
-            window.setVisible(false);
-        }
-        
-        Home.setCurrentWindow(f);
-        //f.setSize(main.getWidth(), main.getHeight());
         main.add(f).setVisible(true);
     }
 
@@ -171,16 +159,29 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("https://oplo.000webhostapp.com/?getNonApprovedAccount=true");
-        //System.out.println(res);
-   
-        DefaultListModel listModel = new DefaultListModel();
         
         Object o = JSONValue.parse(res);
 
         JSONArray jsonArray = (JSONArray) o;         
         
-        int currentHeight = 0;
+
+        JInternalFrame approveUsers = new JInternalFrame();
+        approveUsers.setSize(main.getSize());
+        approveUsers.setLayout(new GridLayout(1, 5));
+        Display.removeBorders(approveUsers);
+   
+        JPanel infoPanel = new JPanel(new FlowLayout());
         
+        JLabel title = new JLabel("Approuver les comptes des utilisateurs");
+        title.setFont(new Font("Courier", Font.PLAIN, 40)); 
+        title.setVerticalAlignment(CENTER);
+        title.setHorizontalAlignment(CENTER);
+        infoPanel.add(title);
+        
+        //on ajoute le paneau d'explication
+        approveUsers.add(infoPanel);
+        
+        //on ajoute ensuite les compte a approuver
         for(Object object:jsonArray)
         {
             if(object instanceof JSONObject) 
@@ -195,24 +196,19 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   UserToApprovePanel userPanel = new UserToApprovePanel();
+                   ApproveUsersPanel userPanel = new ApproveUsersPanel();
                    userPanel.setFirstname(newObj.get("firstname").toString());
                    userPanel.setSurname(newObj.get("surname").toString());
                    userPanel.setLogin(newObj.get("login").toString());
-                   userPanel.setLocation(0, currentHeight);
-                   currentHeight += userPanel.getHeight();
-                   displaySeveralWindow(userPanel);
-                   //newObj.get("firstname"));
+                   
+                   approveUsers.add(userPanel);
                 }               
             }
         }
-
-       /* UserToApprovePanel userPanel = new UserToApprovePanel();
-        displaySeveralWindow(userPanel);
         
-        UserToApprovePanel userPanel2 = new UserToApprovePanel();
-        userPanel2.setLocation(0, userPanel.getHeight());
-        displaySeveralWindow(userPanel2);/*/
+        
+        //on ajoute le panel a l'internal frame
+        displayRightWindow(approveUsers);
         
     }//GEN-LAST:event_displayAccountApproveActionPerformed
 
@@ -233,4 +229,6 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     private javax.swing.JButton displayHomepage;
     private javax.swing.JButton displayProfile;
     // End of variables declaration//GEN-END:variables
+
+
 }
