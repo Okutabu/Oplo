@@ -5,6 +5,8 @@
 package view.Internal;
 
 import java.awt.Color;
+import java.awt.GridLayout;
+import javax.swing.border.EmptyBorder;
 import model.*;
 import model.utility.*;
 
@@ -23,6 +25,8 @@ public class Homepage extends javax.swing.JInternalFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(35,35,40));
         
+        projectPanelList.setLayout(new GridLayout(10, 1));
+        projectPanelList.setBorder(new EmptyBorder(15, 15, 15, 15));
         ProjectModel.InitializeProjectList(this);//ADD ALL THE PROJECT IN THE LIST 
     }
 
@@ -35,43 +39,49 @@ public class Homepage extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        projectList = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
+        projectPanelList = new javax.swing.JPanel();
 
         setBorder(new javax.swing.border.MatteBorder(null));
+        setPreferredSize(new java.awt.Dimension(1920, 1080));
 
-        projectList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(projectList);
-
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dubai Medium", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mes projets :");
+
+        projectPanelList.setBackground(new java.awt.Color(61, 61, 72));
+        projectPanelList.setForeground(new java.awt.Color(61, 61, 72));
+
+        javax.swing.GroupLayout projectPanelListLayout = new javax.swing.GroupLayout(projectPanelList);
+        projectPanelList.setLayout(projectPanelListLayout);
+        projectPanelListLayout.setHorizontalGroup(
+            projectPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
+        projectPanelListLayout.setVerticalGroup(
+            projectPanelListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 214, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(384, Short.MAX_VALUE))
+                    .addComponent(projectPanelList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(1485, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(projectPanelList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(789, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,7 +90,6 @@ public class Homepage extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JList<String> projectList;
+    public javax.swing.JPanel projectPanelList;
     // End of variables declaration//GEN-END:variables
 }

@@ -23,7 +23,7 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
     public JInternalFrameUserInfo()
     {
         initComponents();
-        this.getContentPane().setBackground(new Color(35,35,40));
+        this.getContentPane().setBackground(new Color(102, 102, 102));
         initDisplayDataUser();
         Display.removeBorders(this);
         
@@ -45,14 +45,18 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
         jScrollPane1 = new javax.swing.JScrollPane();
         others = new javax.swing.JTextArea();
 
+        setBackground(new java.awt.Color(51, 51, 51));
         setBorder(null);
 
+        jLabelDescription.setForeground(new java.awt.Color(255, 255, 255));
         jLabelDescription.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabelDescription.setText("Description :");
 
         firstname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        firstname.setForeground(new java.awt.Color(255, 255, 255));
 
         surname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        surname.setForeground(new java.awt.Color(255, 255, 255));
 
         pp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 

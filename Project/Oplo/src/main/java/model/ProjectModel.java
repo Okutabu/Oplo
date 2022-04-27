@@ -5,7 +5,7 @@
 package model;
 
 import java.util.Set;
-import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import model.utility.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -37,9 +37,8 @@ public class ProjectModel
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
         String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjects&login=" + user.getLogin());
-        //System.out.println(res);
    
-        DefaultListModel listModel = new DefaultListModel();
+        //DefaultListModel listModel = new DefaultListModel();
         
         Object o = JSONValue.parse(res);
 
@@ -58,12 +57,13 @@ public class ProjectModel
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   listModel.addElement(newObj.get("name"));
+                   //listModel.addElement(newObj.get("name"));
+                   source.projectPanelList.add(new JButton(newObj.get("name").toString()));
                 }               
             }
         }
      
-       source.projectList.setModel(listModel);
+      // source.projectList.setModel(listModel);
     }
     
 }

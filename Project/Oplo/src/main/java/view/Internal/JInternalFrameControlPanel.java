@@ -38,7 +38,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         this.setLocation(0, 200);
         Display.removeBorders(this);
         initComponents();
-        this.getContentPane().setBackground(new Color(35,35,40));
+        this.getContentPane().setBackground(new Color(102, 102, 102));
         
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
     }

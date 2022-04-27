@@ -5,7 +5,13 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import model.utility.UserConnected;
 import view.Internal.Homepage;
 import view.Internal.JInternalFrameUserInfo;
@@ -25,9 +31,20 @@ public class Home extends javax.swing.JFrame {
     
     public Home(UserConnected u) {
         initComponents();
-        this.getContentPane().setBackground(new Color(35,35,40));
+        this.getContentPane().setBackground(new Color(102, 102, 102));
         initMenu(u);
         initMain();
+        
+        Image image = null;
+        try {
+            
+            image = ImageIO.read(new File("src/main/java/resources/logo.png"));
+            Image scaled = image.getScaledInstance(200, 115, Image.SCALE_DEFAULT);
+            logoLabel.setIcon(new ImageIcon(scaled));
+        } 
+        catch (IOException e) {
+
+        }
     }
     
     public final void initMenu(UserConnected u)
@@ -72,7 +89,7 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         menu = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        logoLabel = new javax.swing.JLabel();
         main = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,8 +103,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
-        menu.setBackground(new java.awt.Color(35, 35, 40));
-        menu.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 5, new Color(9,184,255)));
+        menu.setBackground(new java.awt.Color(102, 102, 102));
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
         menu.setOpaque(false);
 
@@ -97,15 +113,15 @@ public class Home extends javax.swing.JFrame {
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(920, Short.MAX_VALUE))
+                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(868, Short.MAX_VALUE))
         );
 
         main.setBackground(new java.awt.Color(35, 35, 40));
@@ -180,7 +196,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel logoLabel;
     private javax.swing.JPanel main;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
