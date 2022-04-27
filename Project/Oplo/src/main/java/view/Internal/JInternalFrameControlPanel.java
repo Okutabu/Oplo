@@ -84,7 +84,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         displayAccountApprove = new javax.swing.JButton();
         displayProfile = new javax.swing.JButton();
 
-        setBorder(new javax.swing.border.MatteBorder(null));
+        setBorder(null);
 
         displayHomepage.setText("Accueil");
         displayHomepage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -126,7 +126,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(displayHomepage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                    .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                     .addComponent(displayAccountApprove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -166,11 +166,13 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
         
 
         JInternalFrame approveUsers = new JInternalFrame();
+        approveUsers.setOpaque(false);
         approveUsers.setSize(main.getSize());
-        approveUsers.setLayout(new GridLayout(1, 5));
+        approveUsers.setLayout(new GridLayout(5, 1, 5, 5));
         Display.removeBorders(approveUsers);
    
         JPanel infoPanel = new JPanel(new FlowLayout());
+        infoPanel.setOpaque(false);
         
         JLabel title = new JLabel("Approuver les comptes des utilisateurs");
         title.setFont(new Font("Courier", Font.PLAIN, 40)); 

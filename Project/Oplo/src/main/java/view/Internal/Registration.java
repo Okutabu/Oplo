@@ -23,6 +23,7 @@ public class Registration extends javax.swing.JInternalFrame {
     {
         Display.removeBorders(this);
         initComponents();
+        this.setOpaque(false);
         
         this.parentTemp = parent;
     }
@@ -67,8 +68,10 @@ public class Registration extends javax.swing.JInternalFrame {
         skill3 = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
 
-        setBorder(new javax.swing.border.MatteBorder(null));
+        setBackground(new java.awt.Color(35, 35, 40));
+        setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setOpaque(true);
 
         jLabel1.setText("Identifiant*");
 
@@ -230,7 +233,7 @@ public class Registration extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(69, 69, 69)
                                 .addComponent(infosInscription, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 78, Short.MAX_VALUE))
+                        .addGap(0, 80, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(397, 397, 397)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,7 +300,7 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addGap(38, 38, 38)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(profile)

@@ -4,8 +4,8 @@
  */
 package view;
 
+import java.awt.Color;
 import view.Internal.Registration;
-import javax.swing.plaf.basic.BasicInternalFrameUI;
 /**
  *
  * @author gaeta
@@ -17,6 +17,7 @@ public class Inscription extends javax.swing.JFrame {
      */
     public Inscription() {
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
         addRegistration();
     }
 
@@ -29,32 +30,20 @@ public class Inscription extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        main = new javax.swing.JDesktopPane();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo : Inscription");
+        setBackground(new java.awt.Color(35, 35, 40));
         setResizable(false);
-
-        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
-        main.setLayout(mainLayout);
-        mainLayout.setHorizontalGroup(
-            mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 964, Short.MAX_VALUE)
-        );
-        mainLayout.setVerticalGroup(
-            mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main)
+            .addGap(0, 964, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(main)
+            .addGap(0, 536, Short.MAX_VALUE)
         );
 
         pack();
@@ -65,7 +54,7 @@ public class Inscription extends javax.swing.JFrame {
     {
         Registration inscription = new Registration(this);
         inscription.setSize(966,538);
-        main.add(inscription).setVisible(true);
+        this.add(inscription).setVisible(true);
     }
     
     /**
@@ -104,6 +93,5 @@ public class Inscription extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane main;
     // End of variables declaration//GEN-END:variables
 }

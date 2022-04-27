@@ -20,6 +20,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
      */
     public ConnexionPanel() {
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
         UserModel.isRemembered(this);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
@@ -44,7 +45,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo : Connexion");
         setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(0, 0, 255));
+        setBackground(new java.awt.Color(35, 35, 40));
         setForeground(java.awt.Color.black);
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(960, 600));

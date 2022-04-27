@@ -72,8 +72,9 @@ public class Home extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         main = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo");
+        setBackground(new java.awt.Color(35, 35, 40));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -82,6 +83,7 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        menu.setBackground(new java.awt.Color(35, 35, 40));
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
@@ -100,6 +102,8 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(920, Short.MAX_VALUE))
         );
+
+        main.setBackground(new java.awt.Color(35, 35, 40));
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
