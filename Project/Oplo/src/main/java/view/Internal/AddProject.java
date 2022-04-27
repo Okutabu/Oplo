@@ -5,6 +5,7 @@
  */
 package view.Internal;
 
+import java.awt.Color;
 import model.*;
 /**
  *
@@ -18,6 +19,7 @@ public class AddProject extends javax.swing.JInternalFrame {
     public AddProject()
     {
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
@@ -64,6 +66,7 @@ public class AddProject extends javax.swing.JInternalFrame {
 
         jTextField1.setText("jTextField1");
 
+        setBackground(new java.awt.Color(35, 35, 40));
         setBorder(new javax.swing.border.MatteBorder(null));
 
         titre.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N

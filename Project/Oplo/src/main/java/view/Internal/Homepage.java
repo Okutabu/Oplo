@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import java.awt.Color;
 import model.*;
 import model.utility.*;
 
@@ -20,6 +21,7 @@ public class Homepage extends javax.swing.JInternalFrame {
     {
         Display.removeBorders(this);
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
         
         ProjectModel.InitializeProjectList(this);//ADD ALL THE PROJECT IN THE LIST 
     }

@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import java.awt.Color;
 import model.utility.Display;
 import model.utility.User;
 /**
@@ -19,6 +20,7 @@ public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
     {
         myInitComponents(user);
         Display.removeBorders(this);
+        this.getContentPane().setBackground(new Color(35,35,40));
     }
 
     /**

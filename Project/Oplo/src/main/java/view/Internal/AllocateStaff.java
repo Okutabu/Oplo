@@ -5,6 +5,8 @@
  */
 package view.Internal;
 
+import java.awt.Color;
+
 /**
  *
  * @author Mélanie
@@ -16,6 +18,7 @@ public class AllocateStaff extends javax.swing.JInternalFrame {
      */
     public AllocateStaff() {
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
     }
 
     /**

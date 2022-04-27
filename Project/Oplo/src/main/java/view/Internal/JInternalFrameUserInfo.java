@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,7 @@ public class JInternalFrameUserInfo extends javax.swing.JInternalFrame
     public JInternalFrameUserInfo()
     {
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
         initDisplayDataUser();
         Display.removeBorders(this);
         

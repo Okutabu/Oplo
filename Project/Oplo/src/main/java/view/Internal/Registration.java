@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import java.awt.Color;
 import view.*;
 import model.utility.Display;
 import java.io.File;
@@ -23,8 +24,7 @@ public class Registration extends javax.swing.JInternalFrame {
     {
         Display.removeBorders(this);
         initComponents();
-        this.setOpaque(false);
-        
+        this.getContentPane().setBackground(new Color(35,35,40));
         this.parentTemp = parent;
     }
     
@@ -300,7 +300,7 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addGap(38, 38, 38)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(profile)

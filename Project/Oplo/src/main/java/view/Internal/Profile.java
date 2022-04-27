@@ -1,5 +1,6 @@
 package view.Internal;
 
+import java.awt.Color;
 import model.UserModel;
 import model.utility.Display;
 import model.utility.UserConnected;
@@ -18,6 +19,7 @@ public class Profile extends javax.swing.JInternalFrame {
     {
         initComponents();
         initDisplay();
+        this.getContentPane().setBackground(new Color(35,35,40));
         Display.removeBorders(this);
     }
     
