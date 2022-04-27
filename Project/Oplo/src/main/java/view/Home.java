@@ -4,6 +4,8 @@
  */
 package view;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import model.utility.UserConnected;
 import view.Internal.Homepage;
 import view.Internal.JInternalFrameUserInfo;
@@ -23,6 +25,7 @@ public class Home extends javax.swing.JFrame {
     
     public Home(UserConnected u) {
         initComponents();
+        this.getContentPane().setBackground(new Color(35,35,40));
         initMenu(u);
         initMain();
     }
@@ -84,7 +87,9 @@ public class Home extends javax.swing.JFrame {
         });
 
         menu.setBackground(new java.awt.Color(35, 35, 40));
+        menu.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 5, new Color(9,184,255)));
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
+        menu.setOpaque(false);
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -104,6 +109,7 @@ public class Home extends javax.swing.JFrame {
         );
 
         main.setBackground(new java.awt.Color(35, 35, 40));
+        main.setOpaque(false);
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
         main.setLayout(mainLayout);
