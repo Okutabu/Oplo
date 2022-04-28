@@ -8,16 +8,11 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import java.util.Set;
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -85,10 +80,13 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        kButton1 = new com.k33ptoo.components.KButton();
         displayAddProject = new javax.swing.JButton();
         displayAccountApprove = new javax.swing.JButton();
         displayProfile = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        kButton2 = new com.k33ptoo.components.KButton();
+
+        kButton1.setText("kButton1");
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -125,10 +123,15 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Accueil");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        kButton2.setBackground(new java.awt.Color(105, 105, 105));
+        kButton2.setText("Accueil");
+        kButton2.setkAllowGradient(false);
+        kButton2.setkBackGroundColor(new java.awt.Color(105, 105, 105));
+        kButton2.setkBorderRadius(0);
+        kButton2.setkHoverColor(new java.awt.Color(150, 150, 150));
+        kButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                kButton2ActionPerformed(evt);
             }
         });
 
@@ -136,20 +139,20 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayAddProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayAccountApprove, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                    .addComponent(displayProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayAccountApprove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(displayProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(kButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAddProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -159,7 +162,7 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayAddProject, displayProfile, jButton1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayAddProject, displayProfile});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -170,12 +173,11 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("https://oplo.000webhostapp.com/?getNonApprovedAccount=true");
-        
+                System.out.println(res);
         Object o = JSONValue.parse(res);
 
         JSONArray jsonArray = (JSONArray) o;         
         
-
         JInternalFrame approveUsers = new JInternalFrame();
         approveUsers.setOpaque(false);
         approveUsers.setSize(main.getSize());
@@ -235,17 +237,17 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         displayRightWindow(profile);
     }//GEN-LAST:event_displayProfileActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ProjectList p = new ProjectList();
-        displayRightWindow(p);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton displayAccountApprove;
     private javax.swing.JButton displayAddProject;
     private javax.swing.JButton displayProfile;
-    private javax.swing.JButton jButton1;
+    private com.k33ptoo.components.KButton kButton1;
+    private com.k33ptoo.components.KButton kButton2;
     // End of variables declaration//GEN-END:variables
 
 
