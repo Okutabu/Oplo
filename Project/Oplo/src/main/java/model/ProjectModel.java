@@ -37,11 +37,8 @@ public class ProjectModel
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
         String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjects&login=" + user.getLogin());
-   
-        //DefaultListModel listModel = new DefaultListModel();
         
         Object o = JSONValue.parse(res);
-
         JSONArray jsonArray = (JSONArray) o;         
 
         for(Object object:jsonArray)
@@ -57,13 +54,10 @@ public class ProjectModel
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   //listModel.addElement(newObj.get("name"));
                    source.projectPanelList.add(new JButton(newObj.get("name").toString()));
                 }               
             }
         }
-     
-      // source.projectList.setModel(listModel);
     }
     
 }
