@@ -9,9 +9,7 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import model.utility.UserConnected;
 import view.Internal.ProjectList;
@@ -32,33 +30,35 @@ public class Home extends javax.swing.JFrame {
     
     public Home(UserConnected u) {
         initComponents();
-        this.getContentPane().setBackground(new Color(102, 102, 102));
+        this.getContentPane().setBackground(new Color(9, 184, 255));
         initMenu(u);
         initMain();
-        
-        Image image = null;
-        try {
-            
-            image = ImageIO.read(new File("src/main/java/resources/logo.png"));
-            Image scaled = image.getScaledInstance(200, 115, Image.SCALE_DEFAULT);
-            logoLabel.setIcon(new ImageIcon(scaled));
-        } 
-        catch (IOException e) {
-
-        }
     }
     
     public final void initMenu(UserConnected u)
     {
         user = u;
         
+        Image image = null;
+        try {
+            
+            image = ImageIO.read(new File("src/main/java/resources/logo.png"));
+            Image scaled = image.getScaledInstance(199, 115, Image.SCALE_DEFAULT);
+            logoLabel.setIcon(new ImageIcon(scaled));
+        } 
+        catch (IOException e) {
+        }
+        
         HomeNavigationButtonsPanel naviguation = new HomeNavigationButtonsPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
+        naviguation.setLocation(0, 142);
+        
         HomeUserInfo userInfo = new HomeUserInfo();
-        userInfo.setSize(menu.getWidth(), userInfo.getHeight() - 50);
-        userInfo.setLocation(0, 450);
-        menu.add(userInfo).setVisible(true);
-        menu.add(naviguation, BorderLayout.CENTER);
+        userInfo.setLocation(0, 685);
+        
+        menu.add(naviguation);
+        menu.add(userInfo);
+        userInfo.setVisible(true);
         naviguation.setVisible(true);
     }
     
@@ -96,7 +96,7 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo");
-        setBackground(new java.awt.Color(35, 35, 40));
+        setBackground(new java.awt.Color(9, 184, 255));
         setMinimumSize(new java.awt.Dimension(900, 600));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -107,23 +107,22 @@ public class Home extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(102, 102, 102));
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
-        menu.setOpaque(false);
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
         menuLayout.setHorizontalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(logoLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         menuLayout.setVerticalGroup(
             menuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(868, Short.MAX_VALUE))
+                .addComponent(logoLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(951, Short.MAX_VALUE))
         );
 
         main.setBackground(new java.awt.Color(35, 35, 40));
@@ -133,7 +132,7 @@ public class Home extends javax.swing.JFrame {
         main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1708, Short.MAX_VALUE)
+            .addGap(0, 1706, Short.MAX_VALUE)
         );
         mainLayout.setVerticalGroup(
             mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -145,7 +144,7 @@ public class Home extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 221, Short.MAX_VALUE)
+                .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(main, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );

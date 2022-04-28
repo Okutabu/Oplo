@@ -4,6 +4,7 @@
  */
 package model.utility;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -15,6 +16,8 @@ import java.util.Scanner;
  * @author gaeta
  */
 public class UserConnected extends User {
+    
+    private Color color;
     /**
      * cette classe represente l'utilisateur connecté
      * @param id
@@ -27,6 +30,17 @@ public class UserConnected extends User {
      */
     public UserConnected(String id, String prenom, String nom, String administrateur, String role1, String description, String photo){
         super(id, prenom, nom, administrateur, role1, description, photo);
+        switch (role1) {
+            case "Chef de projet" -> { this.color = new Color(128, 0, 255);
+                break;
+            }
+            case "Employé" -> { this.color = new Color(64, 255, 0);
+                break;
+            }
+            case "Responsable scientifique" -> { this.color = Color.RED;
+                break;
+            }
+        }
     }
     
     public void saveCredentials()
@@ -87,6 +101,10 @@ public class UserConnected extends User {
         { 
             System.out.println("Error : Can not delete " + nomFichier); 
         } 
+    }
+    
+    public Color getColor(){
+        return this.color;
     }
 
 }

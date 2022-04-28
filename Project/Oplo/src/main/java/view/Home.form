@@ -5,7 +5,7 @@
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="Oplo"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-      <Color blue="28" green="23" red="23" type="rgb"/>
+      <Color blue="ff" green="b8" red="9" type="rgb"/>
     </Property>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[900, 600]"/>
@@ -37,7 +37,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <Component id="menu" pref="221" max="32767" attributes="0"/>
+              <Component id="menu" max="32767" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Component id="main" max="32767" attributes="0"/>
           </Group>
@@ -59,15 +59,14 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[223, 0]"/>
         </Property>
-        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="logoLabel" max="32767" attributes="0"/>
+                  <Component id="logoLabel" min="-2" pref="199" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -76,8 +75,8 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="logoLabel" min="-2" pref="199" max="-2" attributes="0"/>
-                  <EmptySpace pref="868" max="32767" attributes="0"/>
+                  <Component id="logoLabel" min="-2" pref="116" max="-2" attributes="0"/>
+                  <EmptySpace pref="951" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -101,7 +100,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="1708" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1706" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">

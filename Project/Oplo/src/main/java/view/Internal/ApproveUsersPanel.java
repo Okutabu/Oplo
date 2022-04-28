@@ -71,6 +71,8 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
         approveUserButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         approveUserButton.setText("Approuver");
+        approveUserButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 51), 2, true));
+        approveUserButton.setOpaque(false);
         approveUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 approveUserButtonActionPerformed(evt);
@@ -79,6 +81,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
         revokeUserButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         revokeUserButton.setText("Supprimer");
+        revokeUserButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
         revokeUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 revokeUserButtonActionPerformed(evt);
