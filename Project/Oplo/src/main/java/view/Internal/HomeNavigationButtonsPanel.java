@@ -44,20 +44,7 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         Display.removeBorders(this);
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
-        initButtons();
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
-    }
-    
-    private void initButtons() {
-        Image image = null;
-        try {
-            
-            image = ImageIO.read(new File("src/main/java/resources/home.png"));
-            Image scaled = image.getScaledInstance(192, 48, Image.SCALE_DEFAULT);
-            jLabel1.setIcon(new ImageIcon(scaled));
-        } 
-        catch (IOException e) {
-        }
     }
     
     private void AdjustButtonFromPermission()
@@ -101,6 +88,7 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         displayAddProject = new javax.swing.JButton();
         displayAccountApprove = new javax.swing.JButton();
         displayProfile = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -137,6 +125,13 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setText("Accueil");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -144,6 +139,7 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayAddProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayAccountApprove, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addComponent(displayProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -152,16 +148,18 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAddProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAccountApprove)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayAddProject, displayProfile});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayAddProject, displayProfile, jButton1});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,11 +235,17 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         displayRightWindow(profile);
     }//GEN-LAST:event_displayProfileActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ProjectList p = new ProjectList();
+        displayRightWindow(p);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton displayAccountApprove;
     private javax.swing.JButton displayAddProject;
     private javax.swing.JButton displayProfile;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 
 
