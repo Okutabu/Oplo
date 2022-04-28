@@ -98,7 +98,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayHome.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayHome.setkBorderRadius(0);
         displayHome.setkHoverColor(new java.awt.Color(150, 150, 150));
-        displayHome.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        displayHome.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         displayHome.setkSelectedColor(new java.awt.Color(0, 0, 0));
         displayHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +114,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAddProject.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayAddProject.setkBorderRadius(0);
         displayAddProject.setkHoverColor(new java.awt.Color(150, 150, 150));
-        displayAddProject.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        displayAddProject.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         displayAddProject.setkSelectedColor(new java.awt.Color(0, 0, 0));
         displayAddProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +130,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAccountApprove.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayAccountApprove.setkBorderRadius(0);
         displayAccountApprove.setkHoverColor(new java.awt.Color(150, 150, 150));
-        displayAccountApprove.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        displayAccountApprove.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         displayAccountApprove.setkSelectedColor(new java.awt.Color(0, 0, 0));
         displayAccountApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,7 +146,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAccountApprove1.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayAccountApprove1.setkBorderRadius(0);
         displayAccountApprove1.setkHoverColor(new java.awt.Color(150, 150, 150));
-        displayAccountApprove1.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        displayAccountApprove1.setkHoverForeGround(new java.awt.Color(0, 0, 0));
         displayAccountApprove1.setkSelectedColor(new java.awt.Color(0, 0, 0));
         displayAccountApprove1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
