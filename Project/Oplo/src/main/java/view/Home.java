@@ -4,6 +4,7 @@
  */
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
@@ -13,9 +14,9 @@ import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import model.utility.UserConnected;
-import view.Internal.Homepage;
-import view.Internal.JInternalFrameUserInfo;
-import view.Internal.JInternalFrameControlPanel;
+import view.Internal.ProjectList;
+import view.Internal.HomeUserInfo;
+import view.Internal.HomeNavigationButtonsPanel;
 
 /**
  *
@@ -51,18 +52,19 @@ public class Home extends javax.swing.JFrame {
     {
         user = u;
         
-        JInternalFrameControlPanel naviguation = new JInternalFrameControlPanel(main);
+        HomeNavigationButtonsPanel naviguation = new HomeNavigationButtonsPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
-        JInternalFrameUserInfo userInfo = new JInternalFrameUserInfo();
+        HomeUserInfo userInfo = new HomeUserInfo();
         userInfo.setSize(menu.getWidth(), userInfo.getHeight() - 50);
         userInfo.setLocation(0, 450);
         menu.add(userInfo).setVisible(true);
-        menu.add(naviguation).setVisible(true);
+        menu.add(naviguation, BorderLayout.CENTER);
+        naviguation.setVisible(true);
     }
     
     public void initMain()
     {
-        Homepage accueil = new Homepage();
+        ProjectList accueil = new ProjectList();
         main.add(accueil).setVisible(true);
         currentWindow = accueil;
     }

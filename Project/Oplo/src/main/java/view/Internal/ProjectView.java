@@ -11,12 +11,12 @@ import model.utility.User;
  *
  * @author Okutabu
  */
-public class JInternalFrameProjectDisplay extends javax.swing.JInternalFrame {
+public class ProjectView extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form NewJInternalFrameProjectDisplay
      */
-    public JInternalFrameProjectDisplay(User user)
+    public ProjectView(User user)
     {
         myInitComponents(user);
         Display.removeBorders(this);

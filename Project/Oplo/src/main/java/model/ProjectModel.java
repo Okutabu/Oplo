@@ -32,7 +32,7 @@ public class ProjectModel
         //Move on
     }
     
-    public static void InitializeProjectList(Homepage source)
+    public static void InitializeProjectList(ProjectList source)
     {
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();

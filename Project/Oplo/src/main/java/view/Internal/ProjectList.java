@@ -14,12 +14,12 @@ import model.utility.*;
  *
  * @author gaeta
  */
-public class Homepage extends javax.swing.JInternalFrame {
+public class ProjectList extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Hompage
      */
-    public Homepage()
+    public ProjectList()
     {
         Display.removeBorders(this);
         initComponents();

@@ -25,7 +25,7 @@ import org.json.simple.JSONValue;
  *
  * @author Okutabu
  */
-public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
+public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
 
     private javax.swing.JPanel main;
     /**
@@ -33,7 +33,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
      * @param affichage_elts
      */
     
-    public JInternalFrameControlPanel(javax.swing.JPanel affichage_elts) {
+    public HomeNavigationButtonsPanel(javax.swing.JPanel affichage_elts) {
         main = affichage_elts;
         this.setLocation(0, 200);
         Display.removeBorders(this);
@@ -151,7 +151,7 @@ public class JInternalFrameControlPanel extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void displayHomepageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayHomepageActionPerformed
-        Homepage home = new Homepage();
+        ProjectList home = new ProjectList();
         displayRightWindow(home);
     }//GEN-LAST:event_displayHomepageActionPerformed
 
