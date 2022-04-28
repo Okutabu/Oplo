@@ -98,7 +98,7 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
         try {
             URL url = new URL("https://oplo.000webhostapp.com/resources/profiles/pictures/" + Home.getUser().getProfile_pic());
             image = ImageIO.read(url);
-            Image scaled = image.getScaledInstance(225, 175, Image.SCALE_DEFAULT);
+            Image scaled = image.getScaledInstance(90, 90, Image.SCALE_DEFAULT);
             pp.setIcon(new ImageIcon(scaled));
         } 
         catch (IOException e) {

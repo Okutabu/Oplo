@@ -4,7 +4,6 @@
  */
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
@@ -54,7 +53,8 @@ public class Home extends javax.swing.JFrame {
         naviguation.setLocation(0, 142);
         
         HomeUserInfo userInfo = new HomeUserInfo();
-        userInfo.setLocation(0, 685);
+        userInfo.setLocation(6, 680);
+        userInfo.setSize(userInfo.getWidth(), 108);
         
         menu.add(naviguation);
         menu.add(userInfo);

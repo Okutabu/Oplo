@@ -64,6 +64,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(960, 600));
 
+        infoConnect.setForeground(new java.awt.Color(255, 255, 255));
         infoConnect.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         infoConnect.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
