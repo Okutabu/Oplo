@@ -28,7 +28,7 @@ import org.json.simple.JSONValue;
  */
 public class HomeNavigationButtonsPanel extends JInternalFrame {
 
-    private JPanel main;
+    private static JPanel main;
     /**
      * Creates new form JInternalFrameControlPanel
      * @param affichage_elts
@@ -62,7 +62,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         return main;
     }
     
-    public void displayRightWindow(JInternalFrame f)
+    public static void displayRightWindow(JInternalFrame f)
     {
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
         window.setVisible(false);
