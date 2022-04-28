@@ -81,25 +81,14 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     private void initComponents() {
 
         kButton1 = new com.k33ptoo.components.KButton();
-        displayAddProject = new javax.swing.JButton();
         displayAccountApprove = new javax.swing.JButton();
         displayProfile = new javax.swing.JButton();
-        kButton2 = new com.k33ptoo.components.KButton();
+        displayHome = new com.k33ptoo.components.KButton();
+        displayAddProject = new com.k33ptoo.components.KButton();
 
         kButton1.setText("kButton1");
 
         setBorder(new javax.swing.border.MatteBorder(null));
-
-        displayAddProject.setBackground(new java.awt.Color(102, 102, 102));
-        displayAddProject.setText("Ajouter un projet");
-        displayAddProject.setBorder(BorderFactory.createLineBorder(Home.getUser().getColor(), 2, true));
-        displayAddProject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        displayAddProject.setOpaque(false);
-        displayAddProject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayAddProjectActionPerformed(evt);
-            }
-        });
 
         displayAccountApprove.setBackground(new java.awt.Color(102, 102, 102));
         displayAccountApprove.setText("Approuver comptes");
@@ -123,15 +112,35 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
             }
         });
 
-        kButton2.setBackground(new java.awt.Color(105, 105, 105));
-        kButton2.setText("Accueil");
-        kButton2.setkAllowGradient(false);
-        kButton2.setkBackGroundColor(new java.awt.Color(105, 105, 105));
-        kButton2.setkBorderRadius(0);
-        kButton2.setkHoverColor(new java.awt.Color(150, 150, 150));
-        kButton2.addActionListener(new java.awt.event.ActionListener() {
+        displayHome.setBackground(new java.awt.Color(105, 105, 105));
+        displayHome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
+        displayHome.setText("Accueil");
+        displayHome.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayHome.setkAllowGradient(false);
+        displayHome.setkBackGroundColor(new java.awt.Color(105, 105, 105));
+        displayHome.setkBorderRadius(0);
+        displayHome.setkHoverColor(new java.awt.Color(150, 150, 150));
+        displayHome.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        displayHome.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        displayHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                kButton2ActionPerformed(evt);
+                displayHomeActionPerformed(evt);
+            }
+        });
+
+        displayAddProject.setBackground(new java.awt.Color(105, 105, 105));
+        displayAddProject.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
+        displayAddProject.setText("Ajouter un projet");
+        displayAddProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayAddProject.setkAllowGradient(false);
+        displayAddProject.setkBackGroundColor(new java.awt.Color(105, 105, 105));
+        displayAddProject.setkBorderRadius(0);
+        displayAddProject.setkHoverColor(new java.awt.Color(150, 150, 150));
+        displayAddProject.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        displayAddProject.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        displayAddProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAddProjectActionPerformed(evt);
             }
         });
 
@@ -142,27 +151,27 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayAccountApprove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addComponent(displayProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(kButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(displayHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayAddProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(kButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(displayAddProject)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(displayHome, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(displayAddProject, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(displayAccountApprove)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayAddProject, displayProfile});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayProfile});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -227,27 +236,27 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         
     }//GEN-LAST:event_displayAccountApproveActionPerformed
 
-    private void displayAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAddProjectActionPerformed
-        AddProject a = new AddProject();
-        displayRightWindow(a);
-    }//GEN-LAST:event_displayAddProjectActionPerformed
-
     private void displayProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayProfileActionPerformed
         Profile profile = new Profile();
         displayRightWindow(profile);
     }//GEN-LAST:event_displayProfileActionPerformed
 
-    private void kButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kButton2ActionPerformed
+    private void displayHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayHomeActionPerformed
+        ProjectList p = new ProjectList();
+        displayRightWindow(p);
+    }//GEN-LAST:event_displayHomeActionPerformed
+
+    private void displayAddProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAddProjectActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_kButton2ActionPerformed
+    }//GEN-LAST:event_displayAddProjectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton displayAccountApprove;
-    private javax.swing.JButton displayAddProject;
+    private com.k33ptoo.components.KButton displayAddProject;
+    private com.k33ptoo.components.KButton displayHome;
     private javax.swing.JButton displayProfile;
     private com.k33ptoo.components.KButton kButton1;
-    private com.k33ptoo.components.KButton kButton2;
     // End of variables declaration//GEN-END:variables
 
 
