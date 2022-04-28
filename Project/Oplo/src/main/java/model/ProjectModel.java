@@ -57,7 +57,7 @@ public class ProjectModel
                    JSONObject newObj = (JSONObject)newJson;
                    JButton newBtn = new JButton(newObj.get("name").toString());
                    newBtn.addActionListener(new ProjectListBtnsController(newObj.get("name").toString()));
-                   source.projectPanelList.add(new JButton(newObj.get("name").toString()));
+                   source.projectPanelList.add(newBtn);
                 }               
             }
         }

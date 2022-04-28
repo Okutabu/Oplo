@@ -16,13 +16,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrameProjectDisplay
      */
-    public ProjectView()
-    {
-        initComponents();
-        this.getContentPane().setBackground(new Color(35,35,40));
-    }
     
-    public ProjectView(User user)
+    public ProjectView()
     {
         initComponents();
         Display.removeBorders(this);
@@ -42,16 +37,18 @@ public class ProjectView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1720, 1080));
+        setPreferredSize(new java.awt.Dimension(1320, 1080));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nom du projet");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Les news :");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Todo list :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -63,7 +60,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(1478, Short.MAX_VALUE))
+                .addContainerGap(1078, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
