@@ -71,16 +71,22 @@ public class Registration extends javax.swing.JInternalFrame {
         setBackground(new java.awt.Color(35, 35, 40));
         setBorder(null);
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setForeground(java.awt.Color.white);
         setOpaque(true);
 
+        jLabel1.setForeground(java.awt.Color.white);
         jLabel1.setText("Identifiant*");
 
+        jLabel2.setForeground(java.awt.Color.white);
         jLabel2.setText("Mot de passe*");
 
+        jLabel3.setForeground(java.awt.Color.white);
         jLabel3.setText("Prénom*");
 
+        jLabel4.setForeground(java.awt.Color.white);
         jLabel4.setText("Nom*");
 
+        jLabel5.setForeground(java.awt.Color.white);
         jLabel5.setText("Bio");
 
         login.addActionListener(new java.awt.event.ActionListener() {
@@ -102,8 +108,10 @@ public class Registration extends javax.swing.JInternalFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel6.setForeground(java.awt.Color.white);
         jLabel6.setText("Inscription");
 
+        jLabel7.setForeground(java.awt.Color.white);
         jLabel7.setText("*Champs obligatoires");
 
         inscription.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -116,13 +124,14 @@ public class Registration extends javax.swing.JInternalFrame {
         });
 
         infosInscription.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        infosInscription.setForeground(new java.awt.Color(255, 0, 0));
+        infosInscription.setForeground(java.awt.Color.white);
         infosInscription.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         others.setColumns(20);
         others.setRows(5);
         jScrollPane1.setViewportView(others);
 
+        jLabel8.setForeground(java.awt.Color.white);
         jLabel8.setText("Photo de profil");
 
         profile.setSelected(true);
@@ -134,12 +143,15 @@ public class Registration extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel9.setForeground(java.awt.Color.white);
         jLabel9.setText("Votre inscription sera soumise à validation auprès de votre responsable");
 
+        jLabel10.setForeground(java.awt.Color.white);
         jLabel10.setText("Statut dans l'entreprise");
 
         role.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "---", "Employé", "Chef de projet", "Responsable scientifique" }));
 
+        jLabel11.setForeground(java.awt.Color.white);
         jLabel11.setText("Droits administrateur");
         jLabel11.setToolTipText("");
 
@@ -157,6 +169,7 @@ public class Registration extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setText("Compétences");
 
         skill1.setMaximumRowCount(25);

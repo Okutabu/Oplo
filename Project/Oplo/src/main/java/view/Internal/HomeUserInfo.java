@@ -45,7 +45,7 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(null);
-        setPreferredSize(new java.awt.Dimension(210, 312));
+        setPreferredSize(new java.awt.Dimension(210, 108));
 
         firstname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         firstname.setForeground(new java.awt.Color(255, 255, 255));

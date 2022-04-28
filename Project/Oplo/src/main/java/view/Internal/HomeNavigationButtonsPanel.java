@@ -8,10 +8,16 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import java.util.Set;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,12 +41,23 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
     
     public HomeNavigationButtonsPanel(javax.swing.JPanel affichage_elts) {
         main = affichage_elts;
-        this.setLocation(0, 200);
         Display.removeBorders(this);
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
-        
+        initButtons();
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
+    }
+    
+    private void initButtons() {
+        Image image = null;
+        try {
+            
+            image = ImageIO.read(new File("src/main/java/resources/home.png"));
+            Image scaled = image.getScaledInstance(192, 48, Image.SCALE_DEFAULT);
+            jLabel1.setIcon(new ImageIcon(scaled));
+        } 
+        catch (IOException e) {
+        }
     }
     
     private void AdjustButtonFromPermission()
@@ -81,39 +98,39 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        displayHomepage = new javax.swing.JButton();
         displayAddProject = new javax.swing.JButton();
         displayAccountApprove = new javax.swing.JButton();
         displayProfile = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.MatteBorder(null));
 
-        displayHomepage.setText("Accueil");
-        displayHomepage.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        displayHomepage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayHomepageActionPerformed(evt);
-            }
-        });
-
+        displayAddProject.setBackground(new java.awt.Color(102, 102, 102));
         displayAddProject.setText("Ajouter un projet");
+        displayAddProject.setBorder(BorderFactory.createLineBorder(Home.getUser().getColor(), 2, true));
         displayAddProject.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        displayAddProject.setOpaque(false);
         displayAddProject.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayAddProjectActionPerformed(evt);
             }
         });
 
+        displayAccountApprove.setBackground(new java.awt.Color(102, 102, 102));
         displayAccountApprove.setText("Approuver comptes");
+        displayAccountApprove.setBorder(BorderFactory.createLineBorder(Home.getUser().getColor(), 2, true));
         displayAccountApprove.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        displayAccountApprove.setOpaque(false);
         displayAccountApprove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayAccountApproveActionPerformed(evt);
             }
         });
 
+        displayProfile.setBackground(new java.awt.Color(102, 102, 102));
         displayProfile.setText("Profil");
+        displayProfile.setBorder(BorderFactory.createLineBorder(Home.getUser().getColor(), 2, true));
         displayProfile.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        displayProfile.setOpaque(false);
         displayProfile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 displayProfileActionPerformed(evt);
@@ -124,36 +141,30 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(displayHomepage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayAddProject, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                    .addComponent(displayAccountApprove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayProfile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(displayAddProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayAccountApprove, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(displayProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(displayHomepage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(93, Short.MAX_VALUE)
                 .addComponent(displayAddProject)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAccountApprove)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(displayProfile)
+                .addComponent(displayProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {displayAccountApprove, displayAddProject, displayProfile});
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void displayHomepageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayHomepageActionPerformed
-        ProjectList home = new ProjectList();
-        displayRightWindow(home);
-    }//GEN-LAST:event_displayHomepageActionPerformed
 
     private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
 
@@ -230,7 +241,6 @@ public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton displayAccountApprove;
     private javax.swing.JButton displayAddProject;
-    private javax.swing.JButton displayHomepage;
     private javax.swing.JButton displayProfile;
     // End of variables declaration//GEN-END:variables
 
