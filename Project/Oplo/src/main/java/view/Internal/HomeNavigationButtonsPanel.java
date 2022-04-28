@@ -26,15 +26,15 @@ import org.json.simple.JSONValue;
  *
  * @author Okutabu
  */
-public class HomeNavigationButtonsPanel extends javax.swing.JInternalFrame {
+public class HomeNavigationButtonsPanel extends JInternalFrame {
 
-    private javax.swing.JPanel main;
+    private JPanel main;
     /**
      * Creates new form JInternalFrameControlPanel
      * @param affichage_elts
      */
     
-    public HomeNavigationButtonsPanel(javax.swing.JPanel affichage_elts) {
+    public HomeNavigationButtonsPanel(JPanel affichage_elts) {
         main = affichage_elts;
         Display.removeBorders(this);
         initComponents();
