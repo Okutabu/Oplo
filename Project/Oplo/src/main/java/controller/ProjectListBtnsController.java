@@ -6,6 +6,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import view.Internal.*;
 
 /**
  *
@@ -13,9 +14,16 @@ import java.awt.event.ActionListener;
  */
 public class ProjectListBtnsController implements ActionListener{
 
+    private String projectName;
+    
+    public ProjectListBtnsController(String name)
+    {
+        this.projectName = name;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-       // display
+       HomeNavigationButtonsPanel.displayRightWindow(new ProjectView());
     }
     
 }
