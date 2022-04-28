@@ -62,7 +62,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         return main;
     }
     
-    public void displayRightWindow(javax.swing.JInternalFrame f)
+    public void displayRightWindow(JInternalFrame f)
     {
         javax.swing.JInternalFrame window = Home.getCurrentWindow();
         window.setVisible(false);
