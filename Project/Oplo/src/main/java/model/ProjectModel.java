@@ -12,6 +12,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.Internal.*;
 import view.*;
+import controller.*;
 /**
  *
  * @author Clément
@@ -54,6 +55,8 @@ public class ProjectModel
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
+                   JButton newBtn = new JButton(newObj.get("name").toString());
+                   newBtn.addActionListener(new ProjectListBtnsController());
                    source.projectPanelList.add(new JButton(newObj.get("name").toString()));
                 }               
             }
