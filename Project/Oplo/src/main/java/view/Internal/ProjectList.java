@@ -27,7 +27,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
         
         projectPanelList.setLayout(new GridLayout(10, 1));
         projectPanelList.setBorder(new EmptyBorder(15, 15, 15, 15));
-        ProjectModel.InitializeProjectList(this);//ADD ALL THE PROJECT IN THE LIST 
+        UserModel.InitializeProjectList(this);//ADD ALL THE PROJECT IN THE LIST 
     }
 
     /**

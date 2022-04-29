@@ -88,7 +88,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         
         System.out.println("res request : " + res);
         
-         for(Object object:jsonArray)
+        for(Object object:jsonArray)
         {
             if(object instanceof JSONObject)
             {
@@ -242,6 +242,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
             }
         });
 
+        NewsPanel.setBackground(new java.awt.Color(102, 102, 102));
         NewsPanel.setForeground(new java.awt.Color(102, 102, 102));
         NewsPanel.setMaximumSize(new java.awt.Dimension(400, 32767));
 
@@ -292,7 +293,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(426, 426, 426)
+                        .addGap(300, 300, 300)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(inputNews, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))

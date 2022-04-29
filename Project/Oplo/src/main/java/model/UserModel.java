@@ -1,9 +1,13 @@
 package model;
 
+import controller.ProjectListBtnsController;
 import java.awt.Color;
+import java.util.Set;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
+import org.json.simple.JSONArray;
 
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -134,6 +138,36 @@ public class UserModel
         
         ServerCommunication s = new ServerCommunication();
         s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&login=" + loginS);
+    }
+    
+    public static void InitializeProjectList(ProjectList source)
+    {
+        ServerCommunication s = new ServerCommunication();
+        UserConnected user = Home.getUser();
+        String res = s.sendGetRequest("retrieveProjects&login=" + user.getLogin());
+        
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;         
+
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys)
+                {
+                   Object newJson = jsonObject.get(key);
+
+                   JSONObject newObj = (JSONObject)newJson;
+                   JButton newBtn = new JButton(newObj.get("name").toString());
+                   newBtn.addActionListener(new ProjectListBtnsController(newObj.get("name").toString()));
+                   source.projectPanelList.add(newBtn);
+                }               
+            }
+        }
     }
     
 }

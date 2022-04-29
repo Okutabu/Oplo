@@ -7,6 +7,7 @@ package view.Internal;
 
 import java.awt.Color;
 import model.*;
+import controller.*;
 /**
  *
  * @author Mélanie
@@ -16,12 +17,57 @@ public class AddProject extends javax.swing.JInternalFrame {
     /**
      * Creates new form AddProject
      */
+    private ProjectModel model;
+    
     public AddProject()
     {
         initComponents();
         this.getContentPane().setBackground(new Color(35,35,40));
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        model = new ProjectModel(this);
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+        addHumanNeed.addActionListener(new AddHumanNeedController(this, model));
+        removeHumanNeed.addActionListener(new RemoveHumanNeedController(this, model));
+    }
+    
+    public void setNeedsArea(String val)
+    {
+        humanNeedArea.setText(val);
+    }
+    
+    public void setHumanNeedValue(int val)
+    {
+        humanNeedNumber.setValue(val);
+    }
+    
+    public String getSkillSelected()
+    {
+        return skillSelector.getSelectedItem().toString();
+    }
+    
+    public int getHumanNeedNumber()
+    {
+        return humanNeedNumber.getValue();
+    }
+    
+    public String getProjectName()
+    {
+        return projectName.getText();
+    }
+    
+    public String getDescription()
+    {
+        return projectDescription.getText();
+    }
+    
+    public String getStartDate()
+    {
+        return startDate.getDate().toString();
+    }
+    
+    public String getEndDate()
+    {
+        return endDate.getDate().toString();
     }
 
     /**
@@ -47,23 +93,26 @@ public class AddProject extends javax.swing.JInternalFrame {
         jScrollBar1 = new javax.swing.JScrollBar();
         titre = new javax.swing.JLabel();
         intituleProjet = new javax.swing.JLabel();
-        intitule = new javax.swing.JTextField();
-        startProject = new com.toedter.calendar.JDateChooser();
+        projectName = new javax.swing.JTextField();
+        startDate = new com.toedter.calendar.JDateChooser();
         datedebut = new javax.swing.JLabel();
         datefin = new javax.swing.JLabel();
-        endProject = new com.toedter.calendar.JDateChooser();
+        endDate = new com.toedter.calendar.JDateChooser();
         competence = new javax.swing.JPanel();
         Comp = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        skillSelector = new javax.swing.JComboBox<>();
         nbemployecomp = new javax.swing.JLabel();
-        nbemployecompetence = new com.toedter.components.JSpinField();
-        addSkill = new javax.swing.JButton();
+        humanNeedNumber = new com.toedter.components.JSpinField();
+        addHumanNeed = new javax.swing.JButton();
+        removeHumanNeed = new javax.swing.JButton();
         createProjectButton = new javax.swing.JButton();
         errorResult = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        projectDescriptionInput = new javax.swing.JTextArea();
+        projectDescription = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        humanNeedsArea = new javax.swing.JScrollPane();
+        humanNeedArea = new javax.swing.JTextArea();
 
         jTextField1.setText("jTextField1");
 
@@ -78,7 +127,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         intituleProjet.setForeground(new java.awt.Color(255, 255, 255));
         intituleProjet.setText("Saisir l'intitulé du projet : ");
 
-        startProject.setDateFormatString("d/m/y");
+        startDate.setDateFormatString("d/m/y");
 
         datedebut.setForeground(new java.awt.Color(255, 255, 255));
         datedebut.setText("Date de début du projet : ");
@@ -86,73 +135,80 @@ public class AddProject extends javax.swing.JInternalFrame {
         datefin.setForeground(new java.awt.Color(255, 255, 255));
         datefin.setText("Date de fin de projet :");
 
-        endProject.setDateFormatString("d/m/y");
+        endDate.setDateFormatString("d/m/y");
 
         competence.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 0), 2, true));
+        competence.setMaximumSize(new java.awt.Dimension(425, 85));
+        competence.setPreferredSize(new java.awt.Dimension(425, 85));
 
         Comp.setText("Compétence :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Concepteur", "Designer", "Développeur" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        skillSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Concepteur", "Designer", "Développeur" }));
 
         nbemployecomp.setText("Nombre d'employés :");
 
-        addSkill.setBackground(new java.awt.Color(0, 204, 0));
-        addSkill.setText("Ajouter une autre compétence");
-        addSkill.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        humanNeedNumber.setMaximum(100);
+        humanNeedNumber.setMinimum(1);
+        humanNeedNumber.setValue(1);
+
+        addHumanNeed.setBackground(new java.awt.Color(0, 204, 0));
+        addHumanNeed.setText("Ajouter ce besoin");
+        addHumanNeed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        removeHumanNeed.setBackground(new java.awt.Color(255, 0, 51));
+        removeHumanNeed.setForeground(new java.awt.Color(255, 255, 255));
+        removeHumanNeed.setText("Retirer ce besoin");
 
         javax.swing.GroupLayout competenceLayout = new javax.swing.GroupLayout(competence);
         competence.setLayout(competenceLayout);
         competenceLayout.setHorizontalGroup(
             competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(competenceLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Comp)
-                .addGap(18, 18, 18)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(nbemployecomp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nbemployecompetence, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, competenceLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(addSkill)
-                .addGap(164, 164, 164))
+                .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, competenceLayout.createSequentialGroup()
+                        .addComponent(Comp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(removeHumanNeed, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(competenceLayout.createSequentialGroup()
+                        .addComponent(nbemployecomp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(humanNeedNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addHumanNeed))
+                .addGap(33, 33, 33))
         );
         competenceLayout.setVerticalGroup(
             competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(competenceLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nbemployecompetence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Comp)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nbemployecomp)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addSkill)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(competenceLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(humanNeedNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nbemployecomp))))
+                    .addComponent(Comp, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addHumanNeed)
+                    .addComponent(removeHumanNeed))
+                .addContainerGap())
         );
 
-        createProjectButton.setText("Creer ce projet");
+        createProjectButton.setText("Créer ce projet");
         createProjectButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        createProjectButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                createProjectButtonActionPerformed(evt);
-            }
-        });
 
         errorResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        projectDescriptionInput.setColumns(20);
-        projectDescriptionInput.setRows(3);
-        projectDescriptionInput.setTabSize(6);
-        jScrollPane1.setViewportView(projectDescriptionInput);
+        projectDescription.setColumns(20);
+        projectDescription.setRows(3);
+        projectDescription.setTabSize(6);
+        jScrollPane1.setViewportView(projectDescription);
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Description :");
@@ -171,6 +227,11 @@ public class AddProject extends javax.swing.JInternalFrame {
             .addGap(0, 5, Short.MAX_VALUE)
         );
 
+        humanNeedArea.setEditable(false);
+        humanNeedArea.setColumns(20);
+        humanNeedArea.setRows(5);
+        humanNeedsArea.setViewportView(humanNeedArea);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -179,26 +240,29 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(competence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(57, 57, 57)
+                        .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(errorResult, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(datedebut)
-                            .addComponent(datefin)
-                            .addComponent(intituleProjet)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(intitule)
-                            .addComponent(endProject, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(startProject, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(datedebut)
+                                    .addComponent(datefin)
+                                    .addComponent(intituleProjet)
+                                    .addComponent(jLabel1))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(projectName)
+                                    .addComponent(endDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(startDate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(competence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(humanNeedsArea, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,14 +286,14 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(intituleProjet)
-                            .addComponent(intitule, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(projectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(startProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(startDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(datedebut))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(endProject, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(datefin))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -239,42 +303,35 @@ public class AddProject extends javax.swing.JInternalFrame {
                                 .addGap(33, 33, 33)
                                 .addComponent(jLabel1)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(competence, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(humanNeedsArea)
+                            .addComponent(competence, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(668, Short.MAX_VALUE))
+                .addContainerGap(659, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
-    private void createProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProjectButtonActionPerformed
-        // TODO add your handling code here:
-        ProjectModel.CreateProject(this);
-        
-    }//GEN-LAST:event_createProjectButtonActionPerformed
-
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Comp;
-    private javax.swing.JButton addSkill;
+    private javax.swing.JButton addHumanNeed;
     private javax.swing.JPanel competence;
     private javax.swing.JButton createProjectButton;
     private javax.swing.JLabel datedebut;
     private javax.swing.JLabel datefin;
-    public com.toedter.calendar.JDateChooser endProject;
+    public com.toedter.calendar.JDateChooser endDate;
     public javax.swing.JLabel errorResult;
-    public javax.swing.JTextField intitule;
+    private javax.swing.JTextArea humanNeedArea;
+    private com.toedter.components.JSpinField humanNeedNumber;
+    private javax.swing.JScrollPane humanNeedsArea;
     private javax.swing.JLabel intituleProjet;
     private com.toedter.calendar.JCalendar jCalendar1;
     private com.toedter.calendar.JCalendar jCalendar2;
     private com.toedter.calendar.JCalendar jCalendar3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDayChooser jDayChooser1;
@@ -288,9 +345,11 @@ public class AddProject extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextField1;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JLabel nbemployecomp;
-    private com.toedter.components.JSpinField nbemployecompetence;
-    public javax.swing.JTextArea projectDescriptionInput;
-    public com.toedter.calendar.JDateChooser startProject;
+    public javax.swing.JTextArea projectDescription;
+    public javax.swing.JTextField projectName;
+    private javax.swing.JButton removeHumanNeed;
+    private javax.swing.JComboBox<String> skillSelector;
+    public com.toedter.calendar.JDateChooser startDate;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 }

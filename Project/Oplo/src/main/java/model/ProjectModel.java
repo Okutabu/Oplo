@@ -4,63 +4,86 @@
  */
 package model;
 
-import java.util.Set;
-import javax.swing.JButton;
 import model.utility.*;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import view.Internal.*;
 import view.*;
-import controller.*;
+import java.util.Iterator;
 /**
  *
  * @author Clément
  */
 public class ProjectModel 
 {
-    public static void CreateProject(AddProject source)
+    private JSONObject humanNeed;
+    private AddProject view;
+    
+    public ProjectModel(AddProject view)
     {
-        String projectName = source.intitule.getText();
-        String projectDescription = source.projectDescriptionInput.getText();
-        String projectStartDate = source.startProject.getDateFormatString();
-        String projectEndDate = source.endProject.getDateFormatString();
+        this.humanNeed = new JSONObject();
+        this.view = view;
+    }
+    
+    public void CreateProject()
+    {
+        String projectName = view.getProjectName();
+        String projectDescription = view.getDescription();
+        String projectStartDate = view.getStartDate();
+        String projectEndDate = view.getEndDate();
         String authorLogin = Home.getUser().getLogin();
         
         ServerCommunication s = new ServerCommunication();
-        source.errorResult.setText(s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin));
-    
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin);
         //Move on
     }
     
-    public static void InitializeProjectList(ProjectList source)
+    public void addHumanNeed(String categorie, int number)
     {
-        ServerCommunication s = new ServerCommunication();
-        UserConnected user = Home.getUser();
-        String res = s.sendGetRequest("retrieveProjects&login=" + user.getLogin());
-        
-        Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;         
-
-        for(Object object:jsonArray)
+        if(humanNeed.containsKey(categorie))
         {
-            if(object instanceof JSONObject)
+            humanNeed.put(categorie, Integer.parseInt(humanNeed.get(categorie).toString()) + number);
+        }
+        else
+        {
+            humanNeed.put(categorie, number);
+        }
+    }
+    
+    public void removeHumanNeed(String categorie, int number)
+    {
+        if(humanNeed.containsKey(categorie))
+        {
+            int currentVal = Integer.parseInt(humanNeed.get(categorie).toString());
+            if(currentVal >= number)
             {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys)
+                if((currentVal - number) == 0)
                 {
-                   Object newJson = jsonObject.get(key);
-
-                   JSONObject newObj = (JSONObject)newJson;
-                   JButton newBtn = new JButton(newObj.get("name").toString());
-                   newBtn.addActionListener(new ProjectListBtnsController(newObj.get("name").toString()));
-                   source.projectPanelList.add(newBtn);
-                }               
+                    humanNeed.remove(categorie);
+                }
+                else
+                {
+                   humanNeed.put(categorie, currentVal - number); 
+                }
             }
         }
     }
     
+    public void refreshHumanNeedsArea()
+    {
+        String res = "";
+        
+        JSONObject jsonObject = new JSONObject(humanNeed);
+        Iterator<String> keys = jsonObject.keySet().iterator();
+        
+        while(keys.hasNext())
+        {
+            String key = keys.next();
+            System.out.println(key);
+            
+            res += key;
+            res += " x" + humanNeed.get(key) + "\n";
+        }
+        view.setNeedsArea(res);
+        view.setHumanNeedValue(1);
+    }
 }
