@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -13,11 +14,14 @@ import java.nio.charset.StandardCharsets;
  */
 public class ServerCommunication 
 { 
+    private static final String serverAddr = "https://oplo.000webhostapp.com/?";
+    
     public String sendGetRequest(String urlIn)
     {
         try
         {
-            URL myurl = new URL(urlIn);
+            System.out.println(serverAddr + URLEncoder.encode(urlIn, "UTF-8").toString());
+            URL myurl = new URL(serverAddr + URLEncoder.encode(urlIn, "UTF-8").toString());//URLEncoder.encode(urlIn, "UTF-8"));
             HttpURLConnection httpUrl =(HttpURLConnection)myurl.openConnection();
             httpUrl.setRequestMethod("GET");
             String line = "";

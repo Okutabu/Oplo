@@ -35,7 +35,7 @@
                       <EmptySpace pref="1078" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="NewsPanel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="TodoPanel" min="-2" max="-2" attributes="0"/>
@@ -64,7 +64,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="TodoPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="NewsPanel" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -128,13 +128,16 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="NewsPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="33" green="33" red="33" type="rgb"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[500, 32767]"/>
         </Property>
       </Properties>
 

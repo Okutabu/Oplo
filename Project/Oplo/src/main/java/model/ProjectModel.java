@@ -37,7 +37,7 @@ public class ProjectModel
     {
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
-        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjects&login=" + user.getLogin());
+        String res = s.sendGetRequest("retrieveProjects&login=" + user.getLogin());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         

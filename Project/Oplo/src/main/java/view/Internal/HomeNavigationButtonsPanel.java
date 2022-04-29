@@ -197,7 +197,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
         ServerCommunication s = new ServerCommunication();
 
-        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?getNonApprovedAccount=true");
+        String res = s.sendGetRequest("getNonApprovedAccount=true");
                 System.out.println(res);
         Object o = JSONValue.parse(res);
 

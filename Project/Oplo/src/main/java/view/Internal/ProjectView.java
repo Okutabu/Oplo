@@ -4,10 +4,10 @@
  */
 package view.Internal;
 
-import controller.ProjectListBtnsController;
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.net.URLEncoder;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -38,14 +38,17 @@ public class ProjectView extends javax.swing.JInternalFrame {
         this.projectName = projectName;
         projectNameLabel.setText(projectName);
         retrieveToDoList();
+        retrieveNews();
         TodoPanel.setLayout(new GridLayout(10, 1));
+        NewsPanel.setLayout(new GridLayout(10, 1));
+        NewsPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
     }
     
     private void retrieveToDoList()
     {
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveProjectTodoList&projectName=V1");
+        String res = s.sendGetRequest("retrieveProjectTodoList&projectName=" + projectName.toString());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
@@ -58,7 +61,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
             {
                 JSONObject jsonObject = (JSONObject)object;
 
-                Set<String> keys =jsonObject.keySet();
+                Set<String> keys = jsonObject.keySet();
                 
                 for(String key:keys)
                 {
@@ -70,8 +73,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     line.setLayout(new GridLayout(1, 2));
                     line.setBackground(new Color(0, 0, 0, 0));
                     JCheckBox checkbox = new JCheckBox();
-                    
-                    System.out.println(Integer.parseInt(newObj.get("done").toString()));
                     
                     if(Integer.parseInt(newObj.get("done").toString()) == 0)
                     {
@@ -92,6 +93,50 @@ public class ProjectView extends javax.swing.JInternalFrame {
         }
     }
 
+   
+    private void retrieveNews()
+    {
+        ServerCommunication s = new ServerCommunication();
+        String res = s.sendGetRequest("retrieveProjectNews&projectName=" + projectName.toString());
+        
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;     
+        
+        System.out.println(res);
+        
+         for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys = jsonObject.keySet();
+                
+                for(String key:keys)
+                {
+                    Object newJson = jsonObject.get(key);
+
+                    JSONObject newObj = (JSONObject)newJson;
+                    
+                    JPanel line = new JPanel();
+                    line.setLayout(new GridLayout(2, 1));
+                    line.setBackground(new Color(0, 0, 0, 50));
+ 
+                    JLabel content = new JLabel(newObj.get("title").toString());
+                    content.setForeground(Color.WHITE);
+                    content.setFont(new Font("Verdana", Font.PLAIN, 15));
+                    
+                    JLabel date = new JLabel(newObj.get("date").toString());
+                    date.setForeground(Color.WHITE);
+                    line.add(content);
+                    line.add(date);
+                    
+                    line.setBorder(new EmptyBorder(15, 15, 15, 15));
+                    NewsPanel.add(line);
+                }               
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,7 +150,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         TodoPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        NewsPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1320, 1080));
 
@@ -135,17 +180,18 @@ public class ProjectView extends javax.swing.JInternalFrame {
             .addGap(0, 92, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setForeground(new java.awt.Color(51, 51, 51));
+        NewsPanel.setBackground(new java.awt.Color(51, 51, 51));
+        NewsPanel.setForeground(new java.awt.Color(51, 51, 51));
+        NewsPanel.setMaximumSize(new java.awt.Dimension(500, 32767));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout NewsPanelLayout = new javax.swing.GroupLayout(NewsPanel);
+        NewsPanel.setLayout(NewsPanelLayout);
+        NewsPanelLayout.setHorizontalGroup(
+            NewsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 451, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        NewsPanelLayout.setVerticalGroup(
+            NewsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 909, Short.MAX_VALUE)
         );
 
@@ -162,7 +208,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(1078, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,7 +230,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -193,10 +239,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel NewsPanel;
     private javax.swing.JPanel TodoPanel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel projectNameLabel;
     // End of variables declaration//GEN-END:variables
 }
