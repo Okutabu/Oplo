@@ -48,11 +48,11 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         profilePic = new javax.swing.JLabel();
-        approveUserButton = new javax.swing.JButton();
-        revokeUserButton = new javax.swing.JButton();
         userLogin = new javax.swing.JLabel();
         userFirstname = new javax.swing.JLabel();
         userSurname = new javax.swing.JLabel();
+        approveUserButton = new com.k33ptoo.components.KButton();
+        kButton1 = new com.k33ptoo.components.KButton();
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setText("Prénom :");
@@ -69,25 +69,6 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel5.setText("Nom :");
 
-        approveUserButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        approveUserButton.setText("Approuver");
-        approveUserButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 255, 51), 2, true));
-        approveUserButton.setOpaque(false);
-        approveUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                approveUserButtonActionPerformed(evt);
-            }
-        });
-
-        revokeUserButton.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        revokeUserButton.setText("Supprimer");
-        revokeUserButton.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 2, true));
-        revokeUserButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                revokeUserButtonActionPerformed(evt);
-            }
-        });
-
         userLogin.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         userLogin.setText("login");
 
@@ -96,6 +77,24 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
         userSurname.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         userSurname.setText("nom");
+
+        approveUserButton.setForeground(new java.awt.Color(0, 0, 0));
+        approveUserButton.setText("Approuver");
+        approveUserButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        approveUserButton.setkBorderRadius(30);
+        approveUserButton.setkForeGround(new java.awt.Color(0, 0, 0));
+        approveUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveUserButtonActionPerformed(evt);
+            }
+        });
+
+        kButton1.setForeground(new java.awt.Color(0, 0, 0));
+        kButton1.setText("Supprimer");
+        kButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        kButton1.setkBorderRadius(30);
+        kButton1.setkEndColor(new java.awt.Color(255, 0, 0));
+        kButton1.setkStartColor(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,17 +118,17 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
                     .addComponent(userSurname, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(userFirstname, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1087, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(revokeUserButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(approveUserButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(approveUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addComponent(kButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -145,37 +144,32 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
                             .addComponent(userLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(approveUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(approveUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(revokeUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)))
+                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel3, jLabel4, jLabel5, userFirstname, userSurname});
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {approveUserButton, kButton1});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void approveUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveUserButtonActionPerformed
-        // TODO add your handling code here:
         UserModel.approveUser(this);
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
-    private void revokeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_revokeUserButtonActionPerformed
-        // TODO add your handling code here:
-        UserModel.revokeUser(this);
-
-    }//GEN-LAST:event_revokeUserButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton approveUserButton;
+    private com.k33ptoo.components.KButton approveUserButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private com.k33ptoo.components.KButton kButton1;
     private javax.swing.JLabel profilePic;
-    private javax.swing.JButton revokeUserButton;
     private javax.swing.JLabel userFirstname;
     public javax.swing.JLabel userLogin;
     private javax.swing.JLabel userSurname;
