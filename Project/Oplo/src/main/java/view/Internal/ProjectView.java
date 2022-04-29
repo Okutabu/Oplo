@@ -5,6 +5,7 @@
 package view.Internal;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.net.URLEncoder;
@@ -72,6 +73,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     JPanel line = new JPanel();
                     line.setLayout(new GridLayout(1, 2));
                     line.setBackground(new Color(0, 0, 0, 0));
+                    Dimension minimumSize = new Dimension(100, 300);
+                    line.setMinimumSize(minimumSize);
                     JCheckBox checkbox = new JCheckBox();
                     
                     if(Integer.parseInt(newObj.get("done").toString()) == 0)

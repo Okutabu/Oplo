@@ -91,7 +91,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         approveUserButton.setText("Approuver");
         approveUserButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         approveUserButton.setkBorderRadius(30);
-        approveUserButton.setkForeGround(new java.awt.Color(0, 0, 0));
+        approveUserButton.setkStartColor(new java.awt.Color(0, 255, 0));
         approveUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 approveUserButtonActionPerformed(evt);
@@ -103,7 +103,8 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         kButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         kButton1.setkBorderRadius(30);
         kButton1.setkEndColor(new java.awt.Color(255, 0, 0));
-        kButton1.setkStartColor(new java.awt.Color(0, 0, 0));
+        kButton1.setkHoverStartColor(new java.awt.Color(204, 0, 0));
+        kButton1.setkStartColor(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

@@ -192,8 +192,8 @@
           <Font name="Comic Sans MS" size="18" style="0"/>
         </Property>
         <Property name="kBorderRadius" type="int" value="30"/>
-        <Property name="kForeGround" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+        <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="ff" red="0" type="rgb"/>
         </Property>
       </Properties>
       <Events>
@@ -213,8 +213,11 @@
         <Property name="kEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
+        <Property name="kHoverStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="0" red="cc" type="rgb"/>
+        </Property>
         <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
       </Properties>
     </Component>
