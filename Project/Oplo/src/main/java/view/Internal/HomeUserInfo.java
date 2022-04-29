@@ -58,6 +58,9 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ppMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ppMousePressed(evt);
+            }
         });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -91,8 +94,12 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
     }// </editor-fold>//GEN-END:initComponents
 
     private void ppMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ppMouseClicked
-       HomeNavigationButtonsPanel.displayRightWindow(new Profile());
+       
     }//GEN-LAST:event_ppMouseClicked
+
+    private void ppMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ppMousePressed
+        HomeNavigationButtonsPanel.displayRightWindow(new Profile());
+    }//GEN-LAST:event_ppMousePressed
 
 
     private void initDisplayDataUser()
