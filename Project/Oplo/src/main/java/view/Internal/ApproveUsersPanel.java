@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import java.awt.Color;
 import model.UserModel;
 
 /**
@@ -17,6 +18,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
      */
     public ApproveUsersPanel() {
         initComponents();
+        setBackground(new Color(35,35,40));
     }
     
     public void setLogin(String log)
@@ -57,25 +59,32 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setText("Prénom :");
 
+        setBackground(new java.awt.Color(35, 35, 40));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 3, true));
-        setOpaque(false);
+        setForeground(new java.awt.Color(35, 35, 40));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Login :");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Prénom :");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nom :");
 
         userLogin.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        userLogin.setForeground(new java.awt.Color(255, 255, 255));
         userLogin.setText("login");
 
         userFirstname.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        userFirstname.setForeground(new java.awt.Color(255, 255, 255));
         userFirstname.setText("prenom");
 
         userSurname.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        userSurname.setForeground(new java.awt.Color(255, 255, 255));
         userSurname.setText("nom");
 
         approveUserButton.setForeground(new java.awt.Color(0, 0, 0));

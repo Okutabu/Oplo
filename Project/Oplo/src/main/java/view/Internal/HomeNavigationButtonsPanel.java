@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,7 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static javax.swing.SwingConstants.CENTER;
+import static javax.swing.SwingConstants.*;
 import view.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -198,24 +199,23 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("getNonApprovedAccount=true");
-                System.out.println(res);
+        System.out.println(res);
         Object o = JSONValue.parse(res);
 
         JSONArray jsonArray = (JSONArray) o;         
         
         JInternalFrame approveUsers = new JInternalFrame();
-        approveUsers.setOpaque(false);
         approveUsers.setSize(main.getSize());
         approveUsers.setLayout(new GridLayout(5, 1, 5, 5));
         Display.removeBorders(approveUsers);
+        approveUsers.getContentPane().setBackground(new Color(35, 35, 40));
    
         JPanel infoPanel = new JPanel(new FlowLayout());
-        infoPanel.setOpaque(false);
+        infoPanel.setBackground(new Color(35, 35, 40));
         
         JLabel title = new JLabel("Approuver les comptes des utilisateurs");
-        title.setFont(new Font("Courier", Font.PLAIN, 40)); 
-        title.setVerticalAlignment(CENTER);
-        title.setHorizontalAlignment(CENTER);
+        title.setFont(new Font("Verdana", Font.PLAIN, 24));
+        title.setForeground(Color.WHITE);
         infoPanel.add(title);
         
         //on ajoute le paneau d'explication
@@ -245,8 +245,6 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
                 }               
             }
         }
-        
-        
         //on ajoute le panel a l'internal frame
         displayRightWindow(approveUsers);
         
