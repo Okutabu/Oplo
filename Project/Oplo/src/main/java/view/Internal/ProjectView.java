@@ -6,6 +6,7 @@ package view.Internal;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -47,13 +48,14 @@ public class ProjectView extends javax.swing.JInternalFrame {
         retrieveToDoList();
         retrieveNews();
         TodoPanel.setLayout(new GridLayout(10, 1));
-        NewsPanel.setLayout(new GridLayout(10, 1));
+        NewsPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
         NewsPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         initSendNews();
     }
     
     private void initSendNews() {
+        //si le='utilisateur est un chef de projet alors il peut envoyer des news
         if (Home.getUser().getRole().equals("Chef de projet")) {
             Image image = null;
             try {
@@ -149,7 +151,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     line.setLayout(new GridLayout(2, 1));
                     line.setBackground(new Color(0, 0, 0, 50));
  
-                    JLabel content = new JLabel(newObj.get("title").toString());
+                    JLabel content = new JLabel("<html>"+newObj.get("title").toString()+"</html>");
                     content.setForeground(Color.WHITE);
                     content.setFont(new Font("Verdana", Font.PLAIN, 15));
                     
@@ -158,8 +160,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     line.add(content);
                     line.add(date);
                     
+                    
                     line.setBorder(new EmptyBorder(15, 15, 15, 15));
                     NewsPanel.add(line);
+                    line.setMaximumSize(new Dimension(1, line.getHeight()));
                 }               
             }
         }
@@ -212,7 +216,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         NewsPanel.setBackground(new java.awt.Color(51, 51, 51));
         NewsPanel.setForeground(new java.awt.Color(51, 51, 51));
         NewsPanel.setMaximumSize(new java.awt.Dimension(500, 32767));
-        NewsPanel.setPreferredSize(new java.awt.Dimension(400, 780));
+        NewsPanel.setPreferredSize(new java.awt.Dimension(400, 540));
 
         javax.swing.GroupLayout NewsPanelLayout = new javax.swing.GroupLayout(NewsPanel);
         NewsPanel.setLayout(NewsPanelLayout);
@@ -222,11 +226,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
         );
         NewsPanelLayout.setVerticalGroup(
             NewsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 540, Short.MAX_VALUE)
         );
 
         inputNews.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 2, true));
-        inputNews.setPreferredSize(new java.awt.Dimension(400, 143));
         inputNews.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputNewsActionPerformed(evt);
@@ -234,6 +237,11 @@ public class ProjectView extends javax.swing.JInternalFrame {
         });
 
         sendButton.setPreferredSize(new java.awt.Dimension(50, 50));
+        sendButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sendButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -243,24 +251,27 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(projectNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(1078, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 649, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)))
-                        .addGap(34, 34, 34))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(inputNews, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(28, 28, 28)))
+                                .addGap(34, 34, 34))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(projectNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(914, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,19 +283,18 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputNews, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49))))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 647, Short.MAX_VALUE))
-                    .addComponent(NewsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 778, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(inputNews, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))))
+                        .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -293,6 +303,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
     private void inputNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNewsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNewsActionPerformed
+
+    private void sendButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendButtonMouseClicked
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
