@@ -13,7 +13,6 @@ import model.utility.Display;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import java.util.Set;
-import javax.swing.BorderFactory;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
