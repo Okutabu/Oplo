@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -20,8 +19,8 @@ public class ServerCommunication
     {
         try
         {
-            System.out.println(serverAddr + URLEncoder.encode(urlIn, "UTF-8").toString());
-            URL myurl = new URL(serverAddr + URLEncoder.encode(urlIn, "UTF-8").toString());//URLEncoder.encode(urlIn, "UTF-8"));
+            System.out.println(urlIn + " " + urlIn.replaceAll(" ", "%20"));
+            URL myurl = new URL(serverAddr + urlIn.replaceAll(" ", "%20"));//URLEncoder.encode(urlIn, "UTF-8"));
             HttpURLConnection httpUrl =(HttpURLConnection)myurl.openConnection();
             httpUrl.setRequestMethod("GET");
             String line = "";
