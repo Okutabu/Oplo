@@ -155,6 +155,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     content.setForeground(Color.WHITE);
                     content.setFont(new Font("Verdana", Font.PLAIN, 15));
                     
+                    
                     JLabel date = new JLabel(newObj.get("date").toString());
                     date.setForeground(Color.WHITE);
                     line.add(content);
@@ -163,7 +164,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     
                     line.setBorder(new EmptyBorder(15, 15, 15, 15));
                     NewsPanel.add(line);
-                    line.setMaximumSize(new Dimension(1, line.getHeight()));
                 }               
             }
         }
