@@ -36,7 +36,7 @@ public class ServerCommunication
         }
         catch(Exception e)
         {
-            return "Error while making http GET request on " + urlIn;
+            return "Error while making http GET request on " + urlIn + " error :" + e.getMessage();
         }
     }
     

@@ -23,7 +23,7 @@ public class ProjectListBtnsController implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-       HomeNavigationButtonsPanel.displayRightWindow(new ProjectView());
+       HomeNavigationButtonsPanel.displayRightWindow(new ProjectView(projectName));
     }
     
 }
