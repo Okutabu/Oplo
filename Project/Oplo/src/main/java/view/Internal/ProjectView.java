@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 import org.json.simple.JSONArray;
@@ -38,6 +39,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         projectNameLabel.setText(projectName);
         retrieveToDoList();
         TodoPanel.setLayout(new GridLayout(10, 1));
+        TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
     }
     
     private void retrieveToDoList()
@@ -48,19 +50,66 @@ public class ProjectView extends javax.swing.JInternalFrame {
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
         
-        JPanel line = new JPanel();
-        line.setLayout(new GridLayout(1, 2));
+        System.out.println(res);
+        
+         for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
+                JSONObject jsonObject = (JSONObject)object;
 
-        for(int i = 0; i < jsonArray.size(); i++)
-        {       
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys)
+                {
+                    Object newJson = jsonObject.get(key);
+
+                    JSONObject newObj = (JSONObject)newJson;
+                    
+                    JPanel line = new JPanel();
+                    line.setLayout(new GridLayout(1, 2));
+                    line.setBackground(new Color(0, 0, 0, 0));
+                    JCheckBox checkbox = new JCheckBox();
+                    
+                    System.out.println(Integer.parseInt(newObj.get("done").toString()));
+                    
+                    if(Integer.parseInt(newObj.get("done").toString()) == 0)
+                    {
+                        checkbox.setSelected(false);
+                    }
+                    else
+                    {
+                        checkbox.setSelected(true);
+                    }
+                    
+                    line.add(checkbox);
+                    JLabel label = new JLabel(newObj.get("title").toString());
+                    label.setForeground(Color.WHITE);
+                    line.add(label);
+                    TodoPanel.add(line);
+                /*    JPanel line = new JPanel();
+                    line.setLayout(new GridLayout(1, 2));
+                    line.setBackground(new Color(0, 0, 0, 0));
+                    line.add(new JCheckBox());
+                    JLabel label = new JLabel(jsonArray.get(i).toString());
+                    label.setForeground(Color.WHITE);
+                    line.add(label);
+                    TodoPanel.add(line);*/
+                }               
+            }
+        }
+        
+        /*for(int i = 0; i < jsonArray.size(); i++)
+        { 
+            JPanel line = new JPanel();
+            line.setLayout(new GridLayout(1, 2));
+            line.setBackground(new Color(0, 0, 0, 0));
             line.add(new JCheckBox());
             JLabel label = new JLabel(jsonArray.get(i).toString());
             label.setForeground(Color.WHITE);
             line.add(label);
-        }
-       
-        TodoPanel.setLayout(new BorderLayout());
-        TodoPanel.add(line);
+            TodoPanel.add(line);
+        }*/
     }
 
     /**
