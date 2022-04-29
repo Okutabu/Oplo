@@ -19,7 +19,6 @@ public class ServerCommunication
     {
         try
         {
-            System.out.println(urlIn + " " + urlIn.replaceAll(" ", "%20"));
             URL myurl = new URL(serverAddr + urlIn.replaceAll(" ", "%20"));//URLEncoder.encode(urlIn, "UTF-8"));
             HttpURLConnection httpUrl =(HttpURLConnection)myurl.openConnection();
             httpUrl.setRequestMethod("GET");

@@ -48,12 +48,12 @@ public class ProjectView extends javax.swing.JInternalFrame {
     private void retrieveToDoList()
     {
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendGetRequest("retrieveProjectTodoList&projectName=" + projectName.toString());
+        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectTodoList&projectName=" + projectName);
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
         
-        System.out.println(res);
+        System.out.println("res request : " + res);
         
          for(Object object:jsonArray)
         {
@@ -97,7 +97,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     private void retrieveNews()
     {
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendGetRequest("retrieveProjectNews&projectName=" + projectName.toString());
+        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectNews&projectName=" + projectName.toString());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
