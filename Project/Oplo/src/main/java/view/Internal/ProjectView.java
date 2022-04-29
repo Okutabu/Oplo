@@ -87,29 +87,9 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     label.setForeground(Color.WHITE);
                     line.add(label);
                     TodoPanel.add(line);
-                /*    JPanel line = new JPanel();
-                    line.setLayout(new GridLayout(1, 2));
-                    line.setBackground(new Color(0, 0, 0, 0));
-                    line.add(new JCheckBox());
-                    JLabel label = new JLabel(jsonArray.get(i).toString());
-                    label.setForeground(Color.WHITE);
-                    line.add(label);
-                    TodoPanel.add(line);*/
                 }               
             }
         }
-        
-        /*for(int i = 0; i < jsonArray.size(); i++)
-        { 
-            JPanel line = new JPanel();
-            line.setLayout(new GridLayout(1, 2));
-            line.setBackground(new Color(0, 0, 0, 0));
-            line.add(new JCheckBox());
-            JLabel label = new JLabel(jsonArray.get(i).toString());
-            label.setForeground(Color.WHITE);
-            line.add(label);
-            TodoPanel.add(line);
-        }*/
     }
 
     /**
