@@ -4,34 +4,29 @@
  */
 package view.Internal;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import model.utility.Display;
-import model.utility.ServerCommunication;
+import model.utility.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import view.Home;
+import view.*;
+import controller.*;
+import model.*;
 /**
  *
  * @author Okutabu
@@ -41,26 +36,30 @@ public class ProjectView extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrameProjectDisplay
      */
-    private String projectName;
+    private ManageProjectModel model;
     
     public ProjectView(String projectName)
     {
         initComponents();
         Display.removeBorders(this);
         this.getContentPane().setBackground(new Color(35,35,40));
-        this.projectName = projectName;
+        
+        this.model = new ManageProjectModel(this, projectName);
+
         projectNameLabel.setText(projectName);
-        retrieveToDoList();
-        retrieveNews();
         TodoPanel.setLayout(new GridLayout(10, 1));
         NewsPanel.setLayout(new BoxLayout(NewsPanel, javax.swing.BoxLayout.Y_AXIS));
         NewsPanel.setMaximumSize(new Dimension(400, 400));
         NewsPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
-        initSendNews();
+        SendNewsBtn.addMouseListener(new SendMessagesController(model, this));
+        
+        retrieveToDoList();
+        retrieveNews();
+        InitSendNews();
     }
     
-    private void initSendNews() {
+    public void InitSendNews() {
         //si le='utilisateur est un chef de projet alors il peut envoyer des news
         if (Home.getUser().getRole().equals("Chef de projet")) {
             Image image = null;
@@ -68,20 +67,20 @@ public class ProjectView extends javax.swing.JInternalFrame {
 
                 image = ImageIO.read(new File("src/main/java/resources/send.png"));
                 Image scaled = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-                sendButton.setIcon(new ImageIcon(scaled));
+                SendNewsBtn.setIcon(new ImageIcon(scaled));
             } 
             catch (IOException e) {
             }
         } else {
-            inputNews.setVisible(false);
-            sendButton.setVisible(false);
+            NewsInputField.setVisible(false);
+            SendNewsBtn.setVisible(false);
         }
     }
     
-    private void retrieveToDoList()
+    public void retrieveToDoList()
     {
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectTodoList&projectName=" + projectName);
+        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectTodoList&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
@@ -124,13 +123,15 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 }               
             }
         }
+        revalidate();
     }
-
-   
-    private void retrieveNews()
+    
+    public void retrieveNews()
     {
+        NewsPanel.removeAll();
+        
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectNews&projectName=" + projectName.toString());
+        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectNews&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
@@ -182,6 +183,18 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 }               
             }
         }
+         
+        revalidate();
+    }
+    
+    public String getNewsInput()
+    {
+        return NewsInputField.getText();
+    }
+    
+    public void setNewsInput(String val)
+    {
+        NewsInputField.setText(val);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -196,8 +209,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         TodoPanel = new javax.swing.JPanel();
-        inputNews = new javax.swing.JTextField();
-        sendButton = new javax.swing.JLabel();
+        NewsInputField = new javax.swing.JTextField();
+        SendNewsBtn = new javax.swing.JLabel();
         NewsPanel = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(1320, 1080));
@@ -228,23 +241,13 @@ public class ProjectView extends javax.swing.JInternalFrame {
             .addGap(0, 92, Short.MAX_VALUE)
         );
 
-        inputNews.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 2, true));
-        inputNews.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputNewsActionPerformed(evt);
-            }
-        });
+        NewsInputField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 2, true));
 
-        sendButton.setPreferredSize(new java.awt.Dimension(50, 50));
-        sendButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                sendButtonMouseClicked(evt);
-            }
-        });
+        SendNewsBtn.setPreferredSize(new java.awt.Dimension(50, 50));
 
         NewsPanel.setBackground(new java.awt.Color(102, 102, 102));
         NewsPanel.setForeground(new java.awt.Color(102, 102, 102));
-        NewsPanel.setMaximumSize(new java.awt.Dimension(400, 32767));
+        NewsPanel.setMaximumSize(new java.awt.Dimension(400, 385));
 
         javax.swing.GroupLayout NewsPanelLayout = new javax.swing.GroupLayout(NewsPanel);
         NewsPanel.setLayout(NewsPanelLayout);
@@ -254,7 +257,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         );
         NewsPanelLayout.setVerticalGroup(
             NewsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 97, Short.MAX_VALUE)
+            .addGap(0, 385, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,13 +268,13 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(NewsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inputNews, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(NewsInputField, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(projectNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(SendNewsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(651, 651, 651)
@@ -293,36 +296,28 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(NewsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(300, 300, 300)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(inputNews, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(sendButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(SendNewsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NewsInputField)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(493, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void inputNewsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNewsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputNewsActionPerformed
-
-    private void sendButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sendButtonMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_sendButtonMouseClicked
-
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NewsInputField;
     private javax.swing.JPanel NewsPanel;
+    private javax.swing.JLabel SendNewsBtn;
     private javax.swing.JPanel TodoPanel;
-    private javax.swing.JTextField inputNews;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel projectNameLabel;
-    private javax.swing.JLabel sendButton;
     // End of variables declaration//GEN-END:variables
 }

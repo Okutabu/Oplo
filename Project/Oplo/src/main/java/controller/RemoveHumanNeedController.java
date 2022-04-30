@@ -16,9 +16,9 @@ import view.Internal.*;
 public class RemoveHumanNeedController implements ActionListener
 {
     private AddProject view;
-    private ProjectModel model;
+    private CreateProjectModel model;
     
-    public RemoveHumanNeedController(AddProject view, ProjectModel model)
+    public RemoveHumanNeedController(AddProject view, CreateProjectModel model)
     {
         this.view = view;
         this.model = model;

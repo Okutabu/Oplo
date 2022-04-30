@@ -17,14 +17,14 @@ public class AddProject extends javax.swing.JInternalFrame {
     /**
      * Creates new form AddProject
      */
-    private ProjectModel model;
+    private CreateProjectModel model;
     
     public AddProject()
     {
         initComponents();
         this.getContentPane().setBackground(new Color(35,35,40));
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        model = new ProjectModel(this);
+        model = new CreateProjectModel(this);
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
         addHumanNeed.addActionListener(new AddHumanNeedController(this, model));
         removeHumanNeed.addActionListener(new RemoveHumanNeedController(this, model));
@@ -202,6 +202,11 @@ public class AddProject extends javax.swing.JInternalFrame {
 
         createProjectButton.setText("Créer ce projet");
         createProjectButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        createProjectButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createProjectButtonActionPerformed(evt);
+            }
+        });
 
         errorResult.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -313,6 +318,10 @@ public class AddProject extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void createProjectButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createProjectButtonActionPerformed
+        model.CreateProject();// TODO add your handling code here:
+    }//GEN-LAST:event_createProjectButtonActionPerformed
 
     
     

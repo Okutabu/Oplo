@@ -13,12 +13,12 @@ import java.util.Iterator;
  *
  * @author Clément
  */
-public class ProjectModel 
+public class CreateProjectModel 
 {
     private JSONObject humanNeed;
     private AddProject view;
     
-    public ProjectModel(AddProject view)
+    public CreateProjectModel(AddProject view)
     {
         this.humanNeed = new JSONObject();
         this.view = view;
