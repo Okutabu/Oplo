@@ -293,10 +293,8 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="roleChoice" max="32767" attributes="0"/>
                       <Component id="jLabel6" min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="yesChoice" linkSize="6" alignment="0" max="32767" attributes="0"/>
-                          <Component id="noChoice" linkSize="6" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="yesChoice" linkSize="6" alignment="0" max="32767" attributes="0"/>
+                      <Component id="noChoice" linkSize="6" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>

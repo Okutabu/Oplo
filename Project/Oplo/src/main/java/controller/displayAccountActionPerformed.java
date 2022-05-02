@@ -20,7 +20,7 @@ import model.utility.User;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import view.Internal.ApproveUsersPanel;
+import view.panel.ApproveUsersPanel;
 import static view.Internal.HomeNavigationButtonsPanel.displayRightWindow;
 
 /**

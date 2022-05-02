@@ -1,5 +1,6 @@
 package model;
 
+import view.panel.ApproveUsersPanel;
 import controller.ProjectListBtnsController;
 import java.awt.Color;
 import java.util.Set;

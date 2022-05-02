@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view.Internal;
+package view.panel;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -13,6 +13,10 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import model.UserModel;
 import model.utility.User;
+import view.Internal.HomeNavigationButtonsPanel;
+import view.Internal.HomeNavigationButtonsPanel;
+import view.Internal.ProfileView;
+import view.Internal.ProfileView;
 
 /**
  *
@@ -233,9 +237,8 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
                 .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(roleChoice)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(yesChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(noChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(yesChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(noChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -326,7 +329,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_profilePicMouseClicked
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
-        // TODO add your handling code here:
+        UserModel.revokeUser(this);
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
 

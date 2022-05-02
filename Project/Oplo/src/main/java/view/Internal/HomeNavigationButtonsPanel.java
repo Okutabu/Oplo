@@ -37,15 +37,20 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     private void AdjustButtonFromPermission()
     {
         UserConnected user = Home.getUser();
+        String role = user.getRole();
         
         if(user.getAdmin() == false)
         {
             displayAccountApprove.setVisible(false);
         }
    
-        if(!user.getRole().equals("Chef de projet") && !user.getRole().equals("Responsable scientifique"))
+        if(!role.equals("Chef de projet") && !role.equals("Responsable scientifique"))
         {
             displayAddProject.setVisible(false);
+        }
+        
+        if (!role.equals("Responsable scientifique")) {
+            displayAssocierPersonnel.setVisible(false);
         }
     }
     
@@ -77,6 +82,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAddProject = new com.k33ptoo.components.KButton();
         displayAccountApprove = new com.k33ptoo.components.KButton();
         profile = new com.k33ptoo.components.KButton();
+        displayAssocierPersonnel = new com.k33ptoo.components.KButton();
 
         kButton1.setText("kButton1");
 
@@ -146,6 +152,22 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
             }
         });
 
+        displayAssocierPersonnel.setBackground(new java.awt.Color(105, 105, 105));
+        displayAssocierPersonnel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
+        displayAssocierPersonnel.setText("Gérer le personnel");
+        displayAssocierPersonnel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayAssocierPersonnel.setkAllowGradient(false);
+        displayAssocierPersonnel.setkBackGroundColor(new java.awt.Color(105, 105, 105));
+        displayAssocierPersonnel.setkBorderRadius(0);
+        displayAssocierPersonnel.setkHoverColor(new java.awt.Color(150, 150, 150));
+        displayAssocierPersonnel.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        displayAssocierPersonnel.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        displayAssocierPersonnel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                displayAssocierPersonnelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,7 +178,8 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
                     .addComponent(displayHome, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addComponent(displayAddProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayAccountApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(profile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(profile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(displayAssocierPersonnel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,6 +191,8 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
                 .addComponent(displayAddProject, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAccountApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(displayAssocierPersonnel, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -196,10 +221,16 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayRightWindow(p);
     }//GEN-LAST:event_profileActionPerformed
 
+    private void displayAssocierPersonnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAssocierPersonnelActionPerformed
+        AffectPersonal a = new AffectPersonal();
+        displayRightWindow(a);
+    }//GEN-LAST:event_displayAssocierPersonnelActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton displayAccountApprove;
     private com.k33ptoo.components.KButton displayAddProject;
+    private com.k33ptoo.components.KButton displayAssocierPersonnel;
     private com.k33ptoo.components.KButton displayHome;
     private com.k33ptoo.components.KButton kButton1;
     private com.k33ptoo.components.KButton profile;

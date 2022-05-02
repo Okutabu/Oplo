@@ -94,7 +94,7 @@ public class Home extends javax.swing.JFrame {
         logoLabel = new javax.swing.JLabel();
         main = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo");
         setBackground(new java.awt.Color(9, 184, 255));
         setMinimumSize(new java.awt.Dimension(900, 600));
