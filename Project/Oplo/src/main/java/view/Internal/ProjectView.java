@@ -201,7 +201,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
         
-        System.out.println(res);
+        innerPanel.setLayout(new GridLayout(jsonArray.size(), 1));
         
         for(Object object:jsonArray)
         {
