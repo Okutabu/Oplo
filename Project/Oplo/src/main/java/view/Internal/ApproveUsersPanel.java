@@ -21,14 +21,17 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ApproveUsersPanel
+     * @param prenom
+     * @param nom
+     * @param login
      */
-    public ApproveUsersPanel() {
+    public ApproveUsersPanel(String prenom, String nom, String login) {
         initComponents();
         setBackground(new Color(35,35,40));
-        initialize();
+        initialize(prenom, nom, login);
     }
     
-    private void initialize() {
+    private void initialize(String prenom, String nom, String login) {
         
         //initialise la photo de profil
         Image image = null;
@@ -41,21 +44,12 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         catch (IOException e) {
 
         }
-    }
-    
-    public void setLogin(String log)
-    {
-        userLogin.setText(log);
-    }
-    
-    public void setFirstname(String log)
-    {
-        userFirstname.setText(log);
-    }
-    
-    public void setSurname(String log)
-    {
-        userSurname.setText(log);
+        
+        //initialisation infos utilisateurs
+        userLogin.setText(prenom);
+        userFirstname.setText(nom);
+        userSurname.setText(login);
+
     }
 
     /**

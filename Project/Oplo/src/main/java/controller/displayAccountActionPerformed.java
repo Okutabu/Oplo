@@ -80,11 +80,13 @@ public class displayAccountActionPerformed implements ActionListener {
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   ApproveUsersPanel userPanel = new ApproveUsersPanel();
-                   userPanel.setFirstname(newObj.get("firstname").toString());
-                   userPanel.setSurname(newObj.get("surname").toString());
-                   userPanel.setLogin(newObj.get("login").toString());
+                   //recuperation des infos
+                   String firstname = newObj.get("firstname").toString();
+                   String surname = newObj.get("surname").toString();
+                   String login = newObj.get("login").toString();
                    
+                   ApproveUsersPanel userPanel = new ApproveUsersPanel(firstname, surname, login);
+                   //ajout au jpanel
                    approveUsers.add(userPanel);
                 }               
             }

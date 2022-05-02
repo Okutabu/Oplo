@@ -39,6 +39,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
+        //ajout d'un action listener sur approuver les comptes 
         displayAccountApprove.addActionListener(new displayAccountActionPerformed(main));
     }
     
