@@ -4,7 +4,6 @@
  */
 package view.Internal;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,7 +15,6 @@ import java.util.Set;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import static javax.swing.SwingConstants.*;
 import view.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -40,6 +38,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
+        displayAccount.addActionListener(new displayAccountActionPerformed());
     }
     
     private void AdjustButtonFromPermission()
@@ -195,57 +194,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     }//GEN-LAST:event_displayAddProjectActionPerformed
 
     private void displayAccountApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApproveActionPerformed
-        ServerCommunication s = new ServerCommunication();
-
-        String res = s.sendGetRequest("getNonApprovedAccount=true");
-        System.out.println(res);
-        Object o = JSONValue.parse(res);
-
-        JSONArray jsonArray = (JSONArray) o;         
         
-        JInternalFrame approveUsers = new JInternalFrame();
-        approveUsers.setSize(main.getSize());
-        approveUsers.setLayout(new GridLayout(5, 1, 5, 5));
-        Display.removeBorders(approveUsers);
-        approveUsers.getContentPane().setBackground(new Color(35, 35, 40));
-   
-        JPanel infoPanel = new JPanel(new FlowLayout());
-        infoPanel.setBackground(new Color(35, 35, 40));
-        
-        JLabel title = new JLabel("Approuver les comptes des utilisateurs");
-        title.setFont(new Font("Verdana", Font.PLAIN, 24));
-        title.setForeground(Color.WHITE);
-        infoPanel.add(title);
-        
-        //on ajoute le paneau d'explication
-        approveUsers.add(infoPanel);
-        
-        //on ajoute ensuite les compte a approuver
-        for(Object object:jsonArray)
-        {
-            if(object instanceof JSONObject) 
-            {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys) 
-                {
-                   System.out.println(key +" :: "+jsonObject.get(key));
-                   Object newJson = jsonObject.get(key);
-
-                   JSONObject newObj = (JSONObject)newJson;
-                   ApproveUsersPanel userPanel = new ApproveUsersPanel();
-                   userPanel.setFirstname(newObj.get("firstname").toString());
-                   userPanel.setSurname(newObj.get("surname").toString());
-                   userPanel.setLogin(newObj.get("login").toString());
-                   
-                   approveUsers.add(userPanel);
-                }               
-            }
-        }
-        //on ajoute le panel a l'internal frame
-        displayRightWindow(approveUsers);
         
     }//GEN-LAST:event_displayAccountApproveActionPerformed
 
