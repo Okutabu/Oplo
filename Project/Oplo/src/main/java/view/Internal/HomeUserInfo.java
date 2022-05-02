@@ -27,7 +27,6 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
         this.getContentPane().setBackground(new Color(102, 102, 102));
         Display.removeBorders(this);
         initDisplayDataUser();
-        
     }
 
     /**
@@ -119,10 +118,8 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
         catch (IOException e) {
 
         }
-        
         Color colorBorder = user.getColor();
         this.setBorder(BorderFactory.createLineBorder(colorBorder, 2, true));
-        
     }
     
     
