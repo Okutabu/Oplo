@@ -4,6 +4,7 @@
  */
 package view.Internal;
 
+import controller.displayAccountActionPerformed;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -38,7 +39,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
-        displayAccount.addActionListener(new displayAccountActionPerformed());
+        displayAccountApprove.addActionListener(new displayAccountActionPerformed(main));
     }
     
     private void AdjustButtonFromPermission()
@@ -83,7 +84,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayHome = new com.k33ptoo.components.KButton();
         displayAddProject = new com.k33ptoo.components.KButton();
         displayAccountApprove = new com.k33ptoo.components.KButton();
-        displayAccountApprove1 = new com.k33ptoo.components.KButton();
+        profile = new com.k33ptoo.components.KButton();
 
         kButton1.setText("kButton1");
 
@@ -137,19 +138,19 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
             }
         });
 
-        displayAccountApprove1.setBackground(new java.awt.Color(105, 105, 105));
-        displayAccountApprove1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
-        displayAccountApprove1.setText("Profil");
-        displayAccountApprove1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
-        displayAccountApprove1.setkAllowGradient(false);
-        displayAccountApprove1.setkBackGroundColor(new java.awt.Color(105, 105, 105));
-        displayAccountApprove1.setkBorderRadius(0);
-        displayAccountApprove1.setkHoverColor(new java.awt.Color(150, 150, 150));
-        displayAccountApprove1.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        displayAccountApprove1.setkSelectedColor(new java.awt.Color(0, 0, 0));
-        displayAccountApprove1.addActionListener(new java.awt.event.ActionListener() {
+        profile.setBackground(new java.awt.Color(105, 105, 105));
+        profile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
+        profile.setText("Profil");
+        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        profile.setkAllowGradient(false);
+        profile.setkBackGroundColor(new java.awt.Color(105, 105, 105));
+        profile.setkBorderRadius(0);
+        profile.setkHoverColor(new java.awt.Color(150, 150, 150));
+        profile.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        profile.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        profile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                displayAccountApprove1ActionPerformed(evt);
+                profileActionPerformed(evt);
             }
         });
 
@@ -163,7 +164,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
                     .addComponent(displayHome, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
                     .addComponent(displayAddProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(displayAccountApprove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(displayAccountApprove1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(profile, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -176,7 +177,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(displayAccountApprove, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(displayAccountApprove1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(profile, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -198,18 +199,18 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         
     }//GEN-LAST:event_displayAccountApproveActionPerformed
 
-    private void displayAccountApprove1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayAccountApprove1ActionPerformed
+    private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
         Profile p = new Profile();
         displayRightWindow(p);
-    }//GEN-LAST:event_displayAccountApprove1ActionPerformed
+    }//GEN-LAST:event_profileActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton displayAccountApprove;
-    private com.k33ptoo.components.KButton displayAccountApprove1;
     private com.k33ptoo.components.KButton displayAddProject;
     private com.k33ptoo.components.KButton displayHome;
     private com.k33ptoo.components.KButton kButton1;
+    private com.k33ptoo.components.KButton profile;
     // End of variables declaration//GEN-END:variables
 
 

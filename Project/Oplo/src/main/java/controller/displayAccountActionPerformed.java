@@ -43,7 +43,7 @@ public class displayAccountActionPerformed implements ActionListener {
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("getNonApprovedAccount=true");
-        System.out.println(res);
+        
         Object o = JSONValue.parse(res);
 
         JSONArray jsonArray = (JSONArray) o;         

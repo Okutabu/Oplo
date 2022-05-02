@@ -39,7 +39,7 @@
                   <Component id="displayHome" alignment="0" pref="192" max="32767" attributes="0"/>
                   <Component id="displayAddProject" alignment="0" max="32767" attributes="0"/>
                   <Component id="displayAccountApprove" alignment="0" max="32767" attributes="0"/>
-                  <Component id="displayAccountApprove1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="profile" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -55,7 +55,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="displayAccountApprove" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="displayAccountApprove1" min="-2" pref="39" max="-2" attributes="0"/>
+              <Component id="profile" min="-2" pref="39" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -167,7 +167,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAccountApproveActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.k33ptoo.components.KButton" name="displayAccountApprove1">
+    <Component class="com.k33ptoo.components.KButton" name="profile">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="69" green="69" red="69" type="rgb"/>
@@ -199,7 +199,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayAccountApprove1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="profileActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
