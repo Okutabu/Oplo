@@ -1,4 +1,4 @@
-view\Internal\AddProject$2.class
+model\ManageProjectModel.class
 controller\ProjectListBtnsController.class
 view\Internal\ProjectList.class
 view\Internal\Registration$3.class
@@ -16,6 +16,7 @@ view\Internal\ApproveUsersPanel$1.class
 view\Internal\Registration$9.class
 model\utility\UserConnected.class
 view\Internal\Profile.class
+controller\SendMessagesController.class
 view\Inscription$1.class
 model\utility\ServerCommunication.class
 view\ConnexionPanel.class
@@ -24,6 +25,7 @@ view\Internal\AddProject.class
 view\ConnexionPanel$10.class
 view\ConnexionPanel$5.class
 view\Internal\HomeNavigationButtonsPanel$3.class
+model\CreateProjectModel.class
 view\ConnexionPanel$8.class
 view\Internal\ProjectView.class
 view\ConnexionPanel$9.class
@@ -40,14 +42,14 @@ view\ConnexionPanel$6.class
 model\utility\User.class
 view\Inscription.class
 view\Internal\Registration$4.class
-.netbeans_automatic_build
 view\Home.class
 view\ConnexionPanel$3.class
 view\Internal\Profile$1.class
 view\Home$2.class
 view\Internal\AddProject$1.class
+controller\AddHumanNeedController.class
+controller\RemoveHumanNeedController.class
 view\Internal\Registration$2.class
 view\Internal\Registration$5.class
-model\ProjectModel.class
 model\utility\Display.class
 view\Internal\HomeNavigationButtonsPanel$1.class
