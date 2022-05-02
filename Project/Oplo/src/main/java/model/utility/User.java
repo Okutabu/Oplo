@@ -4,6 +4,8 @@
  */
 package model.utility;
 
+import java.awt.Color;
+
 /**
  *
  * @author gaeta
@@ -16,6 +18,7 @@ public class User {
     private String role;
     private String others;
     private String profile_pic;
+    private Color color;
     
     public User(String id, String prenom, String nom, String administrateur, String role1, String description, String photo){
         this.login = id;
@@ -25,6 +28,17 @@ public class User {
         this.role = role1;
         this.others = description;
         this.profile_pic = photo;
+        switch (role1) {
+            case "Chef de projet" -> { this.color = new Color(128, 0, 255);
+                break;
+            }
+            case "Employé" -> { this.color = new Color(64, 255, 0);
+                break;
+            }
+            case "Responsable scientifique" -> { this.color = Color.RED;
+                break;
+            }
+        }
     }
     
     public String getLogin(){
@@ -53,6 +67,10 @@ public class User {
 
     public String getProfile_pic() {
         return this.profile_pic;
+    }
+    
+    public Color getColor() {
+        return this.color;
     }
     
     public void setOthers(String othersValue)

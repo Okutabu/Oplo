@@ -44,15 +44,18 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(null);
-        setPreferredSize(new java.awt.Dimension(210, 108));
+        setPreferredSize(new java.awt.Dimension(211, 120));
 
         firstname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         firstname.setForeground(new java.awt.Color(255, 255, 255));
+        firstname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         surname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         surname.setForeground(new java.awt.Color(255, 255, 255));
+        surname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         pp.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pp.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         pp.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ppMouseClicked(evt);
@@ -67,23 +70,25 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(8, Short.MAX_VALUE)
                 .addComponent(pp, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(firstname, javax.swing.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .addComponent(surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(firstname, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+                    .addComponent(surname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(pp, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(firstname, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {firstname, surname});
@@ -96,7 +101,7 @@ public class HomeUserInfo extends javax.swing.JInternalFrame
     }//GEN-LAST:event_ppMouseClicked
 
     private void ppMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ppMousePressed
-        HomeNavigationButtonsPanel.displayRightWindow(new Profile());
+        HomeNavigationButtonsPanel.displayRightWindow(new ModifyProfile());
     }//GEN-LAST:event_ppMousePressed
 
 

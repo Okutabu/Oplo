@@ -54,7 +54,7 @@ public class Home extends javax.swing.JFrame {
         
         HomeUserInfo userInfo = new HomeUserInfo();
         userInfo.setLocation(6, 680);
-        userInfo.setSize(userInfo.getWidth(), 108);
+        userInfo.setSize(userInfo.getWidth(), 105);
         
         menu.add(naviguation);
         menu.add(userInfo);

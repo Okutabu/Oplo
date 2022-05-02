@@ -6,20 +6,11 @@ package view.Internal;
 
 import controller.displayAccountActionPerformed;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridLayout;
 import model.utility.Display;
-import model.utility.ServerCommunication;
 import model.utility.UserConnected;
-import java.util.Set;
 import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import view.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 
 /**
  *
@@ -201,7 +192,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     }//GEN-LAST:event_displayAccountApproveActionPerformed
 
     private void profileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileActionPerformed
-        Profile p = new Profile();
+        ModifyProfile p = new ModifyProfile();
         displayRightWindow(p);
     }//GEN-LAST:event_profileActionPerformed
 

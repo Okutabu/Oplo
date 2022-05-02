@@ -69,9 +69,8 @@ public class Registration extends javax.swing.JInternalFrame {
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setBackground(new java.awt.Color(35, 35, 40));
-        setBorder(null);
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setForeground(java.awt.Color.white);
         setOpaque(true);
 
         jLabel1.setForeground(java.awt.Color.white);
@@ -156,10 +155,12 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel11.setToolTipText("");
 
         admin.add(yes);
+        yes.setForeground(java.awt.Color.white);
         yes.setText("Oui");
         yes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         admin.add(no);
+        no.setForeground(java.awt.Color.white);
         no.setSelected(true);
         no.setText("Non");
         no.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -315,7 +316,7 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addGap(38, 38, 38)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(profile)

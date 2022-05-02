@@ -9,9 +9,10 @@ import java.awt.Image;
 import java.io.IOException;
 import java.net.URL;
 import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import model.UserModel;
-import view.Home;
+import model.utility.User;
 
 /**
  *
@@ -19,24 +20,29 @@ import view.Home;
  */
 public class ApproveUsersPanel extends javax.swing.JPanel {
 
+    private User user;
     /**
      * Creates new form ApproveUsersPanel
-     * @param prenom
-     * @param nom
-     * @param login
+     * @param user
      */
-    public ApproveUsersPanel(String prenom, String nom, String login) {
+    public ApproveUsersPanel(User user) {
         initComponents();
-        setBackground(new Color(35,35,40));
-        initialize(prenom, nom, login);
+        this.user = user;
+        stylise(user.getColor());
+        initialize();
     }
     
-    private void initialize(String prenom, String nom, String login) {
+    private void stylise(Color userColor) {
+        this.setBackground(new Color(35,35,40));
+        rightsPanel.setBorder(BorderFactory.createLineBorder(userColor, 2, true));
+    }
+    
+    private void initialize() {
         
         //initialise la photo de profil
         Image image = null;
         try {
-            URL url = new URL("https://oplo.000webhostapp.com/resources/profiles/pictures/" + Home.getUser().getProfile_pic());
+            URL url = new URL("https://oplo.000webhostapp.com/resources/profiles/pictures/" + getUser().getProfile_pic());
             image = ImageIO.read(url);
             Image scaled = image.getScaledInstance(110, 110, Image.SCALE_DEFAULT);
             profilePic.setIcon(new ImageIcon(scaled));
@@ -46,10 +52,21 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         }
         
         //initialisation infos utilisateurs
-        userLogin.setText(prenom);
-        userFirstname.setText(nom);
-        userSurname.setText(login);
+        userLogin.setText(getUser().getLogin());
+        userFirstname.setText(getUser().getFirstname());
+        userSurname.setText(getUser().getSurname());
+        roleChoice.setSelectedItem(getUser().getRole());
+        if (getUser().getAdmin()) {
+            yesChoice.setSelected(true);
+        } else {
+            noChoice.setSelected(true);
+        }
+        
 
+    }
+    
+    public User getUser() {
+        return this.user;
     }
 
     /**
@@ -62,6 +79,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        adminButtonGroup = new javax.swing.ButtonGroup();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -70,8 +88,14 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         userFirstname = new javax.swing.JLabel();
         userSurname = new javax.swing.JLabel();
         approveUserButton = new com.k33ptoo.components.KButton();
-        kButton1 = new com.k33ptoo.components.KButton();
-        jPanel1 = new javax.swing.JPanel();
+        deleteUserButton = new com.k33ptoo.components.KButton();
+        rightsPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        roleChoice = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        noChoice = new javax.swing.JRadioButton();
+        yesChoice = new javax.swing.JRadioButton();
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setText("Prénom :");
@@ -91,6 +115,13 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Nom :");
+
+        profilePic.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        profilePic.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                profilePicMouseClicked(evt);
+            }
+        });
 
         userLogin.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         userLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,24 +146,100 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
             }
         });
 
-        kButton1.setForeground(new java.awt.Color(0, 0, 0));
-        kButton1.setText("Supprimer");
-        kButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        kButton1.setkBorderRadius(30);
-        kButton1.setkEndColor(new java.awt.Color(255, 0, 0));
-        kButton1.setkHoverStartColor(new java.awt.Color(204, 0, 0));
-        kButton1.setkStartColor(new java.awt.Color(255, 0, 0));
+        deleteUserButton.setForeground(new java.awt.Color(0, 0, 0));
+        deleteUserButton.setText("Supprimer");
+        deleteUserButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        deleteUserButton.setkBorderRadius(30);
+        deleteUserButton.setkEndColor(new java.awt.Color(255, 0, 0));
+        deleteUserButton.setkHoverStartColor(new java.awt.Color(204, 0, 0));
+        deleteUserButton.setkStartColor(new java.awt.Color(255, 0, 0));
+        deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1063, Short.MAX_VALUE)
+        rightsPanel.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 30)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Modification des droits");
+
+        roleChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Employé", "Chef de projet", "Responsable scientifique" }));
+        roleChoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        roleChoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roleChoiceActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Rôle :");
+
+        jLabel7.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Droits administrateur :");
+
+        adminButtonGroup.add(noChoice);
+        noChoice.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        noChoice.setForeground(new java.awt.Color(255, 255, 255));
+        noChoice.setText("Non");
+        noChoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        adminButtonGroup.add(yesChoice);
+        yesChoice.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        yesChoice.setForeground(new java.awt.Color(255, 255, 255));
+        yesChoice.setText("Oui");
+        yesChoice.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout rightsPanelLayout = new javax.swing.GroupLayout(rightsPanel);
+        rightsPanel.setLayout(rightsPanelLayout);
+        rightsPanelLayout.setHorizontalGroup(
+            rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(rightsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(roleChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightsPanelLayout.createSequentialGroup()
+                        .addComponent(yesChoice)
+                        .addGap(109, 109, 109)
+                        .addComponent(noChoice)
+                        .addGap(86, 86, 86))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightsPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(107, 107, 107))))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+
+        rightsPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {noChoice, yesChoice});
+
+        rightsPanelLayout.setVerticalGroup(
+            rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, rightsPanelLayout.createSequentialGroup()
+                .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(rightsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(rightsPanelLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel7)))
+                .addGap(18, 18, 18)
+                .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(roleChoice)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(rightsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(yesChoice, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(noChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        rightsPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {noChoice, yesChoice});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -155,12 +262,12 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(userLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE)
+                .addComponent(rightsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(approveUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
-                    .addComponent(kButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(deleteUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -174,11 +281,11 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(approveUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(deleteUserButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rightsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +298,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(userLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 4, Short.MAX_VALUE)))))
+                                .addGap(0, 11, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
@@ -201,7 +308,7 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jLabel3, jLabel4, jLabel5, userFirstname, userSurname});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {approveUserButton, kButton1});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {approveUserButton, deleteUserButton});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -209,18 +316,38 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         UserModel.approveUser(this);
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
+    private void roleChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleChoiceActionPerformed
+        
+    }//GEN-LAST:event_roleChoiceActionPerformed
+
+    private void profilePicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilePicMouseClicked
+        ProfileView p = new ProfileView(getUser());
+        HomeNavigationButtonsPanel.displayRightWindow(p);
+    }//GEN-LAST:event_profilePicMouseClicked
+
+    private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteUserButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup adminButtonGroup;
     private com.k33ptoo.components.KButton approveUserButton;
+    private com.k33ptoo.components.KButton deleteUserButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private com.k33ptoo.components.KButton kButton1;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JRadioButton noChoice;
     private javax.swing.JLabel profilePic;
+    private javax.swing.JPanel rightsPanel;
+    private javax.swing.JComboBox<String> roleChoice;
     private javax.swing.JLabel userFirstname;
     public javax.swing.JLabel userLogin;
     private javax.swing.JLabel userSurname;
+    private javax.swing.JRadioButton yesChoice;
     // End of variables declaration//GEN-END:variables
 }

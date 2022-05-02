@@ -15,12 +15,12 @@ import view.*;
  *
  * @author gaeta
  */
-public class Profile extends javax.swing.JInternalFrame {
+public class ModifyProfile extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Profile
      */
-    public Profile()
+    public ModifyProfile()
     {
         initComponents();
         initDisplay();

@@ -98,7 +98,7 @@ public class UserModel
         }
     }
     
-    public static void modifBio(Profile source)
+    public static void modifBio(ModifyProfile source)
     {
         UserConnected user = Home.getUser();
         
