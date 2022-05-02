@@ -4,11 +4,16 @@
  */
 package model;
 
+import java.io.File;
+import java.io.Writer;
+import java.util.ArrayList;
 import model.utility.*;
 import org.json.simple.JSONObject;
 import view.Internal.*;
 import view.*;
 import java.util.Iterator;
+import java.util.Scanner;
+import org.json.simple.JSONArray;
 /**
  *
  * @author Clément
@@ -33,7 +38,18 @@ public class CreateProjectModel
         String authorLogin = Home.getUser().getLogin();
         
         ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin);
+        
+        try
+        {
+            Writer newFile = FileWriter("persoTemp.oplo");
+            humanNeed.writeJSONString(newFile);
+           
+        }
+        catch(Exception e)
+        {
+
+        }
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed.toString());
         //Move on
     }
     
@@ -85,5 +101,9 @@ public class CreateProjectModel
         }
         view.setNeedsArea(res);
         view.setHumanNeedValue(1);
+    }
+
+    private Writer FileWriter(String persoTempoplo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
