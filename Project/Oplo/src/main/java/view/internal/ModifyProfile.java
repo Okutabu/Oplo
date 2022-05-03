@@ -1,4 +1,4 @@
-package view.Internal;
+package view.internal;
 
 import java.awt.Color;
 import java.awt.Image;

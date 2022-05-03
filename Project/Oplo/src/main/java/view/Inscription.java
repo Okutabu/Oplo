@@ -5,7 +5,7 @@
 package view;
 
 import java.awt.Color;
-import view.Internal.Registration;
+import view.internal.Registration;
 /**
  *
  * @author gaeta

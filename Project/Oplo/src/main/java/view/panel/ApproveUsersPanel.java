@@ -13,10 +13,10 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import model.UserModel;
 import model.utility.User;
-import view.Internal.HomeNavigationButtonsPanel;
-import view.Internal.HomeNavigationButtonsPanel;
-import view.Internal.ProfileView;
-import view.Internal.ProfileView;
+import view.internal.HomeNavigationButtonsPanel;
+import view.internal.HomeNavigationButtonsPanel;
+import view.internal.ProfileView;
+import view.internal.ProfileView;
 
 /**
  *

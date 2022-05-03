@@ -11,9 +11,9 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import model.utility.UserConnected;
-import view.Internal.ProjectList;
-import view.Internal.HomeUserInfo;
-import view.Internal.HomeNavigationButtonsPanel;
+import view.internal.ProjectList;
+import view.internal.HomeUserInfo;
+import view.internal.HomeNavigationButtonsPanel;
 
 /**
  *

@@ -4,12 +4,12 @@
  */
 package controller;
 
+import view.internal.ProjectView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import model.*;
 import view.*;
-import view.Internal.*;
 /**
  *
  * @author Clément

@@ -4,12 +4,12 @@
  */
 package model;
 
+import view.internal.AddProject;
 import java.io.File;
 import java.io.Writer;
 import java.util.ArrayList;
 import model.utility.*;
 import org.json.simple.JSONObject;
-import view.Internal.*;
 import view.*;
 import java.util.Iterator;
 import java.util.Scanner;

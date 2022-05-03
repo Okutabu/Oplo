@@ -4,8 +4,8 @@
  */
 package model;
 
+import view.internal.ProjectView;
 import model.utility.ServerCommunication;
-import view.Internal.*;
 /**
  *
  * @author Clément

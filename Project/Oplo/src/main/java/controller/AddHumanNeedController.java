@@ -4,11 +4,11 @@
  */
 package controller;
 
+import view.internal.AddProject;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.*;
-import view.Internal.*;
 /**
  *
  * @author Clément

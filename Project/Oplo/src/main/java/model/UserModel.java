@@ -1,5 +1,8 @@
 package model;
 
+import view.internal.ProjectList;
+import view.internal.ModifyProfile;
+import view.internal.Registration;
 import view.panel.ApproveUsersPanel;
 import controller.ProjectListBtnsController;
 import java.awt.Color;
@@ -13,7 +16,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.*;
-import view.Internal.*;
 /**
  *
  * @author Clément

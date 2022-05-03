@@ -4,9 +4,10 @@
  */
 package controller;
 
+import view.internal.ProjectView;
+import view.internal.HomeNavigationButtonsPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import view.Internal.*;
 
 /**
  *
