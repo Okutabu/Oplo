@@ -11,27 +11,32 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
 import model.UserModel;
 import model.utility.User;
+import view.internal.ApproveUsers;
 import view.internal.HomeNavigationButtonsPanel;
-import view.internal.HomeNavigationButtonsPanel;
-import view.internal.ProfileView;
+import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 import view.internal.ProfileView;
 
 /**
  *
  * @author gaeta
  */
-public class ApproveUsersPanel extends javax.swing.JPanel {
+public class ApproveUserPanel extends JPanel {
 
     private User user;
+    private JPanel main;
     /**
      * Creates new form ApproveUsersPanel
      * @param user
+     * @param main
      */
-    public ApproveUsersPanel(User user) {
+    public ApproveUserPanel(User user, JPanel main) {
         initComponents();
         this.user = user;
+        this.main = main;
         stylise(user.getColor());
         initialize();
     }
@@ -72,6 +77,11 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
     public User getUser() {
         return this.user;
     }
+    
+    
+    public JPanel getMain() {
+        return this.main;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -107,6 +117,8 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(35, 35, 40));
         setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 3, true));
         setForeground(new java.awt.Color(35, 35, 40));
+        setMaximumSize(new java.awt.Dimension(1650, 165));
+        setPreferredSize(new java.awt.Dimension(1635, 165));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -317,6 +329,8 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
     private void approveUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveUserButtonActionPerformed
         UserModel.approveUser(this);
+        displayRightWindow(new ApproveUsers(getMain()));
+        
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
     private void roleChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roleChoiceActionPerformed
@@ -325,11 +339,12 @@ public class ApproveUsersPanel extends javax.swing.JPanel {
 
     private void profilePicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_profilePicMouseClicked
         ProfileView p = new ProfileView(getUser());
-        HomeNavigationButtonsPanel.displayRightWindow(p);
+        displayRightWindow(p);
     }//GEN-LAST:event_profilePicMouseClicked
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         UserModel.revokeUser(this);
+        displayRightWindow(new ApproveUsers(getMain()));
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
 

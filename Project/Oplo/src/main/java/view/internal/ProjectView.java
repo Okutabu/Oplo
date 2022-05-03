@@ -193,7 +193,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
         String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveMembersList&projectName=" + model.getProjectName());
         
         JPanel innerPanel = new JPanel();
-        innerPanel.setLayout(new GridLayout(90, 1));
         innerPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         innerPanel.setBackground(new Color(102, 102, 102));
         innerPanel.setForeground(new Color(102, 102, 102));

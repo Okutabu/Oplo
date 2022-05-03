@@ -4,7 +4,7 @@
  */
 package view.internal;
 
-import controller.displayAccountActionPerformed;
+import controller.displayAccountApproveActionPerformed;
 import java.awt.Color;
 import model.utility.Display;
 import model.utility.UserConnected;
@@ -31,7 +31,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         this.getContentPane().setBackground(new Color(102, 102, 102));
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
         //ajout d'un action listener sur approuver les comptes 
-        displayAccountApprove.addActionListener(new displayAccountActionPerformed(main));
+        displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(main));
     }
     
     private void AdjustButtonFromPermission()
@@ -44,7 +44,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
             displayAccountApprove.setVisible(false);
         }
    
-        if(!role.equals("Chef de projet") && !role.equals("Responsable scientifique"))
+        if(!role.equals("Chef de projet"))
         {
             displayAddProject.setVisible(false);
         }

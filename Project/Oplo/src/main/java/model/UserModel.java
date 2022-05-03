@@ -3,7 +3,7 @@ package model;
 import view.internal.ProjectList;
 import view.internal.ModifyProfile;
 import view.internal.Registration;
-import view.panel.ApproveUsersPanel;
+import view.panel.ApproveUserPanel;
 import controller.ProjectListBtnsController;
 import java.awt.Color;
 import java.util.Set;
@@ -127,7 +127,7 @@ public class UserModel
         source.inputLogin.setText(display);
     }
     
-    public static void approveUser(ApproveUsersPanel source)
+    public static void approveUser(ApproveUserPanel source)
     {
         String loginS = source.userLogin.getText();
         
@@ -135,7 +135,7 @@ public class UserModel
         System.out.println(s.sendPostRequest("https://oplo.000webhostapp.com/", "approveAccount=true&login=" + loginS));
     }
     
-    public static void revokeUser(ApproveUsersPanel source)
+    public static void revokeUser(ApproveUserPanel source)
     {
         String loginS = source.userLogin.getText();
         
