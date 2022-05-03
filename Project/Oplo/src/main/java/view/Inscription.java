@@ -30,7 +30,7 @@ public class Inscription extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo : Inscription");
         setBackground(new java.awt.Color(35, 35, 40));
         setResizable(false);
@@ -39,11 +39,11 @@ public class Inscription extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 977, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 575, Short.MAX_VALUE)
         );
 
         pack();
@@ -53,7 +53,6 @@ public class Inscription extends javax.swing.JFrame {
     public void addRegistration()
     {
         Registration inscription = new Registration(this);
-        inscription.setSize(966,538);
         this.add(inscription).setVisible(true);
     }
     

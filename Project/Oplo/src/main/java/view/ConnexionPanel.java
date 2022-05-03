@@ -56,7 +56,7 @@ public class ConnexionPanel extends javax.swing.JFrame {
         inscrire = new javax.swing.JButton();
         logoLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Oplo : Connexion");
         setAlwaysOnTop(true);
         setBackground(new java.awt.Color(35, 35, 40));

@@ -151,10 +151,14 @@ public class ApproveUserPanel extends JPanel {
         userSurname.setForeground(new java.awt.Color(255, 255, 255));
         userSurname.setText("nom");
 
-        approveUserButton.setForeground(new java.awt.Color(0, 0, 0));
         approveUserButton.setText("Approuver");
         approveUserButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        approveUserButton.setkAllowGradient(false);
+        approveUserButton.setkBackGroundColor(new java.awt.Color(0, 255, 0));
         approveUserButton.setkBorderRadius(30);
+        approveUserButton.setkHoverColor(new java.awt.Color(0, 210, 0));
+        approveUserButton.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        approveUserButton.setkPressedColor(new java.awt.Color(0, 190, 0));
         approveUserButton.setkStartColor(new java.awt.Color(0, 255, 0));
         approveUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -162,12 +166,17 @@ public class ApproveUserPanel extends JPanel {
             }
         });
 
-        deleteUserButton.setForeground(new java.awt.Color(0, 0, 0));
         deleteUserButton.setText("Supprimer");
         deleteUserButton.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        deleteUserButton.setkAllowGradient(false);
+        deleteUserButton.setkBackGroundColor(new java.awt.Color(255, 0, 0));
         deleteUserButton.setkBorderRadius(30);
         deleteUserButton.setkEndColor(new java.awt.Color(255, 0, 0));
+        deleteUserButton.setkHoverColor(new java.awt.Color(210, 0, 0));
+        deleteUserButton.setkHoverEndColor(new java.awt.Color(210, 0, 0));
+        deleteUserButton.setkHoverForeGround(new java.awt.Color(255, 255, 255));
         deleteUserButton.setkHoverStartColor(new java.awt.Color(204, 0, 0));
+        deleteUserButton.setkPressedColor(new java.awt.Color(190, 0, 0));
         deleteUserButton.setkStartColor(new java.awt.Color(255, 0, 0));
         deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
