@@ -6,6 +6,7 @@ package model;
 
 import view.internal.AddProject;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import model.utility.*;
@@ -33,23 +34,15 @@ public class CreateProjectModel
     {
         String projectName = view.getProjectName();
         String projectDescription = view.getDescription();
-        String projectStartDate = view.getStartDate();
-        String projectEndDate = view.getEndDate();
+       // String projectStartDate = view.getStartDate();
+       // String projectEndDate = view.getEndDate();
+        String projectStartDate = "";
+        String projectEndDate = "";
         String authorLogin = Home.getUser().getLogin();
         
         ServerCommunication s = new ServerCommunication();
         
-        try
-        {
-            Writer newFile = FileWriter("persoTemp.oplo");
-            humanNeed.writeJSONString(newFile);
-           
-        }
-        catch(Exception e)
-        {
-
-        }
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed.toString());
+        System.out.println(s.sendPostRequest("https://oplo.000webhostapp.com/", "name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed));
         //Move on
     }
     
@@ -94,8 +87,6 @@ public class CreateProjectModel
         while(keys.hasNext())
         {
             String key = keys.next();
-            System.out.println(key);
-            
             res += key;
             res += " x" + humanNeed.get(key) + "\n";
         }
