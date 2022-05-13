@@ -15,6 +15,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
     private Project project;
     /**
      * Creates new form miniProjectDisplay
+     * @param p
      */
     public miniProjectDisplay(Project p) {
         this.project = p;
@@ -24,8 +25,8 @@ public class miniProjectDisplay extends javax.swing.JPanel {
     
     private void initialize() {
         title.setText(getProject().getName());
-        beginDate.setText(getProject().getStart_date().toString());
-        finalDate.setText(getProject().getEnd_date().toString());
+        beginDate.setText(getProject().getStart_date());
+        finalDate.setText(getProject().getEnd_date());
         description.setText(getProject().getDescription());
         //TODO : last new
         
@@ -57,6 +58,12 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         creator = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(70, 70, 100));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
@@ -66,15 +73,28 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Date de fin :");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date de début :");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        beginDate.setForeground(new java.awt.Color(255, 255, 255));
+        beginDate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        finalDate.setForeground(new java.awt.Color(255, 255, 255));
+        finalDate.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         description.setEditable(false);
+        description.setBackground(new java.awt.Color(70, 70, 100));
         description.setColumns(20);
+        description.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        description.setForeground(new java.awt.Color(255, 255, 255));
         description.setLineWrap(true);
-        description.setRows(5);
+        description.setRows(4);
+        description.setAutoscrolls(false);
+        description.setBorder(null);
         description.setFocusable(false);
         description.setOpaque(false);
         description.setRequestFocusEnabled(false);
@@ -86,9 +106,14 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         jLabel5.setText("Dernière nouvelle");
 
         lastNews.setEditable(false);
+        lastNews.setBackground(new java.awt.Color(70, 70, 100));
         lastNews.setColumns(20);
+        lastNews.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lastNews.setForeground(new java.awt.Color(255, 255, 255));
         lastNews.setLineWrap(true);
-        lastNews.setRows(5);
+        lastNews.setRows(4);
+        lastNews.setAutoscrolls(false);
+        lastNews.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(9, 184, 255), 2));
         lastNews.setFocusable(false);
         lastNews.setOpaque(false);
         lastNews.setRequestFocusEnabled(false);
@@ -103,10 +128,6 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -125,15 +146,21 @@ public class miniProjectDisplay extends javax.swing.JPanel {
                                     .addComponent(finalDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jScrollPane1))))
                 .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 136, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(141, 141, 141))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(creator, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(141, 141, 141))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(creator, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22))))
+                        .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {beginDate, finalDate, jLabel2, jLabel3});
@@ -156,8 +183,8 @@ public class miniProjectDisplay extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(creator, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
@@ -165,6 +192,10 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {beginDate, jLabel3});
 
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

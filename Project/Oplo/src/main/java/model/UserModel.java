@@ -4,11 +4,14 @@ import view.internal.ProjectList;
 import view.internal.ModifyProfile;
 import view.internal.Registration;
 import view.panel.ApproveUserPanel;
-import controller.ProjectListBtnsController;
+import controller.ProjectListController;
 import java.awt.Color;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import model.utility.Project;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import org.json.simple.JSONArray;
@@ -143,7 +146,7 @@ public class UserModel
         s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&login=" + loginS);
     }
     
-    public static void InitializeProjectList(ProjectList source)
+    public static ArrayList<Project> InitializeProjectList(ProjectList source)
     {
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
@@ -151,6 +154,8 @@ public class UserModel
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
+        
+        ArrayList<Project> projects = new ArrayList<Project>();
 
         for(Object object:jsonArray)
         {
@@ -165,12 +170,20 @@ public class UserModel
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   JButton newBtn = new JButton(newObj.get("name").toString());
-                   newBtn.addActionListener(new ProjectListBtnsController(newObj.get("name").toString()));
-                   source.projectPanelList.add(newBtn);
+                   
+                   String name = (String) newObj.get("name");
+                   String description = (String) newObj.get("description");
+                   String start_date = (String) newObj.get("start_date");
+                   String end_date = (String) newObj.get("end_date");
+                   String creator_login = (String) newObj.get("creator_login");
+                   
+                   
+                   Project projet = new Project(name, description, start_date, end_date, creator_login);
+                   projects.add(projet);
                 }               
             }
         }
+        return projects;
     }
     
 }

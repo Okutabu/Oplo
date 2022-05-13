@@ -14,11 +14,11 @@ public class Project {
     
     private String name;
     private String description;
-    private Date start_date;
-    private Date end_date;
+    private String start_date;
+    private String end_date;
     private String creator_login;
     
-    public Project(String name, String description, Date start_date, Date end_date, String creator_login) {
+    public Project(String name, String description, String start_date, String end_date, String creator_login) {
         this.name = name;
         this.description = description;
         this.start_date = start_date;
@@ -34,11 +34,11 @@ public class Project {
         return this.description;
     }
     
-    public Date getStart_date() {
+    public String getStart_date() {
         return this.start_date;
     }
     
-    public Date getEnd_date() {
+    public String getEnd_date() {
         return this.end_date;
     }
     

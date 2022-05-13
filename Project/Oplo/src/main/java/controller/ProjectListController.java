@@ -6,24 +6,25 @@ package controller;
 
 import view.internal.ProjectView;
 import view.internal.HomeNavigationButtonsPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 
 /**
  *
  * @author Clément
  */
-public class ProjectListBtnsController implements ActionListener{
+public class ProjectListController extends MouseAdapter{
 
     private String projectName;
     
-    public ProjectListBtnsController(String name)
+    public ProjectListController(String name)
     {
         this.projectName = name;
     }
     
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mousePressed(MouseEvent e) {
        HomeNavigationButtonsPanel.displayRightWindow(new ProjectView(projectName));
     }
     
