@@ -78,7 +78,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         );
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrer par", "" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Filtrer par", "Date : plus récent d'abord", "Date : plus ancien d'abord", "Compétences : les + rares", "Compétences : le + de besoin", "Compétences : le - de besoin" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
