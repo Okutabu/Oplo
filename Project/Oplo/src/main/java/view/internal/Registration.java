@@ -19,6 +19,7 @@ public class Registration extends javax.swing.JInternalFrame {
     private javax.swing.JFrame parentTemp;
     /**
      * Creates new form Registration
+     * @param parent
      */
     public Registration(javax.swing.JFrame parent)
     {

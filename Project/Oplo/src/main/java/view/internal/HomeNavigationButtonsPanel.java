@@ -38,7 +38,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         profile.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         //ajout d'un action listener sur approuver les comptes 
-        displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(main));
+        displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(main,displayAccountApprove));
     }
     
     private void AdjustButtonFromPermission()
@@ -99,7 +99,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayHome.setBackground(new java.awt.Color(105, 105, 105));
         displayHome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
         displayHome.setText("Accueil");
-        displayHome.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayHome.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         displayHome.setkAllowGradient(false);
         displayHome.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayHome.setkBorderRadius(0);
@@ -115,7 +115,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAddProject.setBackground(new java.awt.Color(105, 105, 105));
         displayAddProject.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
         displayAddProject.setText("Ajouter un projet");
-        displayAddProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayAddProject.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         displayAddProject.setkAllowGradient(false);
         displayAddProject.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayAddProject.setkBorderRadius(0);
@@ -131,7 +131,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAccountApprove.setBackground(new java.awt.Color(105, 105, 105));
         displayAccountApprove.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
         displayAccountApprove.setText("Approuver les comptes");
-        displayAccountApprove.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayAccountApprove.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         displayAccountApprove.setkAllowGradient(false);
         displayAccountApprove.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayAccountApprove.setkBorderRadius(0);
@@ -147,7 +147,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         profile.setBackground(new java.awt.Color(105, 105, 105));
         profile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
         profile.setText("Profil");
-        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        profile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         profile.setkAllowGradient(false);
         profile.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         profile.setkBorderRadius(0);
@@ -163,7 +163,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayAssocierPersonnel.setBackground(new java.awt.Color(105, 105, 105));
         displayAssocierPersonnel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));
         displayAssocierPersonnel.setText("Gérer le personnel");
-        displayAssocierPersonnel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 16)); // NOI18N
+        displayAssocierPersonnel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         displayAssocierPersonnel.setkAllowGradient(false);
         displayAssocierPersonnel.setkBackGroundColor(new java.awt.Color(105, 105, 105));
         displayAssocierPersonnel.setkBorderRadius(0);

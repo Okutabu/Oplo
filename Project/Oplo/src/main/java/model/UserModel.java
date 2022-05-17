@@ -4,12 +4,9 @@ import view.internal.ProjectList;
 import view.internal.ModifyProfile;
 import view.internal.Registration;
 import view.panel.ApproveUserPanel;
-import controller.ProjectListController;
 import java.awt.Color;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Set;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import model.utility.Project;
 import model.utility.ServerCommunication;
@@ -100,6 +97,7 @@ public class UserModel
         } 
         else 
         {
+            source.infosInscription.setForeground(new Color(255,0,0));
             source.infosInscription.setText(inscription);
         }
     }

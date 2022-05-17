@@ -24,6 +24,7 @@ import view.panel.ApproveUserPanel;
 public class ApproveUsers extends javax.swing.JInternalFrame {
 
     private JPanel main;
+    private int nbAccountToApprove;
     /**
      * Creates new form ApproveUsers
      */
@@ -36,6 +37,9 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
     }
     
     private void initialize() {
+        
+        int cptAccounts = 0;
+        
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("getNonApprovedAccount=true");
@@ -67,6 +71,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                 
                 for(String key:keys) 
                 {
+                   cptAccounts++;
                    System.out.println(key +" :: "+jsonObject.get(key));
                    Object newJson = jsonObject.get(key);
 
@@ -91,6 +96,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         }
         //ajout du panel dans le scrollPane
         approveScrollPane.setViewportView(innerPanel);
+        setNbAccountToApprove(cptAccounts);
 
     }
     
@@ -100,6 +106,14 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
     
     private JPanel getMain() {
         return this.main;
+    }
+    
+    public void setNbAccountToApprove(int nb) {
+        this.nbAccountToApprove = nb;
+    }
+    
+    public int getNbAccountToApprove() {
+        return this.nbAccountToApprove;
     }
 
     /**
@@ -127,11 +141,11 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1698, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 5, Short.MAX_VALUE)
+            .addGap(0, 13, Short.MAX_VALUE)
         );
 
         approveScrollPane.setBackground(new java.awt.Color(35, 35, 40));
@@ -143,15 +157,15 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1308, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jLabel1))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1655, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -159,10 +173,10 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();

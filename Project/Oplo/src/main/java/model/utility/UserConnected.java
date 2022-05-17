@@ -4,7 +4,6 @@
  */
 package model.utility;
 
-import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
