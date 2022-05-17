@@ -6,6 +6,7 @@ package view.internal;
 
 import controller.displayAccountApproveActionPerformed;
 import java.awt.Color;
+import java.awt.Cursor;
 import model.utility.Display;
 import model.utility.UserConnected;
 import javax.swing.JInternalFrame;
@@ -30,6 +31,12 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
+        displayAccountApprove.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        displayAddProject.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        displayAssocierPersonnel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        displayHome.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        profile.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
         //ajout d'un action listener sur approuver les comptes 
         displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(main));
     }
@@ -87,6 +94,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         kButton1.setText("kButton1");
 
         setBorder(new javax.swing.border.MatteBorder(null));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         displayHome.setBackground(new java.awt.Color(105, 105, 105));
         displayHome.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(5, 184, 255), 2));

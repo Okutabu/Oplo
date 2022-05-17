@@ -5,6 +5,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import model.utility.UserConnected;
 import view.internal.ProjectList;
 import view.internal.HomeUserInfo;
 import view.internal.HomeNavigationButtonsPanel;
+import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 
 /**
  *
@@ -48,6 +50,8 @@ public class Home extends javax.swing.JFrame {
         catch (IOException e) {
         }
         
+        logoLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        
         HomeNavigationButtonsPanel naviguation = new HomeNavigationButtonsPanel(main);
         naviguation.setSize((menu.getWidth()), naviguation.getHeight());
         naviguation.setLocation(0, 142);
@@ -60,6 +64,7 @@ public class Home extends javax.swing.JFrame {
         menu.add(userInfo);
         userInfo.setVisible(true);
         naviguation.setVisible(true);
+        
     }
     
     public void initMain()
@@ -107,6 +112,12 @@ public class Home extends javax.swing.JFrame {
 
         menu.setBackground(new java.awt.Color(102, 102, 102));
         menu.setMinimumSize(new java.awt.Dimension(223, 0));
+
+        logoLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                logoLabelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menuLayout = new javax.swing.GroupLayout(menu);
         menu.setLayout(menuLayout);
@@ -160,6 +171,11 @@ public class Home extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
+
+    private void logoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoLabelMouseClicked
+        ProjectList p = new ProjectList();
+        displayRightWindow(p);
+    }//GEN-LAST:event_logoLabelMouseClicked
 
     /**
      * @param args the command line arguments

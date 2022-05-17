@@ -83,6 +83,9 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JLabel" name="logoLabel">
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="logoLabelMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
