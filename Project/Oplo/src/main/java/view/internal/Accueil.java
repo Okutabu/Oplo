@@ -17,12 +17,12 @@ import view.panel.miniProjectDisplay;
  *
  * @author gaeta
  */
-public class ProjectList extends javax.swing.JInternalFrame {
+public class Accueil extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form Hompage
      */
-    public ProjectList()
+    public Accueil()
     {
         Display.removeBorders(this);
         initComponents();

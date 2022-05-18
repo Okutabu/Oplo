@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import model.UserModel;
 import model.utility.User;
 import view.internal.ApproveUsers;
+import view.internal.HomeNavigationButtonsPanel;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 import view.internal.ProfileView;
 
@@ -27,15 +28,18 @@ public class ApproveUserPanel extends JPanel {
 
     private User user;
     private JPanel main;
+    private HomeNavigationButtonsPanel buttons;
     /**
      * Creates new form ApproveUsersPanel
      * @param user
      * @param main
+     * @param buttons
      */
-    public ApproveUserPanel(User user, JPanel main) {
+    public ApproveUserPanel(User user, JPanel main, HomeNavigationButtonsPanel buttons) {
         initComponents();
         this.user = user;
         this.main = main;
+        this.buttons = buttons;
         stylise(user.getColor());
         initialize();
     }
@@ -83,6 +87,11 @@ public class ApproveUserPanel extends JPanel {
     public JPanel getMain() {
         return this.main;
     }
+    
+    private HomeNavigationButtonsPanel getButtons() {
+        return this.buttons;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -342,7 +351,8 @@ public class ApproveUserPanel extends JPanel {
 
     private void approveUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveUserButtonActionPerformed
         UserModel.approveUser(this);
-        displayRightWindow(new ApproveUsers(getMain()));
+        getButtons().refreshNotifications();
+        displayRightWindow(new ApproveUsers(getMain(), getButtons()));
         
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
@@ -357,7 +367,8 @@ public class ApproveUserPanel extends JPanel {
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         UserModel.revokeUser(this);
-        displayRightWindow(new ApproveUsers(getMain()));
+        getButtons().refreshNotifications();
+        displayRightWindow(new ApproveUsers(getMain(), getButtons()));
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
 

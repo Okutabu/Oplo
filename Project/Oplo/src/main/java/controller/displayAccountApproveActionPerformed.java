@@ -4,12 +4,11 @@
  */
 package controller;
 
-import com.k33ptoo.components.KButton;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 import view.internal.ApproveUsers;
+import view.internal.HomeNavigationButtonsPanel;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 
 /**
@@ -23,9 +22,9 @@ public class displayAccountApproveActionPerformed implements ActionListener {
      * @param main
      */
     private JPanel main;
-    private KButton button;
+    private HomeNavigationButtonsPanel button;
     
-    public displayAccountApproveActionPerformed(JPanel main, KButton button) {
+    public displayAccountApproveActionPerformed(JPanel main, HomeNavigationButtonsPanel button) {
         this.main = main;
         this.button = button;
     }   
@@ -34,23 +33,13 @@ public class displayAccountApproveActionPerformed implements ActionListener {
         return this.main;
     }
     
-    private KButton getButton() {
+    private HomeNavigationButtonsPanel getButton() {
         return this.button;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ApproveUsers approveUsers = new ApproveUsers(getMain());
-        
-        int nbAccounts = approveUsers.getNbAccountToApprove();
-        
-        button.setText("Approuver les comptes");
-        if (nbAccounts != 0) {
-            button.setText(button.getText() + " (" + String.valueOf(nbAccounts) + ")");
-            button.setFont(new Font("Segoe UI Bold", Font.BOLD, 14));
-        } else {
-            button.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
-        }
+        ApproveUsers approveUsers = new ApproveUsers(getMain(), getButton());
         //on ajoute le panel a l'internal frame
         displayRightWindow(approveUsers);
     }

@@ -5,6 +5,7 @@
 package model.utility;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,13 +18,27 @@ public class Project {
     private String start_date;
     private String end_date;
     private String creator_login;
+    private String last_news;
+    private ArrayList<Skill> competences;
     
-    public Project(String name, String description, String start_date, String end_date, String creator_login) {
+    public Project(String name, String description, String start_date, String end_date, String creator_login, String last_news) {
         this.name = name;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
         this.creator_login = creator_login;
+        this.last_news = last_news;
+        this.competences = null;
+    }
+    
+    public Project(String name, String description, String start_date, String end_date, ArrayList<Skill> skills) {
+        this.name = name;
+        this.description = description;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.creator_login = null;
+        this.last_news = null;
+        this.competences = skills;
     }
     
     public String getName() {
@@ -46,5 +61,12 @@ public class Project {
         return this.creator_login;
     }
     
+    public String getLastNews() {
+        return this.last_news;
+    }
+    
+    public ArrayList<Skill> getCompetences() {
+        return this.competences;
+    }
     
 }

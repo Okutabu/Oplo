@@ -4,6 +4,7 @@
  */
 package view.internal;
 
+import com.k33ptoo.components.KButton;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Set;
@@ -24,13 +25,16 @@ import view.panel.ApproveUserPanel;
 public class ApproveUsers extends javax.swing.JInternalFrame {
 
     private JPanel main;
-    private int nbAccountToApprove;
+    private HomeNavigationButtonsPanel button;
     /**
      * Creates new form ApproveUsers
+     * @param main
+     * @param button
      */
-    public ApproveUsers(JPanel main) {
+    public ApproveUsers(JPanel main, HomeNavigationButtonsPanel button) {
         initComponents();
         this.main = main;
+        this.button = button;
         Display.removeBorders(this);
         this.getContentPane().setBackground(new Color(35, 35, 40));
         initialize();
@@ -87,7 +91,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                    
                    User user = new User(login, firstname, surname, admin, role, description, pp);
                    
-                   ApproveUserPanel userPanel = new ApproveUserPanel(user, getMain());
+                   ApproveUserPanel userPanel = new ApproveUserPanel(user, getMain(), this.button);
                    //ajout au jpanel
                    innerPanel.add(userPanel);
 
@@ -96,7 +100,6 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         }
         //ajout du panel dans le scrollPane
         approveScrollPane.setViewportView(innerPanel);
-        setNbAccountToApprove(cptAccounts);
 
     }
     
@@ -108,13 +111,6 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         return this.main;
     }
     
-    public void setNbAccountToApprove(int nb) {
-        this.nbAccountToApprove = nb;
-    }
-    
-    public int getNbAccountToApprove() {
-        return this.nbAccountToApprove;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.

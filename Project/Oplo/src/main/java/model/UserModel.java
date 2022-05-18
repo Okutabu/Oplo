@@ -1,6 +1,6 @@
 package model;
 
-import view.internal.ProjectList;
+import view.internal.Accueil;
 import view.internal.ModifyProfile;
 import view.internal.Registration;
 import view.panel.ApproveUserPanel;
@@ -144,7 +144,7 @@ public class UserModel
         s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&login=" + loginS);
     }
     
-    public static ArrayList<Project> InitializeProjectList(ProjectList source)
+    public static ArrayList<Project> InitializeProjectList(Accueil source)
     {
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
@@ -176,7 +176,7 @@ public class UserModel
                    String creator_login = (String) newObj.get("creator_login");
                    
                    
-                   Project projet = new Project(name, description, start_date, end_date, creator_login);
+                   Project projet = new Project(name, description, start_date, end_date, creator_login, "yo");
                    projects.add(projet);
                 }               
             }

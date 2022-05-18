@@ -12,7 +12,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import model.utility.UserConnected;
-import view.internal.ProjectList;
+import view.internal.Accueil;
 import view.internal.HomeUserInfo;
 import view.internal.HomeNavigationButtonsPanel;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
@@ -69,7 +69,7 @@ public class Home extends javax.swing.JFrame {
     
     public void initMain()
     {
-        ProjectList accueil = new ProjectList();
+        Accueil accueil = new Accueil();
         main.add(accueil).setVisible(true);
         currentWindow = accueil;
     }
@@ -173,7 +173,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void logoLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoLabelMouseClicked
-        ProjectList p = new ProjectList();
+        Accueil p = new Accueil();
         displayRightWindow(p);
     }//GEN-LAST:event_logoLabelMouseClicked
 

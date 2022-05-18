@@ -4,20 +4,22 @@
  */
 package view.panel;
 
+import java.util.ArrayList;
 import model.utility.Project;
+import model.utility.Skill;
 
 /**
  *
  * @author gaeta
  */
-public class miniProjectDisplay extends javax.swing.JPanel {
+public class miniProjectDisplayResponsable extends javax.swing.JPanel {
 
     private Project project;
     /**
      * Creates new form miniProjectDisplay
      * @param p
      */
-    public miniProjectDisplay(Project p) {
+    public miniProjectDisplayResponsable(Project p) {
         this.project = p;
         initComponents();
         initialize();
@@ -28,7 +30,14 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         beginDate.setText(getProject().getStart_date());
         finalDate.setText(getProject().getEnd_date());
         description.setText(getProject().getDescription());
-        lastNews.setText(getProject().getLastNews());
+        
+        ArrayList<Skill> SkillsList = getProject().getCompetences();
+        Skills.setText("");
+        for(int i = 0 ; i < SkillsList.size() ; i++) {
+            Skill skill = SkillsList.get(i);
+            Skills.setText(Skills.getText() + String.valueOf(skill.getNb()) + "x " + skill.getNom() + "\n");
+        }
+        
         creator.setText(getProject().getCreator_login());
     }
 
@@ -52,7 +61,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         description = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        lastNews = new javax.swing.JTextArea();
+        Skills = new javax.swing.JTextArea();
         creator = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(70, 70, 100));
@@ -101,22 +110,22 @@ public class miniProjectDisplay extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Dernière nouvelle");
+        jLabel5.setText("Compétences demandées");
 
-        lastNews.setEditable(false);
-        lastNews.setBackground(new java.awt.Color(70, 70, 100));
-        lastNews.setColumns(20);
-        lastNews.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lastNews.setForeground(new java.awt.Color(255, 255, 255));
-        lastNews.setLineWrap(true);
-        lastNews.setRows(4);
-        lastNews.setAutoscrolls(false);
-        lastNews.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(9, 184, 255), 2));
-        lastNews.setFocusable(false);
-        lastNews.setOpaque(false);
-        lastNews.setRequestFocusEnabled(false);
-        lastNews.setVerifyInputWhenFocusTarget(false);
-        jScrollPane2.setViewportView(lastNews);
+        Skills.setEditable(false);
+        Skills.setBackground(new java.awt.Color(70, 70, 100));
+        Skills.setColumns(20);
+        Skills.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        Skills.setForeground(new java.awt.Color(255, 255, 255));
+        Skills.setLineWrap(true);
+        Skills.setRows(4);
+        Skills.setAutoscrolls(false);
+        Skills.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(9, 184, 255), 2));
+        Skills.setFocusable(false);
+        Skills.setOpaque(false);
+        Skills.setRequestFocusEnabled(false);
+        Skills.setVerifyInputWhenFocusTarget(false);
+        jScrollPane2.setViewportView(Skills);
 
         creator.setFont(new java.awt.Font("Segoe UI", 2, 14)); // NOI18N
         creator.setForeground(new java.awt.Color(9, 184, 255));
@@ -180,6 +189,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Skills;
     private javax.swing.JLabel beginDate;
     private javax.swing.JLabel creator;
     private javax.swing.JTextArea description;
@@ -188,7 +198,6 @@ public class miniProjectDisplay extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea lastNews;
     private javax.swing.JLabel title;
     // End of variables declaration//GEN-END:variables
 }

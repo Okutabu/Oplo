@@ -7,6 +7,7 @@ package view.internal;
 import controller.displayAccountApproveActionPerformed;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Font;
 import model.utility.Display;
 import model.utility.UserConnected;
 import javax.swing.JInternalFrame;
@@ -31,6 +32,8 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         initComponents();
         this.getContentPane().setBackground(new Color(102, 102, 102));
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
+        refreshNotifications();
+                
         displayAccountApprove.setCursor(new Cursor(Cursor.HAND_CURSOR));
         displayAddProject.setCursor(new Cursor(Cursor.HAND_CURSOR));
         displayAssocierPersonnel.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -38,7 +41,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         profile.setCursor(new Cursor(Cursor.HAND_CURSOR));
         
         //ajout d'un action listener sur approuver les comptes 
-        displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(main,displayAccountApprove));
+        displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(main,this));
     }
     
     private void AdjustButtonFromPermission()
@@ -73,6 +76,19 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         main.removeAll();
         Home.setCurrentWindow(f);
         main.add(f).setVisible(true);
+    }
+    
+    public void refreshNotifications() {
+        
+        int nbAccounts = 5;
+        
+        displayAccountApprove.setText("Approuver les comptes");
+        if (nbAccounts != 0) {
+            displayAccountApprove.setText(displayAccountApprove.getText() + " (" + String.valueOf(nbAccounts) + ")");
+            displayAccountApprove.setFont(new Font("Segoe UI Bold", Font.BOLD, 14));
+        } else {
+            displayAccountApprove.setFont(new Font("Segoe UI Semibold", Font.PLAIN, 14));
+        }
     }
 
     /**
@@ -210,7 +226,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void displayHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayHomeActionPerformed
-        ProjectList p = new ProjectList();
+        Accueil p = new Accueil();
         displayRightWindow(p);
     }//GEN-LAST:event_displayHomeActionPerformed
 
