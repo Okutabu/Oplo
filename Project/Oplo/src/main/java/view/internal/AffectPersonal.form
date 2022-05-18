@@ -28,11 +28,11 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="1" pref="1316" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="1" pref="1317" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
               <Component id="titre" min="-2" pref="311" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="942" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
@@ -72,17 +72,15 @@
                           <Group type="102" attributes="0">
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="orderBy" alignment="3" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="3" groupAlignment="3" attributes="0">
-                                      <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="searchBarProject" linkSize="3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                                      <Component id="searchBarSkill" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel1" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="jLabel2" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="searchBarProject" linkSize="3" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <Component id="searchBarSkill" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="orderBy" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="loupe1" min="-2" pref="25" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
@@ -90,7 +88,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="loupe2" min="-2" pref="25" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -141,7 +139,12 @@
     </Container>
     <Container class="javax.swing.JPanel" name="displayProjects">
       <Properties>
-        <Property name="opaque" type="boolean" value="false"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="46" red="46" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="64" green="46" red="46" type="rgb"/>
+        </Property>
       </Properties>
 
       <Layout>
@@ -236,6 +239,19 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="displayPersonal">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="3c" green="28" red="28" type="rgb"/>
+        </Property>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder thickness="2">
+              <Color PropertyName="color" blue="ff" green="ff" red="ff" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+        <Property name="opaque" type="boolean" value="false"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>

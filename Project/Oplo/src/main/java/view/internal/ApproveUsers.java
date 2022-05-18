@@ -42,8 +42,6 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
     
     private void initialize() {
         
-        int cptAccounts = 0;
-        
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("getNonApprovedAccount=true");
@@ -75,7 +73,6 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                 
                 for(String key:keys) 
                 {
-                   cptAccounts++;
                    System.out.println(key +" :: "+jsonObject.get(key));
                    Object newJson = jsonObject.get(key);
 
