@@ -75,4 +75,8 @@ public class ServerCommunication
             return "Error while making http POST request on " + urlIn;
         }
     }
+    
+    public String getServerAddr(){
+        return serverAddr;
+    }
 }

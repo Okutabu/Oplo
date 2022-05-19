@@ -11,10 +11,15 @@ package model.utility;
 public class Skill {
     private int nb;
     private String nom;
+    private String descriptif;
     
     public Skill(int nb, String nom) {
         this.nb = nb;
         this.nom = nom;
+    }
+    public Skill( String nom, String desc) {
+        this.nom = nom;
+        this.descriptif = desc;
     }
     
     public int getNb() {

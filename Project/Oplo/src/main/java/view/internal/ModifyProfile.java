@@ -2,14 +2,23 @@ package view.internal;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import model.UserModel;
 import model.utility.Display;
+import model.utility.Project;
 import model.utility.UserConnected;
 import model.utility.ServerCommunication;
+import model.utility.Skill;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import view.*;
 
 /**
@@ -21,10 +30,13 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
     /**
      * Creates new form Profile
      */
+    private UserConnected user = Home.getUser();
+    private boolean add;
+    
     public ModifyProfile()
     {
         initComponents();
-        initDisplay();
+        initDisplay(user);
         this.getContentPane().setBackground(new Color(35,35,40));
         Display.removeBorders(this);
         
@@ -40,17 +52,31 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         }
     }
     
-    public final void initDisplay()
+    public final void initDisplay(UserConnected user)
     {
-        UserConnected user = Home.getUser();
+        
         firstname.setText(user.getFirstname());
         name.setText(user.getSurname());
         id.setText(user.getLogin());
         role.setText(user.getRole());
-        String list_of_skills = ServerCommunication.sendGetRequest("https://oplo.000webhostapp.com/?retrieveAllCompetence=true");
-        firstname.setText(list_of_skills);
-        skillSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { list_of_skills }));
+        ArrayList<String> list_of_skills = LoadSkillList();
+        swapButton.setText("Ajouter");
+        this.add = true;
         
+        approveButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                if (add){
+                    addSkillToUser();
+                }
+                else
+                {removeSkillFromUser();}
+            }
+        });
+        
+        for(String name:list_of_skills)
+        {
+            skillSelector.addItem(name);
+        }
         if (user.getAdmin())
         {
             admin.setText("Oui");
@@ -61,7 +87,73 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         }
         bioInputField.setText(user.getOthers()); 
     }
+    
+    /**
+     * This method grabs every name from the competence table of the database
+     * @return an array of string
+     */
+     public static ArrayList<String> LoadSkillList()
+    {
+        ServerCommunication s = new ServerCommunication();
+        String res = s.sendGetRequest("retrieveAllCompetence=true");
+        System.out.print(res);
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;         
+        
+        ArrayList<String> competences = new ArrayList<String>();
+        
+        try{
+            
+        
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
+                JSONObject jsonObject = (JSONObject)object;
 
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys)
+                {
+                   competences.add(key);
+                }               
+            }
+        }
+        }
+        catch(NullPointerException e){
+            competences.add("erreur de chargement");
+        }
+        return competences;
+    }
+     /**
+      * change le boolean d'ajout et indique à l'utlisateur la nouvelle utilité du bouton
+      */
+     public void swapAddVariable(){
+         this.add = !this.add;
+         swapButton.setText(swapButtonText(this.add));
+     }
+     /**
+      * 
+      * @param condition un pivot de décision
+      * @return le text adéquat du bouton de swap
+      */
+     public String swapButtonText(boolean condition){
+         String res;
+         if (condition){
+             res = "Ajouter";
+         }
+         else{res = "Supprimer";}
+         return res;
+     }
+     
+     public void addSkillToUser(){
+         ServerCommunication s = new ServerCommunication();
+         //s.sendPostRequest("competenceName=NomDeLaCompetence&login=LOGIN_USER" , );
+     }
+     
+     public void removeSkillFromUser(){
+         system.out.print("yo lets remove things")
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,7 +189,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         skillSelector = new javax.swing.JComboBox<>();
         swapButton = new javax.swing.JButton();
-        ApproveButton = new javax.swing.JButton();
+        approveButton = new javax.swing.JButton();
 
         setBorder(new javax.swing.border.MatteBorder(null));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -210,21 +302,20 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Compétences");
 
-        skillSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         skillSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 skillSelectorActionPerformed(evt);
             }
         });
 
-        swapButton.setText("jButton1");
+        swapButton.setText("Ajouter");
         swapButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 swapButtonActionPerformed(evt);
             }
         });
 
-        ApproveButton.setText("jButton2");
+        approveButton.setText("Ok");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -293,7 +384,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                                 .addGap(34, 34, 34)
                                 .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(ApproveButton)))
+                                .addComponent(approveButton)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -353,7 +444,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(swapButton)
-                            .addComponent(ApproveButton))
+                            .addComponent(approveButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(modifResultLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -390,6 +481,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
 
     private void swapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_swapButtonActionPerformed
             // TODO add your handling code here:
+            swapAddVariable();
     }//GEN-LAST:event_swapButtonActionPerformed
 
     private void skillSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skillSelectorActionPerformed
@@ -398,8 +490,8 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ApproveButton;
     private javax.swing.JLabel admin;
+    private javax.swing.JButton approveButton;
     public javax.swing.JTextArea bioInputField;
     private javax.swing.JLabel firstname;
     private javax.swing.JLabel id;

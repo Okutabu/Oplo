@@ -105,7 +105,7 @@
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Component id="skillSelector" min="-2" pref="182" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="ApproveButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="approveButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -181,7 +181,7 @@
                           <Component id="jLabel9" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="skillSelector" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="swapButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ApproveButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="approveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   </Group>
@@ -463,12 +463,7 @@
     <Component class="javax.swing.JComboBox" name="skillSelector">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
+          <StringArray count="0"/>
         </Property>
       </Properties>
       <Events>
@@ -480,15 +475,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="swapButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton1"/>
+        <Property name="text" type="java.lang.String" value="Ajouter"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="swapButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="ApproveButton">
+    <Component class="javax.swing.JButton" name="approveButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jButton2"/>
+        <Property name="text" type="java.lang.String" value="Ok"/>
       </Properties>
     </Component>
   </SubComponents>
