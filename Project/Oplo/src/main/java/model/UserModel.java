@@ -168,7 +168,6 @@ public class UserModel
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   System.out.print(newObj);
                    String name = (String) newObj.get("name");
                    String description = (String) newObj.get("description");
                    String start_date = (String) newObj.get("start_date");

@@ -12,6 +12,7 @@ import model.utility.Display;
 import model.utility.UserConnected;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
+import model.utility.ServerCommunication;
 import view.*;
 
 /**
@@ -80,7 +81,9 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     
     public void refreshNotifications() {
         
-        int nbAccounts = 5;
+        ServerCommunication s = new ServerCommunication();
+        
+        int nbAccounts = Integer.parseInt(s.sendGetRequest("userNotApprovedNum=true"));
         
         displayAccountApprove.setText("Approuver les comptes");
         if (nbAccounts != 0) {
