@@ -43,11 +43,14 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
     public final void initDisplay()
     {
         UserConnected user = Home.getUser();
+        ServerCommunication s = new ServerCommunication();
+        String res = s.sendGetRequest("retrieveProjects&login=" + user.getLogin());
+        String list_of_skills = s.sendGetRequest("https://oplo.000webhostapp.com/?retrieveAllCompetence=true");
+        
         firstname.setText(user.getFirstname());
         name.setText(user.getSurname());
         id.setText(user.getLogin());
         role.setText(user.getRole());
-        String list_of_skills = ServerCommunication.sendGetRequest("https://oplo.000webhostapp.com/?retrieveAllCompetence=true");
         firstname.setText(list_of_skills);
         skillSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { list_of_skills }));
         

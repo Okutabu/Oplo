@@ -168,15 +168,16 @@ public class UserModel
                    Object newJson = jsonObject.get(key);
 
                    JSONObject newObj = (JSONObject)newJson;
-                   
+                   System.out.print(newObj);
                    String name = (String) newObj.get("name");
                    String description = (String) newObj.get("description");
                    String start_date = (String) newObj.get("start_date");
                    String end_date = (String) newObj.get("end_date");
                    String creator_login = (String) newObj.get("creator_login");
+                   String last_news = (String) newObj.get("last_news");
                    
                    
-                   Project projet = new Project(name, description, start_date, end_date, creator_login, "yo");
+                   Project projet = new Project(name, description, start_date, end_date, creator_login, last_news);
                    projects.add(projet);
                 }               
             }
