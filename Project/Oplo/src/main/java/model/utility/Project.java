@@ -31,12 +31,12 @@ public class Project {
         this.competences = null;
     }
     
-    public Project(String name, String description, String start_date, String end_date, ArrayList<Skill> skills) {
+    public Project(String name, String description, String start_date, String end_date, String creator_login, ArrayList<Skill> skills) {
         this.name = name;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
-        this.creator_login = null;
+        this.creator_login = creator_login;
         this.last_news = null;
         this.competences = skills;
     }
