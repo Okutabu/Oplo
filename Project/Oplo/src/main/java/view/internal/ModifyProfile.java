@@ -152,7 +152,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
      }
      
      public void removeSkillFromUser(){
-         system.out.print("yo lets remove things")
+         System.out.print("yo lets remove things");
      }
     /**
      * This method is called from within the constructor to initialize the form.
