@@ -71,7 +71,7 @@ public class ServerCommunication
             
             return response.toString().trim();
         }
-        catch(Exception e)
+        catch(IOException e)
         {
             return "Error while making http POST request on " + urlIn;
         }
