@@ -30,6 +30,8 @@ public class UserModel
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
+        System.out.println(c);
+        
         if (connectionInfos.containsKey("error"))
         {
             view.infoConnect.setText((String) connectionInfos.get("error"));
@@ -148,7 +150,8 @@ public class UserModel
     {
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
-        String res = s.sendGetRequest("retrieveProjects&login=" + user.getLogin());
+        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "homeProjects=true&login=" + user.getLogin());
+        System.out.print(res);
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
