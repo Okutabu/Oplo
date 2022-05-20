@@ -35,12 +35,15 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         AdjustButtonFromPermission();//THIS FUNCTION MAKES VISIBLE OR NOT CERTAIN BUTTON FOLLOWING THE ROLE OF THE USER
         refreshApproveAccountNotifs();
         refreshProjectsNotifs();
+        
+        Cursor hand = new Cursor(Cursor.HAND_CURSOR);
                 
-        displayAccountApprove.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        displayAddProject.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        displayAssocierPersonnel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        displayHome.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        profile.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        displayAccountApprove.setCursor(hand);
+        displayAddProject.setCursor(hand);
+        displayAssocierPersonnel.setCursor(hand);
+        displayHome.setCursor(hand);
+        profile.setCursor(hand);
+        displayProjectList.setCursor(hand);
         
         //ajout d'un action listener sur approuver les comptes 
         displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(this));
