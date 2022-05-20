@@ -32,7 +32,6 @@ public class ProjectList extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form ApproveUsers
-     * @param buttons
      */
     public ProjectList() {
         initComponents();
@@ -253,7 +252,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
 
     private void auteurBoolStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_auteurBoolStateChanged
         if (auteurBool.isSelected()) {
-            
+
         }
     }//GEN-LAST:event_auteurBoolStateChanged
 

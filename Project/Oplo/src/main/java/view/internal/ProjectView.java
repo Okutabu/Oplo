@@ -279,6 +279,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
 
         NewsInputField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 2, true));
 
+        SendNewsBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SendNewsBtn.setPreferredSize(new java.awt.Dimension(50, 50));
 
         MembersListPanel.setBackground(new java.awt.Color(102, 102, 102));
