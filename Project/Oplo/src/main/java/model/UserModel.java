@@ -194,4 +194,13 @@ public class UserModel
         return projects;
     }
     
+    public static void changePassword(String newPassword)
+    {
+        UserConnected user = Home.getUser();
+        String login = user.getLogin();
+        
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("newPassword=" + newPassword + "&userLogin=" + login);
+    }
+    
 }
