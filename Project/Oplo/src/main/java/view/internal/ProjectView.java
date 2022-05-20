@@ -83,7 +83,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     public void retrieveToDoList()
     {
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectTodoList&projectName=" + model.getProjectName());
+        String res = s.sendPostRequest("retrieveProjectTodoList&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
@@ -134,7 +134,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         NewsPanel.removeAll();
         
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveProjectNews&projectName=" + model.getProjectName());
+        String res = s.sendPostRequest("retrieveProjectNews&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
@@ -190,7 +190,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     public void retrieveMembersList()
     {
         ServerCommunication s = new ServerCommunication();
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveMembersList&projectName=" + model.getProjectName());
+        String res = s.sendPostRequest("retrieveMembersList&projectName=" + model.getProjectName());
         
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(new EmptyBorder(15, 15, 15, 15));

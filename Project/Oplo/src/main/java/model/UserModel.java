@@ -26,7 +26,7 @@ public class UserModel
     {
         ServerCommunication s = new ServerCommunication();
         
-        String c = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
+        String c = s.sendPostRequest("login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
@@ -96,7 +96,7 @@ public class UserModel
         String bio = source.others.getText();
         String picName = "profile.png"; // a randomiser
         
-        String inscription = s.sendPostRequest("https://oplo.000webhostapp.com/", "login=" + identifiant + "&password=" + motPasse + 
+        String inscription = s.sendPostRequest("login=" + identifiant + "&password=" + motPasse + 
                 "&role=" + role1 + "&admin=" + administrateur + "&firstname=" + prenom + "&surname=" + nom + "&others=" + bio + "&profile_pic=" + picName);
         
         if (inscription.equals("ok"))
@@ -118,7 +118,7 @@ public class UserModel
         String newOthers = source.bioInputField.getText();
         
         ServerCommunication s = new ServerCommunication();
-        String req = s.sendPostRequest("https://oplo.000webhostapp.com/", "updateOthers=true&login=" + user.getLogin() + "&others=" + newOthers);
+        String req = s.sendPostRequest("updateOthers=true&login=" + user.getLogin() + "&others=" + newOthers);
         
         if(req.equals("ok"))
         {
@@ -142,7 +142,7 @@ public class UserModel
         String loginS = source.userLogin.getText();
         
         ServerCommunication s = new ServerCommunication();
-        System.out.println(s.sendPostRequest("https://oplo.000webhostapp.com/", "approveAccount=true&login=" + loginS));
+        System.out.println(s.sendPostRequest("approveAccount=true&login=" + loginS));
     }
     
     public static void revokeUser(ApproveUserPanel source)
@@ -150,14 +150,14 @@ public class UserModel
         String loginS = source.userLogin.getText();
         
         ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "revokeAccount=true&login=" + loginS);
+        s.sendPostRequest("revokeAccount=true&login=" + loginS);
     }
     
     public static ArrayList<Project> InitializeProjectList(Accueil source)
     {
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "homeProjects=true&login=" + user.getLogin());
+        String res = s.sendPostRequest("homeProjects=true&login=" + user.getLogin());
         System.out.print(res);
         
         Object o = JSONValue.parse(res);

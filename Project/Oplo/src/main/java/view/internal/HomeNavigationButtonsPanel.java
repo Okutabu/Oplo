@@ -107,7 +107,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         UserConnected user = Home.getUser();
         String login = user.getLogin();
         
-        int nbProjects = Integer.parseInt(s.sendPostRequest("https://oplo.000webhostapp.com/", "numberOfProjects=true&login=" + login));
+        int nbProjects = Integer.parseInt(s.sendPostRequest("numberOfProjects=true&login=" + login));
         
         displayProjectList.setText("Mes projets");
         if (nbProjects != 0) {

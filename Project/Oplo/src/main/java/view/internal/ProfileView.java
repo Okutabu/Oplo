@@ -119,7 +119,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
     private ArrayList<String> retrieveSkills(){
         ServerCommunication s = new ServerCommunication();
         
-        String res = s.sendPostRequest("https://oplo.000webhostapp.com/", "retrieveCompetence=" + getUser().getLogin());
+        String res = s.sendPostRequest("retrieveCompetence=" + getUser().getLogin());
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         

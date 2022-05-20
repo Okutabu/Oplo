@@ -43,11 +43,11 @@ public class ServerCommunication
         }
     }
     
-    public String sendPostRequest(String urlIn, String param)
+    public String sendPostRequest(String param)
     {
          try
          {
-            URL myurl = new URL(urlIn);
+            URL myurl = new URL("https://oplo.000webhostapp.com/");
             HttpURLConnection httpUrl =(HttpURLConnection)myurl.openConnection();
             httpUrl.setRequestMethod("POST");
             httpUrl.setDoOutput(true);
@@ -73,7 +73,7 @@ public class ServerCommunication
         }
         catch(IOException e)
         {
-            return "Error while making http POST request on " + urlIn + " " + e.getMessage();
+            return "Error while making http POST request on " + "https://oplo.000webhostapp.com/" + " " + e.getMessage();
         }
     }
     

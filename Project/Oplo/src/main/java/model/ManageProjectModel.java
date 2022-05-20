@@ -27,7 +27,7 @@ public class ManageProjectModel {
         String newsContent = view.getNewsInput();
         
         ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "sendProjectNews&projectName=" + projectName.toString() + "&newsContent=" + newsContent);
+        s.sendPostRequest("sendProjectNews&projectName=" + projectName.toString() + "&newsContent=" + newsContent);
         
         view.setNewsInput("");
         view.retrieveNews();
