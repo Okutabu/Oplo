@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.UserModel;
+import model.utility.ServerCommunication;
 import model.utility.User;
 import view.internal.ApproveUsers;
 import view.internal.HomeNavigationButtonsPanel;
@@ -353,6 +354,20 @@ public class ApproveUserPanel extends JPanel {
         UserModel.approveUser(this);
         getButtons().refreshNotifications();
         displayRightWindow(new ApproveUsers(getMain(), getButtons()));
+        
+        ServerCommunication s = new ServerCommunication();
+        String login = userLogin.getText();
+        int admin = 0;
+        
+        if (adminButtonGroup.getSelection().equals(yesChoice.getModel())) {
+            admin = 1;
+        }
+        
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "adminStatus=" + admin + "&login=" + login);
+        
+        String role = (String) roleChoice.getSelectedItem();
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "roleStatus=" + role + "&login=" + login);
+        
         
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
