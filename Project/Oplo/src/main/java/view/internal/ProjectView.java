@@ -33,6 +33,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
 
     private ManageProjectModel model;
     private JPanel NewsPanel;
+    private JPanel TodoPanel;
     
     public ProjectView(String projectName)
     {
@@ -43,12 +44,16 @@ public class ProjectView extends javax.swing.JInternalFrame {
         this.model = new ManageProjectModel(this, projectName);
 
         projectNameLabel.setText(projectName);
-        TodoPanel.setLayout(new GridLayout(10, 1));
         NewsPanel = new JPanel();
         NewsPanel.setBackground(new Color(102, 102, 102));
         NewsPanel.setLayout(new BoxLayout(NewsPanel, javax.swing.BoxLayout.Y_AXIS));
         NewsPanel.setMaximumSize(new Dimension(400, 400));
-        TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+        
+        TodoPanel = new JPanel();
+        TodoPanel.setBackground(new Color(102, 102, 102));
+        TodoPanel.setLayout(new BoxLayout(TodoPanel, javax.swing.BoxLayout.Y_AXIS));
+        //TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
+        
         SendNewsBtn.addMouseListener(new SendMessagesController(model, this));
         
         projectOwnerLabel.setText("Chef de projet : " + model.getCreator());
@@ -110,6 +115,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     
                     String taskTitle = newObj.get("title").toString();
                     CheckboxLinkedToTask checkbox = new CheckboxLinkedToTask(taskTitle, model);
+                    checkbox.setSize(30, 30);
                     checkbox.setOpaque(true);
                     checkbox.setBackground(new Color(61, 61, 72));
                     
@@ -125,13 +131,15 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     line.add(checkbox);
                     JLabel label = new JLabel(newObj.get("title").toString());
                     label.setOpaque(true);
-                    checkbox.setBackground(new Color(61, 61, 72));
+                    label.setBackground(new Color(61, 61, 72));
                     label.setForeground(Color.WHITE);
                     line.add(label);
                     TodoPanel.add(line);
                 }               
             }
         }
+        
+        TodoScrollPanel.setViewportView(TodoPanel);
         revalidate();
     }
     
@@ -255,7 +263,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
         projectNameLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TodoPanel = new javax.swing.JPanel();
         NewsInputField = new javax.swing.JTextField();
         SendNewsBtn = new javax.swing.JLabel();
         MembersListPanel = new javax.swing.JScrollPane();
@@ -264,6 +271,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         addTaskBtn = new com.k33ptoo.components.KButton();
         newTaskInputField = new javax.swing.JTextField();
         projectOwnerLabel = new javax.swing.JLabel();
+        TodoScrollPanel = new javax.swing.JScrollPane();
 
         setPreferredSize(new java.awt.Dimension(1320, 1080));
 
@@ -278,21 +286,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Todo list :");
-
-        TodoPanel.setBackground(new java.awt.Color(61, 61, 72));
-        TodoPanel.setForeground(new java.awt.Color(61, 61, 72));
-        TodoPanel.setMaximumSize(new java.awt.Dimension(32767, 350));
-
-        javax.swing.GroupLayout TodoPanelLayout = new javax.swing.GroupLayout(TodoPanel);
-        TodoPanel.setLayout(TodoPanelLayout);
-        TodoPanelLayout.setHorizontalGroup(
-            TodoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        TodoPanelLayout.setVerticalGroup(
-            TodoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 347, Short.MAX_VALUE)
-        );
 
         NewsInputField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(9, 184, 255), 2, true));
 
@@ -322,6 +315,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
         projectOwnerLabel.setForeground(new java.awt.Color(255, 255, 255));
         projectOwnerLabel.setText("Chef de projet :");
 
+        TodoScrollPanel.setMaximumSize(new java.awt.Dimension(185, 285));
+        TodoScrollPanel.setMinimumSize(new java.awt.Dimension(185, 285));
+        TodoScrollPanel.setPreferredSize(new java.awt.Dimension(185, 285));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -340,16 +337,15 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     .addComponent(projectOwnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 593, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(TodoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(28, 28, 28))
-                        .addComponent(MembersListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(newTaskInputField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(addTaskBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(MembersListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newTaskInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TodoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addTaskBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -364,14 +360,14 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(newTaskInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TodoScrollPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(newTaskInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(addTaskBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(MembersListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(NewsScrollView, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -381,7 +377,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                             .addComponent(NewsInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(projectOwnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         pack();
@@ -393,7 +389,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     private javax.swing.JTextField NewsInputField;
     private javax.swing.JScrollPane NewsScrollView;
     private javax.swing.JLabel SendNewsBtn;
-    private javax.swing.JPanel TodoPanel;
+    private javax.swing.JScrollPane TodoScrollPanel;
     private com.k33ptoo.components.KButton addTaskBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
