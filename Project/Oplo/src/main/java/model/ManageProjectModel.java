@@ -37,4 +37,17 @@ public class ManageProjectModel {
     {
         return projectName;
     }
+    
+    public void createNewTask(String taskName)
+    {
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("newTask=true&taskName=" + taskName + "&projectName=" + projectName);
+        view.retrieveToDoList();
+    }
+    
+    public void changeTaskStatus(int state, String taskName)
+    {
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("changeTodoState=true&state=" + Integer.toString(state) + "&todoName=" + taskName + "&projectName=" + projectName);
+    }
 }

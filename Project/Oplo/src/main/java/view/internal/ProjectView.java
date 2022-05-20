@@ -4,6 +4,7 @@
  */
 package view.internal;
 
+import view.CheckboxLinkedToTask;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -21,13 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import model.utility.*;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import org.json.simple.*;
 import view.*;
 import controller.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import model.*;
 /**
  *
@@ -35,9 +32,6 @@ import model.*;
  */
 public class ProjectView extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form NewJInternalFrameProjectDisplay
-     */
     private ManageProjectModel model;
     private JPanel NewsPanel;
     
@@ -58,13 +52,16 @@ public class ProjectView extends javax.swing.JInternalFrame {
         TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         SendNewsBtn.addMouseListener(new SendMessagesController(model, this));
         
+        addTaskBtn.addActionListener(new AddTaskController(model, this));
+        
         retrieveToDoList();
         retrieveNews();
         retrieveMembersList();
         InitSendNews();
     }
     
-    public void InitSendNews() {
+    public void InitSendNews() 
+    {
         //si le='utilisateur est un chef de projet alors il peut envoyer des news
         if (Home.getUser().getRole().equals("Chef de projet")) {
             Image image = null;
@@ -84,6 +81,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     
     public void retrieveToDoList()
     {
+        TodoPanel.removeAll();
         ServerCommunication s = new ServerCommunication();
         String res = s.sendPostRequest("retrieveProjectTodoList&projectName=" + model.getProjectName());
         
@@ -109,14 +107,15 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     JPanel line = new JPanel();
                     line.setLayout(new GridLayout(1, 2));
                     line.setBackground(new Color(0, 0, 0, 0));
-                    int id = Integer.parseInt(newObj.get("id").toString());
-                    checkboxLinkedToId checkbox = new checkboxLinkedToId(id);
-                    checkbox.addActionListener(new ActionListener(){
-                    public void actionPerformed(ActionEvent e){
-                        // what do do
-                    }
-                });
-                    
+                  //  int id = Integer.parseInt(newObj.get("id").toString());
+                    String taskTitle = newObj.get("title").toString();
+                    CheckboxLinkedToTask checkbox = new CheckboxLinkedToTask(taskTitle, model);
+                   // checkbox.addActionListener(new ActionListener(){
+                    //public void actionPerformed(ActionEvent e){
+                   //     // what do do
+                  //  }
+               // });
+                    //JCheckBox checkbox = new JCheckBox();
                     if(Integer.parseInt(newObj.get("done").toString()) == 0)
                     {
                         checkbox.setSelected(false);
@@ -242,6 +241,11 @@ public class ProjectView extends javax.swing.JInternalFrame {
         NewsInputField.setText(val);
     }
     
+    public String getNewTaskInput()
+    {
+        return newTaskInputField.getText();
+    }
+    
     
 
     @SuppressWarnings("unchecked")
@@ -257,6 +261,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
         MembersListPanel = new javax.swing.JScrollPane();
         jLabel1 = new javax.swing.JLabel();
         NewsScrollView = new javax.swing.JScrollPane();
+        addTaskBtn = new com.k33ptoo.components.KButton();
+        newTaskInputField = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1320, 1080));
 
@@ -301,6 +307,14 @@ public class ProjectView extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Les membres");
 
+        addTaskBtn.setText("Ajouter cette tâche");
+        addTaskBtn.setkEndColor(new java.awt.Color(204, 0, 204));
+        addTaskBtn.setkHoverEndColor(new java.awt.Color(255, 0, 255));
+        addTaskBtn.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        addTaskBtn.setkStartColor(new java.awt.Color(204, 0, 204));
+
+        newTaskInputField.setText("Nouvelle tache...");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -314,7 +328,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     .addComponent(NewsScrollView))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SendNewsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 583, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 593, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(TodoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -322,7 +336,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(28, 28, 28))
                         .addComponent(MembersListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(newTaskInputField, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(addTaskBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -338,9 +355,13 @@ public class ProjectView extends javax.swing.JInternalFrame {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(TodoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addGap(45, 45, 45)
+                        .addComponent(newTaskInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(addTaskBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(MembersListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(NewsScrollView, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -348,7 +369,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(SendNewsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(NewsInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addContainerGap(220, Short.MAX_VALUE))
         );
 
         pack();
@@ -361,9 +382,11 @@ public class ProjectView extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane NewsScrollView;
     private javax.swing.JLabel SendNewsBtn;
     private javax.swing.JPanel TodoPanel;
+    private com.k33ptoo.components.KButton addTaskBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField newTaskInputField;
     private javax.swing.JLabel projectNameLabel;
     // End of variables declaration//GEN-END:variables
 }
