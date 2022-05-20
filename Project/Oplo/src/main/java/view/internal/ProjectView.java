@@ -16,7 +16,6 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -52,6 +51,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         TodoPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         SendNewsBtn.addMouseListener(new SendMessagesController(model, this));
         
+        projectOwnerLabel.setText("Chef de projet : " + model.getCreator());
         addTaskBtn.addActionListener(new AddTaskController(model, this));
         
         retrieveToDoList();
@@ -107,15 +107,12 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     JPanel line = new JPanel();
                     line.setLayout(new GridLayout(1, 2));
                     line.setBackground(new Color(0, 0, 0, 0));
-                  //  int id = Integer.parseInt(newObj.get("id").toString());
+                    
                     String taskTitle = newObj.get("title").toString();
                     CheckboxLinkedToTask checkbox = new CheckboxLinkedToTask(taskTitle, model);
-                   // checkbox.addActionListener(new ActionListener(){
-                    //public void actionPerformed(ActionEvent e){
-                   //     // what do do
-                  //  }
-               // });
-                    //JCheckBox checkbox = new JCheckBox();
+                    checkbox.setOpaque(true);
+                    checkbox.setBackground(new Color(61, 61, 72));
+                    
                     if(Integer.parseInt(newObj.get("done").toString()) == 0)
                     {
                         checkbox.setSelected(false);
@@ -127,6 +124,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     
                     line.add(checkbox);
                     JLabel label = new JLabel(newObj.get("title").toString());
+                    label.setOpaque(true);
+                    checkbox.setBackground(new Color(61, 61, 72));
                     label.setForeground(Color.WHITE);
                     line.add(label);
                     TodoPanel.add(line);
@@ -165,6 +164,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     line.setBackground(new Color(0, 0, 0, 50));
  
                     JTextArea content = new JTextArea(newObj.get("title").toString());
+                    content.setOpaque(true);
                     content.setEditable(false);    
                     content.setWrapStyleWord(true);
                     content.setLineWrap(true);
@@ -263,6 +263,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         NewsScrollView = new javax.swing.JScrollPane();
         addTaskBtn = new com.k33ptoo.components.KButton();
         newTaskInputField = new javax.swing.JTextField();
+        projectOwnerLabel = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1320, 1080));
 
@@ -304,6 +305,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         MembersListPanel.setMinimumSize(new java.awt.Dimension(213, 300));
         MembersListPanel.setPreferredSize(new java.awt.Dimension(213, 300));
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Les membres :");
 
@@ -315,19 +317,27 @@ public class ProjectView extends javax.swing.JInternalFrame {
 
         newTaskInputField.setText("Nouvelle tache...");
 
+        projectOwnerLabel.setBackground(new java.awt.Color(255, 255, 255));
+        projectOwnerLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        projectOwnerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        projectOwnerLabel.setText("Chef de projet :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(NewsInputField, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(projectNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(NewsScrollView))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SendNewsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NewsInputField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(projectNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(NewsScrollView))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(SendNewsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(projectOwnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 593, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -336,10 +346,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(28, 28, 28))
                         .addComponent(MembersListPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(newTaskInputField, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(addTaskBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(addTaskBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34))
         );
         layout.setVerticalGroup(
@@ -368,8 +378,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(SendNewsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(NewsInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(220, Short.MAX_VALUE))
+                            .addComponent(NewsInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(projectOwnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         pack();
@@ -388,5 +400,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField newTaskInputField;
     private javax.swing.JLabel projectNameLabel;
+    private javax.swing.JLabel projectOwnerLabel;
     // End of variables declaration//GEN-END:variables
 }

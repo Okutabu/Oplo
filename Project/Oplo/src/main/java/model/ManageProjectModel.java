@@ -15,11 +15,15 @@ public class ManageProjectModel {
     private ProjectView view;
     
     private String projectName;
+    private String creatorName;
     
     public ManageProjectModel(ProjectView view, String projectName)
     {
         this.view = view;
         this.projectName = projectName;
+        
+        ServerCommunication s = new ServerCommunication();
+        this.creatorName = s.sendPostRequest("retrieveCreatorName=true&projectName=" + projectName);
     }
     
     public void SendNews()
@@ -36,6 +40,11 @@ public class ManageProjectModel {
     public String getProjectName()
     {
         return projectName;
+    }
+    
+    public String getCreator()
+    {
+        return creatorName;
     }
     
     public void createNewTask(String taskName)
