@@ -26,6 +26,7 @@ public class Registration extends javax.swing.JInternalFrame {
     
     private javax.swing.JFrame parentTemp;
        private boolean add;
+       private boolean canCommunicateWithServer = true;
     /**
      * Creates new form Registration
      * @param parent
@@ -34,25 +35,45 @@ public class Registration extends javax.swing.JInternalFrame {
     {
         Display.removeBorders(this);
         initComponents();
-        jButton2.setText("Ajouter");
+        swapButton.setText("Ajouter");
         ArrayList<String> list_of_skills = this.LoadSkillList();
-        jButton2.addActionListener(new ActionListener() {
+        swapButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 swapAddVariable();
             }
         });
-        jButton1.addActionListener(new ActionListener() {
+        approveButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e){
                 if (add){
                     addSkillToUser();
+                    addSkillToField();
                 }
                 else
-                {removeSkillFromUser();}
+                {removeSkillFromUser();
+                removeSkillFromField();}
+            }
+
+            private void removeSkillFromField() {
+                chosenSkills.removeItem((String)skillToAddOrRemove.getSelectedItem());
+            }
+
+            private void addSkillToField() {
+                 boolean exists = false;
+                for (int index = 0; index < chosenSkills.getItemCount() && !exists; index++) {
+                if (skillToAddOrRemove.getSelectedItem().equals(chosenSkills.getItemAt(index))) {
+                                exists = true;
+                }
+            }
+            if (!exists && canCommunicateWithServer) {
+              chosenSkills.addItem((String)skillToAddOrRemove.getSelectedItem());
+            }
+                
+                
             }
         });
         for(String name:list_of_skills)
         {
-            skill1.addItem(name);
+            skillToAddOrRemove.addItem(name);
         }
         this.getContentPane().setBackground(new Color(35,35,40));
         this.parentTemp = parent;
@@ -93,10 +114,15 @@ public class Registration extends javax.swing.JInternalFrame {
         yes = new javax.swing.JRadioButton();
         no = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
-        skill1 = new javax.swing.JComboBox<>();
+        skillToAddOrRemove = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        approveButton = new javax.swing.JButton();
+        swapButton = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        chosenSkills = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(35, 35, 40));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -202,10 +228,10 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel12.setForeground(java.awt.Color.white);
         jLabel12.setText("Compétences");
 
-        skill1.setMaximumRowCount(25);
-        skill1.addActionListener(new java.awt.event.ActionListener() {
+        skillToAddOrRemove.setMaximumRowCount(25);
+        skillToAddOrRemove.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                skill1ActionPerformed(evt);
+                skillToAddOrRemoveActionPerformed(evt);
             }
         });
 
@@ -216,9 +242,21 @@ public class Registration extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setText("Ok");
+        approveButton.setText("Ok");
 
-        jButton2.setLabel("swapButton");
+        swapButton.setLabel("swapButton");
+
+        jLabel13.setForeground(java.awt.Color.white);
+        jLabel13.setText("Mes compétences");
+
+        jLabel14.setForeground(java.awt.Color.white);
+        jLabel14.setText("Compétences");
+
+        jLabel15.setForeground(java.awt.Color.white);
+        jLabel15.setText("Compétences");
+
+        jLabel16.setForeground(java.awt.Color.white);
+        jLabel16.setText("Compétences");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,30 +282,36 @@ public class Registration extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel9))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(firstname, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(surname)
-                                            .addComponent(login))
-                                        .addGap(82, 82, 82)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(firstname, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(password, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(surname)
+                                                    .addComponent(login))
+                                                .addGap(82, 82, 82))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(52, 52, 52)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel12))
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel13))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton2)
+                                        .addComponent(swapButton)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(role, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(yes)
-                                            .addComponent(no)
-                                            .addComponent(skill1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(yes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(no, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(skillToAddOrRemove, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(chosenSkills, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(approveButton)
                         .addGap(1, 1, 1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(397, 397, 397)
@@ -277,17 +321,25 @@ public class Registration extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(373, 373, 373)
                         .addComponent(inscription, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 431, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
                 .addComponent(infosInscription, javax.swing.GroupLayout.PREFERRED_SIZE, 871, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(595, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGap(325, 325, 325)))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2, jLabel3, jLabel4});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {no, role, skill1, yes});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {no, role, skillToAddOrRemove, yes});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel10, jLabel11, jLabel12});
 
@@ -317,15 +369,22 @@ public class Registration extends javax.swing.JInternalFrame {
                             .addComponent(no))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel12)
-                                .addComponent(skill1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton1)
-                                .addComponent(jButton2)))
-                        .addGap(13, 13, 13)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(surname, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(skillToAddOrRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(approveButton)
+                                    .addComponent(swapButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(chosenSkills, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -336,7 +395,7 @@ public class Registration extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4)
                         .addGap(38, 38, 38)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 417, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(profile)
@@ -351,11 +410,20 @@ public class Registration extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(infosInscription, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(440, 440, 440)
+                    .addComponent(jLabel14)
+                    .addGap(212, 212, 212)
+                    .addComponent(jLabel15)
+                    .addGap(212, 212, 212)
+                    .addComponent(jLabel16)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {firstname, jLabel1, jLabel10, jLabel11, jLabel12, jLabel2, jLabel3, jLabel4, jLabel5, jLabel8, jLabel9, login, no, password, profile, role, skill1, surname, yes});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {firstname, jLabel1, jLabel10, jLabel11, jLabel12, jLabel2, jLabel3, jLabel4, jLabel5, jLabel8, jLabel9, login, no, password, profile, role, skillToAddOrRemove, surname, yes});
 
-        jButton1.getAccessibleContext().setAccessibleName("approveButton");
+        approveButton.getAccessibleContext().setAccessibleName("approveButton");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -394,9 +462,9 @@ public class Registration extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_noActionPerformed
 
-    private void skill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skill1ActionPerformed
+    private void skillToAddOrRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skillToAddOrRemoveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_skill1ActionPerformed
+    }//GEN-LAST:event_skillToAddOrRemoveActionPerformed
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         this.setVisible(false);
@@ -434,13 +502,14 @@ public class Registration extends javax.swing.JInternalFrame {
         }
         catch(NullPointerException e){
             competences.add("erreur de chargement");
+            this.canCommunicateWithServer = false;
         }
         return competences;
     }
     
     public void swapAddVariable(){
          this.add = !this.add;
-         jButton2.setText(swapButtonText(this.add));
+         swapButton.setText(swapButtonText(this.add));
      }
      /**
       * 
@@ -468,15 +537,19 @@ public class Registration extends javax.swing.JInternalFrame {
        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.ButtonGroup admin;
+    private javax.swing.JButton approveButton;
+    private javax.swing.JComboBox<String> chosenSkills;
     public javax.swing.JTextField firstname;
     public javax.swing.JLabel infosInscription;
     private javax.swing.JToggleButton inscription;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -493,8 +566,9 @@ public class Registration extends javax.swing.JInternalFrame {
     public javax.swing.JPasswordField password;
     public javax.swing.JToggleButton profile;
     public javax.swing.JComboBox<String> role;
-    private javax.swing.JComboBox<String> skill1;
+    private javax.swing.JComboBox<String> skillToAddOrRemove;
     public javax.swing.JTextField surname;
+    private javax.swing.JButton swapButton;
     public javax.swing.JRadioButton yes;
     // End of variables declaration//GEN-END:variables
 }
