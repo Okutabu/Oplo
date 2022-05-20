@@ -92,11 +92,10 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
      * This method grabs every name from the competence table of the database
      * @return an array of string
      */
-     public static ArrayList<String> LoadSkillList()
+     public ArrayList<String> LoadSkillList()
     {
         ServerCommunication s = new ServerCommunication();
         String res = s.sendGetRequest("retrieveAllCompetence=true");
-        System.out.print(res);
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
         
@@ -152,7 +151,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
      }
      
      public void removeSkillFromUser(){
-         system.out.print("yo lets remove things")
+         System.out.print("yo lets remove things");
      }
     /**
      * This method is called from within the constructor to initialize the form.
