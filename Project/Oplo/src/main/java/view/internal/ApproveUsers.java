@@ -73,10 +73,11 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                 
                 for(String key:keys) 
                 {
-                   System.out.println(key +" :: "+jsonObject.get(key));
-                   Object newJson = jsonObject.get(key);
 
+                   Object newJson = jsonObject.get(key);
+                   
                    JSONObject newObj = (JSONObject)newJson;
+
                    //recuperation des infos
                    String firstname = newObj.get("firstname").toString();
                    String surname = newObj.get("surname").toString();
@@ -86,7 +87,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                    String pp = newObj.get("profile_pic").toString();
                    String description = newObj.get("others").toString();
                    
-                   User user = new User(login, firstname, surname, admin, role, description, pp);
+                   User user = new User(login, firstname, surname, admin, role, description, pp, false);
                    
                    ApproveUserPanel userPanel = new ApproveUserPanel(user, getMain(), this.button);
                    //ajout au jpanel
@@ -169,7 +170,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 716, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pack();

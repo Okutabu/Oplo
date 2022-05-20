@@ -18,6 +18,7 @@ public class User {
     private String role;
     private String others;
     private String profile_pic;
+    private boolean approved;
     private Color color;
     
     public User(String id, String prenom, String nom, String administrateur, String role1, String description, String photo){
@@ -28,6 +29,7 @@ public class User {
         this.role = role1;
         this.others = description;
         this.profile_pic = photo;
+        this.approved = true;
         switch (role1) {
             case "Chef de projet" -> { this.color = new Color(128, 0, 255);
                 break;
@@ -39,6 +41,11 @@ public class User {
                 break;
             }
         }
+    }
+    
+    public User(String id, String prenom, String nom, String administrateur, String role1, String description, String photo, boolean approved){
+        this(id, prenom, nom, administrateur, role1, description, photo);
+        this.approved = approved;
     }
     
     public String getLogin(){
@@ -76,5 +83,9 @@ public class User {
     public void setOthers(String othersValue)
     {
         this.others = othersValue;
+    }
+    
+    public boolean getApproved() {
+        return this.approved;
     }
 }
