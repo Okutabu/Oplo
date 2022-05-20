@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.UserModel;
+import model.utility.ServerCommunication;
 import model.utility.User;
 import view.internal.ApproveUsers;
 import view.internal.HomeNavigationButtonsPanel;
@@ -27,18 +28,15 @@ import view.internal.ProfileView;
 public class ApproveUserPanel extends JPanel {
 
     private User user;
-    private JPanel main;
     private HomeNavigationButtonsPanel buttons;
     /**
      * Creates new form ApproveUsersPanel
      * @param user
-     * @param main
      * @param buttons
      */
-    public ApproveUserPanel(User user, JPanel main, HomeNavigationButtonsPanel buttons) {
+    public ApproveUserPanel(User user, HomeNavigationButtonsPanel buttons) {
         initComponents();
         this.user = user;
-        this.main = main;
         this.buttons = buttons;
         stylise(user.getColor());
         initialize();
@@ -81,11 +79,6 @@ public class ApproveUserPanel extends JPanel {
     
     public User getUser() {
         return this.user;
-    }
-    
-    
-    public JPanel getMain() {
-        return this.main;
     }
     
     private HomeNavigationButtonsPanel getButtons() {
@@ -351,8 +344,22 @@ public class ApproveUserPanel extends JPanel {
 
     private void approveUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveUserButtonActionPerformed
         UserModel.approveUser(this);
-        getButtons().refreshNotifications();
-        displayRightWindow(new ApproveUsers(getMain(), getButtons()));
+        getButtons().refreshApproveAccountNotifs();
+        displayRightWindow(new ApproveUsers(getButtons()));
+        
+        ServerCommunication s = new ServerCommunication();
+        String login = userLogin.getText();
+        int admin = 0;
+        
+        if (adminButtonGroup.getSelection().equals(yesChoice.getModel())) {
+            admin = 1;
+        }
+        
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "adminStatus=" + admin + "&login=" + login);
+        
+        String role = (String) roleChoice.getSelectedItem();
+        s.sendPostRequest("https://oplo.000webhostapp.com/", "roleStatus=" + role + "&login=" + login);
+        
         
     }//GEN-LAST:event_approveUserButtonActionPerformed
 
@@ -367,8 +374,8 @@ public class ApproveUserPanel extends JPanel {
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
         UserModel.revokeUser(this);
-        getButtons().refreshNotifications();
-        displayRightWindow(new ApproveUsers(getMain(), getButtons()));
+        getButtons().refreshApproveAccountNotifs();
+        displayRightWindow(new ApproveUsers(getButtons()));
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
 

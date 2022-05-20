@@ -4,7 +4,6 @@
  */
 package view.internal;
 
-import com.k33ptoo.components.KButton;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.Set;
@@ -24,16 +23,13 @@ import view.panel.ApproveUserPanel;
  */
 public class ApproveUsers extends javax.swing.JInternalFrame {
 
-    private JPanel main;
     private HomeNavigationButtonsPanel button;
     /**
      * Creates new form ApproveUsers
-     * @param main
      * @param button
      */
-    public ApproveUsers(JPanel main, HomeNavigationButtonsPanel button) {
+    public ApproveUsers(HomeNavigationButtonsPanel button) {
         initComponents();
-        this.main = main;
         this.button = button;
         Display.removeBorders(this);
         this.getContentPane().setBackground(new Color(35, 35, 40));
@@ -54,8 +50,8 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(null);
         int nbComptes = jsonArray.size();
-        if (nbComptes < 5) {
-            innerPanel.setLayout(new GridLayout(5, 1, 5, 15));
+        if (nbComptes < 4) {
+            innerPanel.setLayout(new GridLayout(4, 1, 5, 15));
         } else {
             innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 15));
         }
@@ -73,10 +69,11 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                 
                 for(String key:keys) 
                 {
-                   System.out.println(key +" :: "+jsonObject.get(key));
-                   Object newJson = jsonObject.get(key);
 
+                   Object newJson = jsonObject.get(key);
+                   
                    JSONObject newObj = (JSONObject)newJson;
+
                    //recuperation des infos
                    String firstname = newObj.get("firstname").toString();
                    String surname = newObj.get("surname").toString();
@@ -86,9 +83,9 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                    String pp = newObj.get("profile_pic").toString();
                    String description = newObj.get("others").toString();
                    
-                   User user = new User(login, firstname, surname, admin, role, description, pp);
+                   User user = new User(login, firstname, surname, admin, role, description, pp, false);
                    
-                   ApproveUserPanel userPanel = new ApproveUserPanel(user, getMain(), this.button);
+                   ApproveUserPanel userPanel = new ApproveUserPanel(user, this.button);
                    //ajout au jpanel
                    innerPanel.add(userPanel);
 
@@ -104,9 +101,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         displayRightWindow(this);
     }
     
-    private JPanel getMain() {
-        return this.main;
-    }
+
     
 
     /**
@@ -138,7 +133,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 13, Short.MAX_VALUE)
+            .addGap(0, 8, Short.MAX_VALUE)
         );
 
         approveScrollPane.setBackground(new java.awt.Color(35, 35, 40));
@@ -157,19 +152,19 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                         .addGap(70, 70, 70)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                        .addGap(19, 19, 19)
                         .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();

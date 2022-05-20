@@ -4,7 +4,6 @@
  */
 package model.utility;
 
-import java.sql.Date;
 import java.util.ArrayList;
 
 /**
