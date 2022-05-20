@@ -26,6 +26,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.*;
 import controller.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.*;
 /**
  *
@@ -107,7 +109,13 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     JPanel line = new JPanel();
                     line.setLayout(new GridLayout(1, 2));
                     line.setBackground(new Color(0, 0, 0, 0));
-                    JCheckBox checkbox = new JCheckBox();
+                    int id = Integer.parseInt(newObj.get("id").toString());
+                    checkboxLinkedToId checkbox = new checkboxLinkedToId(id);
+                    checkbox.addActionListener(new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        // what do do
+                    }
+                });
                     
                     if(Integer.parseInt(newObj.get("done").toString()) == 0)
                     {
@@ -233,6 +241,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
     {
         NewsInputField.setText(val);
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
