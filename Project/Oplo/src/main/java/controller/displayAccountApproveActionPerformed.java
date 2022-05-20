@@ -17,20 +17,11 @@ import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
  */
 public class displayAccountApproveActionPerformed implements ActionListener {
     
-    /**
-     *
-     * @param main
-     */
-    private JPanel main;
+
     private HomeNavigationButtonsPanel button;
     
-    public displayAccountApproveActionPerformed(JPanel main, HomeNavigationButtonsPanel button) {
-        this.main = main;
+    public displayAccountApproveActionPerformed(HomeNavigationButtonsPanel button) {
         this.button = button;
-    }   
-    
-    private JPanel getMain() {
-        return this.main;
     }
     
     private HomeNavigationButtonsPanel getButton() {
@@ -39,7 +30,7 @@ public class displayAccountApproveActionPerformed implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ApproveUsers approveUsers = new ApproveUsers(getMain(), getButton());
+        ApproveUsers approveUsers = new ApproveUsers(getButton());
         //on ajoute le panel a l'internal frame
         displayRightWindow(approveUsers);
     }

@@ -6,14 +6,21 @@ package view.internal;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.Set;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 import model.utility.User;
+import model.utility.UserConnected;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import view.Home;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 import view.panel.ApproveUserPanel;
 
@@ -21,24 +28,44 @@ import view.panel.ApproveUserPanel;
  *
  * @author gaeta
  */
-public class ApproveUsers extends javax.swing.JInternalFrame {
+public class ProjectList extends javax.swing.JInternalFrame {
 
-    private HomeNavigationButtonsPanel button;
     /**
      * Creates new form ApproveUsers
-     * @param button
+     * @param buttons
      */
-    public ApproveUsers(HomeNavigationButtonsPanel button) {
+    public ProjectList() {
         initComponents();
-        this.button = button;
         Display.removeBorders(this);
         this.getContentPane().setBackground(new Color(35, 35, 40));
         initialize();
     }
     
+    private void adjustFromPermission() {
+        UserConnected user = Home.getUser();
+        String role = user.getRole();
+   
+        if(!role.equals("Chef de projet"))
+        {
+            auteurBool.setVisible(false);
+        }
+    }
+    
     private void initialize() {
         
-        ServerCommunication s = new ServerCommunication();
+        adjustFromPermission();
+        
+        Image image = null;
+        try {
+            
+            image = ImageIO.read(new File("src/main/java/resources/loupe2.png"));
+            Image scaled = image.getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+            loupe.setIcon(new ImageIcon(scaled));
+        } 
+        catch (IOException e) {
+        }
+        
+        /*ServerCommunication s = new ServerCommunication();
 
         String res = s.sendGetRequest("getNonApprovedAccount=true");
         
@@ -85,7 +112,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
                    
                    User user = new User(login, firstname, surname, admin, role, description, pp, false);
                    
-                   ApproveUserPanel userPanel = new ApproveUserPanel(user, this.button);
+                   ApproveUserPanel userPanel = new ApproveUserPanel(user, getMain(), this.buttons);
                    //ajout au jpanel
                    innerPanel.add(userPanel);
 
@@ -94,14 +121,12 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         }
         //ajout du panel dans le scrollPane
         approveScrollPane.setViewportView(innerPanel);
-
+*/
     }
     
-    public void update() {
-        displayRightWindow(this);
+    public void search(boolean onlyAuteur, String projectSearched) {
+        
     }
-    
-
     
 
     /**
@@ -116,11 +141,15 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         approveScrollPane = new javax.swing.JScrollPane();
+        jLabel2 = new javax.swing.JLabel();
+        searchBarProject = new javax.swing.JTextField();
+        loupe = new javax.swing.JLabel();
+        auteurBool = new javax.swing.JCheckBox();
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Approuver les comptes des personnels");
+        jLabel1.setText("Mes projets");
 
         jPanel2.setForeground(new java.awt.Color(102, 102, 102));
         jPanel2.setPreferredSize(new java.awt.Dimension(1698, 5));
@@ -141,25 +170,69 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         approveScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         approveScrollPane.setPreferredSize(new java.awt.Dimension(1698, 1073));
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Rechercher un projet");
+
+        searchBarProject.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        searchBarProject.setPreferredSize(new java.awt.Dimension(54, 22));
+        searchBarProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarProjectActionPerformed(evt);
+            }
+        });
+
+        loupe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        auteurBool.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        auteurBool.setForeground(new java.awt.Color(255, 255, 255));
+        auteurBool.setText("Seulement les projets dont je suis auteur");
+        auteurBool.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                auteurBoolStateChanged(evt);
+            }
+        });
+        auteurBool.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                auteurBoolActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1308, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
+                .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(auteurBool)
+                .addGap(68, 68, 68)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loupe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(auteurBool))
+                            .addComponent(loupe, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -170,11 +243,29 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void searchBarProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarProjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchBarProjectActionPerformed
+
+    private void auteurBoolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_auteurBoolActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_auteurBoolActionPerformed
+
+    private void auteurBoolStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_auteurBoolStateChanged
+        if (auteurBool.isSelected()) {
+            
+        }
+    }//GEN-LAST:event_auteurBoolStateChanged
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane approveScrollPane;
+    private javax.swing.JCheckBox auteurBool;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel loupe;
+    private javax.swing.JTextField searchBarProject;
     // End of variables declaration//GEN-END:variables
 
 }
