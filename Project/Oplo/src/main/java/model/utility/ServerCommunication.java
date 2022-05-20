@@ -73,7 +73,7 @@ public class ServerCommunication
         }
         catch(IOException e)
         {
-            return "Error while making http POST request on " + urlIn + e.getMessage();
+            return "Error while making http POST request on " + urlIn + " " + e.getMessage();
         }
     }
     
