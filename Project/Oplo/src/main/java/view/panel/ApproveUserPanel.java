@@ -355,10 +355,10 @@ public class ApproveUserPanel extends JPanel {
             admin = 1;
         }
         
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "adminStatus=" + admin + "&login=" + login);
+        s.sendPostRequest("adminStatus=" + admin + "&login=" + login);
         
         String role = (String) roleChoice.getSelectedItem();
-        s.sendPostRequest("https://oplo.000webhostapp.com/", "roleStatus=" + role + "&login=" + login);
+        s.sendPostRequest("roleStatus=" + role + "&login=" + login);
         
         
     }//GEN-LAST:event_approveUserButtonActionPerformed
