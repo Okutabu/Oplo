@@ -103,8 +103,11 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
     public void refreshProjectsNotifs() {
         
         ServerCommunication s = new ServerCommunication();
-        //TO CHANGE
-        int nbProjects = Integer.parseInt(s.sendGetRequest("userNotApprovedNum=true"));
+        
+        UserConnected user = Home.getUser();
+        String login = user.getLogin();
+        
+        int nbProjects = Integer.parseInt(s.sendPostRequest("https://oplo.000webhostapp.com/", "numberOfProjects=true&login=" + login));
         
         displayProjectList.setText("Mes projets");
         if (nbProjects != 0) {
