@@ -30,6 +30,8 @@ public class UserModel
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
+        System.out.println(c);
+        
         if (connectionInfos.containsKey("error"))
         {
             view.infoConnect.setText((String) connectionInfos.get("error"));
