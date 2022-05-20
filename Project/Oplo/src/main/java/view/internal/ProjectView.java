@@ -305,7 +305,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         MembersListPanel.setPreferredSize(new java.awt.Dimension(213, 300));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Les membres");
+        jLabel1.setText("Les membres :");
 
         addTaskBtn.setText("Ajouter cette tâche");
         addTaskBtn.setkEndColor(new java.awt.Color(204, 0, 204));
