@@ -8,6 +8,8 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.utility.Project;
+import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
+import view.internal.ProjectView;
 
 /**
  *
@@ -39,6 +41,8 @@ public class ProjectLineDisplay extends JPanel {
         startDate.setText(p.getStart_date());
         createur.setText(p.getCreator_login());
         desc.setText(p.getDescription());
+        
+        //quand on clique sur le projet ca nous envoie ou il faut
     }
     
     public Project getProjet() {
@@ -64,8 +68,14 @@ public class ProjectLineDisplay extends JPanel {
 
         setBackground(new java.awt.Color(35, 35, 40));
         setForeground(new java.awt.Color(35, 35, 40));
-        setMaximumSize(new java.awt.Dimension(1650, 165));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setMaximumSize(new java.awt.Dimension(1250, 67));
         setPreferredSize(new java.awt.Dimension(1250, 67));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         titre.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         titre.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,10 +119,10 @@ public class ProjectLineDisplay extends JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(endDate, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(desc, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                .addComponent(desc, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(createur, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,6 +138,11 @@ public class ProjectLineDisplay extends JPanel {
                 .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        ProjectView p = new ProjectView(titre.getText());
+        displayRightWindow(p);
+    }//GEN-LAST:event_formMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
