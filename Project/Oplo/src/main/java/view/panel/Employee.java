@@ -5,7 +5,14 @@
 package view.panel;
 
 import java.util.ArrayList;
+import model.utility.ServerCommunication;
+import model.utility.User;
 import model.utility.UserAndSkills;
+import model.utility.UserConnected;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
+import view.internal.ProfileView;
 
 /**
  *
@@ -35,6 +42,41 @@ public class Employee extends javax.swing.JPanel {
             skills.setText(skills.getText() + competence + "\n");
         }
     }
+    
+    private void openProfile() {
+        String login = getUser().getLogin();
+        
+        ServerCommunication s = new ServerCommunication();
+        
+        String c = s.sendPostRequest("login=" + login);
+        
+        Object o = JSONValue.parse(c);
+        JSONObject connectionInfos = (JSONObject) o;
+        
+        try
+        {
+            //Met a jour la classe User avec les infos de l'utilisateur, sorte de cache pour la session
+            String prenom = (String) connectionInfos.get("firstname");
+            String nom = (String) connectionInfos.get("surname");
+            String admin = String.valueOf(connectionInfos.get("admin"));
+            String role = (String) connectionInfos.get("role");
+            String description = (String) connectionInfos.get("others");
+            String photo = (String) connectionInfos.get("profile_pic");
+            String approved = (String) connectionInfos.get("approved");
+            
+            boolean isApproved = true;
+            if(approved.equals("0")) isApproved = false;
+            
+            User utilisateur = new User(login, prenom, nom, admin, role, description, photo, isApproved);
+            
+            ProfileView p = new ProfileView(utilisateur);
+            displayRightWindow(p);
+        } catch (Exception e) {
+            
+        }
+        
+        
+    }
 
     private UserAndSkills getUser() {
         return this.user;
@@ -53,18 +95,29 @@ public class Employee extends javax.swing.JPanel {
         skills = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(40, 40, 46));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        names.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         names.setForeground(new java.awt.Color(255, 255, 255));
         names.setText("nom prénom + nbProjet");
+        names.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                namesMouseClicked(evt);
+            }
+        });
 
         skills.setEditable(false);
         skills.setBackground(new java.awt.Color(45, 45, 52));
         skills.setColumns(14);
         skills.setForeground(new java.awt.Color(255, 255, 255));
         skills.setRows(3);
+        skills.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         skills.setOpaque(false);
         skills.setSelectionColor(new java.awt.Color(45, 45, 52));
+        skills.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                skillsMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(skills);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -77,12 +130,20 @@ public class Employee extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(names)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(names, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void namesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_namesMouseClicked
+        openProfile();
+    }//GEN-LAST:event_namesMouseClicked
+
+    private void skillsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skillsMouseClicked
+        openProfile();
+    }//GEN-LAST:event_skillsMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

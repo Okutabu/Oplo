@@ -111,7 +111,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
         }
     }
     
-    
     public void retrieveToDoList()
     {
         TodoPanel.removeAll();
@@ -313,7 +312,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     {
         ServerCommunication s = new ServerCommunication();
         String res = s.sendPostRequest("retrieveMembersList&projectName=" + model.getProjectName());
-        
+        System.out.println(res);
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         innerPanel.setBackground(new Color(102, 102, 102));
@@ -322,7 +321,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
         
-        innerPanel.setLayout(new GridLayout(jsonArray.size(), 1));
+        innerPanel.setLayout(new GridLayout(100, 1));
         
         for(Object object:jsonArray)
         {
@@ -334,11 +333,23 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 for(String key:keys)
                 {
                     Object newJson = jsonObject.get(key);
-                    //JSONObject newObj = (JSONObject)newJson;  
+                    JSONObject newObj = (JSONObject)newJson;  
 
-                    JLabel newLabel = new JLabel(key);
+                    JLabel newLabel = new JLabel(newObj.get("fullname").toString());
+                    
                     newLabel.setForeground(Color.white);
                     innerPanel.add(newLabel);
+                    
+                    UserConnected user = Home.getUser();
+                    
+                    System.out.println("array login :" + newObj.get("login").toString() + " login :" +user.getLogin());
+                    
+                    if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()))
+                    { 
+                        RemoveUserBtn removeLabel = new RemoveUserBtn("X", newObj.get("login").toString(), model);
+                        removeLabel.setForeground(Color.red);  
+                        innerPanel.add(removeLabel);
+                    }
                 }               
             }
         }

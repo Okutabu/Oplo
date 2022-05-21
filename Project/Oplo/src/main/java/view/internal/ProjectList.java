@@ -75,7 +75,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
 
         String res = s.sendPostRequest("retrieveProjectFromNamePattern=" + projectSearched + "&onlyAuthor=" + auteur + "&login=" + user.getLogin());
-        System.out.print(res);
+
         Object o = JSONValue.parse(res);
 
         JSONArray jsonArray = (JSONArray) o;
