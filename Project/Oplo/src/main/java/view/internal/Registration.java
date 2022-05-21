@@ -27,6 +27,7 @@ public class Registration extends javax.swing.JInternalFrame {
     private javax.swing.JFrame parentTemp;
        private boolean add;
        private boolean canCommunicateWithServer = true;
+       private File myfile;
     /**
      * Creates new form Registration
      * @param parent
@@ -77,6 +78,10 @@ public class Registration extends javax.swing.JInternalFrame {
         }
         this.getContentPane().setBackground(new Color(35,35,40));
         this.parentTemp = parent;
+    }
+    
+    public File getFile(){
+        return this.myfile;
     }
     
     /**
@@ -429,6 +434,7 @@ public class Registration extends javax.swing.JInternalFrame {
         {
             File file = new File(myJFileChooser.getSelectedFile().getAbsolutePath());
             String name = file.getName();
+            myfile = file;
             chosenFileLabel.setText(name);
             System.out.print(file);
         }
@@ -512,7 +518,7 @@ public class Registration extends javax.swing.JInternalFrame {
          System.out.print("yo lets remove things");
      }
 
-       
+     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.ButtonGroup admin;
     private javax.swing.JButton approveButton;

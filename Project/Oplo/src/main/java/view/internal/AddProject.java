@@ -9,6 +9,12 @@ import java.awt.Color;
 import model.*;
 import controller.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Set;
+import model.utility.ServerCommunication;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 /**
  *
  * @author Mélanie
@@ -29,6 +35,9 @@ public class AddProject extends javax.swing.JInternalFrame {
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
         addHumanNeed.addActionListener(new AddHumanNeedController(this, model));
         removeHumanNeed.addActionListener(new RemoveHumanNeedController(this, model));
+        ArrayList<String> list_of_skills = loadSkillList();
+        loadItemsOnComboBox(list_of_skills);
+        
     }
     
     public void setNeedsArea(String val)
@@ -70,7 +79,44 @@ public class AddProject extends javax.swing.JInternalFrame {
     {
         return new Date(endDate.getDate().getTime());
     }
+    public void loadItemsOnComboBox(ArrayList<String> var){
+        for (String skill:var){
+            skillSelector.addItem(skill);
+        }
+    }
 
+    public ArrayList<String> loadSkillList()
+    {
+        ServerCommunication s = new ServerCommunication();
+        String res = s.sendGetRequest("retrieveAllCompetence=true");
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;         
+        
+        ArrayList<String> competences = new ArrayList<String>();
+        
+        try{
+            
+        
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys)
+                {
+                   competences.add(key);
+                }               
+            }
+        }
+        }
+        catch(NullPointerException e){
+            competences.add("erreur de chargement");
+        }
+        return competences;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -152,7 +198,6 @@ public class AddProject extends javax.swing.JInternalFrame {
         Comp.setText("Compétence :");
 
         skillSelector.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        skillSelector.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Concepteur", "Designer", "Développeur" }));
 
         nbemployecomp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         nbemployecomp.setText("Nombre d'employés :");
@@ -205,7 +250,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                                 .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nbemployecomp))
                             .addComponent(Comp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                         .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addHumanNeed)
                             .addComponent(removeHumanNeed))
