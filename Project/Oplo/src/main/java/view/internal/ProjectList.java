@@ -9,21 +9,17 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
-import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.utility.Display;
 import model.utility.Project;
 import model.utility.ServerCommunication;
-import model.utility.User;
 import model.utility.UserConnected;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.Home;
-import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
-import view.panel.ApproveUserPanel;
 import view.panel.ProjectLineDisplay;
 
 /**
@@ -91,7 +87,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
         if (nbProjects < 10) {
             innerPanel.setLayout(new GridLayout(9, 1, 5, 5));
         } else {
-            innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 5));
+            innerPanel.setLayout(new GridLayout(nbProjects, 1, 5, 5));
         }
         innerPanel.setBackground(new Color(35, 35, 40));
         
