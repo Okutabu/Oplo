@@ -78,7 +78,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
         
         ServerCommunication s = new ServerCommunication();
 
-        String res = s.sendPostRequest("retrieveProjectFromNamePattern=" + "e" + "&onlyAuthor=" + auteur + "&login=" + user.getLogin());
+        String res = s.sendPostRequest("retrieveProjectFromNamePattern=" + projectSearched + "&onlyAuthor=" + auteur + "&login=" + user.getLogin());
         System.out.print(res);
         Object o = JSONValue.parse(res);
 
@@ -89,9 +89,9 @@ public class ProjectList extends javax.swing.JInternalFrame {
         innerPanel.setBorder(null);
         int nbProjects = jsonArray.size();
         if (nbProjects < 10) {
-            innerPanel.setLayout(new GridLayout(9, 1, 5, 10));
+            innerPanel.setLayout(new GridLayout(9, 1, 5, 5));
         } else {
-            innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 10));
+            innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 5));
         }
         innerPanel.setBackground(new Color(35, 35, 40));
         
