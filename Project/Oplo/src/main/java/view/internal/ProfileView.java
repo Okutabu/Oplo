@@ -96,6 +96,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
         if (competences.isEmpty()) {
             titleSkills.setFont(new Font("Segoe UI Bold", Font.BOLD, 14));
             titleSkills.setText("L'utilisateur n'a pas déclaré de compétences.");
+            skills.setVisible(false);
         } else {
             
             JPanel innerPanel = new JPanel();
@@ -106,7 +107,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
             if(nbCompetences < 6) {
                 innerPanel.setLayout(new GridLayout(3, 2));
             } else {
-                innerPanel.setLayout(new GridLayout(nbCompetences, 2));
+                innerPanel.setLayout(new GridLayout(nbCompetences/2 + 1, 2));
             }
             
             for (int i = 0; i < nbCompetences ; i++) {
@@ -126,8 +127,9 @@ public class ProfileView extends javax.swing.JInternalFrame {
         ArrayList<String> projects = retrieveProjects();
         
         if (projects.isEmpty()) {
-            titleSkills.setFont(new Font("Segoe UI Bold", Font.BOLD, 14));
-            titleSkills.setText("L'utilisateur n'est dans aucun projet.");
+            titleProjects.setFont(new Font("Segoe UI Bold", Font.BOLD, 14));
+            titleProjects.setText("L'utilisateur n'est dans aucun projet.");
+            projectsListing.setVisible(false);
         } else {
             
             JPanel innerPanel2 = new JPanel();
@@ -138,7 +140,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
             if(nbProjets < 6) {
                 innerPanel2.setLayout(new GridLayout(3, 2));
             } else {
-                innerPanel2.setLayout(new GridLayout(nbProjets, 2));
+                innerPanel2.setLayout(new GridLayout(nbProjets/2, 2));
             }
             
             for (int i = 0; i < nbProjets ; i++) {
@@ -191,23 +193,26 @@ public class ProfileView extends javax.swing.JInternalFrame {
     
     private ArrayList<String> retrieveProjects(){
         ServerCommunication s = new ServerCommunication();
-        
-        String res = s.sendPostRequest("retrieveCompetence=" + getUser().getLogin());
-        
-        Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;         
-        
-        ArrayList<String> projects = new ArrayList<String>();
 
+        String res = s.sendPostRequest("retrieveProjectFromNamePattern=&onlyAuthor=0&login=" + getUser().getLogin());
+ 
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;
+        
+        ArrayList<String> projets = new ArrayList<String>();
+        
         for(Object object:jsonArray)
         {
-            if(object instanceof JSONObject)
+            if(object instanceof JSONObject) 
             {
-                projects.add((String) object);            
+                JSONObject newObj = (JSONObject)object;
+
+                //recuperation des infos
+                String name = newObj.get("name").toString();
+                projets.add(name);
             }
         }
-        
-        return projects;
+        return projets;
     }
     
     public User getUser() {
@@ -233,7 +238,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
         admin = new javax.swing.JLabel();
         role = new javax.swing.JLabel();
         titleSkills = new javax.swing.JLabel();
-        titleSkills1 = new javax.swing.JLabel();
+        titleProjects = new javax.swing.JLabel();
         projectsListing = new javax.swing.JScrollPane();
         skills = new javax.swing.JScrollPane();
 
@@ -290,10 +295,10 @@ public class ProfileView extends javax.swing.JInternalFrame {
         titleSkills.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleSkills.setText("Compétences :");
 
-        titleSkills1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        titleSkills1.setForeground(new java.awt.Color(255, 255, 255));
-        titleSkills1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titleSkills1.setText("Membre des projets :");
+        titleProjects.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        titleProjects.setForeground(new java.awt.Color(255, 255, 255));
+        titleProjects.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        titleProjects.setText("Membre des projets :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -308,7 +313,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
                             .addComponent(skills))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(titleSkills1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                            .addComponent(titleProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                             .addComponent(projectsListing)))
                     .addComponent(admin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(role, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -341,7 +346,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleSkills, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(titleSkills1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(titleProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(projectsListing, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
@@ -399,7 +404,7 @@ public class ProfileView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel role;
     private javax.swing.JScrollPane skills;
     private javax.swing.JLabel surname;
+    private javax.swing.JLabel titleProjects;
     private javax.swing.JLabel titleSkills;
-    private javax.swing.JLabel titleSkills1;
     // End of variables declaration//GEN-END:variables
 }
