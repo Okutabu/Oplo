@@ -5,16 +5,11 @@
 package model;
 
 import view.internal.AddProject;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.Writer;
-import java.util.ArrayList;
 import model.utility.*;
 import org.json.simple.JSONObject;
 import view.*;
 import java.util.Iterator;
-import java.util.Scanner;
-import org.json.simple.JSONArray;
 /**
  *
  * @author Clément
@@ -34,16 +29,14 @@ public class CreateProjectModel
     {
         String projectName = view.getProjectName();
         String projectDescription = view.getDescription();
-       // String projectStartDate = view.getStartDate();
-       // String projectEndDate = view.getEndDate();
-        String projectStartDate = "";
-        String projectEndDate = "";
+        String projectStartDate = view.getStartDate().toString();
+        String projectEndDate = view.getEndDate().toString();
         String authorLogin = Home.getUser().getLogin();
+                
         
         ServerCommunication s = new ServerCommunication();
         
         System.out.println(s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed));
-        //Move on
     }
     
     public void addHumanNeed(String categorie, int number)

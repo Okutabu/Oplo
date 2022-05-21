@@ -193,7 +193,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="startDate">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-mm-dd"/>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -224,7 +224,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="endDate">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="yyyy-mm-dd"/>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy-MM-dd"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

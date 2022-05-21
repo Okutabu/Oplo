@@ -8,6 +8,7 @@ package view.internal;
 import java.awt.Color;
 import model.*;
 import controller.*;
+import java.sql.Date;
 /**
  *
  * @author Mélanie
@@ -60,14 +61,14 @@ public class AddProject extends javax.swing.JInternalFrame {
         return projectDescription.getText();
     }
     
-    public String getStartDate()
+    public Date getStartDate()
     {
-        return startDate.getDate().toString();
+        return new Date(startDate.getDate().getTime());
     }
     
-    public String getEndDate()
+    public Date getEndDate()
     {
-        return endDate.getDate().toString();
+        return new Date(endDate.getDate().getTime());
     }
 
     /**
@@ -129,7 +130,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         intituleProjet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         intituleProjet.setText("Saisir l'intitulé du projet : ");
 
-        startDate.setDateFormatString("yyyy-mm-dd");
+        startDate.setDateFormatString("yyyy-MM-dd");
 
         datedebut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         datedebut.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,7 +141,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         datefin.setForeground(new java.awt.Color(255, 255, 255));
         datefin.setText("Date de fin de projet :");
 
-        endDate.setDateFormatString("yyyy-mm-dd");
+        endDate.setDateFormatString("yyyy-MM-dd");
 
         competence.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 0), 2, true));
         competence.setMaximumSize(new java.awt.Dimension(425, 85));
