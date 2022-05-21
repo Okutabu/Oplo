@@ -14,7 +14,7 @@ import controller.*;
  */
 public class CheckboxLinkedToTask extends JCheckBox {
     
-    private String taskTitle;
+    /*private String taskTitle;
     private ManageProjectModel model;
     
     public CheckboxLinkedToTask(String title, ManageProjectModel model)
@@ -32,5 +32,5 @@ public class CheckboxLinkedToTask extends JCheckBox {
     public ManageProjectModel getModele()
     {
         return model;
-    }
+    }*/
 }

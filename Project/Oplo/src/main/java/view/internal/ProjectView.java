@@ -24,6 +24,7 @@ import model.utility.*;
 import org.json.simple.*;
 import view.*;
 import controller.*;
+import javax.swing.JCheckBox;
 import model.*;
 /**
  *
@@ -113,7 +114,10 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     line.setBackground(new Color(0, 0, 0, 0));
                     
                     String taskTitle = newObj.get("title").toString();
-                    CheckboxLinkedToTask checkbox = new CheckboxLinkedToTask(taskTitle, model);
+                    //CheckboxLinkedToTask checkbox = new CheckboxLinkedToTask(taskTitle, model);
+                    JCheckBox checkbox = new JCheckBox(taskTitle);
+                    checkbox.setForeground(Color.white);
+                    checkbox.addActionListener(new TaskToggleController(checkbox, model));
                     checkbox.setSize(30, 30);
                     checkbox.setOpaque(true);
                     checkbox.setBackground(new Color(61, 61, 72));
@@ -128,11 +132,11 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     }
                     
                     line.add(checkbox);
-                    JLabel label = new JLabel(newObj.get("title").toString());
-                    label.setOpaque(true);
-                    label.setBackground(new Color(61, 61, 72));
-                    label.setForeground(Color.WHITE);
-                    line.add(label);
+                    //JLabel label = new JLabel(newObj.get("title").toString());
+                    //label.setOpaque(true);
+                    //label.setBackground(new Color(61, 61, 72));
+                    //label.setForeground(Color.WHITE);
+                    //line.add(label);
                     TodoPanel.add(line);
                 }               
             }
