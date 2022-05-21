@@ -446,7 +446,9 @@ public class Registration extends javax.swing.JInternalFrame {
 
     public ArrayList<String> LoadSkillList()
     {
-        String res = ServerCommunication.sendGetRequest("retrieveAllCompetence=true");
+        ServerCommunication s = new ServerCommunication();
+        
+        String res = s.sendGetRequest("retrieveAllCompetence=true");
         System.out.print(res);
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         

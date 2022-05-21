@@ -4,6 +4,8 @@
  */
 package view.panel;
 
+import model.utility.ServerCommunication;
+
 /**
  *
  * @author gaeta
@@ -15,6 +17,11 @@ public class Employee extends javax.swing.JPanel {
      */
     public Employee() {
         initComponents();
+        initialize();
+    }
+    
+    private void initialize(){
+        
     }
 
     /**
@@ -26,34 +33,35 @@ public class Employee extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        names = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        skills = new javax.swing.JTextArea();
 
         setBackground(new java.awt.Color(40, 40, 46));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("nom prénom + nbProjet");
+        names.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        names.setForeground(new java.awt.Color(255, 255, 255));
+        names.setText("nom prénom + nbProjet");
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(45, 45, 52));
-        jTextArea1.setColumns(16);
-        jTextArea1.setRows(4);
-        jTextArea1.setOpaque(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        skills.setEditable(false);
+        skills.setBackground(new java.awt.Color(45, 45, 52));
+        skills.setColumns(16);
+        skills.setRows(4);
+        skills.setOpaque(false);
+        skills.setSelectionColor(new java.awt.Color(45, 45, 52));
+        jScrollPane1.setViewportView(skills);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(names, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(names)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -61,8 +69,8 @@ public class Employee extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel names;
+    private javax.swing.JTextArea skills;
     // End of variables declaration//GEN-END:variables
 }

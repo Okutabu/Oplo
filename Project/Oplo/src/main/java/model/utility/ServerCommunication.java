@@ -16,7 +16,7 @@ public class ServerCommunication
 { 
     private static final String serverAddr = "https://oplo.000webhostapp.com/?";
     
-    public static String sendGetRequest(String urlIn)
+    public String sendGetRequest(String urlIn)
     {
         try
         {

@@ -13,6 +13,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import model.utility.Display;
+import model.utility.ServerCommunication;
 
 /**
  *
@@ -48,6 +49,15 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         }
         
         loupe1.addMouseListener(new searchSkillMouseListener(this, searchBarSkill.getText()));
+        
+        initEmployees();
+    }
+    
+    private void initEmployees() {
+        ServerCommunication s = new ServerCommunication();
+        
+        String res = s.sendGetRequest("allUsers");
+        System.out.print(res);
     }
 
     /**
