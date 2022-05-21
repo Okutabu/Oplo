@@ -70,6 +70,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
         JSONArray jsonArray = (JSONArray) o;
         
+        
+        
         for(Object object:jsonArray)
         {
             if(object instanceof JSONObject) 
@@ -96,7 +98,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                    
                    ProjectLineDisplay p = new ProjectLineDisplay(projet);
                    //ajout au jpanel
-                   innerPanel.add(p);
+                   
 
                 }               
             }

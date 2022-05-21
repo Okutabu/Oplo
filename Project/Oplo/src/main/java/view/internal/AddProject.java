@@ -129,7 +129,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         intituleProjet.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         intituleProjet.setText("Saisir l'intitulé du projet : ");
 
-        startDate.setDateFormatString("d/m/y");
+        startDate.setDateFormatString("yyyy-mm-dd");
 
         datedebut.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         datedebut.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,7 +140,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         datefin.setForeground(new java.awt.Color(255, 255, 255));
         datefin.setText("Date de fin de projet :");
 
-        endDate.setDateFormatString("d/m/y");
+        endDate.setDateFormatString("yyyy-mm-dd");
 
         competence.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 204, 0), 2, true));
         competence.setMaximumSize(new java.awt.Dimension(425, 85));
@@ -182,7 +182,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                     .addComponent(removeHumanNeed, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(competenceLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                         .addComponent(nbemployecomp)
                         .addGap(31, 31, 31)
                         .addComponent(humanNeedNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)

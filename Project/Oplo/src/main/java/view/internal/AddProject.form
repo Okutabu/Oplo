@@ -193,7 +193,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="startDate">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="d/m/y"/>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy-mm-dd"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -224,7 +224,7 @@
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="endDate">
       <Properties>
-        <Property name="dateFormatString" type="java.lang.String" value="d/m/y"/>
+        <Property name="dateFormatString" type="java.lang.String" value="yyyy-mm-dd"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -260,7 +260,7 @@
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="77" max="32767" attributes="0"/>
+                          <EmptySpace pref="80" max="32767" attributes="0"/>
                           <Component id="nbemployecomp" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="humanNeedNumber" min="-2" pref="56" max="-2" attributes="0"/>
