@@ -12,7 +12,6 @@ import model.utility.Project;
 import model.utility.ServerCommunication;
 import model.utility.UserConnected;
 import org.json.simple.JSONArray;
-
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.*;

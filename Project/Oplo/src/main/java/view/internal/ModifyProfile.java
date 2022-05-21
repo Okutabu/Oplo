@@ -486,6 +486,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_modifBioButtonActionPerformed
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+        
         (new ConnexionPanel()).setVisible(true);
         
     }//GEN-LAST:event_jToggleButton2ActionPerformed

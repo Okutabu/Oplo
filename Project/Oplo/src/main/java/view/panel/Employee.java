@@ -5,6 +5,7 @@
 package view.panel;
 
 import model.utility.ServerCommunication;
+import model.utility.UserAndSkills;
 
 /**
  *
@@ -12,18 +13,29 @@ import model.utility.ServerCommunication;
  */
 public class Employee extends javax.swing.JPanel {
 
+    private UserAndSkills user;
     /**
      * Creates new form Employee
+     * @param u
      */
-    public Employee() {
+    public Employee(UserAndSkills u) {
+        this.user = u;
         initComponents();
         initialize();
     }
     
     private void initialize(){
+        UserAndSkills user = getUser();
+        names.setText(user.getName());
         
+        for(String key:user.getCompetences()){
+            
+        }
     }
 
+    private UserAndSkills getUser() {
+        return this.user;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -4,21 +4,16 @@
  */
 package controller;
 
-import java.awt.Color;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
-import javax.swing.JPanel;
 import model.utility.Project;
 import model.utility.ServerCommunication;
-import model.utility.User;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.internal.AffectPersonal;
-import view.panel.ApproveUserPanel;
 
 /**
  *
