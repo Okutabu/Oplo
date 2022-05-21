@@ -23,7 +23,12 @@ import model.utility.*;
 import org.json.simple.*;
 import view.*;
 import controller.*;
+import java.awt.Adjustable;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import javax.swing.JCheckBox;
+import javax.swing.JScrollBar;
+import javax.swing.JScrollPane;
 import model.*;
 /**
  *
@@ -300,6 +305,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         }
         
         MessageScrollPanel.setViewportView(MessagePanel);
+        scrollToBottom(MessageScrollPanel);
         revalidate();
     }
     
@@ -358,6 +364,19 @@ public class ProjectView extends javax.swing.JInternalFrame {
     public String getMessageInputValue()
     {
         return jTextField1.getText();
+    }
+    
+    private void scrollToBottom(JScrollPane scrollPane) {
+    JScrollBar verticalBar = scrollPane.getVerticalScrollBar();
+    AdjustmentListener downScroller = new AdjustmentListener() {
+        @Override
+        public void adjustmentValueChanged(AdjustmentEvent e) {
+            Adjustable adjustable = e.getAdjustable();
+            adjustable.setValue(adjustable.getMaximum());
+            verticalBar.removeAdjustmentListener(this);
+        }
+    };
+    verticalBar.addAdjustmentListener(downScroller);
     }
 
     @SuppressWarnings("unchecked")
