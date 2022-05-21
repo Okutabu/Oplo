@@ -26,14 +26,14 @@ public class Employee extends javax.swing.JPanel {
     }
     
     private void initialize(){
-        UserAndSkills user = getUser();
-        String name = user.getName();
-        ArrayList<String> competences = user.getCompetences();
+        UserAndSkills utilisateur = getUser();
+        String name = utilisateur.getName();
+        ArrayList<String> competences = utilisateur.getCompetences();
         
-        names.setText(name);
+        names.setText(name + " (" + user.getNbProjets() + ")");
         
-        for(String key:competences){
-            skills.setText(skills.getText() + "");
+        for(String competence:competences){
+            skills.setText(skills.getText() + competence + "\n");
         }
     }
 
