@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ import model.utility.UserAndSkills;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import view.panel.Employee;
 import view.panel.ProjectLineDisplay;
 
 /**
@@ -82,7 +84,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 for(String key:keys) 
                 {
 
-                    UserAndSkills user = new UserAndSkills();
+                    
                     
                     Object newJson = jsonObject.get(key);
 
@@ -90,14 +92,13 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
                     //recuperation des infos
                     String name = newObj.get("name").toString();
-                    String description = newObj.get("description").toString();
-                    String start_date = newObj.get("start_date").toString();
-                    String end_date = newObj.get("end_date").toString();
-                    String creator_login = newObj.get("creator_login").toString();
+                    String numberOfProject = newObj.get("numberOfProject").toString();
 
-                    Project projet = new Project(name, description, start_date, end_date, creator_login);
-
-                    ProjectLineDisplay p = new ProjectLineDisplay(projet);
+                    ArrayList<String> competences = new ArrayList<String>();
+                    
+                    UserAndSkills user = new UserAndSkills(name, competences, numberOfProject);
+                    
+                    Employee e = new Employee(user);
                     //ajout au jpanel
                    
 
