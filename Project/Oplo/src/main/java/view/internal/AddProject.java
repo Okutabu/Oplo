@@ -114,6 +114,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         humanNeedsArea = new javax.swing.JScrollPane();
         humanNeedArea = new javax.swing.JTextArea();
+        errorDisplay = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -255,6 +256,8 @@ public class AddProject extends javax.swing.JInternalFrame {
         humanNeedArea.setRows(5);
         humanNeedsArea.setViewportView(humanNeedArea);
 
+        errorDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -298,8 +301,11 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addGap(80, 80, 80)
                         .addComponent(humanNeedsArea, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(463, 463, 463)
-                        .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(460, 460, 460)
+                        .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(340, 340, 340)
+                        .addComponent(errorDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -330,13 +336,15 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(62, 62, 62)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(competence, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(humanNeedsArea, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(296, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(errorDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(293, Short.MAX_VALUE))
         );
 
         pack();
@@ -356,6 +364,7 @@ public class AddProject extends javax.swing.JInternalFrame {
     private javax.swing.JLabel datedebut;
     private javax.swing.JLabel datefin;
     public com.toedter.calendar.JDateChooser endDate;
+    private javax.swing.JLabel errorDisplay;
     public javax.swing.JLabel errorResult;
     private javax.swing.JTextArea humanNeedArea;
     private com.toedter.components.JSpinField humanNeedNumber;
