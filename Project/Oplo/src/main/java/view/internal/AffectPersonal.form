@@ -188,8 +188,8 @@
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="6">
             <StringItem index="0" value="Trier par"/>
-            <StringItem index="1" value="Date : plus r&#xe9;cent d&apos;abord"/>
-            <StringItem index="2" value="Date : plus ancien d&apos;abord"/>
+            <StringItem index="1" value="Date de d&#xe9;part : plus tot d&apos;abord"/>
+            <StringItem index="2" value="Date de d&#xe9;part : plus tard d&apos;abord"/>
             <StringItem index="3" value="Comp&#xe9;tences : les + rares"/>
             <StringItem index="4" value="Comp&#xe9;tences : le + de besoin"/>
             <StringItem index="5" value="Comp&#xe9;tences : le - de besoin"/>
@@ -257,6 +257,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loupe2MouseClicked"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="displayPersonal">
       <Properties>
@@ -282,6 +285,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loupe1MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>

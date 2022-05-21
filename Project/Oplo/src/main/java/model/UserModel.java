@@ -27,7 +27,7 @@ public class UserModel
         ServerCommunication s = new ServerCommunication();
         
         String c = s.sendPostRequest("login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
-       // String c = s.sendPostRequest("login=" + "clem" + "&password=" + "mdp");
+        
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         

@@ -5,6 +5,7 @@
 package view.internal;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
@@ -45,6 +46,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private void initialize(){
         displayProjects.setLayout(new GridLayout(2, 3, 5, 10));
         
+        currentPage.setMinimumSize(new Dimension(0, 0));
+        
         Image image = null;
         try {
             
@@ -59,6 +62,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         catch (IOException e) {
         }
         
+        refreshTotal("", "");
         refreshEmployees();
         refreshProjects("", "", "", 0);
     }
@@ -90,14 +94,12 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 
                 for(String key:keys) 
                 {
-
-                    
-                    
                     Object newJson = jsonObject.get(key);
 
                     JSONObject newObj = (JSONObject)newJson;
 
                     //recuperation des infos
+                    String login = newObj.get("login").toString();
                     String name = newObj.get("nom").toString();
                     String numberOfProject = newObj.get("numberOfProject").toString();
                     JSONArray competences = (JSONArray) newObj.get("competence");
@@ -107,8 +109,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     {
                         skills.add(newKey.toString());
                     }
-                    
-                    UserAndSkills user = new UserAndSkills(name, skills, Integer.parseInt(numberOfProject));
+
+                    UserAndSkills user = new UserAndSkills(login, name, skills, Integer.parseInt(numberOfProject));
                     
                     Employee e = new Employee(user);
                     //ajout au jpanel
@@ -121,10 +123,10 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         displayPersonal.setViewportView(innerPanel);
     }
     
-    private void refreshProjects(String competence, String projet, String sortBy, int offset) {
+    private void refreshProjects(String competence, String projet, String sortBy, int page) {
         ServerCommunication s = new ServerCommunication();
         
-        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet);
+        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
         System.out.print(res);
         
         Object o = JSONValue.parse(res);
@@ -162,14 +164,22 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 displayProjects.add(m);
             }
         }
+        
+        
     }
     
-    private int getNbProjetsTotal(String competence, String projet) {
-        return -1;
+    private void refreshTotal(String competence, String projet) {
+        ServerCommunication s = new ServerCommunication();
+        
+        total.setText(s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet));
     }
     
     private int getCurrentPage() {
         return Integer.parseInt((String) currentPage.getValue());
+    }
+    
+    private void reinitializeCurrentPage() {
+        currentPage.setValue("0");
     }
 
     private String getCompetenceSearched() {
@@ -247,7 +257,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         );
 
         orderBy.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        orderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par", "Date : plus récent d'abord", "Date : plus ancien d'abord", "Compétences : les + rares", "Compétences : le + de besoin", "Compétences : le - de besoin" }));
+        orderBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trier par", "Date de départ : plus tot d'abord", "Date de départ : plus tard d'abord", "Compétences : les + rares", "Compétences : le + de besoin", "Compétences : le - de besoin" }));
         orderBy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orderByActionPerformed(evt);
@@ -279,6 +289,11 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         });
 
         loupe2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loupe2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loupe2MouseClicked(evt);
+            }
+        });
 
         displayPersonal.setBackground(new java.awt.Color(40, 40, 60));
         displayPersonal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
@@ -286,6 +301,11 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         displayPersonal.setOpaque(false);
 
         loupe1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loupe1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loupe1MouseClicked(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -422,7 +442,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderByActionPerformed
-        // TODO add your handling code here:
+        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
+        reinitializeCurrentPage();
     }//GEN-LAST:event_orderByActionPerformed
 
     private void searchBarSkillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarSkillActionPerformed
@@ -444,6 +465,16 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private void currentPageStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_currentPageStateChanged
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), getCurrentPage());
     }//GEN-LAST:event_currentPageStateChanged
+
+    private void loupe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe1MouseClicked
+        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
+        reinitializeCurrentPage();
+    }//GEN-LAST:event_loupe1MouseClicked
+
+    private void loupe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe2MouseClicked
+        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
+        reinitializeCurrentPage();
+    }//GEN-LAST:event_loupe2MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
