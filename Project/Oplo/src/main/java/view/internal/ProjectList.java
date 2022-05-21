@@ -95,7 +95,6 @@ public class ProjectList extends javax.swing.JInternalFrame {
         }
         innerPanel.setBackground(new Color(35, 35, 40));
         
-        //on ajoute ensuite les comptes a approuver
         for(Object object:jsonArray)
         {
             if(object instanceof JSONObject) 

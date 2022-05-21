@@ -10,10 +10,17 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import model.utility.Display;
+import model.utility.Project;
 import model.utility.ServerCommunication;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import view.panel.ProjectLineDisplay;
 
 /**
  *
@@ -58,6 +65,42 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         
         String res = s.sendGetRequest("allUsers");
         System.out.print(res);
+        
+        Object o = JSONValue.parse(res);
+
+        JSONArray jsonArray = (JSONArray) o;
+        
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject) 
+            {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys) 
+                {
+
+                   Object newJson = jsonObject.get(key);
+                   
+                   JSONObject newObj = (JSONObject)newJson;
+
+                   //recuperation des infos
+                   String name = newObj.get("name").toString();
+                   String description = newObj.get("description").toString();
+                   String start_date = newObj.get("start_date").toString();
+                   String end_date = newObj.get("end_date").toString();
+                   String creator_login = newObj.get("creator_login").toString();
+                   
+                   Project projet = new Project(name, description, start_date, end_date, creator_login);
+                   
+                   ProjectLineDisplay p = new ProjectLineDisplay(projet);
+                   //ajout au jpanel
+                   innerPanel.add(p);
+
+                }               
+            }
+        }
     }
 
     /**
