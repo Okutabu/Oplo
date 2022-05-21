@@ -20,6 +20,7 @@ import org.json.simple.JSONValue;
 import view.*;
 
 import controller.*;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -61,7 +62,8 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         name.setText(user.getSurname());
         id.setText(user.getLogin());
         role.setText(user.getRole());
-        ArrayList<String> list_of_skills = LoadSkillList();
+        ArrayList<String> list_of_skills = loadSkillList();
+        ArrayList<String> list_of_my_skills = loadListOfMySkills();
         swapButton.setText("Ajouter");
         this.add = true;
         
@@ -75,10 +77,8 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
             }
         });
         
-        for(String name:list_of_skills)
-        {
-            skillSelector.addItem(name);
-        }
+        writeBothJComboBoxes(skillSelector, skillsField, list_of_skills, list_of_my_skills);
+        
         if (user.getAdmin())
         {
             admin.setText("Oui");
@@ -94,7 +94,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
      * This method grabs every name from the competence table of the database
      * @return an array of string
      */
-     public ArrayList<String> LoadSkillList()
+     public ArrayList<String> loadSkillList()
     {
         ServerCommunication s = new ServerCommunication();
         String res = s.sendGetRequest("retrieveAllCompetence=true");
@@ -158,12 +158,86 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
      }
      
      public void addSkillToUser(){
+         String res;
          ServerCommunication s = new ServerCommunication();
-         //s.sendPostRequest("competenceName=NomDeLaCompetence&login=LOGIN_USER" , );
+         String skill_to_add = (String) skillSelector.getSelectedItem();
+         boolean possible = verifySkillIsNotAlreadyPresent(skill_to_add);
+         
+         if (possible){
+            res = s.sendPostRequest("competenceName="+skill_to_add+"&login="+user.getLogin());
+            System.out.print(res);
+            String [] first_word = res.split(" ", 2);
+            System.out.print("There has been no mistakes");
+            /*
+            sendPostRequest returns a string no matter what happens, but in the case of an error
+            the string returned starts with 'Error'
+            */
+            if (!"Error".equals(first_word[0]) && !"L'action".equals(first_word[0])){
+                skillsField.addItem(skill_to_add);
+            }
+         else{System.out.print(first_word[0]+"\n"+"There has been a mistake \n");
+         }   
+         }
      }
      
      public void removeSkillFromUser(){
-         System.out.print("yo lets remove things");
+         String res;
+         ServerCommunication s = new ServerCommunication();
+         String skill_to_remove = (String) skillSelector.getSelectedItem();
+         res = s.sendPostRequest("deleteUserCompetence=true&competenceName="+skill_to_remove+"&login="+user.getLogin());
+         String [] first_word = res.split(" ", 1);
+         
+         if (!"Error".equals(first_word[0]) && !"L'action".equals(first_word[0])){
+                skillsField.removeItem(skill_to_remove);
+             
+            }
+     }
+     
+     public ArrayList<String> loadListOfMySkills()
+    {
+        ServerCommunication s = new ServerCommunication();
+        
+        String res = s.sendPostRequest("retrieveCompetence="+user.getFirstname());
+        System.out.print(res);
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;         
+        
+        ArrayList<String> competences = new ArrayList<String>();
+        
+        try{
+            
+        
+        for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject)
+            {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys)
+                {
+                   competences.add(key);
+                }               
+            }
+        }
+        }
+        catch(NullPointerException e){
+            competences.add("pas de competences");
+        }
+        return competences;
+    }  
+     
+     public static void writeBothJComboBoxes(JComboBox box1, JComboBox box2, ArrayList<String> box1Filler, ArrayList<String> box2Filler){
+         for(String name:box1Filler)
+        {
+            box1.addItem(name);
+        }
+        
+        for(String name:box2Filler)
+        {
+            box2.addItem(name);
+        }
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,6 +276,8 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         approveButton = new javax.swing.JButton();
         newPasswordInputField = new javax.swing.JTextField();
         changePasswordBtn = new com.k33ptoo.components.KButton();
+        jLabel11 = new javax.swing.JLabel();
+        skillsField = new javax.swing.JComboBox<>();
 
         setBorder(new javax.swing.border.MatteBorder(null));
         setPreferredSize(new java.awt.Dimension(1920, 1080));
@@ -309,7 +385,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Compétences");
+        jLabel9.setText("Mes compétences");
 
         skillSelector.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -331,6 +407,10 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         changePasswordBtn.setkHoverEndColor(new java.awt.Color(255, 0, 255));
         changePasswordBtn.setkHoverForeGround(new java.awt.Color(255, 255, 255));
         changePasswordBtn.setkStartColor(new java.awt.Color(204, 0, 204));
+
+        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Compétences");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -355,13 +435,12 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(120, 120, 120)
                         .addComponent(modifResultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(202, 202, 202))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(303, 303, 303)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,8 +449,9 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(79, 79, 79)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(79, 79, 79)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -380,29 +460,33 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                             .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(1328, 1328, 1328))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(swapButton)
                                 .addGap(34, 34, 34)
                                 .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(approveButton))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(newPasswordInputField, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(id, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                                     .addComponent(name, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
                                     .addComponent(firstname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
                                 .addGap(58, 58, 58)
-                                .addComponent(changePasswordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(modifBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                                .addComponent(changePasswordBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(skillsField, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(303, 303, 303)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(modifBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel3, jLabel5});
@@ -414,7 +498,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -440,7 +524,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 122, Short.MAX_VALUE)
+                                .addGap(27, 127, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(newPasswordInputField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,24 +538,31 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(admin))
                                 .addGap(16, 16, 16)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(swapButton)
-                            .addComponent(approveButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(swapButton)
+                                    .addComponent(approveButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(4, 4, 4)))))
                 .addComponent(modifResultLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(skillsField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(14, 14, 14)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(modifBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(modifBioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(411, 411, 411))
+                .addGap(350, 350, 350))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {admin, jLabel6, jLabel8, role});
@@ -511,6 +602,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
     private javax.swing.JLabel id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -530,6 +622,19 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
     private javax.swing.JLabel profilePicture;
     private javax.swing.JLabel role;
     private javax.swing.JComboBox<String> skillSelector;
+    private javax.swing.JComboBox<String> skillsField;
     private javax.swing.JButton swapButton;
     // End of variables declaration//GEN-END:variables
+
+    private boolean verifySkillIsNotAlreadyPresent(String skillToScanFor) {
+        boolean res = true;
+        ArrayList<String> list_of_skills = loadListOfMySkills();
+        for(String name: list_of_skills){
+            if (name == skillToScanFor){
+                res = false;
+            }
+        }
+        return res;
+        
+    }
 }
