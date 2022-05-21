@@ -313,6 +313,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Les membres :");
 
+        NewsScrollView.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
         addTaskBtn.setText("Ajouter cette tâche");
         addTaskBtn.setkEndColor(new java.awt.Color(204, 0, 204));
         addTaskBtn.setkHoverEndColor(new java.awt.Color(255, 0, 255));

@@ -183,6 +183,9 @@
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="NewsScrollView">
+      <Properties>
+        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
     </Container>
