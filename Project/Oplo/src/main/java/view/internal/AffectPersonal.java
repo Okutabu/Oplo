@@ -4,7 +4,7 @@
  */
 package view.internal;
 
-import controller.SearchSkillMouseListener;
+import controller.*;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -14,16 +14,13 @@ import java.util.ArrayList;
 import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import model.utility.Display;
-import model.utility.Project;
 import model.utility.ServerCommunication;
 import model.utility.UserAndSkills;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import view.panel.Employee;
-import view.panel.ProjectLineDisplay;
 
 /**
  *
@@ -96,7 +93,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
                     ArrayList<String> competences = new ArrayList<String>();
                     
-                    UserAndSkills user = new UserAndSkills(name, competences, numberOfProject);
+                    UserAndSkills user = new UserAndSkills(name, competences, Integer.parseInt(numberOfProject));
                     
                     Employee e = new Employee(user);
                     //ajout au jpanel
