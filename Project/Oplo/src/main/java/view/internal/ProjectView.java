@@ -178,7 +178,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     content.setEditable(false);    
                     content.setWrapStyleWord(true);
                     content.setLineWrap(true);
-                    content.setBackground(new Color(51, 51, 51, 0));
+                    content.setBackground(new Color(51, 51, 51));
                     content.setForeground(Color.WHITE);
                     content.setBorder(null);
                     content.setFont(new Font("Verdana", Font.PLAIN, 15));
