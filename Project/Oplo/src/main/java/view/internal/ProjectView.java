@@ -111,7 +111,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
         }
     }
     
-    
     public void retrieveToDoList()
     {
         TodoPanel.removeAll();
@@ -337,8 +336,11 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     //JSONObject newObj = (JSONObject)newJson;  
 
                     JLabel newLabel = new JLabel(key);
+                    RemoveUserBtn removeLabel = new RemoveUserBtn("X", key, model);
+                    removeLabel.setForeground(Color.red);
                     newLabel.setForeground(Color.white);
                     innerPanel.add(newLabel);
+                    innerPanel.add(removeLabel);
                 }               
             }
         }

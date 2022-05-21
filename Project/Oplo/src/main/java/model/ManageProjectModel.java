@@ -66,4 +66,11 @@ public class ManageProjectModel {
         System.out.println(s.sendPostRequest("messageContent=" + msgContent + "&login=" + login + "&projectName=" + projectName));
         view.retrieveMessages();
     }
+    
+    public void removeUser(String login)
+    {
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("removeUserFromProject=true&projectName=" + projectName + "&login=" + login);
+        view.retrieveMembersList();
+    }
 }
