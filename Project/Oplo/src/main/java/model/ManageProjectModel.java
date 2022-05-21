@@ -70,7 +70,7 @@ public class ManageProjectModel {
     public void removeUser(String login)
     {
         ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("removeUserFromProject=true&projectName=" + projectName + "&login=" + login);
+        System.out.println(s.sendPostRequest("removeUserFromProject=true&projectName=" + projectName + "&login=" + login));
         view.retrieveMembersList();
     }
 }
