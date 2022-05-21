@@ -155,6 +155,14 @@ public class ProjectView extends javax.swing.JInternalFrame {
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;     
         
+        NewsPanel.setBorder(null);
+        int nbNews = jsonArray.size();
+        if (nbNews < 4) {
+            NewsPanel.setLayout(new GridLayout(4, 1, 5, 5));
+        } else {
+            NewsPanel.setLayout(new GridLayout(nbNews, 1, 5, 5));
+        }
+        
         for(Object object:jsonArray)
         {
             if(object instanceof JSONObject)
