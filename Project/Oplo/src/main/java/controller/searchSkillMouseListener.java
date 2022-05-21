@@ -24,12 +24,12 @@ import view.panel.ApproveUserPanel;
  *
  * @author gaeta
  */
-public class searchSkillMouseListener implements MouseListener {
+public class SearchSkillMouseListener implements MouseListener {
     
     private AffectPersonal vue;
     private String skillSearched;
 
-    public searchSkillMouseListener(AffectPersonal aThis, String skill) {
+    public SearchSkillMouseListener(AffectPersonal aThis, String skill) {
         this.vue = aThis;
         this.skillSearched = skill;
     }

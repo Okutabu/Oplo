@@ -4,7 +4,7 @@
  */
 package view.internal;
 
-import controller.displayAccountApproveActionPerformed;
+import controller.DisplayAccountApproveActionPerformed;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -46,7 +46,7 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         displayProjectList.setCursor(hand);
         
         //ajout d'un action listener sur approuver les comptes 
-        displayAccountApprove.addActionListener(new displayAccountApproveActionPerformed(this));
+        displayAccountApprove.addActionListener(new DisplayAccountApproveActionPerformed(this));
     }
     
     private void AdjustButtonFromPermission()

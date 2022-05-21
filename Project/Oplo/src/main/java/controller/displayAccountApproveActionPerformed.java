@@ -15,12 +15,12 @@ import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
  *
  * @author gaeta
  */
-public class displayAccountApproveActionPerformed implements ActionListener {
+public class DisplayAccountApproveActionPerformed implements ActionListener {
     
 
     private HomeNavigationButtonsPanel button;
     
-    public displayAccountApproveActionPerformed(HomeNavigationButtonsPanel button) {
+    public DisplayAccountApproveActionPerformed(HomeNavigationButtonsPanel button) {
         this.button = button;
     }
     

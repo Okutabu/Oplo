@@ -57,6 +57,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         SendNewsBtn.addMouseListener(new SendMessagesController(model, this));
         
         projectOwnerLabel.setText("Chef de projet : " + model.getCreator());
+        
         addTaskBtn.addActionListener(new AddTaskController(model, this));
         
         retrieveToDoList();

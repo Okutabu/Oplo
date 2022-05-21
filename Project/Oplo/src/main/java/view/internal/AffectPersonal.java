@@ -4,7 +4,7 @@
  */
 package view.internal;
 
-import controller.searchSkillMouseListener;
+import controller.SearchSkillMouseListener;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -48,7 +48,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         catch (IOException e) {
         }
         
-        loupe1.addMouseListener(new searchSkillMouseListener(this, searchBarSkill.getText()));
+        loupe1.addMouseListener(new SearchSkillMouseListener(this, searchBarSkill.getText()));
         
         initEmployees();
     }
