@@ -72,10 +72,10 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(null);
         int nbEmployés = jsonArray.size();
-        if (nbEmployés < 7) {
-            innerPanel.setLayout(new GridLayout(7, 1, 5, 15));
+        if (nbEmployés < 6) {
+            innerPanel.setLayout(new GridLayout(6, 1, 5, 1));
         } else {
-            innerPanel.setLayout(new GridLayout(nbEmployés, 1, 5, 15));
+            innerPanel.setLayout(new GridLayout(nbEmployés, 1, 5, 1));
         }
         
         for(Object object:jsonArray)
