@@ -6,7 +6,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 import view.internal.ApproveUsers;
 import view.internal.HomeNavigationButtonsPanel;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;

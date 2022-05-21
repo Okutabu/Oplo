@@ -4,7 +4,6 @@
  */
 package view.internal;
 
-import view.CheckboxLinkedToTask;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
