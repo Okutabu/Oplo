@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import model.utility.Display;
 import model.utility.ServerCommunication;
 import model.utility.UserAndSkills;
@@ -67,8 +68,16 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         System.out.print(res);
         
         Object o = JSONValue.parse(res);
-
         JSONArray jsonArray = (JSONArray) o;
+        
+        JPanel innerPanel = new JPanel();
+        innerPanel.setBorder(null);
+        int nbEmployés = jsonArray.size();
+        if (nbEmployés < 7) {
+            innerPanel.setLayout(new GridLayout(7, 1, 5, 15));
+        } else {
+            innerPanel.setLayout(new GridLayout(nbEmployés, 1, 5, 15));
+        }
         
         for(Object object:jsonArray)
         {
@@ -90,24 +99,25 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     //recuperation des infos
                     String name = newObj.get("nom").toString();
                     String numberOfProject = newObj.get("numberOfProject").toString();
-                    JSONObject competences = (JSONObject) newObj.get("competence");
+                    JSONArray competences = (JSONArray) newObj.get("competence");
 
-                    Set<String> newKeys = competences.keySet();
                     ArrayList<String> skills = new ArrayList<String>();
-                    for(String newKey:newKeys) 
+                    for(Object newKey:competences) 
                     {
-                        skills.add(newKey);
+                        skills.add(newKey.toString());
                     }
                     
                     UserAndSkills user = new UserAndSkills(name, skills, Integer.parseInt(numberOfProject));
                     
                     Employee e = new Employee(user);
                     //ajout au jpanel
+                    innerPanel.add(e);
                    
 
                 }               
             }
         }
+        displayPersonal.setViewportView(innerPanel);
     }
     
     
@@ -206,6 +216,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
         displayPersonal.setBackground(new java.awt.Color(40, 40, 60));
         displayPersonal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        displayPersonal.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         displayPersonal.setOpaque(false);
 
         loupe1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

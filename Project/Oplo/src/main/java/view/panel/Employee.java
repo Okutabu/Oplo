@@ -61,8 +61,9 @@ public class Employee extends javax.swing.JPanel {
 
         skills.setEditable(false);
         skills.setBackground(new java.awt.Color(45, 45, 52));
-        skills.setColumns(16);
-        skills.setRows(4);
+        skills.setColumns(14);
+        skills.setForeground(new java.awt.Color(255, 255, 255));
+        skills.setRows(3);
         skills.setOpaque(false);
         skills.setSelectionColor(new java.awt.Color(45, 45, 52));
         jScrollPane1.setViewportView(skills);
@@ -71,15 +72,16 @@ public class Employee extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(names, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+            .addComponent(names, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(names)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

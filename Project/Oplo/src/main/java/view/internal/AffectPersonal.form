@@ -253,6 +253,7 @@
             </LineBorder>
           </Border>
         </Property>
+        <Property name="horizontalScrollBarPolicy" type="int" value="31"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
