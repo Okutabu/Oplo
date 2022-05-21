@@ -64,7 +64,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         
         addTaskBtn.addActionListener(new AddTaskController(model, this));
         SendNewsBtn.addMouseListener(new SendNewsController(model, this));
-       // SendMsgBtn.addMouseListener(new S)
+        SendMsgBtn.addMouseListener(new SendMessageController(model, this));
         
         retrieveToDoList();
         retrieveNews();

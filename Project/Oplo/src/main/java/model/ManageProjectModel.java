@@ -59,4 +59,11 @@ public class ManageProjectModel {
         ServerCommunication s = new ServerCommunication();
         s.sendPostRequest("changeTodoState=true&state=" + Integer.toString(state) + "&todoName=" + taskName + "&projectName=" + projectName);
     }
+    
+    public void sendMessage(String msgContent, String login)
+    {
+        ServerCommunication s = new ServerCommunication();
+        s.sendPostRequest("messageContent=" + msgContent + "&login=" + login + "&projectName=" + projectName);
+        view.retrieveMessages();
+    }
 }
