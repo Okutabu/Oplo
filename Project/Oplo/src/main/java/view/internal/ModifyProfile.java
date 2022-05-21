@@ -135,7 +135,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
      }
      /**
       * 
-      * @param condition un pivot de décision
+      * @param condition pivot de la décision
       * @return le text adéquat du bouton de swap
       */
      public String swapButtonText(boolean condition){
@@ -146,17 +146,24 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
          else{res = "Supprimer";}
          return res;
      }
-     
+     /*
+     Permet de récupérer le nouveau mot de passe rentrée par l'utilisateur
+     */
      public String getNewPasswordValue()
      {
          return newPasswordInputField.getText();
      }
-     
+     /*
+     Permet de modifier le mot de passe de l'utilisateur par une nouvelle valeure 'val' passée en paramètre
+     */
      public void setNewPasswordValue(String val)
      {
          newPasswordInputField.setText(val);
      }
      
+     /*
+     Envoie un requete au serveur pour ajouter une competence à l'utilisateur si il ne possède pas déja la compétence
+     */
      public void addSkillToUser(){
          String res;
          ServerCommunication s = new ServerCommunication();
@@ -179,7 +186,9 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
          }   
          }
      }
-     
+     /*
+     Envoie une requete pour retirer une compétence à l'utilisateur et met à ajour la JComboBox d'affichage
+     */
      public void removeSkillFromUser(){
          String res;
          ServerCommunication s = new ServerCommunication();
@@ -192,7 +201,9 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
              
             }
      }
-     
+     /*
+     Renvoie la liste des compétences d'un utilisateur dans une ArrayList<String>
+     */
      public ArrayList<String> loadListOfMySkills()
     {
         ServerCommunication s = new ServerCommunication();
@@ -227,7 +238,9 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         }
         return competences;
     }  
-     
+     /*
+     Fonction pour remplir deux JComboBox passé en paramètre à partir de listes de chaine de caractère passées en parametre
+     */
      public static void writeBothJComboBoxes(JComboBox box1, JComboBox box2, ArrayList<String> box1Filler, ArrayList<String> box2Filler){
          for(String name:box1Filler)
         {

@@ -59,7 +59,7 @@ public class Registration extends javax.swing.JInternalFrame {
             }
 
             private void addSkillToField() {
-                 boolean exists = false;
+                boolean exists = false;
                 for (int index = 0; index < chosenSkills.getItemCount() && !exists; index++) {
                 if (skillToAddOrRemove.getSelectedItem().equals(chosenSkills.getItemAt(index))) {
                                 exists = true;
@@ -76,6 +76,7 @@ public class Registration extends javax.swing.JInternalFrame {
         {
             skillToAddOrRemove.addItem(name);
         }
+        
         this.getContentPane().setBackground(new Color(35,35,40));
         this.parentTemp = parent;
     }
@@ -435,8 +436,8 @@ public class Registration extends javax.swing.JInternalFrame {
             File file = new File(myJFileChooser.getSelectedFile().getAbsolutePath());
             String name = file.getName();
             myfile = file;
+            // Un label est dédié à l'affichage du nom du fichier choisie
             chosenFileLabel.setText(name);
-            System.out.print(file);
         }
     }//GEN-LAST:event_profileActionPerformed
 
@@ -454,7 +455,10 @@ public class Registration extends javax.swing.JInternalFrame {
         ConnexionPanel connect = new ConnexionPanel();
         connect.setVisible(true);
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
+    /**
+     * This method grabs every name from the competence table of the database
+     * @return an array of string
+     */
     public ArrayList<String> LoadSkillList()
     {
         ServerCommunication s = new ServerCommunication();

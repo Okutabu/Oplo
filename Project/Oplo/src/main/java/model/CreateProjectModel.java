@@ -4,12 +4,15 @@
  */
 package model;
 
+import java.awt.Color;
 import view.internal.AddProject;
 import java.io.Writer;
+import java.sql.Date;
 import model.utility.*;
 import org.json.simple.JSONObject;
 import view.*;
 import java.util.Iterator;
+import javax.swing.JLabel;
 /**
  *
  * @author Clément
@@ -24,19 +27,47 @@ public class CreateProjectModel
         this.humanNeed = new JSONObject();
         this.view = view;
     }
-    
+    /**
+     * Cree un projet à partir des informations rentrées par l'utilisateur
+     * @param feedback Un texte provenent 
+     */
     public void CreateProject()
     {
         String projectName = view.getProjectName();
         String projectDescription = view.getDescription();
-        String projectStartDate = view.getStartDate().toString();
-        String projectEndDate = view.getEndDate().toString();
+        
+        String projectStartDate;
+        String projectEndDate;
+        /**
+         * On ne peut pas appeler toString sur des valeures null alors on s'assure 
+         * qu'elles ne le sont pas
+         */
+        if (view.getStartDate()!= null && view.getStartDate() !=  null){
+            projectStartDate = view.getStartDate().toString();
+            projectEndDate = view.getEndDate().toString();
+        }
+        else{
+            projectStartDate = null;
+            projectEndDate = null;
+        }   
+        
         String authorLogin = Home.getUser().getLogin();
                 
-        
+        boolean requirements = projectName != null && projectDescription != null && projectStartDate != null && projectEndDate != null;
         ServerCommunication s = new ServerCommunication();
-        
-        System.out.println(s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed));
+        if (requirements){
+            try {
+                s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
+            }
+            catch(NullPointerException e){
+                view.getErrorDisplayLabel().setText("Renseignez tous les champs");
+                view.getErrorDisplayLabel().setForeground(new Color(255,0,0));
+            }
+        }
+        else{
+            view.getErrorDisplayLabel().setText("Renseignez tous les champs");
+            view.getErrorDisplayLabel().setForeground(new Color(255,0,0));
+        }
     }
     
     public void addHumanNeed(String categorie, int number)

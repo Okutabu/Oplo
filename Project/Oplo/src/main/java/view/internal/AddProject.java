@@ -11,6 +11,7 @@ import controller.*;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Set;
+import javax.swing.JLabel;
 import model.utility.ServerCommunication;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -70,21 +71,45 @@ public class AddProject extends javax.swing.JInternalFrame {
         return projectDescription.getText();
     }
     
-    public Date getStartDate()
-    {
-        return new Date(startDate.getDate().getTime());
+    public Date getStartDate(){
+            Date res;
+        try {
+            res = new Date(startDate.getDate().getTime());
+        }
+        catch(NullPointerException e){
+            res = null;
+        }
+        
+        return res;
+        
     }
     
     public Date getEndDate()
     {
-        return new Date(endDate.getDate().getTime());
+        Date res;
+        try {
+            res = new Date(endDate.getDate().getTime());
+        }
+        catch(NullPointerException e){
+            res = null;
+        }
+        
+        return res;
     }
-    public void loadItemsOnComboBox(ArrayList<String> var){
-        for (String skill:var){
+    /**
+     * ajoute chaque élément de la liste de chaine de caractere passé en paramètre 
+     * au JComboBox dédié à l'affichage des compétences
+     * @param liste_de_competence liste de String
+     */
+    public void loadItemsOnComboBox(ArrayList<String> liste_de_competence){
+        for (String skill:liste_de_competence){
             skillSelector.addItem(skill);
         }
     }
-
+    /**
+     * Cette methode permet de charger la liste des competences présent dans la base de donnée
+     * @return une ArrayList de chaine de caractere
+     */
     public ArrayList<String> loadSkillList()
     {
         ServerCommunication s = new ServerCommunication();
@@ -116,6 +141,10 @@ public class AddProject extends javax.swing.JInternalFrame {
             competences.add("erreur de chargement");
         }
         return competences;
+    }
+    
+    public JLabel getErrorDisplayLabel(){
+        return this.errorDisplay;
     }
     /**
      * This method is called from within the constructor to initialize the form.
