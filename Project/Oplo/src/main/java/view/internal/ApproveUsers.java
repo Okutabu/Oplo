@@ -53,7 +53,7 @@ public class ApproveUsers extends javax.swing.JInternalFrame {
         if (nbComptes < 4) {
             innerPanel.setLayout(new GridLayout(4, 1, 5, 15));
         } else {
-            innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 15));
+            innerPanel.setLayout(new GridLayout(nbComptes, 1, 5, 15));
         }
         
         innerPanel.setBackground(new Color(35, 35, 40));
