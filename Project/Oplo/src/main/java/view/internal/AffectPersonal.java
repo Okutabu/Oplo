@@ -65,7 +65,6 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendGetRequest("allUsers");
-        System.out.print(res);
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;
