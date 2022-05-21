@@ -256,6 +256,8 @@ public class AddProject extends javax.swing.JInternalFrame {
         humanNeedArea.setRows(5);
         humanNeedsArea.setViewportView(humanNeedArea);
 
+        errorDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        errorDisplay.setForeground(new java.awt.Color(255, 255, 255));
         errorDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
