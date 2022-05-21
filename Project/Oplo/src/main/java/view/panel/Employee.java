@@ -5,7 +5,6 @@
 package view.panel;
 
 import java.util.ArrayList;
-import model.utility.ServerCommunication;
 import model.utility.UserAndSkills;
 
 /**

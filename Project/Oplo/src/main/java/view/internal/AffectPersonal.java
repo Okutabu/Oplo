@@ -40,7 +40,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }
     
     private void initialize(){
-        displayProjects.setLayout(new GridLayout(3, 2));
+        displayProjects.setLayout(new GridLayout(2, 3, 5, 10));
         
         Image image = null;
         try {
@@ -59,6 +59,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         loupe1.addMouseListener(new SearchSkillMouseListener(this, searchBarSkill.getText()));
         
         refreshEmployees();
+        refreshProjects("", "", "");
     }
     
     private void refreshEmployees() {
@@ -119,7 +120,52 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         displayPersonal.setViewportView(innerPanel);
     }
     
-    
+    private void refreshProjects(String competence, String projet, String sortBy) {
+        ServerCommunication s = new ServerCommunication();
+        
+        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet);
+        System.out.print(res);
+        
+        Object o = JSONValue.parse(res);
+        JSONArray jsonArray = (JSONArray) o;
+        
+        /*for(Object object:jsonArray)
+        {
+            if(object instanceof JSONObject) 
+            {
+                JSONObject jsonObject = (JSONObject)object;
+
+                Set<String> keys =jsonObject.keySet();
+                
+                for(String key:keys) 
+                {
+
+                    
+                    
+                    Object newJson = jsonObject.get(key);
+
+                    JSONObject newObj = (JSONObject)newJson;
+
+                    //recuperation des infos
+                    String name = newObj.get("nom").toString();
+                    String numberOfProject = newObj.get("numberOfProject").toString();
+                    JSONArray competences = (JSONArray) newObj.get("competence");
+
+                    ArrayList<String> skills = new ArrayList<String>();
+                    for(Object newKey:competences) 
+                    {
+                        skills.add(newKey.toString());
+                    }
+                    
+                    UserAndSkills user = new UserAndSkills(name, skills, Integer.parseInt(numberOfProject));
+                    
+                    Employee e = new Employee(user);
+                    //ajout au jpanel
+                    displayProjects.add(e);
+                }               
+            }
+        }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
