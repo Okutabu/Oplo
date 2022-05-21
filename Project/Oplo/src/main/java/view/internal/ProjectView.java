@@ -152,9 +152,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         String res = s.sendPostRequest("retrieveProjectNews&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;     
-        
-        
+        JSONArray jsonArray = (JSONArray) o;
         
         for(Object object:jsonArray)
         {
