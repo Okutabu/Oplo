@@ -4,6 +4,7 @@
  */
 package view.panel;
 
+import java.util.ArrayList;
 import model.utility.ServerCommunication;
 import model.utility.UserAndSkills;
 
@@ -26,10 +27,13 @@ public class Employee extends javax.swing.JPanel {
     
     private void initialize(){
         UserAndSkills user = getUser();
-        names.setText(user.getName());
+        String name = user.getName();
+        ArrayList<String> competences = user.getCompetences();
         
-        for(String key:user.getCompetences()){
-            
+        names.setText(name);
+        
+        for(String key:competences){
+            skills.setText(skills.getText() + "");
         }
     }
 
