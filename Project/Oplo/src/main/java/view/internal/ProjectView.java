@@ -46,6 +46,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         projectNameLabel.setText(projectName);
         NewsPanel = new JPanel();
         NewsPanel.setBackground(new Color(102, 102, 102));
+        NewsPanel.setLayout(new BoxLayout(NewsPanel, javax.swing.BoxLayout.Y_AXIS));
         NewsPanel.setMaximumSize(new Dimension(400, 400));
         
         TodoPanel = new JPanel();
@@ -152,7 +153,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         String res = s.sendPostRequest("retrieveProjectNews&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;
+        JSONArray jsonArray = (JSONArray) o;     
         
         for(Object object:jsonArray)
         {
