@@ -630,7 +630,8 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         boolean res = true;
         ArrayList<String> list_of_skills = loadListOfMySkills();
         for(String name: list_of_skills){
-            if (name == skillToScanFor){
+            System.out.print(name);
+            if (name.equals(skillToScanFor)){
                 res = false;
             }
         }
