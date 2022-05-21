@@ -88,12 +88,18 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     JSONObject newObj = (JSONObject)newJson;
 
                     //recuperation des infos
-                    String name = newObj.get("name").toString();
+                    String name = newObj.get("nom").toString();
                     String numberOfProject = newObj.get("numberOfProject").toString();
+                    JSONObject competences = (JSONObject) newObj.get("competence");
 
-                    ArrayList<String> competences = new ArrayList<String>();
+                    Set<String> newKeys = competences.keySet();
+                    ArrayList<String> skills = new ArrayList<String>();
+                    for(String newKey:newKeys) 
+                    {
+                        skills.add(newKey);
+                    }
                     
-                    UserAndSkills user = new UserAndSkills(name, competences, Integer.parseInt(numberOfProject));
+                    UserAndSkills user = new UserAndSkills(name, skills, Integer.parseInt(numberOfProject));
                     
                     Employee e = new Employee(user);
                     //ajout au jpanel
@@ -103,6 +109,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
             }
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
