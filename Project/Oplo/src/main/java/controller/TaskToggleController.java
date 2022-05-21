@@ -6,20 +6,23 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
 
 import view.*;
-
+import model.*;
 /**
  *
  * @author Clément
  */
 public class TaskToggleController implements ActionListener 
 {
-    private CheckboxLinkedToTask checkbox;
+    private JCheckBox checkbox;
+    private ManageProjectModel model;
     
-    public TaskToggleController(CheckboxLinkedToTask checkbox)
+    public TaskToggleController(JCheckBox checkbox, ManageProjectModel model)
     {
         this.checkbox = checkbox;
+        this.model = model;
     }
     
     @Override
@@ -35,7 +38,7 @@ public class TaskToggleController implements ActionListener
         {
             state = 0;
         }
-        checkbox.getModele().changeTaskStatus(state, checkbox.getTaskName());
+        model.changeTaskStatus(state, checkbox.getText());
     }
     
 }
