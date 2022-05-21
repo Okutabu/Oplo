@@ -63,7 +63,7 @@ public class ManageProjectModel {
     public void sendMessage(String msgContent, String login)
     {
         ServerCommunication s = new ServerCommunication();
-        s.sendPostRequest("messageContent=" + msgContent + "&login=" + login + "&projectName=" + projectName);
+        System.out.println(s.sendPostRequest("messageContent=" + msgContent + "&login=" + login + "&projectName=" + projectName));
         view.retrieveMessages();
     }
 }
