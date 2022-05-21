@@ -99,31 +99,20 @@ public class ProjectList extends javax.swing.JInternalFrame {
         {
             if(object instanceof JSONObject) 
             {
-                JSONObject jsonObject = (JSONObject)object;
+                JSONObject newObj = (JSONObject)object;
 
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys) 
-                {
+                //recuperation des infos
+                String name = newObj.get("name").toString();
+                String description = newObj.get("description").toString();
+                String start_date = newObj.get("start_date").toString();
+                String end_date = newObj.get("end_date").toString();
+                String creator_login = newObj.get("creator_login").toString();
 
-                   Object newJson = jsonObject.get(key);
-                   
-                   JSONObject newObj = (JSONObject)newJson;
+                Project projet = new Project(name, description, start_date, end_date, creator_login);
 
-                   //recuperation des infos
-                   String name = newObj.get("name").toString();
-                   String description = newObj.get("description").toString();
-                   String start_date = newObj.get("start_date").toString();
-                   String end_date = newObj.get("end_date").toString();
-                   String creator_login = newObj.get("creator_login").toString();
-                   
-                   Project projet = new Project(name, description, start_date, end_date, creator_login);
-                   
-                   ProjectLineDisplay p = new ProjectLineDisplay(projet);
-                   //ajout au jpanel
-                   innerPanel.add(p);
-
-                }               
+                ProjectLineDisplay p = new ProjectLineDisplay(projet);
+                //ajout au jpanel
+                innerPanel.add(p);         
             }
         }
         //ajout du panel dans le scrollPane

@@ -65,9 +65,9 @@ public class ProjectLineDisplay extends JPanel {
         setBackground(new java.awt.Color(35, 35, 40));
         setForeground(new java.awt.Color(35, 35, 40));
         setMaximumSize(new java.awt.Dimension(1650, 165));
-        setPreferredSize(new java.awt.Dimension(1250, 165));
+        setPreferredSize(new java.awt.Dimension(1250, 67));
 
-        titre.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        titre.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         titre.setForeground(new java.awt.Color(255, 255, 255));
         titre.setText("Nom");
 
@@ -117,7 +117,7 @@ public class ProjectLineDisplay extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titre)
                     .addComponent(startDate)
@@ -125,39 +125,17 @@ public class ProjectLineDisplay extends JPanel {
                     .addComponent(jLabel9)
                     .addComponent(createur, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(desc))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel beginDate;
-    private javax.swing.JLabel beginDate1;
     private javax.swing.JLabel createur;
-    private javax.swing.JLabel creator;
-    private javax.swing.JLabel creator1;
     private javax.swing.JLabel desc;
-    private javax.swing.JTextArea description;
-    private javax.swing.JTextArea description1;
     private javax.swing.JLabel endDate;
-    private javax.swing.JLabel finalDate;
-    private javax.swing.JLabel finalDate1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea lastNews;
-    private javax.swing.JTextArea lastNews1;
     private javax.swing.JLabel startDate;
-    private javax.swing.JLabel title;
-    private javax.swing.JLabel title1;
     private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 }
