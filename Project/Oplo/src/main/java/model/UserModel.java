@@ -5,6 +5,7 @@ import view.internal.ModifyProfile;
 import view.internal.Registration;
 import view.panel.ApproveUserPanel;
 import java.awt.Color;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.JFrame;
@@ -25,8 +26,7 @@ public class UserModel
     {
         ServerCommunication s = new ServerCommunication();
         
-        // String c = s.sendPostRequest("login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
-        String c = s.sendPostRequest("login=" + "clem" + "&password=" + "mdp");
+        String c = s.sendPostRequest("login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
@@ -79,6 +79,10 @@ public class UserModel
         String identifiant = source.login.getText();
         String motPasse = String.valueOf(source.password.getPassword());
         String role1 = source.role.getSelectedItem().toString();
+        File file = source.getFile();
+        if (!(file==null)){
+            // uploadProfilePicture();
+        }
         if (role1.equals("---")) role1 = "";
         source.yes.setActionCommand("yes");
         source.no.setActionCommand("no");
@@ -200,6 +204,10 @@ public class UserModel
         
         ServerCommunication s = new ServerCommunication();
         s.sendPostRequest("newPassword=" + newPassword + "&userLogin=" + login);
+    }
+    
+    public void uploadProfilePicture(){
+        
     }
     
 }
