@@ -15,10 +15,28 @@ public class UserAndSkills {
     private ArrayList<String> competences;
     private int nbProjets;
     
+    public UserAndSkills(){
+        this.name = null;
+        this.competences = null;
+        this.nbProjets = 0;
+    }
+    
     public UserAndSkills(String name, ArrayList<String> competences, int nbProjets){
         this.name = name;
         this.competences = competences;
         this.nbProjets = nbProjets;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    public void setCompetences(ArrayList<String> competences) {
+        this.competences = competences;
+    }
+    
+    public void setNbProjets(int nb) {
+        this.nbProjets = nb;
     }
 
     public String getName() {

@@ -99,7 +99,6 @@ public class HomeNavigationButtonsPanel extends JInternalFrame {
         }
     }
     
-    //s'actualise a chaque redemarrage du projet, pas besoin de plus
     public void refreshProjectsNotifs() {
         
         ServerCommunication s = new ServerCommunication();

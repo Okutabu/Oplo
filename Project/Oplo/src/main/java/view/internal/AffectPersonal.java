@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import model.utility.Display;
 import model.utility.Project;
 import model.utility.ServerCommunication;
+import model.utility.UserAndSkills;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
@@ -57,10 +58,10 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         
         loupe1.addMouseListener(new SearchSkillMouseListener(this, searchBarSkill.getText()));
         
-        initEmployees();
+        refreshEmployees();
     }
     
-    private void initEmployees() {
+    private void refreshEmployees() {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendGetRequest("allUsers");
@@ -69,8 +70,6 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         Object o = JSONValue.parse(res);
 
         JSONArray jsonArray = (JSONArray) o;
-        
-        
         
         for(Object object:jsonArray)
         {
@@ -83,21 +82,23 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 for(String key:keys) 
                 {
 
-                   Object newJson = jsonObject.get(key);
-                   
-                   JSONObject newObj = (JSONObject)newJson;
+                    UserAndSkills user = new UserAndSkills();
+                    
+                    Object newJson = jsonObject.get(key);
 
-                   //recuperation des infos
-                   String name = newObj.get("name").toString();
-                   String description = newObj.get("description").toString();
-                   String start_date = newObj.get("start_date").toString();
-                   String end_date = newObj.get("end_date").toString();
-                   String creator_login = newObj.get("creator_login").toString();
-                   
-                   Project projet = new Project(name, description, start_date, end_date, creator_login);
-                   
-                   ProjectLineDisplay p = new ProjectLineDisplay(projet);
-                   //ajout au jpanel
+                    JSONObject newObj = (JSONObject)newJson;
+
+                    //recuperation des infos
+                    String name = newObj.get("name").toString();
+                    String description = newObj.get("description").toString();
+                    String start_date = newObj.get("start_date").toString();
+                    String end_date = newObj.get("end_date").toString();
+                    String creator_login = newObj.get("creator_login").toString();
+
+                    Project projet = new Project(name, description, start_date, end_date, creator_login);
+
+                    ProjectLineDisplay p = new ProjectLineDisplay(projet);
+                    //ajout au jpanel
                    
 
                 }               
