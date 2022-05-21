@@ -22,7 +22,7 @@
           <Component id="jPanel2" alignment="1" pref="1308" max="32767" attributes="0"/>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-              <Component id="approveScrollPane" min="-2" pref="1269" max="-2" attributes="0"/>
+              <Component id="projectsScrollPane" min="-2" pref="1269" max="-2" attributes="0"/>
               <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
@@ -30,7 +30,7 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="auteurBool" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="searchBarProject" min="-2" pref="250" max="-2" attributes="0"/>
@@ -60,7 +60,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" pref="8" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="approveScrollPane" min="-2" pref="705" max="-2" attributes="0"/>
+              <Component id="projectsScrollPane" min="-2" pref="705" max="-2" attributes="0"/>
               <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -104,7 +104,7 @@
         </DimensionLayout>
       </Layout>
     </Container>
-    <Container class="javax.swing.JScrollPane" name="approveScrollPane">
+    <Container class="javax.swing.JScrollPane" name="projectsScrollPane">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="28" green="23" red="23" type="rgb"/>
@@ -150,6 +150,9 @@
           <Color id="Hand Cursor"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loupeMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="auteurBool">
       <Properties>
@@ -159,7 +162,7 @@
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Seulement les projets dont je suis auteur"/>
+        <Property name="text" type="java.lang.String" value="Seulement les projets dont je suis le cr&#xe9;ateur"/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="auteurBoolStateChanged"/>

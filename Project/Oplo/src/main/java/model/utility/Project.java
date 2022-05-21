@@ -20,23 +20,23 @@ public class Project {
     private String last_news;
     private ArrayList<Skill> competences;
     
-    public Project(String name, String description, String start_date, String end_date, String creator_login, String last_news) {
-        this.name = name;
-        this.description = description;
-        this.start_date = start_date;
-        this.end_date = end_date;
-        this.creator_login = creator_login;
-        this.last_news = last_news;
-        this.competences = null;
-    }
-    
-    public Project(String name, String description, String start_date, String end_date, String creator_login, ArrayList<Skill> skills) {
+    public Project(String name, String description, String start_date, String end_date, String creator_login) {
         this.name = name;
         this.description = description;
         this.start_date = start_date;
         this.end_date = end_date;
         this.creator_login = creator_login;
         this.last_news = null;
+        this.competences = null;
+    }
+    
+    public Project(String name, String description, String start_date, String end_date, String creator_login, String last_news) {
+        this(name, description, start_date, end_date, creator_login);
+        this.last_news = last_news;
+    }
+    
+    public Project(String name, String description, String start_date, String end_date, String creator_login, ArrayList<Skill> skills) {
+        this(name, description, start_date, end_date, creator_login);
         this.competences = skills;
     }
     

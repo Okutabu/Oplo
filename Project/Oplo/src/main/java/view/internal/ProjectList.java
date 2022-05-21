@@ -14,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import model.utility.Display;
+import model.utility.Project;
 import model.utility.ServerCommunication;
 import model.utility.User;
 import model.utility.UserConnected;
@@ -23,6 +24,7 @@ import org.json.simple.JSONValue;
 import view.Home;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 import view.panel.ApproveUserPanel;
+import view.panel.ProjectLineDisplay;
 
 /**
  *
@@ -40,10 +42,8 @@ public class ProjectList extends javax.swing.JInternalFrame {
         initialize();
     }
     
-    private void adjustFromPermission() {
-        UserConnected user = Home.getUser();
-        String role = user.getRole();
-   
+    private void adjustFromPermission(String role) {
+        
         if(!role.equals("Chef de projet"))
         {
             auteurBool.setVisible(false);
@@ -51,8 +51,10 @@ public class ProjectList extends javax.swing.JInternalFrame {
     }
     
     private void initialize() {
+        UserConnected user = Home.getUser();
+        String role = user.getRole();
         
-        adjustFromPermission();
+        adjustFromPermission(role);
         
         Image image = null;
         try {
@@ -64,24 +66,33 @@ public class ProjectList extends javax.swing.JInternalFrame {
         catch (IOException e) {
         }
         
-        /*ServerCommunication s = new ServerCommunication();
-
-        String res = s.sendGetRequest("getNonApprovedAccount=true");
+        search(false, "");
         
+        
+    }
+    
+    public void search(boolean onlyAuteur, String projectSearched) {
+        UserConnected user = Home.getUser();
+        int auteur = 0;
+        if (onlyAuteur) auteur = 1;
+        
+        ServerCommunication s = new ServerCommunication();
+
+        String res = s.sendPostRequest("retrieveProjectFromNamePattern=" + "e" + "&onlyAuthor=" + auteur + "&login=" + user.getLogin());
+        System.out.print(res);
         Object o = JSONValue.parse(res);
 
-        JSONArray jsonArray = (JSONArray) o;         
+        JSONArray jsonArray = (JSONArray) o;
         
-        
+        //création du panel pour mettre les projets
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(null);
-        int nbComptes = jsonArray.size();
-        if (nbComptes < 4) {
-            innerPanel.setLayout(new GridLayout(4, 1, 5, 15));
+        int nbProjects = jsonArray.size();
+        if (nbProjects < 10) {
+            innerPanel.setLayout(new GridLayout(9, 1, 5, 10));
         } else {
-            innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 15));
+            innerPanel.setLayout(new GridLayout(jsonArray.size(), 1, 5, 10));
         }
-        
         innerPanel.setBackground(new Color(35, 35, 40));
         
         //on ajoute ensuite les comptes a approuver
@@ -101,30 +112,23 @@ public class ProjectList extends javax.swing.JInternalFrame {
                    JSONObject newObj = (JSONObject)newJson;
 
                    //recuperation des infos
-                   String firstname = newObj.get("firstname").toString();
-                   String surname = newObj.get("surname").toString();
-                   String login = newObj.get("login").toString();
-                   String role = newObj.get("role").toString();
-                   String admin = newObj.get("admin").toString();
-                   String pp = newObj.get("profile_pic").toString();
-                   String description = newObj.get("others").toString();
+                   String name = newObj.get("name").toString();
+                   String description = newObj.get("description").toString();
+                   String start_date = newObj.get("start_date").toString();
+                   String end_date = newObj.get("end_date").toString();
+                   String creator_login = newObj.get("creator_login").toString();
                    
-                   User user = new User(login, firstname, surname, admin, role, description, pp, false);
+                   Project projet = new Project(name, description, start_date, end_date, creator_login);
                    
-                   ApproveUserPanel userPanel = new ApproveUserPanel(user, getMain(), this.buttons);
+                   ProjectLineDisplay p = new ProjectLineDisplay(projet);
                    //ajout au jpanel
-                   innerPanel.add(userPanel);
+                   innerPanel.add(p);
 
                 }               
             }
         }
         //ajout du panel dans le scrollPane
-        approveScrollPane.setViewportView(innerPanel);
-*/
-    }
-    
-    public void search(boolean onlyAuteur, String projectSearched) {
-        
+        projectsScrollPane.setViewportView(innerPanel);
     }
     
 
@@ -139,7 +143,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        approveScrollPane = new javax.swing.JScrollPane();
+        projectsScrollPane = new javax.swing.JScrollPane();
         jLabel2 = new javax.swing.JLabel();
         searchBarProject = new javax.swing.JTextField();
         loupe = new javax.swing.JLabel();
@@ -164,10 +168,10 @@ public class ProjectList extends javax.swing.JInternalFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        approveScrollPane.setBackground(new java.awt.Color(35, 35, 40));
-        approveScrollPane.setBorder(null);
-        approveScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        approveScrollPane.setPreferredSize(new java.awt.Dimension(1698, 1073));
+        projectsScrollPane.setBackground(new java.awt.Color(35, 35, 40));
+        projectsScrollPane.setBorder(null);
+        projectsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        projectsScrollPane.setPreferredSize(new java.awt.Dimension(1698, 1073));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -182,10 +186,15 @@ public class ProjectList extends javax.swing.JInternalFrame {
         });
 
         loupe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loupe.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loupeMouseClicked(evt);
+            }
+        });
 
         auteurBool.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         auteurBool.setForeground(new java.awt.Color(255, 255, 255));
-        auteurBool.setText("Seulement les projets dont je suis auteur");
+        auteurBool.setText("Seulement les projets dont je suis le créateur");
         auteurBool.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 auteurBoolStateChanged(evt);
@@ -204,14 +213,14 @@ public class ProjectList extends javax.swing.JInternalFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1308, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(projectsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1269, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(auteurBool)
-                .addGap(68, 68, 68)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,7 +244,7 @@ public class ProjectList extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(approveScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(projectsScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -251,19 +260,21 @@ public class ProjectList extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_auteurBoolActionPerformed
 
     private void auteurBoolStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_auteurBoolStateChanged
-        if (auteurBool.isSelected()) {
-
-        }
+        search(auteurBool.isSelected(), searchBarProject.getText());
     }//GEN-LAST:event_auteurBoolStateChanged
+
+    private void loupeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupeMouseClicked
+        search(auteurBool.isSelected(), searchBarProject.getText());
+    }//GEN-LAST:event_loupeMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane approveScrollPane;
     private javax.swing.JCheckBox auteurBool;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel loupe;
+    private javax.swing.JScrollPane projectsScrollPane;
     private javax.swing.JTextField searchBarProject;
     // End of variables declaration//GEN-END:variables
 

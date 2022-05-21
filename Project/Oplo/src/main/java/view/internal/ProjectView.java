@@ -91,9 +91,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         String res = s.sendPostRequest("retrieveProjectTodoList&projectName=" + model.getProjectName());
         
         Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;     
-        
-        System.out.println("res request : " + res);
+        JSONArray jsonArray = (JSONArray) o;
         
         for(Object object:jsonArray)
         {

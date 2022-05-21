@@ -30,8 +30,6 @@ public class UserModel
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
-        System.out.println(c);
-        
         try
         {
             if (connectionInfos.containsKey("error"))
@@ -142,7 +140,7 @@ public class UserModel
         String loginS = source.userLogin.getText();
         
         ServerCommunication s = new ServerCommunication();
-        System.out.println(s.sendPostRequest("approveAccount=true&login=" + loginS));
+        s.sendPostRequest("approveAccount=true&login=" + loginS);
     }
     
     public static void revokeUser(ApproveUserPanel source)
@@ -158,7 +156,6 @@ public class UserModel
         ServerCommunication s = new ServerCommunication();
         UserConnected user = Home.getUser();
         String res = s.sendPostRequest("homeProjects=true&login=" + user.getLogin());
-        System.out.print(res);
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
