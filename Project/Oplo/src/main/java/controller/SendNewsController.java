@@ -14,12 +14,12 @@ import view.*;
  *
  * @author Clément
  */
-public class SendMessagesController implements MouseListener {
+public class SendNewsController implements MouseListener {
 
     private ProjectView view;
     private ManageProjectModel model;
     
-    public SendMessagesController(ManageProjectModel model, ProjectView view)
+    public SendNewsController(ManageProjectModel model, ProjectView view)
     {
         this.view = view;
         this.model = model;
