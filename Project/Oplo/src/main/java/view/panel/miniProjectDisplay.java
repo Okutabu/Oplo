@@ -91,6 +91,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         description.setForeground(new java.awt.Color(255, 255, 255));
         description.setLineWrap(true);
         description.setRows(3);
+        description.setWrapStyleWord(true);
         description.setAutoscrolls(false);
         description.setBorder(null);
         description.setFocusable(false);
@@ -110,6 +111,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
         lastNews.setForeground(new java.awt.Color(255, 255, 255));
         lastNews.setLineWrap(true);
         lastNews.setRows(4);
+        lastNews.setWrapStyleWord(true);
         lastNews.setAutoscrolls(false);
         lastNews.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(9, 184, 255), 2));
         lastNews.setFocusable(false);
