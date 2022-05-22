@@ -180,8 +180,9 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private void refreshTotal(String competence, String projet) {
         ServerCommunication s = new ServerCommunication();
         
-        String nbPagesString = s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet);
-        int nbPages = Integer.parseInt(nbPagesString) / 6;
+        String nbProjetsString = s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet);
+        int nbProjets = Integer.parseInt(nbProjetsString);
+        int nbPages = (int) Math.ceil((float) nbProjets/6); //arrondi au superieur du nombre de page
         
         total.setText(String.valueOf(nbPages));
     }
