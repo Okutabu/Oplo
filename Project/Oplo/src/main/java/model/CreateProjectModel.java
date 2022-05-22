@@ -59,11 +59,10 @@ public class CreateProjectModel
             try 
             {
                 String res = s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
-                System.out.println("res du projet :" + res);
-                
+                System.out.println(res);
                 if (res.equals("ok"))
                 {
-                    view.setErrorMsg("Le projet a bien été crée");
+                    view.setErrorMsg("Le projet à bien été crée");
                     view.setErrorMsgColor(new Color(0,255,0));
                 }
             }
