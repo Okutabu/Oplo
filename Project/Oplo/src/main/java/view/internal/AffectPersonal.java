@@ -183,7 +183,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         String nbPagesString = s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet);
         int nbPages = Integer.parseInt(nbPagesString) / 6;
         
-        total.setText();
+        total.setText(String.valueOf(nbPages));
     }
     
     private int getCurrentPage() {
