@@ -374,7 +374,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     }
     
     private JLabel memberDisplay() {
-        JLabel add = new JLabel("Ajouter un membre");
+        JLabel add = new JLabel("+ Ajouter un membre");
         add.setCursor(new Cursor(Cursor.HAND_CURSOR));
         add.setForeground(Color.GREEN);  
         return add;

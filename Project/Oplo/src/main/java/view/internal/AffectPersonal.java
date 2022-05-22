@@ -483,7 +483,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderByActionPerformed
-        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
+        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 1);
         refreshTotal(getCompetenceSearched(), getProjectSearched());
     }//GEN-LAST:event_orderByActionPerformed
 
@@ -504,7 +504,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_currentPageStateChanged
 
     private void loupe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe2MouseClicked
-        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
+        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 1);
         refreshTotal(getCompetenceSearched(), getProjectSearched());
     }//GEN-LAST:event_loupe2MouseClicked
 
