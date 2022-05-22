@@ -64,7 +64,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
             }
         });
 
-        title.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
+        title.setFont(new java.awt.Font("Calibri", 0, 30)); // NOI18N
         title.setForeground(new java.awt.Color(255, 255, 255));
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("Titre");
