@@ -17,11 +17,13 @@ import model.utility.UserAndSkills;
 public class AssociateProjectXMember extends javax.swing.JFrame {
 
     private String titleProject;
+    private String login;
     /**
      * Creates new form AssociateProjectXMember
      */
     public AssociateProjectXMember(String titre) {
         this.titleProject = titre;
+        this.login = null;
         initComponents();
         initialize();
         this.getContentPane().setBackground(new Color(35,35,40));
@@ -151,6 +153,7 @@ public class AssociateProjectXMember extends javax.swing.JFrame {
     private void affectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affectActionPerformed
         AffectPersonnalModel a = new AffectPersonnalModel();
         String error = a.AffectPersonnal((String) personnel.getSelectedItem(), getTitleProject());
+        System.out.print((String) personnel.getSelectedItem() + getTitleProject());
         if (error.equals("failure")) {
             errors.setText("Erreur");
             errors.setForeground(Color.RED);
