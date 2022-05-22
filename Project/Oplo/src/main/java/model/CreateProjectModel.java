@@ -59,6 +59,7 @@ public class CreateProjectModel
             try 
             {
                 String res = s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
+                System.out.println("res du projet :" + res);
                 
                 if (res.equals("ok"))
                 {
