@@ -171,10 +171,11 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
          boolean possible = verifySkillIsNotAlreadyPresent(skill_to_add);
          
          if (possible){
+             System.out.print("\nLe login est: " +user.getLogin());
+             System.out.print("\nLe nom de la competence est :"+skill_to_add);
             res = s.sendPostRequest("competenceName="+skill_to_add+"&login="+user.getLogin());
-            System.out.print(res);
             String [] first_word = res.split(" ", 2);
-            System.out.print("There has been no mistakes");
+            System.out.print("\nThere has been no mistakes");
             /*
             sendPostRequest returns a string no matter what happens, but in the case of an error
             the string returned starts with 'Error'
@@ -186,6 +187,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
          }   
          }
      }
+     
      /*
      Envoie une requete pour retirer une compétence à l'utilisateur et met à ajour la JComboBox d'affichage
      */
@@ -208,7 +210,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
     {
         ServerCommunication s = new ServerCommunication();
         
-        String res = s.sendPostRequest("retrieveCompetence="+user.getFirstname());
+        String res = s.sendPostRequest("retrieveCompetence="+user.getLogin());
 
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
@@ -643,7 +645,6 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         boolean res = true;
         ArrayList<String> list_of_skills = loadListOfMySkills();
         for(String name: list_of_skills){
-
             if (name.equals(skillToScanFor)){
                 res = false;
             }

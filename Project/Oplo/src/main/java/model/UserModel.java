@@ -26,8 +26,8 @@ public class UserModel
     {
         ServerCommunication s = new ServerCommunication();
         
-        String c = s.sendPostRequest("login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
-        
+        //String c = s.sendPostRequest("login=" + view.inputLogin.getText() + "&password=" + String.valueOf(view.inputPassword.getPassword()));
+        String c = s.sendPostRequest("login=" + "clem" + "&password=" + "mdp");
         Object o = JSONValue.parse(c);
         JSONObject connectionInfos = (JSONObject) o;
         
@@ -81,6 +81,8 @@ public class UserModel
         String motPasse = String.valueOf(source.password.getPassword());
         String role1 = source.role.getSelectedItem().toString();
         File file = source.getFile();
+        ArrayList<String> userSkills = source.getSkills();
+        
         if (!(file==null)){
             // uploadProfilePicture();
         }
@@ -105,7 +107,8 @@ public class UserModel
                 "&role=" + role1 + "&admin=" + administrateur + "&firstname=" + prenom + "&surname=" + nom + "&others=" + bio + "&profile_pic=" + picName);
         
         if (inscription.equals("ok"))
-        {
+        {   
+            addSkillsToUser(identifiant, userSkills);
             source.infosInscription.setForeground(new Color(0,255,0));
             source.infosInscription.setText("Inscription prise en compte");
         } 
@@ -211,4 +214,20 @@ public class UserModel
         
     }
     
+    public static void addSkillToUser(String login, String skill_to_add){
+         String res;
+         ServerCommunication s = new ServerCommunication();
+         
+        res = s.sendPostRequest("competenceName="+skill_to_add+"&login="+login);
+        System.out.print(res); 
+         
+         }
+    
+    public static void addSkillsToUser(String login, ArrayList<String> skills_to_add){
+        for (String skill_to_add:skills_to_add){
+            addSkillToUser(login, skill_to_add);
+        }
+    }
 }
+    
+

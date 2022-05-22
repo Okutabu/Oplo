@@ -85,6 +85,16 @@ public class Registration extends javax.swing.JInternalFrame {
         return this.myfile;
     }
     
+    public ArrayList<String> getSkills(){
+        
+       int n = chosenSkills.getItemCount();
+       ArrayList<String> res = new ArrayList<String>();
+        for (int i = 0; i < n; i++) {
+            res.add(chosenSkills.getItemAt(i));
+        }
+        return res;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
