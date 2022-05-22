@@ -5,11 +5,11 @@
 package view.internal;
 
 import controller.ProjectListController;
+import controller.addMemberToProjectController;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +17,6 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
 import static model.Skills.loadSkillList;
@@ -189,13 +188,14 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     Project p = new Project(name, description, start_date, end_date, creator_login, skills);
 
                     miniProjectDisplayResponsable m = new miniProjectDisplayResponsable(p);
-                    m.addMouseListener(new ProjectListController(name));
+                    m.addMouseListener(new addMemberToProjectController(displayProjects));
                     //ajout au jpanel
                     displayProjects.add(m);
                 }
             }
         }
         validate();
+        repaint();
     }
     
     private int getTotalpages(String competence, String projet){
