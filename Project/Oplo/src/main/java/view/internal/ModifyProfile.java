@@ -21,6 +21,7 @@ import view.*;
 
 import controller.*;
 import javax.swing.JComboBox;
+import static model.Skills.loadSkillList;
 
 /**
  *
@@ -90,42 +91,6 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         bioInputField.setText(user.getOthers()); 
     }
     
-    /**
-     * This method grabs every name from the competence table of the database
-     * @return an array of string
-     */
-     public ArrayList<String> loadSkillList()
-    {
-        ServerCommunication s = new ServerCommunication();
-        String res = s.sendGetRequest("retrieveAllCompetence=true");
-        Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;         
-        
-        ArrayList<String> competences = new ArrayList<String>();
-        
-        try{
-            
-        
-        for(Object object:jsonArray)
-        {
-            if(object instanceof JSONObject)
-            {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys)
-                {
-                   competences.add(key);
-                }               
-            }
-        }
-        }
-        catch(NullPointerException e){
-            competences.add("erreur de chargement");
-        }
-        return competences;
-    }
      /**
       * change le boolean d'ajout et indique à l'utlisateur la nouvelle utilité du bouton
       */

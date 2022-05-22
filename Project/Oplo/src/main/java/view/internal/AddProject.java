@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Set;
 import javax.swing.JLabel;
+import static model.Skills.loadSkillList;
 import model.utility.ServerCommunication;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -105,42 +106,6 @@ public class AddProject extends javax.swing.JInternalFrame {
         for (String skill:liste_de_competence){
             skillSelector.addItem(skill);
         }
-    }
-    /**
-     * Cette methode permet de charger la liste des competences présent dans la base de donnée
-     * @return une ArrayList de chaine de caractere
-     */
-    public ArrayList<String> loadSkillList()
-    {
-        ServerCommunication s = new ServerCommunication();
-        String res = s.sendGetRequest("retrieveAllCompetence=true");
-        Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;         
-        
-        ArrayList<String> competences = new ArrayList<String>();
-        
-        try{
-            
-        
-        for(Object object:jsonArray)
-        {
-            if(object instanceof JSONObject)
-            {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys)
-                {
-                   competences.add(key);
-                }               
-            }
-        }
-        }
-        catch(NullPointerException e){
-            competences.add("erreur de chargement");
-        }
-        return competences;
     }
     
     public void setErrorMsg(String msg)
