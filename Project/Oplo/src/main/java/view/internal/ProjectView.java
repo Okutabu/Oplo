@@ -246,8 +246,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         String res = s.sendPostRequest("getMessages=true&projectName=" + model.getProjectName());
         
-        System.out.println(res);
-        
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;   
         
@@ -312,7 +310,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
     {
         ServerCommunication s = new ServerCommunication();
         String res = s.sendPostRequest("retrieveMembersList&projectName=" + model.getProjectName());
-        System.out.println(res);
+
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         innerPanel.setBackground(new Color(102, 102, 102));
@@ -341,8 +339,6 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     innerPanel.add(newLabel);
                     
                     UserConnected user = Home.getUser();
-                    
-                    System.out.println("array login :" + newObj.get("login").toString() + " login :" +user.getLogin());
                     
                     if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()))
                     { 

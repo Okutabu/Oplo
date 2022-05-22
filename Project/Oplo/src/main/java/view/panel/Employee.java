@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import model.utility.ServerCommunication;
 import model.utility.User;
 import model.utility.UserAndSkills;
-import model.utility.UserConnected;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;

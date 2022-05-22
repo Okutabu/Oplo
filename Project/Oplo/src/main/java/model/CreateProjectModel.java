@@ -7,12 +7,10 @@ package model;
 import java.awt.Color;
 import view.internal.AddProject;
 import java.io.Writer;
-import java.sql.Date;
 import model.utility.*;
 import org.json.simple.JSONObject;
 import view.*;
 import java.util.Iterator;
-import javax.swing.JLabel;
 /**
  *
  * @author Clément

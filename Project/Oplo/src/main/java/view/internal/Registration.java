@@ -50,7 +50,7 @@ public class Registration extends javax.swing.JInternalFrame {
                     addSkillToField();
                 }
                 else
-                {removeSkillFromUser();
+                {
                 removeSkillFromField();}
             }
 
@@ -464,7 +464,7 @@ public class Registration extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendGetRequest("retrieveAllCompetence=true");
-        System.out.print(res);
+
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
         
@@ -516,10 +516,6 @@ public class Registration extends javax.swing.JInternalFrame {
      public void addSkillToUser(){
          ServerCommunication s = new ServerCommunication();
          //s.sendPostRequest("competenceName=NomDeLaCompetence&login=LOGIN_USER" , );
-     }
-     
-     public void removeSkillFromUser(){
-         System.out.print("yo lets remove things");
      }
 
      

@@ -209,7 +209,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendPostRequest("retrieveCompetence="+user.getFirstname());
-        System.out.print(res);
+
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;         
         
@@ -643,7 +643,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
         boolean res = true;
         ArrayList<String> list_of_skills = loadListOfMySkills();
         for(String name: list_of_skills){
-            System.out.print(name);
+
             if (name.equals(skillToScanFor)){
                 res = false;
             }
