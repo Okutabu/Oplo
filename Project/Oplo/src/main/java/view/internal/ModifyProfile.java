@@ -197,6 +197,7 @@ public class ModifyProfile extends javax.swing.JInternalFrame {
          String skill_to_remove = (String) skillSelector.getSelectedItem();
          res = s.sendPostRequest("deleteUserCompetence=true&competenceName="+skill_to_remove+"&login="+user.getLogin());
          String [] first_word = res.split(" ", 1);
+         System.out.print(res);
          
          if (!"Error".equals(first_word[0]) && !"L'action".equals(first_word[0])){
                 skillsField.removeItem(skill_to_remove);
