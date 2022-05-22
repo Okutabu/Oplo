@@ -310,6 +310,8 @@ public class ProjectView extends javax.swing.JInternalFrame {
     
     public void retrieveMembersList()
     {
+        UserConnected user = Home.getUser();
+        
         ServerCommunication s = new ServerCommunication();
         String res = s.sendPostRequest("retrieveMembersList&projectName=" + model.getProjectName());
 
@@ -351,8 +353,9 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     //ajout mouseListener
                     newLabel.addMouseListener(new OpenProfileController(newObj.get("login").toString()));
                     
-                    UserConnected user = Home.getUser();
                     
+                    
+                    //pour la croix
                     if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()))
                     { 
                         RemoveUserBtn removeLabel = new RemoveUserBtn("X", newObj.get("login").toString(), model);
@@ -365,8 +368,16 @@ public class ProjectView extends javax.swing.JInternalFrame {
                 }               
             }
         }
-        
+        //pour ajouter membre au projet
+        if (user.getRole().equals("Chef de projet")) innerPanel.add(memberDisplay());
         MembersListPanel.setViewportView(innerPanel);
+    }
+    
+    private JLabel memberDisplay() {
+        JLabel add = new JLabel("Ajouter un membre");
+        add.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        add.setForeground(Color.GREEN);  
+        return add;
     }
     
     public String getNewsInput()
@@ -539,7 +550,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(MembersListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(MembersListPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(NewsScrollView, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -552,7 +563,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                             .addComponent(SendNewsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(projectOwnerLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(293, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
 
         pack();

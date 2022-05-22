@@ -2,6 +2,7 @@ view\internal\HomeNavigationButtonsPanel$2.class
 model\ManageProjectModel.class
 view\panel\Employee$2.class
 view\panel\miniProjectDisplay.class
+model\Skills.class
 controller\AddTaskController.class
 view\ConnexionPanel$7.class
 view\internal\HomeNavigationButtonsPanel$5.class
@@ -41,6 +42,7 @@ view\internal\Registration$1.class
 view\internal\ProjectList$3.class
 view\internal\ModifyProfile$2.class
 view\panel\ApproveUserPanel$2.class
+controller\OpenProfileController.class
 view\internal\Accueil.class
 view\internal\AddProject.class
 view\internal\Registration$4.class
@@ -53,6 +55,7 @@ view\internal\AffectPersonal$3.class
 model\UserModel.class
 view\internal\Registration.class
 view\internal\AffectPersonal$6.class
+view\internal\AffectPersonal$9.class
 view\panel\miniProjectDisplayResponsable$1.class
 view\internal\ProjectList$4.class
 controller\SendNewsController.class
