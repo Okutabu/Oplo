@@ -10,13 +10,7 @@ import model.*;
 import controller.*;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Set;
-import javax.swing.JLabel;
 import static model.Skills.loadSkillList;
-import model.utility.ServerCommunication;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 /**
  *
  * @author Mélanie

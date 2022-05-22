@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+import static model.Skills.loadSkillList;
 import model.utility.Display;
 import model.utility.Project;
 import model.utility.ServerCommunication;
@@ -68,7 +69,18 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         refreshEmployees();
         refreshProjects("", "", "", 1);
         refreshTotal("", "");
+        
+        initializeSkills();
     }
+    
+    public void initializeSkills() {
+        ArrayList<String> skills = loadSkillList();
+        for (String skill:skills){
+            searchBarSkill.addItem(skill);
+        }
+    }
+    
+    
     
     private void refreshEmployees() {
         ServerCommunication s = new ServerCommunication();
@@ -128,10 +140,12 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }
     
     private void refreshProjects(String competence, String projet, String sortBy, int page) {
-        page -= 1;
+        page -= 1; //pour reguler le offset
+        if (competence.equals("Sélectionner")) competence = "";
+        
         ServerCommunication s = new ServerCommunication();
-        System.out.println("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + competence);
-        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + competence);
+        System.out.println("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
+        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
         System.out.println(res);
         displayProjects.removeAll();
         
@@ -374,6 +388,11 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
         searchBarSkill.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         searchBarSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sélectionner" }));
+        searchBarSkill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBarSkillActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -494,6 +513,11 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private void currentPagePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_currentPagePropertyChange
         
     }//GEN-LAST:event_currentPagePropertyChange
+
+    private void searchBarSkillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarSkillActionPerformed
+        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
+        refreshTotal(getCompetenceSearched(), getProjectSearched());
+    }//GEN-LAST:event_searchBarSkillActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
