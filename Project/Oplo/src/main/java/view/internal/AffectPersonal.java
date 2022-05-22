@@ -167,6 +167,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     
     private int getTotalpages(String competence, String projet){
         ServerCommunication s = new ServerCommunication();
+        if (competence.equals("Sélectionner")) competence = "";
         
         String nbProjetsString = s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet);
         int nbProjets = Integer.parseInt(nbProjetsString);
