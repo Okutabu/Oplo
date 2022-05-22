@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,16 +16,17 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.border.EmptyBorder;
 import model.utility.Display;
 import model.utility.Project;
 import model.utility.ServerCommunication;
 import model.utility.Skill;
-import model.utility.User;
 import model.utility.UserAndSkills;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
-import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 import view.panel.Employee;
 import view.panel.miniProjectDisplayResponsable;
 
@@ -47,9 +49,10 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     
     private void initialize(){
         
-        displayProjects.setLayout(new GridLayout(2, 3, 5, 10));
+        displayProjects.setLayout(new GridLayout(2, 3, 8, 8));
+        displayProjects.setBorder(new EmptyBorder(8, 8, 8, 8));
         
-        currentPage.setMinimumSize(new Dimension(0, 0));
+        currentPage.setMinimumSize(new Dimension(1, 2));
         
         Image image = null;
         try {
@@ -67,7 +70,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         
         refreshTotal("", "");
         refreshEmployees();
-        refreshProjects("", "", "", 0);
+        refreshProjects("", "", "", 1);
+        refreshTotal("", "");
     }
     
     private void refreshEmployees() {
@@ -80,9 +84,10 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(null);
+        innerPanel.setBackground(new Color(40, 40, 46));
         int nbEmployés = jsonArray.size();
         if (nbEmployés < 6) {
-            innerPanel.setLayout(new GridLayout(6, 1, 5, 1));
+            innerPanel.setLayout(new GridLayout(6, 1, 5, 5));
         } else {
             innerPanel.setLayout(new GridLayout(nbEmployés, 1, 5, 1));
         }
@@ -127,72 +132,78 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }
     
     private void refreshProjects(String competence, String projet, String sortBy, int page) {
+        page -= 1;
         ServerCommunication s = new ServerCommunication();
-        
-        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
-        System.out.print(res);
+        System.out.println("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + competence);
+        String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + competence);
+        System.out.println(res);
+        displayProjects.removeAll();
         
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;
         
-        for(Object object:jsonArray)
-        {
-            if(object instanceof JSONObject) 
+        if (jsonArray != null) {
+            
+            for(Object object:jsonArray)
             {
-                JSONObject jsonObject = (JSONObject)object;
+                if(object instanceof JSONObject) 
+                {
+                    JSONObject jsonObject = (JSONObject)object;
 
 
-                //recuperation des infos
-                String name = jsonObject.get("name").toString();
-                String description = jsonObject.get("description").toString();
-                String start_date = jsonObject.get("start_date").toString();
-                String end_date = jsonObject.get("end_date").toString();
-                String creator_login = jsonObject.get("creator_login").toString();
+                    //recuperation des infos
+                    String name = jsonObject.get("name").toString();
+                    String description = jsonObject.get("description").toString();
+                    String start_date = jsonObject.get("start_date").toString();
+                    String end_date = jsonObject.get("end_date").toString();
+                    String creator_login = jsonObject.get("creator_login").toString();
 
-                JSONArray competences = (JSONArray) jsonObject.get("competences");    
-                ArrayList<Skill> skills = new ArrayList<Skill>();
-                
-                if (!competences.isEmpty()) {
-                    JSONObject JSONcompetences = (JSONObject) competences.get(0);
-                    Set<String> newKeys =JSONcompetences.keySet();
+                    JSONArray competences = (JSONArray) jsonObject.get("competences");    
+                    ArrayList<Skill> skills = new ArrayList<Skill>();
+
+                    if (!competences.isEmpty()) {
+                        JSONObject JSONcompetences = (JSONObject) competences.get(0);
+                        Set<String> newKeys =JSONcompetences.keySet();
 
 
-                    for(Object newKey:newKeys) 
-                    {
-                        String nom = newKey.toString();
-                        String nb = JSONcompetences.get(nom).toString();
-                        skills.add(new Skill(Integer.parseInt(nb), nom));
+                        for(Object newKey:newKeys) 
+                        {
+                            String nom = newKey.toString();
+                            String nb = JSONcompetences.get(nom).toString();
+                            skills.add(new Skill(Integer.parseInt(nb), nom));
+                        }
                     }
+
+
+                    Project p = new Project(name, description, start_date, end_date, creator_login, skills);
+
+                    miniProjectDisplayResponsable m = new miniProjectDisplayResponsable(p);
+                    //ajout au jpanel
+                    displayProjects.add(m);
                 }
-                
-
-                Project p = new Project(name, description, start_date, end_date, creator_login, skills);
-
-                miniProjectDisplayResponsable m = new miniProjectDisplayResponsable(p);
-                //ajout au jpanel
-                displayProjects.add(m);
             }
         }
-        
-        
     }
     
-    private void refreshTotal(String competence, String projet) {
+    private int getTotalpages(String competence, String projet){
         ServerCommunication s = new ServerCommunication();
         
         String nbProjetsString = s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet);
         int nbProjets = Integer.parseInt(nbProjetsString);
-        int nbPages = (int) Math.ceil((float) nbProjets/6); //arrondi au superieur du nombre de page
-        
-        total.setText(String.valueOf(nbPages));
+        return (int) Math.ceil((float) nbProjets/6); //arrondi au superieur du nombre de page
     }
+    
+    private void refreshTotal(String competence, String projet) {
+        int nbPages = getTotalpages(competence, projet);
+        //on set le total
+        total.setText(String.valueOf(nbPages));
+        //et on set le total du jspinner
+        currentPage.setModel(new SpinnerNumberModel(1, 1, nbPages, 1));
+    }
+    
     
     private int getCurrentPage() {
-        return Integer.parseInt((String) currentPage.getValue());
-    }
-    
-    private void reinitializeCurrentPage() {
-        currentPage.setValue("0");
+        return (int) currentPage.getValue();
     }
 
     private String getCompetenceSearched() {
@@ -255,15 +266,16 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
             .addGap(0, 8, Short.MAX_VALUE)
         );
 
-        displayProjects.setBackground(new java.awt.Color(70, 70, 100));
+        displayProjects.setBackground(new java.awt.Color(61, 61, 72));
         displayProjects.setForeground(new java.awt.Color(70, 70, 100));
         displayProjects.setMaximumSize(new java.awt.Dimension(1074, 615));
+        displayProjects.setMinimumSize(new java.awt.Dimension(1074, 615));
 
         javax.swing.GroupLayout displayProjectsLayout = new javax.swing.GroupLayout(displayProjects);
         displayProjects.setLayout(displayProjectsLayout);
         displayProjectsLayout.setHorizontalGroup(
             displayProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1074, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         displayProjectsLayout.setVerticalGroup(
             displayProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,11 +292,11 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Rechercher une compétence");
+        jLabel1.setText("Compétence :");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Rechercher un projet");
+        jLabel2.setText("Projet :");
 
         searchBarSkill.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         searchBarSkill.setPreferredSize(new java.awt.Dimension(54, 22));
@@ -310,7 +322,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         });
 
         displayPersonal.setBackground(new java.awt.Color(40, 40, 60));
-        displayPersonal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
+        displayPersonal.setBorder(null);
         displayPersonal.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         displayPersonal.setOpaque(false);
 
@@ -363,9 +375,20 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("/");
 
+        currentPage.setBorder(null);
         currentPage.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 currentPageStateChanged(evt);
+            }
+        });
+        currentPage.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                currentPagePropertyChange(evt);
+            }
+        });
+        currentPage.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                currentPageKeyPressed(evt);
             }
         });
 
@@ -378,76 +401,79 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 .addGap(63, 63, 63)
                 .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(displayProjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(previous, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(275, 275, 275)
-                        .addComponent(currentPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(total)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(displayPersonal, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(orderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loupe1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(loupe2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(55, 55, 55)
+                        .addComponent(orderBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loupe1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
+                        .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loupe2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(previous, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(currentPage, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(total)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(displayProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 1035, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(displayPersonal)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(orderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addComponent(loupe2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addComponent(loupe1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(orderBy, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loupe1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(next, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(previous, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(total)
                                 .addComponent(jLabel5)
                                 .addComponent(currentPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(displayPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(displayProjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(242, 242, 242))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(displayProjects, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(loupe2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel3)
+                        .addGap(23, 23, 23)
+                        .addComponent(displayPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(252, 252, 252))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {searchBarProject, searchBarSkill});
@@ -457,7 +483,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
     private void orderByActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderByActionPerformed
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
-        reinitializeCurrentPage();
+        refreshTotal(getCompetenceSearched(), getProjectSearched());
     }//GEN-LAST:event_orderByActionPerformed
 
     private void searchBarSkillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarSkillActionPerformed
@@ -469,11 +495,11 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_searchBarProjectActionPerformed
 
     private void previousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_previousActionPerformed
-        currentPage.setValue(Integer.parseInt((String) currentPage.getValue()) - 1);
+        if (getCurrentPage() > 1) currentPage.setValue(getCurrentPage() - 1);
     }//GEN-LAST:event_previousActionPerformed
 
     private void nextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextActionPerformed
-        currentPage.setValue(Integer.parseInt((String) currentPage.getValue()) + 1);
+        if (getCurrentPage() < Integer.parseInt(total.getText())) currentPage.setValue(getCurrentPage() + 1);
     }//GEN-LAST:event_nextActionPerformed
 
     private void currentPageStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_currentPageStateChanged
@@ -482,13 +508,21 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
     private void loupe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe1MouseClicked
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
-        reinitializeCurrentPage();
+        refreshTotal(getCompetenceSearched(), getProjectSearched());
     }//GEN-LAST:event_loupe1MouseClicked
 
     private void loupe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe2MouseClicked
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
-        reinitializeCurrentPage();
+        refreshTotal(getCompetenceSearched(), getProjectSearched());
     }//GEN-LAST:event_loupe2MouseClicked
+
+    private void currentPageKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_currentPageKeyPressed
+        
+    }//GEN-LAST:event_currentPageKeyPressed
+
+    private void currentPagePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_currentPagePropertyChange
+        
+    }//GEN-LAST:event_currentPagePropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
