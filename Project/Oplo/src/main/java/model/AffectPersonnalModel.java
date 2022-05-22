@@ -15,7 +15,7 @@ public class AffectPersonnalModel {
         ServerCommunication s = new ServerCommunication();
         
         String c = s.sendPostRequest("login=" + login + "&projectName=" + titre);
-        System.out.print(c);
+
         return c;
         
     }

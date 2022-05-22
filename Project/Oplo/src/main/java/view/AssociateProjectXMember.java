@@ -17,13 +17,13 @@ import model.utility.UserAndSkills;
 public class AssociateProjectXMember extends javax.swing.JFrame {
 
     private String titleProject;
-    private String login;
+    private ArrayList<String> logins;
     /**
      * Creates new form AssociateProjectXMember
      */
     public AssociateProjectXMember(String titre) {
         this.titleProject = titre;
-        this.login = null;
+        this.logins = new ArrayList<String>();
         initComponents();
         initialize();
         this.getContentPane().setBackground(new Color(35,35,40));
@@ -39,11 +39,16 @@ public class AssociateProjectXMember extends javax.swing.JFrame {
         
         for (UserAndSkills user:users) {
             personnel.addItem(user.getLogin() + " - " + user.getName());
+            this.logins.add(user.getLogin());
         }
     }
     
     private String getTitleProject() {
         return this.titleProject;
+    }
+    
+    private ArrayList<String> getLogins() {
+        return this.logins;
     }
 
     /**
@@ -151,8 +156,9 @@ public class AssociateProjectXMember extends javax.swing.JFrame {
     }//GEN-LAST:event_personnelActionPerformed
 
     private void affectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affectActionPerformed
+        String login = getLogins().get(personnel.getSelectedIndex());
         AffectPersonnalModel a = new AffectPersonnalModel();
-        String error = a.AffectPersonnal((String) personnel.getSelectedItem(), getTitleProject());
+        String error = a.AffectPersonnal(login, getTitleProject());
         System.out.print((String) personnel.getSelectedItem() + getTitleProject());
         if (error.equals("failure")) {
             errors.setText("Erreur");
