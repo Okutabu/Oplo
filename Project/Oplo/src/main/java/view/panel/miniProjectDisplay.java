@@ -57,6 +57,7 @@ public class miniProjectDisplay extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(70, 70, 100));
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        setMaximumSize(new java.awt.Dimension(355, 333));
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 formKeyPressed(evt);

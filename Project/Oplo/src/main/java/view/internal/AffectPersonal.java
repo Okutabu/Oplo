@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.EmptyBorder;
+import model.RetrieveEmployees;
 import static model.Skills.loadSkillList;
 import model.utility.Display;
 import model.utility.Project;
@@ -82,58 +83,24 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     
     
     private void refreshEmployees() {
-        ServerCommunication s = new ServerCommunication();
-        
-        String res = s.sendGetRequest("allUsers");
-
-        Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;
+        RetrieveEmployees e = new RetrieveEmployees();
+        ArrayList<UserAndSkills> users = e.retrieveEmployees();
         
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(null);
         innerPanel.setBackground(new Color(40, 40, 46));
-        int nbEmployés = jsonArray.size();
+        int nbEmployés = users.size();
         if (nbEmployés < 6) {
             innerPanel.setLayout(new GridLayout(6, 1, 5, 5));
         } else {
             innerPanel.setLayout(new GridLayout(nbEmployés, 1, 5, 1));
         }
         
-        for(Object object:jsonArray)
-        {
-            if(object instanceof JSONObject) 
-            {
-                JSONObject jsonObject = (JSONObject)object;
-
-                Set<String> keys =jsonObject.keySet();
-                
-                for(String key:keys) 
-                {
-                    Object newJson = jsonObject.get(key);
-
-                    JSONObject newObj = (JSONObject)newJson;
-
-                    //recuperation des infos
-                    String login = key;
-                    String name = newObj.get("nom").toString();
-                    String numberOfProject = newObj.get("numberOfProject").toString();
-                    JSONArray competences = (JSONArray) newObj.get("competence");
-
-                    ArrayList<String> skills = new ArrayList<String>();
-                    for(Object newKey:competences) 
-                    {
-                        skills.add(newKey.toString());
-                    }
-
-                    UserAndSkills user = new UserAndSkills(login, name, skills, Integer.parseInt(numberOfProject));
-                    
-                    Employee e = new Employee(user);
-                    //ajout au jpanel
-                    innerPanel.add(e);
-                   
-
-                }               
-            }
+        for (UserAndSkills user:users) {
+            
+            Employee em = new Employee(user);
+            //ajout au jpanel
+            innerPanel.add(em);
         }
         displayPersonal.setViewportView(innerPanel);
     }
@@ -143,9 +110,9 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         if (competence.equals("Sélectionner")) competence = "";
         
         ServerCommunication s = new ServerCommunication();
-        System.out.println("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
+        
         String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
-        System.out.println(res);
+        
         displayProjects.removeAll();
         
         Object o = JSONValue.parse(res);
@@ -187,7 +154,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     Project p = new Project(name, description, start_date, end_date, creator_login, skills);
 
                     miniProjectDisplayResponsable m = new miniProjectDisplayResponsable(p);
-                    m.addMouseListener(new AffectController());
+                    m.addMouseListener(new AffectController(name));
                     //ajout au jpanel
                     displayProjects.add(m);
                 }

@@ -4,28 +4,44 @@
  */
 package view;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import model.AffectPersonnalModel;
+import model.RetrieveEmployees;
+import model.utility.UserAndSkills;
+
 /**
  *
  * @author gaeta
  */
 public class AssociateProjectXMember extends javax.swing.JFrame {
 
-    private String login;
+    private String titleProject;
     /**
      * Creates new form AssociateProjectXMember
      */
-    public AssociateProjectXMember() {
+    public AssociateProjectXMember(String titre) {
+        this.titleProject = titre;
         initComponents();
         initialize();
+        this.getContentPane().setBackground(new Color(35,35,40));
         setLocationRelativeTo(null);
     }
     
     private void initialize() {
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        titre.setText(getTitleProject());
+        
+        RetrieveEmployees e = new RetrieveEmployees();
+        ArrayList<UserAndSkills> users = e.retrieveEmployees();
+        
+        for (UserAndSkills user:users) {
+            personnel.addItem(user.getLogin() + " - " + user.getName());
+        }
     }
     
-    private String getLogin() {
-        return this.login;
+    private String getTitleProject() {
+        return this.titleProject;
     }
 
     /**
@@ -37,57 +53,120 @@ public class AssociateProjectXMember extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        titre = new javax.swing.JLabel();
+        personnel = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        affect = new com.k33ptoo.components.KButton();
+        errors = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("à :");
+
+        titre.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        titre.setForeground(new java.awt.Color(255, 255, 255));
+        titre.setText("nomProjet");
+
+        personnel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                personnelActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Ajouter");
+
+        affect.setText("Affecter");
+        affect.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        affect.setkAllowGradient(false);
+        affect.setkBackGroundColor(new java.awt.Color(9, 184, 255));
+        affect.setkHoverColor(new java.awt.Color(9, 150, 200));
+        affect.setkHoverForeGround(new java.awt.Color(255, 255, 255));
+        affect.setkPressedColor(new java.awt.Color(9, 120, 190));
+        affect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                affectActionPerformed(evt);
+            }
+        });
+
+        errors.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        errors.setForeground(new java.awt.Color(255, 255, 255));
+        errors.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(39, 39, 39)
+                                .addComponent(personnel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(titre, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(errors, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(affect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(personnel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(titre))
+                .addGap(53, 53, 53)
+                .addComponent(affect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errors, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AssociateProjectXMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AssociateProjectXMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AssociateProjectXMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AssociateProjectXMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void personnelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_personnelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_personnelActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AssociateProjectXMember().setVisible(true);
-            }
-        });
-    }
+    private void affectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affectActionPerformed
+        AffectPersonnalModel a = new AffectPersonnalModel();
+        String error = a.AffectPersonnal((String) personnel.getSelectedItem(), getTitleProject());
+        if (error.equals("failure")) {
+            errors.setText("Erreur");
+            errors.setForeground(Color.RED);
+        } else {
+            errors.setText("Employé affecté !");
+            errors.setForeground(Color.GREEN);
+        }
+    }//GEN-LAST:event_affectActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.k33ptoo.components.KButton affect;
+    private javax.swing.JLabel errors;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<String> personnel;
+    private javax.swing.JLabel titre;
     // End of variables declaration//GEN-END:variables
 }

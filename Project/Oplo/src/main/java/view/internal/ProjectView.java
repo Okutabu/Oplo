@@ -356,7 +356,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     
                     
                     //pour la croix
-                    if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()) && user.getRole().equals("Responsable scientifique"))
+                    if(!newObj.get("login").toString().equals(user.getLogin()) && user.getRole().equals("Responsable scientifique"))
                     { 
                         RemoveUserBtn removeLabel = new RemoveUserBtn("X", newObj.get("login").toString(), model);
                         removeLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -377,7 +377,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         JLabel add = new JLabel("+ Ajouter un membre");
         add.setCursor(new Cursor(Cursor.HAND_CURSOR));
         add.setForeground(Color.GREEN);  
-        add.addMouseListener(new AffectController());
+        add.addMouseListener(new AffectController(projectNameLabel.getText()));
         return add;
     }
     
