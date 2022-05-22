@@ -71,6 +71,7 @@ public class ManageProjectModel {
     {
         ServerCommunication s = new ServerCommunication();
         System.out.println(s.sendPostRequest("removeUserFromProject=true&projectName=" + projectName + "&login=" + login));
+        System.out.println("removeUserFromProject=true&projectName=" + projectName + "&login=" + login);
         view.retrieveMembersList();
     }
 }

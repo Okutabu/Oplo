@@ -361,6 +361,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                         RemoveUserBtn removeLabel = new RemoveUserBtn("X", newObj.get("login").toString(), model);
                         removeLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
                         removeLabel.setForeground(Color.red);  
+                        removeLabel.addMouseListener(new RemoveUserFromProjectController(removeLabel, model));
                         employeePanel.add(removeLabel);
                     }
                     
