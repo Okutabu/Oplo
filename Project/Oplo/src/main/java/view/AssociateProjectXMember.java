@@ -158,8 +158,8 @@ public class AssociateProjectXMember extends javax.swing.JFrame {
     private void affectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_affectActionPerformed
         String login = getLogins().get(personnel.getSelectedIndex());
         AffectPersonnalModel a = new AffectPersonnalModel();
-        String error = a.AffectPersonnal(login, getTitleProject());
-        System.out.print((String) personnel.getSelectedItem() + getTitleProject());
+        String error = a.Affect(getTitleProject(), login);
+
         if (error.equals("failure")) {
             errors.setText("Erreur");
             errors.setForeground(Color.RED);

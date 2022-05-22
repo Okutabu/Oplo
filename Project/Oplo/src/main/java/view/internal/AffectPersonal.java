@@ -112,7 +112,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
-        
+        System.out.println(res);
         displayProjects.removeAll();
         
         Object o = JSONValue.parse(res);
@@ -136,6 +136,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
                     JSONArray competences = (JSONArray) jsonObject.get("competences");    
                     ArrayList<Skill> skills = new ArrayList<Skill>();
+                    
 
                     if (!competences.isEmpty()) {
                         JSONObject JSONcompetences = (JSONObject) competences.get(0);
@@ -174,6 +175,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     
     private void refreshTotal(String competence, String projet) {
         int nbPages = getTotalpages(competence, projet);
+        if(nbPages == 0) nbPages = 1;
         //on set le total
         total.setText(String.valueOf(nbPages));
         //et on set le total du jspinner
