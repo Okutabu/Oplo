@@ -106,13 +106,13 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }
     
     private void refreshProjects(String competence, String projet, String sortBy, int page) {
-        page -= 1; //pour reguler le offset
+        if (page != 0) page -= 1; //pour reguler le offset
         if (competence.equals("Sélectionner")) competence = "";
         
         ServerCommunication s = new ServerCommunication();
-        
+
         String res = s.sendPostRequest("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
-        System.out.println(res);
+        System.out.println("retrieveProjectForRS=true&competence=" + competence + "&projectName=" + projet + "&limit=" + PAGINATION_STEP + "&offset=" + page * 6 + "&tri=" + sortBy);
         displayProjects.removeAll();
         
         Object o = JSONValue.parse(res);
