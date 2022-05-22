@@ -19,10 +19,12 @@ import model.utility.Display;
 import model.utility.Project;
 import model.utility.ServerCommunication;
 import model.utility.Skill;
+import model.utility.User;
 import model.utility.UserAndSkills;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
+import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
 import view.panel.Employee;
 import view.panel.miniProjectDisplayResponsable;
 
@@ -44,6 +46,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }
     
     private void initialize(){
+        
         displayProjects.setLayout(new GridLayout(2, 3, 5, 10));
         
         currentPage.setMinimumSize(new Dimension(0, 0));
@@ -71,7 +74,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendGetRequest("allUsers");
-        
+        System.out.print(res);
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;
         

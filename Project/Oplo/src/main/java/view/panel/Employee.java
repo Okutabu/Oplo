@@ -4,14 +4,9 @@
  */
 package view.panel;
 
+import controller.OpenProfileController;
 import java.util.ArrayList;
-import model.utility.ServerCommunication;
-import model.utility.User;
 import model.utility.UserAndSkills;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import static view.internal.HomeNavigationButtonsPanel.displayRightWindow;
-import view.internal.ProfileView;
 
 /**
  *
@@ -33,48 +28,18 @@ public class Employee extends javax.swing.JPanel {
     private void initialize(){
         UserAndSkills utilisateur = getUser();
         String name = utilisateur.getName();
+        String login = utilisateur.getLogin();
         ArrayList<String> competences = utilisateur.getCompetences();
         
-        names.setText(name + " (" + user.getNbProjets() + ")");
+        names.setText(login + " - " + name + " (" + user.getNbProjets() + ")");
         
         for(String competence:competences){
             skills.setText(skills.getText() + competence + "\n");
         }
-    }
-    
-    private void openProfile() {
-        String login = getUser().getLogin();
         
-        ServerCommunication s = new ServerCommunication();
-        
-        String c = s.sendPostRequest("login=" + login);
-        
-        Object o = JSONValue.parse(c);
-        JSONObject connectionInfos = (JSONObject) o;
-        
-        try
-        {
-            //Met a jour la classe User avec les infos de l'utilisateur, sorte de cache pour la session
-            String prenom = (String) connectionInfos.get("firstname");
-            String nom = (String) connectionInfos.get("surname");
-            String admin = String.valueOf(connectionInfos.get("admin"));
-            String role = (String) connectionInfos.get("role");
-            String description = (String) connectionInfos.get("others");
-            String photo = (String) connectionInfos.get("profile_pic");
-            String approved = (String) connectionInfos.get("approved");
-            
-            boolean isApproved = true;
-            if(approved.equals("0")) isApproved = false;
-            
-            User utilisateur = new User(login, prenom, nom, admin, role, description, photo, isApproved);
-            
-            ProfileView p = new ProfileView(utilisateur);
-            displayRightWindow(p);
-        } catch (Exception e) {
-            
-        }
-        
-        
+        //ajout mouseListeners
+        this.addMouseListener(new OpenProfileController(login));
+        skills.addMouseListener(new OpenProfileController(login));
     }
 
     private UserAndSkills getUser() {
@@ -137,11 +102,11 @@ public class Employee extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void namesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_namesMouseClicked
-        openProfile();
+       
     }//GEN-LAST:event_namesMouseClicked
 
     private void skillsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_skillsMouseClicked
-        openProfile();
+        
     }//GEN-LAST:event_skillsMouseClicked
 
 

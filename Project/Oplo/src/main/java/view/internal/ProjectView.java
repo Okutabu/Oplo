@@ -24,6 +24,8 @@ import org.json.simple.*;
 import view.*;
 import controller.*;
 import java.awt.Adjustable;
+import java.awt.Cursor;
+import java.awt.FlowLayout;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import javax.swing.JCheckBox;
@@ -32,7 +34,7 @@ import javax.swing.JScrollPane;
 import model.*;
 /**
  *
- * @author Okutabu
+ * @author 
  */
 public class ProjectView extends javax.swing.JInternalFrame {
 
@@ -314,12 +316,16 @@ public class ProjectView extends javax.swing.JInternalFrame {
         JPanel innerPanel = new JPanel();
         innerPanel.setBorder(new EmptyBorder(15, 15, 15, 15));
         innerPanel.setBackground(new Color(102, 102, 102));
-        innerPanel.setForeground(new Color(102, 102, 102));
         
         Object o = JSONValue.parse(res);
-        JSONArray jsonArray = (JSONArray) o;     
+        JSONArray jsonArray = (JSONArray) o;    
         
-        innerPanel.setLayout(new GridLayout(100, 1));
+        int nbMembres = jsonArray.size();
+        if (nbMembres < 9) {
+            innerPanel.setLayout(new GridLayout(8, 1));
+        } else {
+            innerPanel.setLayout(new GridLayout(nbMembres, 1));
+        }
         
         for(Object object:jsonArray)
         {
@@ -333,19 +339,29 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     Object newJson = jsonObject.get(key);
                     JSONObject newObj = (JSONObject)newJson;  
 
+                    JPanel employeePanel = new JPanel();
+                    employeePanel.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 0));
+                    employeePanel.setOpaque(false);
+                    
                     JLabel newLabel = new JLabel(newObj.get("fullname").toString());
                     
                     newLabel.setForeground(Color.white);
-                    innerPanel.add(newLabel);
+                    employeePanel.add(newLabel);
+                    newLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                    //ajout mouseListener
+                    newLabel.addMouseListener(new OpenProfileController(newObj.get("login").toString()));
                     
                     UserConnected user = Home.getUser();
                     
                     if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()))
                     { 
                         RemoveUserBtn removeLabel = new RemoveUserBtn("X", newObj.get("login").toString(), model);
+                        removeLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
                         removeLabel.setForeground(Color.red);  
-                        innerPanel.add(removeLabel);
+                        employeePanel.add(removeLabel);
                     }
+                    
+                    innerPanel.add(employeePanel);
                 }               
             }
         }

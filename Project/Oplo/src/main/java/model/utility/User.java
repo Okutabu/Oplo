@@ -88,4 +88,6 @@ public class User {
     public boolean getApproved() {
         return this.approved;
     }
+    
+    
 }
