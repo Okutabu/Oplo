@@ -149,16 +149,22 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 String end_date = jsonObject.get("end_date").toString();
                 String creator_login = jsonObject.get("creator_login").toString();
 
-                JSONObject competences = (JSONObject) jsonObject.get("competences");
-                Set<String> newKeys =competences.keySet();
-
+                JSONArray competences = (JSONArray) jsonObject.get("competences");    
                 ArrayList<Skill> skills = new ArrayList<Skill>();
-                for(Object newKey:newKeys) 
-                {
-                    String nom = newKey.toString();
-                    String nb = competences.get(nom).toString();
-                    skills.add(new Skill(Integer.parseInt(nb), nom));
+                
+                if (!competences.isEmpty()) {
+                    JSONObject JSONcompetences = (JSONObject) competences.get(0);
+                    Set<String> newKeys =JSONcompetences.keySet();
+
+
+                    for(Object newKey:newKeys) 
+                    {
+                        String nom = newKey.toString();
+                        String nb = JSONcompetences.get(nom).toString();
+                        skills.add(new Skill(Integer.parseInt(nb), nom));
+                    }
                 }
+                
 
                 Project p = new Project(name, description, start_date, end_date, creator_login, skills);
 
@@ -174,7 +180,10 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private void refreshTotal(String competence, String projet) {
         ServerCommunication s = new ServerCommunication();
         
-        total.setText(s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet));
+        String nbPagesString = s.sendPostRequest("getTotalProject=true&competence=" + competence + "&projectName=" + projet);
+        int nbPages = Integer.parseInt(nbPagesString) / 6;
+        
+        total.setText();
     }
     
     private int getCurrentPage() {
@@ -247,6 +256,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
 
         displayProjects.setBackground(new java.awt.Color(70, 70, 100));
         displayProjects.setForeground(new java.awt.Color(70, 70, 100));
+        displayProjects.setMaximumSize(new java.awt.Dimension(1074, 615));
 
         javax.swing.GroupLayout displayProjectsLayout = new javax.swing.GroupLayout(displayProjects);
         displayProjects.setLayout(displayProjectsLayout);
