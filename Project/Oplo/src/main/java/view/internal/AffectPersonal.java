@@ -74,7 +74,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         ServerCommunication s = new ServerCommunication();
         
         String res = s.sendGetRequest("allUsers");
-        System.out.print(res);
+
         Object o = JSONValue.parse(res);
         JSONArray jsonArray = (JSONArray) o;
         
@@ -102,7 +102,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     JSONObject newObj = (JSONObject)newJson;
 
                     //recuperation des infos
-                    String login = newObj.get("login").toString();
+                    String login = key;
                     String name = newObj.get("nom").toString();
                     String numberOfProject = newObj.get("numberOfProject").toString();
                     JSONArray competences = (JSONArray) newObj.get("competence");
