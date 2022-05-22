@@ -57,12 +57,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         Image image = null;
         try {
             
-            image = ImageIO.read(new File("src/main/java/resources/loupe1.png"));
-            Image scaled = image.getScaledInstance(35, 35, Image.SCALE_DEFAULT);
-            loupe1.setIcon(new ImageIcon(scaled));
-            
             image = ImageIO.read(new File("src/main/java/resources/loupe2.png"));
-            scaled = image.getScaledInstance(35, 35, Image.SCALE_DEFAULT);
+            Image scaled = image.getScaledInstance(35, 35, Image.SCALE_DEFAULT);
             loupe2.setIcon(new ImageIcon(scaled));
         } 
         catch (IOException e) {
@@ -207,7 +203,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     }
 
     private String getCompetenceSearched() {
-        return searchBarSkill.getText();
+        return (String) searchBarSkill.getSelectedItem();
     }
     
     private String getProjectSearched() {
@@ -232,17 +228,16 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         orderBy = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        searchBarSkill = new javax.swing.JTextField();
         searchBarProject = new javax.swing.JTextField();
         loupe2 = new javax.swing.JLabel();
         displayPersonal = new javax.swing.JScrollPane();
-        loupe1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         next = new com.k33ptoo.components.KButton();
         previous = new com.k33ptoo.components.KButton();
         total = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         currentPage = new javax.swing.JSpinner();
+        searchBarSkill = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(35, 35, 40));
         setOpaque(true);
@@ -298,14 +293,6 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Projet :");
 
-        searchBarSkill.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        searchBarSkill.setPreferredSize(new java.awt.Dimension(54, 22));
-        searchBarSkill.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchBarSkillActionPerformed(evt);
-            }
-        });
-
         searchBarProject.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         searchBarProject.setPreferredSize(new java.awt.Dimension(54, 22));
         searchBarProject.addActionListener(new java.awt.event.ActionListener() {
@@ -325,13 +312,6 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         displayPersonal.setBorder(null);
         displayPersonal.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         displayPersonal.setOpaque(false);
-
-        loupe1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        loupe1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loupe1MouseClicked(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -392,6 +372,9 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
             }
         });
 
+        searchBarSkill.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        searchBarSkill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sélectionner" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -409,10 +392,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                         .addGap(51, 51, 51)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loupe1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
+                        .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(searchBarProject, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -453,9 +434,8 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addComponent(loupe2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addComponent(loupe1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1)
+                            .addComponent(searchBarSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -476,7 +456,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 .addGap(252, 252, 252))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {searchBarProject, searchBarSkill});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {orderBy, searchBarSkill});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -485,10 +465,6 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
         refreshTotal(getCompetenceSearched(), getProjectSearched());
     }//GEN-LAST:event_orderByActionPerformed
-
-    private void searchBarSkillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarSkillActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchBarSkillActionPerformed
 
     private void searchBarProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBarProjectActionPerformed
         // TODO add your handling code here:
@@ -505,11 +481,6 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private void currentPageStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_currentPageStateChanged
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), getCurrentPage());
     }//GEN-LAST:event_currentPageStateChanged
-
-    private void loupe1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe1MouseClicked
-        refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
-        refreshTotal(getCompetenceSearched(), getProjectSearched());
-    }//GEN-LAST:event_loupe1MouseClicked
 
     private void loupe2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loupe2MouseClicked
         refreshProjects(getCompetenceSearched(), getProjectSearched(), getSort(), 0);
@@ -534,13 +505,12 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel loupe1;
     private javax.swing.JLabel loupe2;
     private com.k33ptoo.components.KButton next;
     private javax.swing.JComboBox<String> orderBy;
     private com.k33ptoo.components.KButton previous;
     private javax.swing.JTextField searchBarProject;
-    private javax.swing.JTextField searchBarSkill;
+    private javax.swing.JComboBox<String> searchBarSkill;
     private javax.swing.JLabel titre;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
