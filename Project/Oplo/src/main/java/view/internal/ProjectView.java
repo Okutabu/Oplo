@@ -369,7 +369,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
             }
         }
         //pour ajouter membre au projet
-        if (user.getRole().equals("Chef de projet")) innerPanel.add(memberDisplay());
+        if (user.getRole().equals("Responsable scientifique")) innerPanel.add(memberDisplay());
         MembersListPanel.setViewportView(innerPanel);
     }
     
@@ -377,6 +377,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
         JLabel add = new JLabel("+ Ajouter un membre");
         add.setCursor(new Cursor(Cursor.HAND_CURSOR));
         add.setForeground(Color.GREEN);  
+        add.addMouseListener(new addMemberToProjectController());
         return add;
     }
     

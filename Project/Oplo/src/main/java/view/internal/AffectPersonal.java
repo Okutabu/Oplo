@@ -195,6 +195,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                 }
             }
         }
+        validate();
     }
     
     private int getTotalpages(String competence, String projet){
