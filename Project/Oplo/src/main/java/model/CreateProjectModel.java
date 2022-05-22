@@ -55,9 +55,12 @@ public class CreateProjectModel
         ServerCommunication s = new ServerCommunication();
         if (requirements){
             try {
-                s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
-                view.getErrorDisplayLabel().setText("Le projet a bien été crée");
-                view.getErrorDisplayLabel().setForeground(new Color(0,255,0));
+                String res =s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
+                System.out.print(res);
+                if (false){
+                    view.getErrorDisplayLabel().setText("Le projet a bien été crée");
+                    view.getErrorDisplayLabel().setForeground(new Color(0,255,0));
+                }
             }
             catch(NullPointerException e){
                 view.getErrorDisplayLabel().setText("Renseignez tous les champs");
