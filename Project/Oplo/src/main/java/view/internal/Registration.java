@@ -264,7 +264,6 @@ public class Registration extends javax.swing.JInternalFrame {
         jLabel13.setText("Mes compétences");
 
         chosenFileLabel.setForeground(new java.awt.Color(255, 255, 255));
-        chosenFileLabel.setText("t");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -396,7 +395,7 @@ public class Registration extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(profile)
-                    .addComponent(chosenFileLabel))
+                    .addComponent(chosenFileLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
