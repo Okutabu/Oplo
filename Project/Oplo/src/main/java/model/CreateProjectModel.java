@@ -53,23 +53,29 @@ public class CreateProjectModel
                 
         boolean requirements = projectName != null && projectDescription != null && projectStartDate != null && projectEndDate != null;
         ServerCommunication s = new ServerCommunication();
-        if (requirements){
-            try {
-                String res =s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
-                System.out.print(res);
-                if (false){
-                    view.getErrorDisplayLabel().setText("Le projet a bien été crée");
-                    view.getErrorDisplayLabel().setForeground(new Color(0,255,0));
+        
+        if (requirements)
+        {
+            try 
+            {
+                String res = s.sendPostRequest("name=" + projectName + "&description=" + projectDescription + "&start_date=" + projectStartDate + "&end_date=" + projectEndDate + "&creator_login=" + authorLogin + "&humanNeed=" + humanNeed);
+                
+                if (res.equals("ok"))
+                {
+                    view.setErrorMsg("Le projet a bien été crée");
+                    view.setErrorMsgColor(new Color(0,255,0));
                 }
             }
-            catch(NullPointerException e){
-                view.getErrorDisplayLabel().setText("Renseignez tous les champs");
-                view.getErrorDisplayLabel().setForeground(new Color(255,0,0));
+            catch(NullPointerException e)
+            {
+                view.setErrorMsg("Renseignez tous les champs");
+                view.setErrorMsgColor(new Color(255,0,0));
             }
         }
-        else{
-            view.getErrorDisplayLabel().setText("Renseignez tous les champs");
-            view.getErrorDisplayLabel().setForeground(new Color(255,0,0));
+        else
+        {
+            view.setErrorMsg("Renseignez tous les champs");
+            view.setErrorMsgColor(new Color(255,0,0));
         }
     }
     

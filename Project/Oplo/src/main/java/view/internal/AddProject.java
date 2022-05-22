@@ -143,8 +143,14 @@ public class AddProject extends javax.swing.JInternalFrame {
         return competences;
     }
     
-    public JLabel getErrorDisplayLabel(){
-        return this.errorDisplay;
+    public void setErrorMsg(String msg)
+    {
+        errorDisplayLabel.setText(msg);
+    }
+    
+    public void setErrorMsgColor(Color col)
+    {
+        errorDisplayLabel.setForeground(col);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -189,7 +195,7 @@ public class AddProject extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         humanNeedsArea = new javax.swing.JScrollPane();
         humanNeedArea = new javax.swing.JTextArea();
-        errorDisplay = new javax.swing.JLabel();
+        errorDisplayLabel = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -254,39 +260,40 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addComponent(Comp, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(removeHumanNeed, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeHumanNeed, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(competenceLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(nbemployecomp)
                         .addGap(31, 31, 31)
                         .addComponent(humanNeedNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28))
                     .addGroup(competenceLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
+                        .addGap(42, 42, 42)
                         .addComponent(addHumanNeed)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         competenceLayout.setVerticalGroup(
             competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(competenceLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(competenceLayout.createSequentialGroup()
-                        .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(skillSelector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(nbemployecomp))
-                            .addComponent(Comp, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Comp, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                         .addGroup(competenceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addHumanNeed)
-                            .addComponent(removeHumanNeed)))
+                            .addComponent(removeHumanNeed))
+                        .addContainerGap())
                     .addGroup(competenceLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addComponent(humanNeedNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         createProjectButton.setText("Créer ce projet");
@@ -329,9 +336,9 @@ public class AddProject extends javax.swing.JInternalFrame {
         humanNeedArea.setRows(5);
         humanNeedsArea.setViewportView(humanNeedArea);
 
-        errorDisplay.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        errorDisplay.setForeground(new java.awt.Color(255, 255, 255));
-        errorDisplay.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        errorDisplayLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        errorDisplayLabel.setForeground(new java.awt.Color(255, 255, 255));
+        errorDisplayLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -380,7 +387,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                         .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(340, 340, 340)
-                        .addComponent(errorDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(errorDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -418,7 +425,7 @@ public class AddProject extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(createProjectButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(errorDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(errorDisplayLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(293, Short.MAX_VALUE))
         );
 
@@ -439,7 +446,7 @@ public class AddProject extends javax.swing.JInternalFrame {
     private javax.swing.JLabel datedebut;
     private javax.swing.JLabel datefin;
     public com.toedter.calendar.JDateChooser endDate;
-    private javax.swing.JLabel errorDisplay;
+    private javax.swing.JLabel errorDisplayLabel;
     public javax.swing.JLabel errorResult;
     private javax.swing.JTextArea humanNeedArea;
     private com.toedter.components.JSpinField humanNeedNumber;
