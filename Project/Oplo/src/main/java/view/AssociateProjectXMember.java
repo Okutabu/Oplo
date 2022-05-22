@@ -17,6 +17,7 @@ public class AssociateProjectXMember extends javax.swing.JFrame {
     public AssociateProjectXMember() {
         initComponents();
         initialize();
+        setLocationRelativeTo(null);
     }
     
     private void initialize() {

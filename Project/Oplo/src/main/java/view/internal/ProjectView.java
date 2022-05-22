@@ -356,7 +356,7 @@ public class ProjectView extends javax.swing.JInternalFrame {
                     
                     
                     //pour la croix
-                    if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()))
+                    if(!newObj.get("login").toString().equals(user.getLogin()) && model.getCreator().equals(user.getLogin()) && user.getRole().equals("Responsable scientifique"))
                     { 
                         RemoveUserBtn removeLabel = new RemoveUserBtn("X", newObj.get("login").toString(), model);
                         removeLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));

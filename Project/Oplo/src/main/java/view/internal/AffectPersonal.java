@@ -4,8 +4,7 @@
  */
 package view.internal;
 
-import controller.ProjectListController;
-import controller.addMemberToProjectController;
+import controller.AffectController;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -188,7 +187,7 @@ public class AffectPersonal extends javax.swing.JInternalFrame {
                     Project p = new Project(name, description, start_date, end_date, creator_login, skills);
 
                     miniProjectDisplayResponsable m = new miniProjectDisplayResponsable(p);
-                    m.addMouseListener(new addMemberToProjectController(displayProjects));
+                    m.addMouseListener(new AffectController());
                     //ajout au jpanel
                     displayProjects.add(m);
                 }
